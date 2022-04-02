@@ -1,7 +1,7 @@
 {
-  "name": "my-webpack-project",
+  "name": "AucklandGame",
   "version": "1.0.0",
-  "description": "My webpack project",
+  "description": "Asteroid game on js",
   "main": "index.js",
   "engines": {
     "node": ">=12"
@@ -45,7 +45,6 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
     "prettier": "2.6.1",
-    "react-dom": "^17.0.2",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
@@ -56,6 +55,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

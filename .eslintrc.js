@@ -3,7 +3,7 @@ module.exports = {
         "browser": true,
         "es6": true
     },
-    "extends": ['plugin:react/recommended'],
+    "extends": ["plugin:react/recommended"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -32,6 +32,7 @@ module.exports = {
         "require-jsdoc": "off",
         "no-trailing-spaces": "off",
         "operator-linebreak": "off",
+        "quotes": ["error", "single"]
     },
     "overrides": [
         {

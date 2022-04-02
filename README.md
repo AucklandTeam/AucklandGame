@@ -1,15 +1,9 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 Auckland Asteroid game!
 
-This project has been created using **webpack-cli**, you can now run
-
-```
-npm run build
-```
-
-or
+Лучшая игра про астеройды на js
 
 ```
-yarn build
+npm run start
 ```
 
-to bundle your application
+чтобы запустить игру
