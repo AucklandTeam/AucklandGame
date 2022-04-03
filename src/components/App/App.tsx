@@ -15,7 +15,7 @@ const App = () => {
                     <ul>
                         <li><Link to="game">Game</Link></li>
                         <li><Link to="profile">Profile</Link></li>
-                        <li><Link to="results">Statistic</Link></li>
+                        <li><Link to="results">High-scores</Link></li>
                     </ul>
                 </nav>
                 <div>
