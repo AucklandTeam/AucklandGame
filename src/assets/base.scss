@@ -1,5 +1,61 @@
-$darkGray100: #1C1D20;
+@import 'normalize';
+@import 'variables';
+@import 'vertical-rhythm';
+@import 'colors';
+@import 'fonts';
+@import 'transition';
+@import 'forms';
+
+%for-headings {
+    font-family: $font-heading-family;
+    font-weight: $font-heading-weight;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+%for-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
 
 body {
-  background: $darkGray100;
+    background: $dark-gray-100;
+    color: $white-100;
+    font-family: $font-default-family;
+}
+
+a {
+    text-decoration: none;
+    color: $accent-100;
+    transition: $base-transition;
+    &:hover {
+        color: $accent-80;
+        transition: $base-transition;
+    }
+}
+.w-100 {
+    width: 100vw;
+}
+
+.hidden {
+    display: none;
+}
+
+.not-game {
+    @extend %for-wrap;
+    background: url('/www/Images/hero.jpg') no-repeat fixed $dark-gray-100;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+.content-wrap {
+    @extend %for-wrap;
+    width: 67vw;
+    background: $dark-gray-75;
+    border: 3px solid $dark-gray-100;
+    margin: 3em auto;
+    padding: 1em;
 }

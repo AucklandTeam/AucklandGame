@@ -1,21 +1,23 @@
 import React from 'react';
-import Title from '../Title/Title';
+import Heading1 from '../elements/Headings/Heading1';
 import { Route, Link, HashRouter, Routes } from 'react-router-dom';
-import Game from '../Game/Game';
-import Results from '../Results/Results';
-import Profile from '../Profile/Profile';
+import Game from '../pages/Game/Game';
+import Results from '../pages/Results/Results';
+import Profile from '../pages/Profile/Profile';
+import './App.scss';
 
-const title = 'Title here';
+const title = 'Destroy Asteroids';
 
 const App = () => {
     return (
-        <>
+        <div className={'not-game'}>
+            <Heading1 headingTitle={ title } />
             <HashRouter>
-                <nav>
-                    <ul>
-                        <li><Link to="game">Game</Link></li>
-                        <li><Link to="profile">Profile</Link></li>
-                        <li><Link to="results">High-scores</Link></li>
+                <nav className={'w-100'}>
+                    <ul className={'content-wrap'}>
+                        <li className={'menu-item'}><Link to="game">Game</Link></li>
+                        <li className={'menu-item'}><Link to="profile">Profile</Link></li>
+                        <li className={'menu-item'}><Link to="results">High-scores</Link></li>
                     </ul>
                 </nav>
                 <div>
@@ -27,7 +29,7 @@ const App = () => {
                     </Routes>
                 </div>
             </HashRouter>
-        </>
+        </div>
     );
 };
 export default App;

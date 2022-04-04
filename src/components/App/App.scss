@@ -1,0 +1,17 @@
+@import '../../assets/base.scss';
+
+.menu-item {
+  @extend %for-headings;
+  width: 100%;
+  font-family: $font-heading-family;
+  font-size: $h3-font-size;
+  list-style: none;
+  @include normalize-line-height($h3-font-size, $min-line-padding: 2px);
+  & a {
+    color: $white-100;
+  }
+  & a:hover {
+    color: $white-100;
+    text-shadow: $form-box-shadow;
+  }
+}
