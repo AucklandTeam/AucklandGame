@@ -16,6 +16,7 @@ const App = () => {
                 <nav className={'w-100'}>
                     <ul className={'content-wrap'}>
                         <li className={'menu-item'}><Link to="game">Game</Link></li>
+                        <li className={'menu-item'}><Link to="sign-in">Sign In</Link></li>
                         <li className={'menu-item'}><Link to="profile">Profile</Link></li>
                         <li className={'menu-item'}><Link to="results">High-scores</Link></li>
                     </ul>
@@ -26,6 +27,7 @@ const App = () => {
                         <Route path="/" element={<Game />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/results" element={<Results />} />
+                        <Route path="/sign-in" element={<Login />} />
                     </Routes>
                 </div>
             </HashRouter>
