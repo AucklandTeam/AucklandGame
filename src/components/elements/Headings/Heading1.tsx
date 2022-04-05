@@ -6,3 +6,4 @@ const Heading1 = ({ headingTitle } : any) => {
 };
 
 export default Heading1;
+

@@ -2,7 +2,7 @@ import React from 'react';
 import './Button.scss';
 
 interface ButtonProps {
-    buttonType: 'button' | 'submit' | 'reset' | undefined;
+    buttonType: 'button' | 'submit' | 'reset';
     buttonName: string;
     buttonTitle: string;
 }
