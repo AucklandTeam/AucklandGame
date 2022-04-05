@@ -4,3 +4,4 @@ import App from './components/App/App';
 import './assets/base.scss';
 
 ReactDOM.render(<App />, document.querySelector('#root'));
+
