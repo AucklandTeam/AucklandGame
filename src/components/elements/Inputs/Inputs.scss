@@ -1,0 +1,48 @@
+@import '../../../assets/base';
+
+.input-wrap {
+    display: block;
+    position: relative;
+    margin: $form-margin-vertical $form-margin-horizontal;
+    & label {
+        position: absolute;
+        left: 15px;
+        top: 10px;
+        color: $dark-gray-100;
+        transition: transform $base-transition, font-size $base-transition;
+    }
+    &.focused label {
+        transform: translateY(-50%);
+        font-size: 0.65em;
+        color: $accent-60;
+    }
+}
+
+input[type='email'],
+input[type='password'],
+input[type='text'] {
+    font-family: $form-font-family;
+    border: 0 solid;
+    background: $form-background-gradient;
+    color: $dark-gray-100;
+    line-height: $base-line-height;
+    padding: $form-input-padding;
+    max-width: 100%;
+    transition: box-shadow $base-transition;
+    &:focus {
+        color: $dark-gray-100;
+        outline: 0;
+        box-shadow: $form-box-shadow;
+    }
+    &:disabled {
+        color: $dark-gray-45;
+    }
+    &.error {
+        box-shadow: $form-box-error-shadow;
+    }
+}
+
+input:focus::placeholder {
+    color: $accent-60;
+    transition: $base-transition;
+}

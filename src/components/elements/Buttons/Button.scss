@@ -1,0 +1,23 @@
+@import '../../../assets/base';
+
+button[type="submit"],
+button[type="button"] {
+  background: $form-background-gradient;
+  font-family: $form-font-family;
+  color: $dark-gray-100;
+  border: none;
+  border-radius: $button-border-radius;
+  cursor: pointer;
+  font-weight: $button-font-weight;
+  line-height: $button-line-height;
+  padding: $button-padding-vertical $button-padding-horizontal;
+  text-decoration: none;
+  box-shadow: none;
+  transition: $base-transition;
+  margin: $form-margin-vertical $form-margin-horizontal;
+  &:focus, &:hover {
+    background: $form-background-gradient-hover;
+    transition: $base-transition;
+  }
+}
+
