@@ -1,8 +1,41 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const autoprefixer = require("autoprefixer");
 
 const isProduction = process.env.NODE_ENV === "production";
+
+const CSSModuleLoader = {
+    loader: 'css-loader',
+    options: {
+        modules: { localIdentName: '[name]_[local]__[hash:base64:5]' },
+        sourceMap: true,
+
+    }
+}
+
+const postCSSLoader = {
+    loader: 'postcss-loader',
+    options: {
+        sourceMap: true,
+        postcssOptions: {
+            ident: 'postcss',
+            plugins: [
+                require('postcss-flexbugs-fixes'),
+                autoprefixer({
+                    overrideBrowserslist: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                    ],
+                    flexbox: 'no-2009',
+                }),
+                require('postcss-modules-values'),
+            ]
+        }
+    }
+}
 
 const config = {
     entry: './src/index.tsx',
@@ -30,9 +63,10 @@ const config = {
                 use: ['babel-loader'],
             },
             {
-                test: /\.s[ac]ss$/i,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                test: /\.s(c)ss$/i,
+                use: ['style-loader', CSSModuleLoader, postCSSLoader, 'sass-loader']
             },
+
             {
                 test: /\.jpe?g$|\.ico$|\.gif$|\.png$/i,
                 type: "asset/resource",
