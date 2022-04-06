@@ -133,11 +133,6 @@ i {
     content: $as-done_all;
   }
 }
-.asOpenWith {
-  &:before {
-    content: $as-open_with;
-  }
-}
 .asPower {
   &:before {
     content: $as-power;
@@ -191,6 +186,11 @@ i {
 .asWest {
   &:before {
     content: $as-west;
+  }
+}
+.asTrophy {
+  &:before {
+    content: $as-trophy;
   }
 }
 .asRocket {
