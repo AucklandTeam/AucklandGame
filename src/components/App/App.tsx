@@ -15,7 +15,7 @@ const App = () => {
             <HashRouter>
                 <nav className={'w-100'}>
                     <ul className={'content-wrap'}>
-                        <li className={'menu-item'}><Link to="game">Game</Link></li>
+                        <li className={'menu-item'}><Link to="game"><i className={'as-rocket'} />Game</Link></li>
                         <li className={'menu-item'}><Link to="profile">Profile</Link></li>
                         <li className={'menu-item'}><Link to="results">High-scores</Link></li>
                     </ul>

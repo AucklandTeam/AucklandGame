@@ -8,3 +8,193 @@ $font-default-weight: 400;
 $font-default-bold-weight: 700;
 $font-heading-weight: 700;
 $font-heading-bold-weight: 900;
+
+// Custom Icon Font - Astero
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?wlmhb');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?wlmhb#iefix') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?wlmhb') format('truetype'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?wlmhb') format('woff'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?wlmhb##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.as-warning {
+  &:before {
+    content: $as-warning;
+  }
+}
+.as-add_image {
+  &:before {
+    content: $as-add_image;
+  }
+}
+.as-volume_mute {
+  &:before {
+    content: $as-volume_mute;
+  }
+}
+.as-volume_off {
+  &:before {
+    content: $as-volume_off;
+  }
+}
+.as-volume_up {
+  &:before {
+    content: $as-volume_up;
+  }
+}
+.as-forum {
+  &:before {
+    content: $as-forum;
+  }
+}
+.as-lightbulb {
+  &:before {
+    content: $as-lightbulb;
+  }
+}
+.as-reply {
+  &:before {
+    content: $as-reply;
+  }
+}
+.as-delete_sweep {
+  &:before {
+    content: $as-delete_sweep;
+  }
+}
+.as-format_quote {
+  &:before {
+    content: $as-format_quote;
+  }
+}
+.as-insert_comment {
+  &:before {
+    content: $as-insert_comment;
+  }
+}
+.as-create_new_folder {
+  &:before {
+    content: $as-create_new_folder;
+  }
+}
+.as-fullscreen {
+  &:before {
+    content: $as-fullscreen;
+  }
+}
+.as-fullscreen_exit {
+  &:before {
+    content: $as-fullscreen_exit;
+  }
+}
+.as-menu {
+  &:before {
+    content: $as-menu;
+  }
+}
+.as-person {
+  &:before {
+    content: $as-person;
+  }
+}
+.as-delete {
+  &:before {
+    content: $as-delete;
+  }
+}
+.as-done {
+  &:before {
+    content: $as-done;
+  }
+}
+.as-done_all {
+  &:before {
+    content: $as-done_all;
+  }
+}
+.as-open_with {
+  &:before {
+    content: $as-open_with;
+  }
+}
+.as-power {
+  &:before {
+    content: $as-power;
+  }
+}
+.as-search {
+  &:before {
+    content: $as-search;
+  }
+}
+.as-thumb_down {
+  &:before {
+    content: $as-thumb_down;
+  }
+}
+.as-thumb_up {
+  &:before {
+    content: $as-thumb_up;
+  }
+}
+.as-edit {
+  &:before {
+    content: $as-edit;
+  }
+}
+.as-east {
+  &:before {
+    content: $as-east;
+  }
+}
+.as-north {
+  &:before {
+    content: $as-north;
+  }
+}
+.as-push_pin {
+  &:before {
+    content: $as-push_pin;
+  }
+}
+.as-source {
+  &:before {
+    content: $as-source;
+  }
+}
+.as-south {
+  &:before {
+    content: $as-south;
+  }
+}
+.as-west {
+  &:before {
+    content: $as-west;
+  }
+}
+.as-rocket {
+  &:before {
+    content: $as-rocket;
+  }
+}

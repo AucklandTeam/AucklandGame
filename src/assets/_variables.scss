@@ -34,3 +34,41 @@ $indent-amount: 40px !default;
 // However, changing any of the variables above will cause
 // $normalize-vertical-rhythm to be automatically set to true.
 $normalize-vertical-rhythm: false !default;
+
+// Custom Icon Font - Astero
+
+$icomoon-font-family: 'astero' !default;
+$icomoon-font-path: '/www/Fonts' !default;
+
+$as-warning: '\e91d';
+$as-add_image: '\e905';
+$as-volume_mute: '\e900';
+$as-volume_off: '\e901';
+$as-volume_up: '\e902';
+$as-forum: '\e904';
+$as-lightbulb: '\e907';
+$as-reply: '\e903';
+$as-delete_sweep: '\e906';
+$as-format_quote: '\e912';
+$as-insert_comment: '\e908';
+$as-create_new_folder: '\e918';
+$as-fullscreen: '\e909';
+$as-fullscreen_exit: '\e90a';
+$as-menu: '\e911';
+$as-person: '\e913';
+$as-delete: '\e914';
+$as-done: '\e915';
+$as-done_all: '\e916';
+$as-open_with: '\e90c';
+$as-power: '\e90d';
+$as-search: '\e917';
+$as-thumb_down: '\e90e';
+$as-thumb_up: '\e90f';
+$as-edit: '\e910';
+$as-east: '\e91c';
+$as-north: '\e919';
+$as-push_pin: '\e91e';
+$as-source: '\e91f';
+$as-south: '\e91a';
+$as-west: '\e91b';
+$as-rocket: '\e9a5';
