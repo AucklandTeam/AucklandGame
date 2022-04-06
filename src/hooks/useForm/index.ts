@@ -1,27 +1,27 @@
 import {useCallback, useEffect, useMemo, useState} from 'react';
-import {TFormErrors, TFUseFormProps, TFUseFormResult} from './types';
+import {UseFormProps, UseFormResult, FormErrors} from './types';
 
 const useForm = <T extends object = {}>(
     {
         initialState,
         onSubmit,
         validate
-    }: TFUseFormProps<T>): TFUseFormResult<T> => {
+    }: UseFormProps<T>): UseFormResult<T> => {
 
     const [values, setValues] = useState<T>(() => initialState);
-    const [errors, setErrors] = useState<TFormErrors<T>>({} as TFormErrors<T>);
+    const [errors, setErrors] = useState<FormErrors<T>>({} as FormErrors<T>);
 
-    const setFieldValue: TFUseFormResult<T>['setFieldValue'] = useCallback((name, value) => {
+    const setFieldValue: UseFormResult<T>['setFieldValue'] = useCallback((name, value) => {
         setValues((prev) => ({...prev, [name]: value}))
     }, [values]);
 
-    const handleChange: TFUseFormResult['handleChange'] = useCallback(({target}) => {
+    const handleChange: UseFormResult['handleChange'] = useCallback(({target}) => {
         setFieldValue(target.name, target.value);
     }, [])
 
     const isValid = useMemo(() => !!Object.keys(errors).length, [errors]);
 
-    const handleReset: TFUseFormResult<T>['handleReset'] = (state) => {
+    const handleReset: UseFormResult<T>['handleReset'] = (state) => {
         if (state) {
             setValues(() => state);
         } else {
@@ -29,7 +29,7 @@ const useForm = <T extends object = {}>(
         }
     }
 
-    const handleSubmit: TFUseFormResult['handleSubmit'] = (event) => {
+    const handleSubmit: UseFormResult['handleSubmit'] = (event) => {
         event.preventDefault();
         onSubmit(values);
     }

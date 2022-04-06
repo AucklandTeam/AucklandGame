@@ -1,17 +1,17 @@
 import {ChangeEvent, FormEvent} from 'react';
 
-export type TFormErrors<T extends object> = {[K in keyof T]: string}
+export type FormErrors<T extends object> = {[K in keyof T]: string}
 
-export type TFUseFormProps<T extends object = {}> = {
+export type UseFormProps<T extends object = {}> = {
     initialState: T;
     onSubmit: (values:T)=>void;
-    validate?: (values:T)=>TFormErrors<T>;
+    validate?: (values:T)=>FormErrors<T>;
 }
-export type TFUseFormResult<T extends object = {}> = {
+export type UseFormResult<T extends object = {}> = {
     values: T;
     setFieldValue: <T>(name: keyof T, value: any) => void;
     handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    errors: TFormErrors<T>;
+    errors: FormErrors<T>;
     handleReset: (state?: T) => void;
     isValid: boolean;
     handleSubmit: (event: FormEvent<HTMLFormElement>)=>void;

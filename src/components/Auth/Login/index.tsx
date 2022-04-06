@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import useForm from '../../../hooks/useForm';
-import {TFormErrors} from '../../../hooks/useForm/types';
+import {FormErrors} from '../../../hooks/useForm/types';
 
 type LoginForm = {
     login: string;
@@ -14,25 +14,23 @@ const Login:FC = ()=>{
             password: '',
         },
         validate: (values)=>{
-            let errors:TFormErrors<LoginForm> = {} as TFormErrors<LoginForm>;
+            let errors:FormErrors<LoginForm> = {} as FormErrors<LoginForm>;
             if(values.login.length < 5){
                 errors.login = 'Поле короткое';
             }
             return errors;
         },
-        onSubmit: (values)=>{
+        onSubmit: (values) => {
             console.log(values, 'values');
         }
     });
     console.log(errors, 'ошибки')
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <input name="login" onChange={handleChange} value={values.login}/>
-                <input name="password" type="password" onChange={handleChange} value={values.password}/>
-                <button type="submit">Войти</button>
-            </form>
-        </>
+        <form onSubmit={handleSubmit}>
+            <input name="login" onChange={handleChange} value={values.login}/>
+            <input name="password" type="password" onChange={handleChange} value={values.password}/>
+            <button type="submit">Войти</button>
+        </form>
     )
 };
 
