@@ -4,6 +4,7 @@ import { Route, Link, HashRouter, Routes } from 'react-router-dom';
 import Game from '../pages/Game/Game';
 import Results from '../pages/Results/Results';
 import Profile from '../pages/Profile/Profile';
+import Login from '../Auth/Login';
 import './App.scss';
 
 const title = 'Destroy Asteroids';
