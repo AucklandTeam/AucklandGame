@@ -6,7 +6,7 @@ import Results from '../pages/Results/Results';
 import Profile from '../pages/Profile/Profile';
 import styles from './App.scss';
 import Main from "../pages/Main/Main";
-import Login from '../Auth/Login';
+import Login from '../pages/Auth/Login';
 
 
 const App = () => {

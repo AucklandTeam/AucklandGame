@@ -12,10 +12,10 @@ const Main = () => {
                 <nav className={ styles.w100 }>
                     <ul className={ styles.contentWrap }>
                         <li className={ styles.menuItem }>
-                            <Link to="game">
-                                <i className={ styles.asPower } />
-                                Game
-                            </Link>
+                            <Link to="game">Game</Link>
+                        </li>
+                        <li className={ styles.menuItem }>
+                            <Link to="sign-in">Sign In</Link>
                         </li>
                         <li className={ styles.menuItem }>
                             <Link to="profile">Profile</Link>

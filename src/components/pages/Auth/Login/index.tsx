@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import useForm from '../../../hooks/useForm';
-import {FormErrors} from '../../../hooks/useForm/types';
+import useForm from '../../../../hooks/useForm';
+import {FormErrors} from '../../../../hooks/useForm/types';
 
 type LoginForm = {
     login: string;
