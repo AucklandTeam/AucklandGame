@@ -6,6 +6,8 @@ import Results from '../pages/Results/Results';
 import Profile from '../pages/Profile/Profile';
 import styles from './App.scss';
 import Main from "../pages/Main/Main";
+import Login from '../Auth/Login';
+
 
 const App = () => {
     return (
@@ -17,6 +19,7 @@ const App = () => {
                         <Route path="/game" element={<Game />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/results" element={<Results />} />
+                        <Route path="/sign-in" element={<Login />} />
                     </Routes>
                 </div>
             </HashRouter>
