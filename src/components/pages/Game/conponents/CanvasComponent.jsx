@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import spaceshipImg from '../../../../../src/assets/spaceship.png'
-import bgImg from '../../../../../src/assets/bg.png'
-import debrisImg from '../../../../../src/assets/debris.png'
+import spaceshipImg from '../../../../../www/Images/spaceship.png'
+import bgImg from '../../../../../www/Images/SkyEmpty.svg'
+import debrisImg from '../../../../../www/Images/debris.png'
 
 const CanvasComponent = () => {
     const canvas = useRef() ;

@@ -2,7 +2,7 @@
 
 .game-main-wrap {
   @extend %for-wrap;
-  background: url('/www/images/sky.png') no-repeat fixed $dark-gray-100;
+  background: url('/www/images/SkyEmpty.svg') no-repeat fixed $dark-gray-100;
   background-size: cover;
   width: 100vw;
   height: 100vh;
