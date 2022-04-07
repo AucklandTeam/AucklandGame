@@ -3,9 +3,6 @@ import spaceshipImg from '../../../../../src/assets/spaceship.png'
 import bgImg from '../../../../../src/assets/bg.png'
 import debrisImg from '../../../../../src/assets/debris.png'
 
-const canvasFunc = () => {
-
-}
 const CanvasComponent = () => {
     const canvas = useRef() ;
     let isLoaded = false;
@@ -17,7 +14,7 @@ const CanvasComponent = () => {
     const debris = new Image();
     // константы
     const angleIncValue = 5;
-    const speedIncValue = 0.5;
+    const speedIncValue = 0.3;
     const speedInertion = 0.96;
     const shipWith = 100;
     const shipHeight = 124;
@@ -112,7 +109,6 @@ const CanvasComponent = () => {
     };
 
     const updateScene = () => {
-
         // очищаем весь канвас перед перерисовкой
         ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
         // рисуем объект в новых кординатах
@@ -206,15 +202,6 @@ const CanvasComponent = () => {
         debris.src = debrisImg;
         spaceship.src = spaceshipImg;
 
-        bg.onload = () => {
-            ctx.drawImage(bg, 0, 0);
-        };
-        debris.onload = () => {
-            ctx.drawImage(debris, 0, 0);
-        };
-        spaceship.onload = () => {
-            ctx.drawImage(spaceship, 0, 0);
-        };
         const startAnimation = () => {
             isLoaded = true;
             requestRef.current = requestAnimationFrame(loop);
