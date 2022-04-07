@@ -4,17 +4,27 @@
     display: block;
     position: relative;
     margin: $form-margin-vertical $form-margin-horizontal;
-    & label {
+    &  label {
         position: absolute;
         left: 15px;
         top: 10px;
         color: $dark-gray-100;
+        pointer-events: none;
         transition: transform $base-transition, font-size $base-transition;
     }
-    &.focused label {
+    & input:focus ~ label,
+    & input:valid ~ label {
         transform: translateY(-50%);
         font-size: 0.65em;
         color: $accent-60;
+    }
+    &.error input{
+        box-shadow: $form-box-error-shadow;
+    }
+    &.error input ~ label {
+        transform: translateY(-50%);
+        font-size: 0.65em;
+        color: $error-dark;
     }
 }
 
@@ -37,12 +47,5 @@ input[type='text'] {
     &:disabled {
         color: $dark-gray-45;
     }
-    &.error {
-        box-shadow: $form-box-error-shadow;
-    }
-}
 
-input:focus::placeholder {
-    color: $accent-60;
-    transition: $base-transition;
 }

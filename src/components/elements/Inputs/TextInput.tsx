@@ -9,12 +9,12 @@ interface InputProps {
     onBlur?:  React.FocusEventHandler<HTMLInputElement>;
 }
 
-// предполагается анимация label на onFocus (в стилях предусмотрен класс .focused)
+const classes = `${styles.inputWrap}`; //todo: добавить условие ввалидации ${styles.error}
 
 const TextInput:FC<InputProps> = ({ inputTitle, inputType, inputName }) => {
-    return <div className={ styles.inputWrap }>
-        <label>{ inputTitle }</label>
-        <input type={ inputType } name={ inputName } />
+    return <div className={ classes } >
+        <input type = { inputType } name = { inputName } required={ true } />
+        <label htmlFor = { inputName }>{ inputTitle }</label>
         </div>;
 };
 
