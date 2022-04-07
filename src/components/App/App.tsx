@@ -4,20 +4,29 @@ import { Route, Link, HashRouter, Routes } from 'react-router-dom';
 import Game from '../pages/Game/Game';
 import Results from '../pages/Results/Results';
 import Profile from '../pages/Profile/Profile';
-import './App.scss';
+import styles from './App.scss';
 
 const title = 'Destroy Asteroids';
 
 const App = () => {
     return (
-        <div className={'not-game'}>
-            <Heading1 headingTitle={ title } />
+        <div className={ styles.notGame }>
+            <Heading1 headingTitle = { title } />
             <HashRouter>
-                <nav className={'w-100'}>
-                    <ul className={'content-wrap'}>
-                        <li className={'menu-item'}><Link to="game">Game</Link></li>
-                        <li className={'menu-item'}><Link to="profile">Profile</Link></li>
-                        <li className={'menu-item'}><Link to="results">High-scores</Link></li>
+                <nav className={ styles.w100 }>
+                    <ul className={ styles.contentWrap }>
+                        <li className={ styles.menuItem }>
+                            <Link to="game">
+                                <i className={ styles.asPower } />
+                                Game
+                            </Link>
+                        </li>
+                        <li className={ styles.menuItem }>
+                            <Link to="profile">Profile</Link>
+                        </li>
+                        <li className={ styles.menuItem }>
+                            <Link to="results">High-scores</Link>
+                        </li>
                     </ul>
                 </nav>
                 <div>
@@ -33,4 +42,3 @@ const App = () => {
     );
 };
 export default App;
-

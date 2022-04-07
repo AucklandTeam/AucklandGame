@@ -35,7 +35,8 @@ a {
         transition: $base-transition;
     }
 }
-.w-100 {
+
+.w100 {
     width: 100vw;
 }
 
@@ -43,7 +44,7 @@ a {
     display: none;
 }
 
-.not-game {
+.notGame {
     @extend %for-wrap;
     background: url('/www/Images/hero.jpg') no-repeat fixed $dark-gray-100;
     background-size: cover;
@@ -51,7 +52,7 @@ a {
     height: 100vh;
 }
 
-.content-wrap {
+.contentWrap {
     @extend %for-wrap;
     width: 67vw;
     background: $dark-gray-75;

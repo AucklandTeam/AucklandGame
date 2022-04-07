@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import './Inputs.scss';
+import styles from './Inputs.scss';
 
 interface InputProps {
     inputTitle: string;
@@ -12,7 +12,7 @@ interface InputProps {
 // предполагается анимация label на onFocus (в стилях предусмотрен класс .focused)
 
 const TextInput:FC<InputProps> = ({ inputTitle, inputType, inputName }) => {
-    return <div className={ 'input-wrap' }>
+    return <div className={ styles.inputWrap }>
         <label>{ inputTitle }</label>
         <input type={ inputType } name={ inputName } />
         </div>;
