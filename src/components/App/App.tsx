@@ -11,7 +11,7 @@ const title = 'Destroy Asteroids';
 const App = () => {
     return (
         <div className={ styles.notGame }>
-            <Heading1 headingTitle={ title } />
+            <Heading1 headingTitle = { title } />
             <HashRouter>
                 <nav className={ styles.w100 }>
                     <ul className={ styles.contentWrap }>
