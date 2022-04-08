@@ -1,21 +1,23 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import styles from './Inputs.scss';
 
 interface InputProps {
     inputTitle: string;
     inputType: string;
     inputName: string;
-    onFocus?:  React.FocusEventHandler<HTMLInputElement>;
-    onBlur?:  React.FocusEventHandler<HTMLInputElement>;
+    onFocus?: React.FocusEventHandler<HTMLInputElement>;
+    onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 
-// предполагается анимация label на onFocus (в стилях предусмотрен класс .focused)
+const classes = `${styles.inputWrap}`;
 
-const TextInput:FC<InputProps> = ({ inputTitle, inputType, inputName }) => {
-    return <div className={ styles.inputWrap }>
-        <label>{ inputTitle }</label>
-        <input type={ inputType } name={ inputName } />
-        </div>;
+const TextInput: FC<InputProps> = ({ inputTitle, inputType, inputName }) => {
+    return (
+        <div className={classes}>
+            <input type={inputType} name={inputName} required={true} />
+            <label htmlFor={inputName}>{inputTitle}</label>
+        </div>
+    );
 };
 
 export default TextInput;

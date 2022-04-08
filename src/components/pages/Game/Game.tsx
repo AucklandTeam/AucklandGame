@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import CanvasComponent from './conponents/CanvasComponent';
 
 const Game = () => {
-    return <div>Game</div>;
+    return <CanvasComponent />;
 }
 
 export default Game;
