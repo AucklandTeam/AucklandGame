@@ -1,12 +1,12 @@
 import React from 'react';
-import Heading1 from '../elements/Headings/Heading1';
 import { Route, Link, HashRouter, Routes } from 'react-router-dom';
-import Game from '../pages/Game/Game';
-import Results from '../pages/Results/Results';
-import Profile from '../pages/Profile/Profile';
+import Game from 'src/components/pages/Game/Game';
+import Results from 'src/components/pages/Results/Results';
+import Profile from 'src/components/pages/Profile/Profile';
+import Main from "src/components/pages/Main/Main";
+import Login from 'src/components/pages/Auth/Login';
+import Forum from 'src/components/pages/Forum/Forum';
 import styles from './App.scss';
-import Main from "../pages/Main/Main";
-import Login from '../pages/Auth/Login';
 
 
 const App = () => {
@@ -20,6 +20,7 @@ const App = () => {
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/results" element={<Results />} />
                         <Route path="/sign-in" element={<Login />} />
+                        <Route path="/forum" element={<Forum />} />
                     </Routes>
                 </div>
             </HashRouter>
