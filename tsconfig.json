@@ -23,7 +23,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "skipLibCheck": true,
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "baseUrl": ".",
   },
   "include": [
     "next-env.d.ts",

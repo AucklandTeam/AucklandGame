@@ -1,10 +1,10 @@
-@import '../../../assets/base';
+@import 'src/assets/base';
 
 .inputWrap {
     display: block;
     position: relative;
     margin: $form-margin-vertical $form-margin-horizontal;
-    &  label {
+    & label {
         position: absolute;
         left: 15px;
         top: 10px;
@@ -47,5 +47,4 @@ input[type='text'] {
     &:disabled {
         color: $dark-gray-45;
     }
-
 }
