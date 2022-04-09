@@ -1,4 +1,13 @@
-@import '../../../assets/base';
+@import 'src/assets/base';
+
+.menuWrap {
+    @extend %for-wrap;
+    width: 67vw;
+    background: $dark-gray-75;
+    border: 3px solid $dark-gray-100;
+    margin: 3em auto;
+    padding: 1em;
+}
 
 .menuItem {
     @extend %for-headings;

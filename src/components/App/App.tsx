@@ -6,12 +6,13 @@ import Profile from 'src/components/pages/Profile/Profile';
 import Main from "src/components/pages/Main/Main";
 import Login from 'src/components/pages/Auth/Login';
 import Forum from 'src/components/pages/Forum/Forum';
-import styles from './App.scss';
+import ProfileEdit from "../pages/ProfileEdit/ProfileEdit";
+
 
 
 const App = () => {
     return (
-        <div className={ styles.notGame }>
+        <>
             <HashRouter>
                 <div>
                     <Routes>
@@ -21,10 +22,11 @@ const App = () => {
                         <Route path="/results" element={<Results />} />
                         <Route path="/sign-in" element={<Login />} />
                         <Route path="/forum" element={<Forum />} />
+                        <Route path="/settings" element={<ProfileEdit />} />
                     </Routes>
                 </div>
             </HashRouter>
-        </div>
+        </>
     );
 };
 export default App;

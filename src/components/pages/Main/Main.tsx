@@ -26,7 +26,7 @@ const Main = () => {
         <div className={ styles.notGame }>
             <Heading1 headingTitle = { title } />
                 <nav className={ styles.w100 }>
-                    <ul className={ styles.contentWrap }>
+                    <ul className={ styles.menuWrap }>
                         { menuList }
                     </ul>
                 </nav>

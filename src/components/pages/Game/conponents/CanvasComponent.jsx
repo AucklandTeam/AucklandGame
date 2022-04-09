@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import spaceshipImg from '../../../../../www/Images/spaceship.png';
-import bgImg from '../../../../../www/Images/sky.png';
-import debrisImg from '../../../../../www/Images/debris.png';
+import spaceshipImg from 'www/Images/spaceship.png'
+import bgImg from 'www/Images/SkyEmpty.svg'
+import debrisImg from 'www/Images/debris.png'
 import explosionImg from '../../../../../www/Images/Explosion.png';
 import asterImg from '../../../../../www/Images/aster.png';
 
@@ -109,7 +109,7 @@ const CanvasComponent = () => {
             return this.y + 100;
         }
     };
-    
+
     class Bullet {
         constructor(x, y, angle) {
             this.x = x + shipWith/2;
@@ -182,7 +182,7 @@ const CanvasComponent = () => {
 
         asteroids.forEach(asteroid => {
             bullets.forEach(bullet => {
-                if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < 50 && 
+                if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < 50 &&
                         Math.abs(bullet.getPos().y + 1 - asteroid.getCenterY()) < 50) {
                     bullet.visible = false;
                     asteroid.visible = false;
@@ -191,7 +191,7 @@ const CanvasComponent = () => {
                     count += 1;
                 }
             });
-            if (Math.abs(xMove + 50 - asteroid.getCenterX()) < 70 && 
+            if (Math.abs(xMove + 50 - asteroid.getCenterX()) < 70 &&
                     Math.abs(yMove + 50 - asteroid.getCenterY()) < 70) {
                 asteroid.visible = false;
                 const explosion = new Explosion(asteroid.x, asteroid.y);

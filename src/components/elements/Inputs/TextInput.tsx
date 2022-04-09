@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styles from './Inputs.scss';
 
 interface InputProps {
-    inputTitle: string;
+    inputTitle?: string;
     inputType: string;
     inputName: string;
     onFocus?: React.FocusEventHandler<HTMLInputElement>;

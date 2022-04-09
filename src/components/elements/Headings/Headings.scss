@@ -1,4 +1,4 @@
-@import '../../../assets/base';
+@import 'src/assets/base';
 
 h1 {
     @extend %for-headings;
@@ -7,4 +7,8 @@ h1 {
 
 h3 {
     @extend %for-headings;
+}
+
+h4 {
+    font-family: $base-font-family;
 }

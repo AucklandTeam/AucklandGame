@@ -7,17 +7,19 @@
 @import 'forms';
 
 %for-headings {
+    position: relative;
     font-family: $font-heading-family;
     font-weight: $font-heading-weight;
     text-align: center;
     letter-spacing: 1px;
+    width: 100%;
 }
 
 %for-wrap {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: flex-start;
 }
 
 body {
@@ -55,8 +57,29 @@ a {
 .contentWrap {
     @extend %for-wrap;
     width: 67vw;
+    height: calc(100vh - 5em);
     background: $dark-gray-75;
     border: 3px solid $dark-gray-100;
-    margin: 3em auto;
-    padding: 1em;
+    margin: 3em auto 0;
+    padding: 2%;
+}
+
+.userCard {
+    display: flex;
+    margin: 1%  0;
+}
+
+.userAvatar {
+    width: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: $form-border-radius;
+    & img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+.userData {
+    margin-left: 2em;
 }

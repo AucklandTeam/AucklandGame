@@ -1,0 +1,13 @@
+@import 'src/assets/base';
+
+.bottomMenuWrap {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 67vw;
+  margin: 1em auto;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
