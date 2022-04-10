@@ -1,13 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
-import spaceshipImg from '../../../../../www/Images/spaceship.png';
-import bgImg from '../../../../../www/Images/sky.png';
-import debrisImg from '../../../../../www/Images/debris.png';
-import explosionImg from '../../../../../www/Images/Explosion.png';
-import asterImg from '../../../../../www/Images/aster.png';
+import React, { useEffect, useRef } from 'react';
+import spaceshipImg from '../../../../../../www/Images/spaceship.png';
+import bgImg from '../../../../../../www/Images/sky.png';
+import debrisImg from '../../../../../../www/Images/debris.png';
+import explosionImg from '../../../../../../www/Images/Explosion.png';
+import asterImg from '../../../../../../www/Images/aster.png';
+import { getRandomArbitrary } from './utils';
+import {
+    angleIncValue,
+    speedIncValue,
+    speedInertion,
+    shipWith,
+    shipHeight,
+    bulletRadius,
+    shotDelay,
+    asteroidSpeed,
+} from './consts';
 
-function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-}
+
 
 const CanvasComponent = () => {
     const canvas = useRef() ;
@@ -19,14 +28,7 @@ const CanvasComponent = () => {
     const debris = new Image();
     const explosion = new Image();
     const aster = new Image();
-    // константы
-    const angleIncValue = 5;
-    const speedIncValue = 0.3;
-    const speedInertion = 0.96;
-    const shipWith = 100;
-    const shipHeight = 124;
-    const bulletRadius = 3;
-    const shotDelay = 200;
+
 
     // скорость кораблля
     let speed = 0;
@@ -44,7 +46,6 @@ const CanvasComponent = () => {
     let timestamp = 0;
     let timestampAsteroid = 0;
     let asteroidDelay = 0;
-    let asteroidSpeed = 2;
     let count = 0;
     let lives = 3;
     let isGameEnd = false;
@@ -90,7 +91,7 @@ const CanvasComponent = () => {
                 this.x = canvas.current.width - this.radius/2;
             }
             if (this.y > canvas.current.height) {
-                this.y = 0 - this.height/2;
+                this.y = 0 - this.radius/2;
             }
             if (this.y + this.radius - 2 < 0) {
                 this.y = canvas.current.height - this.radius/2;
@@ -109,7 +110,7 @@ const CanvasComponent = () => {
             return this.y + 100;
         }
     };
-    
+
     class Bullet {
         constructor(x, y, angle) {
             this.x = x + shipWith/2;
