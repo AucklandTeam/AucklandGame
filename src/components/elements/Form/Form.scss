@@ -1,0 +1,14 @@
+@import '../../../assets/base';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
