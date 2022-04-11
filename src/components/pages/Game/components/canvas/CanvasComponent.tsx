@@ -275,44 +275,44 @@ const CanvasComponent = () => {
         requestRef.current = requestAnimationFrame(loop);
     };
     // обработка кнопок
-    const keySwitcher = (e: any, state: boolean) => {
-        switch(e.keyCode)
+    const keySwitcher = (e:KeyboardEvent, state: boolean) => {
+        switch(e.key)
         {
             //key A or LEFT
-            case 65:
-            case 37:
+            case 'ArrowLeft':
+            case 'a':
                 keyLeft = state;
                 break;
             //key D or RIGHT
-            case 68:
-            case 39:
+            case 'd':
+            case 'ArrowRight':
                 keyRight = state;
                 break;
             //key W or UP
-            case 87:
-            case 38:
+            case 'w':
+            case 'ArrowUp':
                 keyUp = state;
                 break;
             //key S or DOWN
-            case 83:
-            case 40:
+            case 's':
+            case 'ArrowDown':
                 keyDown = state;
                 break;
             //key Space
-            case 32:
-            case 75:
+            case 'Space':
+            case ' ':
                 keySpace = state;
                 break;
         }
         e.preventDefault();
     };
     // начать движение
-    const keyDownHandler = (e: any) => {
+    const keyDownHandler = (e:KeyboardEvent) => {
         keySwitcher(e, true);
     };
 
     // остановить движение
-    const keyUpHandler = (e: any) => {
+    const keyUpHandler = (e:KeyboardEvent) => {
         keySwitcher(e, false);
     };
 
