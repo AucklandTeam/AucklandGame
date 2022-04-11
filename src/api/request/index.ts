@@ -12,13 +12,17 @@ export function request<RESPONSE, REQUEST extends Record<string, unknown> | unde
             const response = await axios(
                 {
                     baseURL: ENDPOINTS.HTTP,
-                    data:data ?? {},
+                    data: data ?? {},
                     headers: {'Content-Type': 'application/json'},
                     withCredentials: true,
-                    ...settings});
+                    ...settings
+                });
             return response.data;
         } catch (e) {
-            console.error(e);
+            if (axios.isAxiosError(e)) {
+                throw JSON.parse(e.request?.response);
+            }
+            throw e;
         }
     };
 }

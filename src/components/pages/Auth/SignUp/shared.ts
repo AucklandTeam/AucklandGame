@@ -40,7 +40,7 @@ export const initialState: SignUpForm = {
     second_name: '',
     email: '',
     login: '',
-    phone:'',
+    phone:'89991112233',
     password:'',
     confirm:'',
 };

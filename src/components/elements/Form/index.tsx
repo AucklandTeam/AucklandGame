@@ -5,13 +5,17 @@ import styles from './Form.scss';
 type FormProps = {
     handleSubmit: (event: FormEvent<HTMLFormElement>)=>void;
     submitTitle: string;
+    errorText?: string;
 }
 
-const Form:FC<FormProps> = ({handleSubmit, children, submitTitle})=>(
+const Form:FC<FormProps> = ({handleSubmit, children, errorText, submitTitle})=>(
     <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.inputs}>
             {children}
         </div>
+        {errorText && (
+            <span className={styles.errors}>{errorText}</span>
+        )}
         <Button
             buttonType={'submit'}
             buttonTitle={submitTitle}

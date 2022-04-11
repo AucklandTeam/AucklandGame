@@ -15,7 +15,7 @@ const App = () => {
     useEffect(()=>{
         getUserRequest().then((user)=>{
             console.log(user, 'user');
-        });
+        }).catch((err)=>console.log(err,'err'));
     },[]);
     return (
         <div className={ styles.notGame }>

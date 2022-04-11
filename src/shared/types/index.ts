@@ -5,6 +5,9 @@ export type TextField<NAME> = {
     type: HTMLInputElement['type'];
     isHide?: boolean;
 }
+export type ID = {
+    id: number;
+}
 
 export type User = {
     id: number;

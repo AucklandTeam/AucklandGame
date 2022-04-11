@@ -13,3 +13,13 @@ export const ENDPOINTS = {
         AVATAR: '/profile/avatar',
     },
 };
+
+export enum RouterPath {
+    Main = '/',
+    SignIn = '/sign-in',
+    SignUp = '/sign-up',
+    Profile = '/profile',
+    Game = '/game',
+    Results = '/results',
+    Forum = '/forum',
+}

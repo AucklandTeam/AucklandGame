@@ -12,3 +12,9 @@
   flex-direction: column;
   width: 100%;
 }
+.errors {
+  color: $error-light;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+}

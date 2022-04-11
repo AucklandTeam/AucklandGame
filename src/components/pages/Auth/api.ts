@@ -1,4 +1,4 @@
-import {SuccessResponse, User} from 'src/shared/types';
+import {ID, SuccessResponse, User} from 'src/shared/types';
 import {request} from '../../../api/request';
 import { LoginForm } from './Login/types';
 import {ENDPOINTS} from '../../../shared/consts';
@@ -8,7 +8,7 @@ export const loginRequest = request<SuccessResponse, LoginForm>({method: 'POST',
 
 export const getUserRequest = request<User>({method: 'GET', url: ENDPOINTS.AUTH.USER});
 
-export const signUp = request<SuccessResponse, SignUpForm>({method: 'POST', url: ENDPOINTS.AUTH.SIGNUP});
+export const signUp = request<ID, SignUpForm>({method: 'POST', url: ENDPOINTS.AUTH.SIGNUP});
 
 export const logoutRequest = request<SuccessResponse>({method:'POST', url: ENDPOINTS.AUTH.LOGOUT});
 

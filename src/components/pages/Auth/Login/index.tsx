@@ -1,4 +1,5 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
+import {Link} from 'react-router-dom';
 import useForm from 'src/hooks/useForm';
 import {FormErrors} from 'src/hooks/useForm/types';
 import TemplatePage from '../../../Template/TemplatePage';
@@ -7,9 +8,11 @@ import {loginRequest} from '../api';
 import TextInput from '../../../elements/Inputs/TextInput';
 import {initialState, TextFieldsLogin} from './shared';
 import Form from '../../../elements/Form';
+import {RouterPath} from '../../../../shared/consts';
 
 
 const Login: FC = () => {
+    const [formError, setFormError] = useState('');
     const {values, handleChange, handleSubmit, isValid} = useForm<LoginForm>({
         initialState,
         validate: (values) => {
@@ -22,14 +25,20 @@ const Login: FC = () => {
         onSubmit: (values) => {
             if (isValid) {
                 loginRequest({...values},).then((res) => {
-                    console.log(res);
+                    console.log(res, 'rest');
+                }).catch((err)=>{
+                    setFormError(err.reason);
                 });
             }
         }
     });
     return (
         <TemplatePage titleContent={'Sign In'}>
-            <Form handleSubmit={handleSubmit} submitTitle={'Sign in'}>
+            <Form
+                handleSubmit={handleSubmit}
+                submitTitle={'Let’s shoot!'}
+                errorText={formError}
+            >
                 {TextFieldsLogin.map(({name, type}) =>
                     (<TextInput
                         key={name}
@@ -40,6 +49,7 @@ const Login: FC = () => {
                         value={values[name]}/>
                     ))}
             </Form>
+            <Link to={RouterPath.SignUp}>No account yet?</Link>
         </TemplatePage>
     );
 };
