@@ -116,7 +116,7 @@ const CanvasComponent = () => {
     };
 
     const updateShip = (time) => {
-        if (isLoaded) {
+        if (true) {
             // двигаем корабль
             if (keyRight) {
                 angle += angleIncValue;
@@ -324,7 +324,7 @@ const CanvasComponent = () => {
             debrisY = canvas.current.height / 5;
         };
 
-        window.addEventListener('load', startAnimation);
+        startAnimation();
         window.addEventListener('keydown', keyDownHandler);
         window.addEventListener('keyup', keyUpHandler);
         return () => cancelAnimationFrame(requestRef.current);
