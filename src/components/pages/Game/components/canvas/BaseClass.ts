@@ -1,7 +1,7 @@
 class Base {
-    private y: number;
-    private x: number;
-    private visible: boolean;
+    y: number;
+    x: number;
+    visible: boolean;
     constructor(x: number,y: number) {
         this.x = x;
         this.y = y;
