@@ -15,8 +15,7 @@ import {
     shotDelay,
     asteroidSpeed,
 } from './consts';
-
-
+import Base from './BaseClass';
 
 const CanvasComponent = () => {
     const canvas = useRef() ;
@@ -28,7 +27,6 @@ const CanvasComponent = () => {
     const debris = new Image();
     const explosion = new Image();
     const aster = new Image();
-
 
     // скорость кораблля
     let speed = 0;
@@ -56,30 +54,22 @@ const CanvasComponent = () => {
     let asteroids = [];
     let explosions = [];
 
-    class Explosion {
+    class Explosion extends Base {
         constructor(x,y) {
-            this.x= x;
-            this.y = y;
+            super(x,y);
             this.timeLives = 10;
-        }
-        getVisible() {
-            return this.visible;
         }
         update() {
             this.timeLives -= 1;
         }
     }
 
-    class Asteroid {
-        constructor() {
-            this.random = timestampAsteroid % 2;
-            this.offset = this.random ? -1 : 1;
-            this.x = getRandomArbitrary(0, canvas.current.width) + canvas.current.width * this.offset;
-            this.y = getRandomArbitrary(0, canvas.current.height) + canvas.current.height * this.offset;
+    class Asteroid extends Base {
+        constructor(x, y) {
+            super(x, y);
             this.speed = asteroidSpeed;
             this.angle = getRandomArbitrary(0, 360);
             this.radius = 50;
-            this.visible = true;
         }
         update() {
             this.x += Math.cos(Math.PI/180*(this.angle - 90)) * this.speed;
@@ -97,12 +87,6 @@ const CanvasComponent = () => {
                 this.y = canvas.current.height - this.radius/2;
             }
         }
-        getPos() {
-            return ({x: this.x, y: this.y});
-        }
-        getVisible() {
-            return this.visible;
-        }
         getCenterX() {
             return this.x + 100;
         }
@@ -111,13 +95,11 @@ const CanvasComponent = () => {
         }
     };
 
-    class Bullet {
+    class Bullet extends Base {
         constructor(x, y, angle) {
-            this.x = x + shipWith/2;
-            this.y = y + shipHeight/2;
+            super(x, y);
             this.angle = angle;
             this.speed = 20;
-            this.visible = true;
         }
         update() {
             this.x += Math.cos(Math.PI/180*(this.angle - 90)) * this.speed;
@@ -126,16 +108,10 @@ const CanvasComponent = () => {
                 this.visible = false;
             }
         }
-        getPos() {
-            return ({x: this.x, y: this.y});
-        }
-        getVisible() {
-            return this.visible;
-        }
     };
 
     const fireShip = () => {
-        const bullet = new Bullet(xMove, yMove, angle);
+        const bullet = new Bullet(xMove + shipWith/2, yMove + shipHeight/2, angle);
         bullets.push(bullet);
     };
 
@@ -180,7 +156,6 @@ const CanvasComponent = () => {
     };
 
     const checkCollision = () => {
-
         asteroids.forEach(asteroid => {
             bullets.forEach(bullet => {
                 if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < 50 && 
@@ -206,6 +181,14 @@ const CanvasComponent = () => {
         });
     };
 
+    const getAsteroidCoords = () => {
+        const random = timestampAsteroid % 2;
+        const offset = random ? -1 : 1;
+        const x = getRandomArbitrary(0, canvas.current.width) + canvas.current.width * offset;
+        const y = getRandomArbitrary(0, canvas.current.height) + canvas.current.height * offset;
+        return ({x, y});
+    };
+
     const updateScene = () => {
         // очищаем весь канвас перед перерисовкой
         ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
@@ -217,7 +200,8 @@ const CanvasComponent = () => {
         // пули
         if (timestampAsteroid - asteroidDelay > 1000) {
             asteroidDelay = timestampAsteroid;
-            const asteroid = new Asteroid();
+            const {x, y} = getAsteroidCoords();
+            const asteroid = new Asteroid(x, y);
             asteroids.push(asteroid);
         };
 
