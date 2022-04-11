@@ -2,8 +2,12 @@
 
 Лучшая игра про астеройды на js
 
-```
-npm run start
-```
+Хостинг на Heroku: https://auckland-asteroids.herokuapp.com/
 
-чтобы запустить игру
+```
+npm run start - запуск
+npm run build - production сборка
+npm run serve - dev server
+```
+Стэк: NodeJS, React, Sass
+
