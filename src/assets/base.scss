@@ -6,6 +6,13 @@
 @import 'transition';
 @import 'forms';
 
+
+// Initials
+
+$base-vertical-padding: 30px;
+$base-horizontal-padding: 0.75 * $base-vertical-padding;
+$base-content-block-border: 3px solid $dark-gray-100;
+
 %for-headings {
     position: relative;
     font-family: $font-heading-family;
@@ -57,11 +64,12 @@ a {
 .contentWrap {
     @extend %for-wrap;
     width: 67vw;
-    height: calc(100vh - 5em);
+    height: calc(100% - 2 * #{$base-vertical-padding});
     background: $dark-gray-75;
-    border: 3px solid $dark-gray-100;
-    margin: 3em auto 0;
-    padding: 2%;
+    border: $base-content-block-border;
+    margin: 0 auto;
+    padding: $base-vertical-padding $base-horizontal-padding;
+    position: relative;
 }
 
 .userCard {
@@ -73,6 +81,7 @@ a {
     width: 200px;
     position: relative;
     overflow: hidden;
+    margin: $form-margin-vertical 0;
     border-radius: $form-border-radius;
     & img {
         width: 200px;
@@ -81,5 +90,14 @@ a {
 }
 
 .userData {
-    margin-left: 2em;
+    padding-left: 2em;
+    width: calc(100% - 200px - 2em);
+}
+
+form {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0 $form-margin-vertical $form-margin-horizontal;
 }

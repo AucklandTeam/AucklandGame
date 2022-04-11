@@ -1,7 +1,7 @@
 @import 'src/assets/base';
 
 .bottomMenuItem {
-  display: inline-block;
+  padding: $form-margin-vertical 3 * $form-margin-vertical;
   & i {
     margin-right: 1em;
   }

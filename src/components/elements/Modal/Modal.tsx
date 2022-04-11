@@ -1,10 +1,12 @@
-import React, {useEffect, useImperativeHandle, useState, forwardRef, useCallback, FC, ReactPortal} from 'react';
+import React, { useEffect, useImperativeHandle, useState, forwardRef, useCallback, ForwardedRef } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './Modal.scss';
+import { object } from 'prop-types';
 
 const modalElement = document.getElementById('modalWrap') as HTMLElement;
 
-export function Modal({ children, fade = false, defaultOpened = false }, ref): ReactPortal {
+// @ts-ignore
+export function Modal({ children, fade = false, defaultOpened = false }, ref: ForwardedRef<any>) {
     const [isOpen, setIsOpen] = useState(defaultOpened);
 
     const close = useCallback(() => setIsOpen(false), []);
@@ -35,9 +37,19 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref): R
     return createPortal(
         isOpen ? (
             <div className={`${styles.modal} ${fade ? styles.modalFade : ''}`}>
-                <div className={styles.modalOverlay} onClick={close}/>
-                <span role="button" className={styles.modalClose} aria-label="close" onClick={close}>x</span>
-                <div className={styles.modalBody}>{ children }</div>
+                <div
+                    className={styles.modalOverlay}
+                    onClick={close}
+                />
+                <span
+                    role="button"
+                    className={styles.modalClose}
+                    aria-label="close"
+                    onClick={close}
+                >
+                    X
+                </span>
+                <div className={styles.modalBody}>{children}</div>
             </div>
         ) : null,
         modalElement,

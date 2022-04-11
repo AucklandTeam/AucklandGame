@@ -2,12 +2,13 @@
 
 .bottomMenuWrap {
   display: flex;
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  width: 67vw;
-  margin: 1em auto;
+  width: 100%;
+  margin-left: -$base-horizontal-padding;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+  background: $dark-gray-100;
 }
 

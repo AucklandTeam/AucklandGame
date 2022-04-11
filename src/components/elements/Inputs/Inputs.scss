@@ -1,7 +1,8 @@
 @import 'src/assets/base';
 
 .inputWrap {
-    display: block;
+    display: flex;
+    width: 100%;
     position: relative;
     margin: $form-margin-vertical $form-margin-horizontal;
     & label {
@@ -13,7 +14,8 @@
         transition: transform $base-transition, font-size $base-transition;
     }
     & input:focus ~ label,
-    & input:valid ~ label {
+    & input:valid ~ label,
+    & input:placeholder-shown ~ label {
         transform: translateY(-50%);
         font-size: 0.65em;
         color: $accent-60;
@@ -37,7 +39,7 @@ input[type='text'] {
     color: $dark-gray-100;
     line-height: $base-line-height;
     padding: $form-input-padding;
-    max-width: 100%;
+    width: 100%;
     transition: box-shadow $base-transition;
     &:focus {
         color: $dark-gray-100;
