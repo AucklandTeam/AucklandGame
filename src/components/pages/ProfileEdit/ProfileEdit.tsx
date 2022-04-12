@@ -31,7 +31,7 @@ const UploadAvatar = () => {
     });
     return (
         <>
-            <h4>Upload Avata</h4>
+            <h4>Upload Avatar</h4>
             <form onSubmit={handleSubmit}>
                 <TextInput
                     inputType={'file'}
