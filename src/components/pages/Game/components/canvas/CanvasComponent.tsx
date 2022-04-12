@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 // @ts-ignore
-import spaceshipImg from '../../../../../../www/Images/spaceship.png';
+import spaceshipImg from '../../../../../../www/Images/buran.png';
 // @ts-ignore
 import bgImg from '../../../../../../www/Images/sky.png';
 // @ts-ignore
@@ -165,13 +165,13 @@ const CanvasComponent = () => {
         if (yMove + shipHeight - 2 < 0) {
             yMove = canvas.height - shipHeight/2;
         }
-        
+
     };
 
     const checkCollision = () => {
         asteroids.forEach((asteroid: any) => {
             bullets.forEach((bullet: any) => {
-                if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < 50 && 
+                if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < 50 &&
                         Math.abs(bullet.getPos().y + 1 - asteroid.getCenterY()) < 50) {
                     bullet.visible = false;
                     asteroid.visible = false;
@@ -180,7 +180,7 @@ const CanvasComponent = () => {
                     count += 1;
                 }
             });
-            if (Math.abs(xMove + 50 - asteroid.getCenterX()) < 70 && 
+            if (Math.abs(xMove + 50 - asteroid.getCenterX()) < 70 &&
                     Math.abs(yMove + 50 - asteroid.getCenterY()) < 70) {
                 asteroid.visible = false;
                 const explosion = new Explosion(asteroid.x, asteroid.y);
