@@ -1,5 +1,4 @@
 import React from 'react';
-import Heading1 from 'src/components/elements/Headings/Heading1';
 import { Link } from 'react-router-dom';
 import styles from './Main.scss';
 
@@ -27,7 +26,7 @@ const menuList = menuItems.map( (item, index) => {
 const Main = () => {
     return (
         <div className={styles.notGame}>
-            <Heading1 headingTitle={title} />
+            <h1>{title}</h1>
             <nav className={styles.w100}>
                 <ul className={styles.menuWrap}>{menuList}</ul>
             </nav>

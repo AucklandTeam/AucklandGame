@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import NotGameWrap from 'src/components/elements/NotGameWrap/NotGameWrap';
-import Heading3 from 'src/components/elements/Headings/Heading3';
 import styles from './Results.scss';
 
 const scoreItems = [
@@ -30,7 +29,7 @@ const ScoresLine = scoreItems.sort(byField('userScore')).map((item, i = 1) => {
 const ResultContent: FC = () => {
     return (
         <>
-            <Heading3 headingTitle={'High-Scores'} />
+            <h3>High-Scores</h3>
             <table>
                 <tbody>{ScoresLine}</tbody>
             </table>
