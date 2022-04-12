@@ -2,7 +2,6 @@ import React, {FC} from 'react';
 import useForm from 'src/hooks/useForm';
 import {FormErrors} from 'src/hooks/useForm/types';
 import NotGameWrap from "src/components/elements/NotGameWrap/NotGameWrap";
-import Heading3 from "src/components/elements/Headings/Heading3";
 
 type LoginForm = {
     login: string;
@@ -29,14 +28,23 @@ const LoginContent:FC = ()=>{
     console.log(errors, 'ошибки')
     return (
         <>
-        <Heading3 headingTitle={'Sign In'} />
-        <form onSubmit={handleSubmit}>
-            <input name="login" onChange={handleChange} value={values.login}/>
-            <input name="password" type="password" onChange={handleChange} value={values.password}/>
-            <button type="submit">Войти</button>
-        </form>
+            <h3>Sign In</h3>
+            <form onSubmit={handleSubmit}>
+                <input
+                    name="login"
+                    onChange={handleChange}
+                    value={values.login}
+                />
+                <input
+                    name="password"
+                    type="password"
+                    onChange={handleChange}
+                    value={values.password}
+                />
+                <button type="submit">Войти</button>
+            </form>
         </>
-    )
+    );
 };
 
 const Login = () => {
