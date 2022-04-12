@@ -2,13 +2,15 @@ import React, { FC } from 'react';
 import NotGameWrap from '../../elements/NotGameWrap/NotGameWrap';
 
 const ForumContent: FC = () => {
-    return (
-            <h3>Auckland Forum</h3>
-    );
+    return <h3>Auckland Forum</h3>;
 };
 
 const Forum = () => {
-    return <NotGameWrap children={<ForumContent />} />;
+    return (
+        <NotGameWrap>
+            <ForumContent />
+        </NotGameWrap>
+    );
 };
 
 export default Forum;

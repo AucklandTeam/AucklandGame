@@ -11,7 +11,8 @@ const scoreItems = [
 ];
 
 function byField(field: string) {
-    return (a: Record<string, string | number>, b: Record<string, string | number>) => (a[field] > b[field] ? -1 : 1);
+    return (a: Record<string, string | number>, b: Record<string, string | number>) =>
+        (a[field] > b[field] ? -1 : 1);
 }
 const ScoresLine = scoreItems.sort(byField('userScore')).map((item, i = 1) => {
     return (
@@ -38,7 +39,11 @@ const ResultContent: FC = () => {
 };
 
 const Results = () => {
-    return <NotGameWrap children={<ResultContent />} />;
+    return (
+        <NotGameWrap>
+            <ResultContent />
+        </NotGameWrap>
+    );
 };
 
 export default Results;

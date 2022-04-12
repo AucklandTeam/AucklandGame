@@ -1,4 +1,4 @@
-import React, {Component, FC, MouseEventHandler} from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 
 interface AvatarProps {
     imageSrc: string;
@@ -7,13 +7,19 @@ interface AvatarProps {
     handleClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-const  Avatar: FC<AvatarProps> = ({imageSrc, divClass, imageTitle, handleClick}) => {
-
+const Avatar: FC<AvatarProps> = ({ imageSrc, divClass, imageTitle, handleClick }) => {
     return (
-            <div className={ divClass } onClick={ handleClick } >
-                <img src={ imageSrc } title={ imageTitle } alt={ imageTitle } />
-            </div>
-    )
-}
+        <div
+            className={divClass}
+            onClick={handleClick}
+        >
+            <img
+                src={imageSrc}
+                title={imageTitle}
+                alt={imageTitle}
+            />
+        </div>
+    );
+};
 
 export default Avatar;

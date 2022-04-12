@@ -30,3 +30,4 @@ const BottomMenuItem: FC<BottomMenuItemType> = ({ icon, title, url }) => {
 };
 
 export default BottomMenuItem;
+

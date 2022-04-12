@@ -1,7 +1,13 @@
-import React, { useEffect, useImperativeHandle, useState, forwardRef, useCallback, ForwardedRef } from 'react';
+import React, {
+    useEffect,
+    useImperativeHandle,
+    useState,
+    forwardRef,
+    useCallback,
+    ForwardedRef }
+    from 'react';
 import { createPortal } from 'react-dom';
 import styles from './Modal.scss';
-import { object } from 'prop-types';
 
 const modalElement = document.getElementById('modalWrap') as HTMLElement;
 

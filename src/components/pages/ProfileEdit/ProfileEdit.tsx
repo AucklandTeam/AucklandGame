@@ -136,16 +136,19 @@ const ProfileEditContent: FC = () => {
                     <EditUserPassword />
                 </div>
             </div>
-            <Modal
-                ref={modal}
-                children={<UploadAvatar />}
-            />
+            <Modal ref={modal}>
+                <UploadAvatar />
+            </Modal>
         </>
     );
 };
 
 const ProfileEdit = () => {
-    return <NotGameWrap children={<ProfileEditContent />} />;
+    return (
+        <NotGameWrap>
+            <ProfileEditContent />
+        </NotGameWrap>
+    );
 };
 
 export default ProfileEdit;

@@ -57,16 +57,19 @@ const ProfileContent: FC = () => {
                     <h4>Score: {'5345256'}</h4>
                 </div>
             </div>
-            <Modal
-                ref={modal}
-                children={<UploadAvatar />}
-            />
+            <Modal ref={modal}>
+                <UploadAvatar />
+            </Modal>
         </>
     );
 };
 
 const Profile = () => {
-    return <NotGameWrap children={<ProfileContent />} />;
+    return (
+        <NotGameWrap>
+            <ProfileContent />
+        </NotGameWrap>
+    );
 };
 
 export default Profile;

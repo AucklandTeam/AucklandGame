@@ -34,6 +34,7 @@ module.exports = {
         'operator-linebreak': 'off',
         'quotes': ['error', 'single'],
         'semi': 'error',
+        'eol-last': ["error", "always"]
     },
     'overrides': [
         {

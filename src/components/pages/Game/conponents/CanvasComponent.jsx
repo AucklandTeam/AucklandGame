@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import spaceshipImg from 'www/Images/spaceship.png'
-import bgImg from 'www/Images/SkyEmpty.svg'
-import debrisImg from 'www/Images/debris.png'
+import spaceshipImg from 'www/Images/spaceship.png';
+import bgImg from 'www/Images/SkyEmpty.svg';
+import debrisImg from 'www/Images/debris.png';
 import explosionImg from '../../../../../www/Images/Explosion.png';
 import asterImg from '../../../../../www/Images/aster.png';
 

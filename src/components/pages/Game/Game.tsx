@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import CanvasComponent from './conponents/CanvasComponent';
 
 const Game = () => {
@@ -14,7 +14,7 @@ const Game = () => {
         >
             <CanvasComponent />
         </div>
-    )
-}
+    );
+};
 
 export default Game;
