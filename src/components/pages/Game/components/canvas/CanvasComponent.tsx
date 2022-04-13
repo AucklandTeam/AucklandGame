@@ -281,7 +281,7 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
         requestRef.current = requestAnimationFrame(loop);
     };
     // обработка кнопок
-    const keySwitcher = (e:KeyboardEvent, state: boolean) => {
+    const keySwitcher = (e: KeyboardEvent, state: boolean) => {
         switch(e.key)
         {
             //key A or LEFT
@@ -313,12 +313,12 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
         e.preventDefault();
     };
     // начать движение
-    const keyDownHandler = (event: any) => {
+    const keyDownHandler = (event: KeyboardEvent) => {
         keySwitcher(event, true);
     };
 
     // остановить движение
-    const keyUpHandler = (event: any) => {
+    const keyUpHandler = (event: KeyboardEvent) => {
         keySwitcher(event, false);
     };
 
@@ -353,8 +353,6 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
     }, [attempts]);
 
     return <canvas
-        onKeyDown={keyDownHandler}
-        onKeyUp={keyUpHandler}
         ref={canvasRef}
         className={styles.gameCanvas}
     />;
