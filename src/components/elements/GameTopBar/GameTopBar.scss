@@ -1,8 +1,9 @@
-.game-top-bar {
-  position: fixed;
-  width: 100vw;
-  height: 64px;
-  top: 0;
-  left: 0;
-  background: $dark-gray-75;
+@import 'src/assets/base';
+
+.gameTopBar {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: space-around;
 }
