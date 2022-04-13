@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 // @ts-ignore
 import spaceshipImg from '../../../../../../www/Images/buran.png';
 // @ts-ignore
@@ -10,6 +10,12 @@ import explosionImg from '../../../../../../www/Images/Explosion.png';
 // @ts-ignore
 import asterImg from '../../../../../../www/Images/aster.png';
 import { getRandomArbitrary } from './utils';
+import styles from '../../Game.scss';
+
+interface CanvasProps {
+    attempts: number;
+}
+
 import {
     angleIncValue,
     speedIncValue,
@@ -22,8 +28,8 @@ import {
 } from './consts';
 import Base from './BaseClass';
 
-const CanvasComponent = () => {
-    const canvasRef = useRef();
+const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
+    const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>;
     let canvas: any = {};
     let isLoaded = false;
     const requestRef: any = React.useRef();
@@ -275,7 +281,7 @@ const CanvasComponent = () => {
         requestRef.current = requestAnimationFrame(loop);
     };
     // обработка кнопок
-    const keySwitcher = (e:KeyboardEvent, state: boolean) => {
+    const keySwitcher = (e: KeyboardEvent, state: boolean) => {
         switch(e.key)
         {
             //key A or LEFT
@@ -307,13 +313,13 @@ const CanvasComponent = () => {
         e.preventDefault();
     };
     // начать движение
-    const keyDownHandler = (e:KeyboardEvent) => {
-        keySwitcher(e, true);
+    const keyDownHandler = (event: KeyboardEvent) => {
+        keySwitcher(event, true);
     };
 
     // остановить движение
-    const keyUpHandler = (e:KeyboardEvent) => {
-        keySwitcher(e, false);
+    const keyUpHandler = (event: KeyboardEvent) => {
+        keySwitcher(event, false);
     };
 
     useEffect(() => {
@@ -344,10 +350,12 @@ const CanvasComponent = () => {
         window.addEventListener('keydown', keyDownHandler);
         window.addEventListener('keyup', keyUpHandler);
         return () => cancelAnimationFrame(requestRef.current);
-    }, []);
+    }, [attempts]);
 
-    // @ts-ignore
-    return <canvas onKeyDown={keyDownHandler} onKeyUp={keyUpHandler} ref={canvasRef} />;
+    return <canvas
+        ref={canvasRef}
+        className={styles.gameCanvas}
+    />;
 };
 
 export default CanvasComponent;
