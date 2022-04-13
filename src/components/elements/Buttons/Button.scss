@@ -14,7 +14,7 @@ button[type='button'] {
     text-decoration: none;
     box-shadow: none;
     transition: $base-transition;
-    margin: $form-margin-vertical $form-margin-horizontal;
+    margin: $form-margin-vertical 0;
     &:focus,
     &:hover {
         background: $form-background-gradient-hover;

@@ -8,4 +8,6 @@ module.exports = {
     jsxBracketSameLine: false,
     endOfLine: 'auto',
     arrowParens: 'avoid',
+    htmlWhitespaceSensitivity: 'strict',
+    singleAttributePerLine: true
 };

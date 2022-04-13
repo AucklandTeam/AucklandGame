@@ -1,4 +1,4 @@
-import {TextField} from '../../../../shared/types';
+import {TextField} from 'src/shared/types';
 import {LoginForm} from './types';
 
 export const TextFieldsLogin: TextField<keyof LoginForm>[] = [
