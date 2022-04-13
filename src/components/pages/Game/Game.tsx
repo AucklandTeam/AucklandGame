@@ -1,17 +1,10 @@
-import React from 'react';
-import CanvasComponent from './conponents/CanvasComponent';
+import React, { useEffect } from 'react';
+import CanvasComponent from './components/canvas/CanvasComponent';
+import styles from './Game.scss'
 
 const Game = () => {
     return (
-        <div
-            style={{
-                width: '100vw',
-                height: '100vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-            }}
-        >
+        <div className={styles.gameMainWrap}>
             <CanvasComponent />
         </div>
     );

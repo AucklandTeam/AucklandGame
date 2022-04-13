@@ -2,11 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Main.scss';
 
-const title = 'Destroy Asteroids';
-
 const menuItems = [
     { url: 'game', name: 'Start Game' },
-    { url: 'sign-in', name: 'Sign In / Sign Up' },
+    { url: 'sign-in', name: 'Sign In' },
     { url: 'profile', name: 'Profile' },
     { url: 'results', name: 'High-Scores' },
     { url: 'forum', name: 'Forum' },

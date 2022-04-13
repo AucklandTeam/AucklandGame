@@ -12,14 +12,14 @@ const useForm = <T extends object = {}>(
     const [errors, setErrors] = useState<FormErrors<T>>({} as FormErrors<T>);
 
     const setFieldValue: UseFormResult<T>['setFieldValue'] = useCallback((name, value) => {
-        setValues((prev) => ({...prev, [name]: value}))
+        setValues((prev) => ({...prev, [name]: value}));
     }, [values]);
 
     const handleChange: UseFormResult['handleChange'] = useCallback(({target}) => {
         setFieldValue(target.name, target.value);
-    }, [])
+    }, []);
 
-    const isValid = useMemo(() => !!Object.keys(errors).length, [errors]);
+    const isValid = useMemo(() => !Object.keys(errors).length, [errors]);
 
     const handleReset: UseFormResult<T>['handleReset'] = (state) => {
         if (state) {
@@ -27,18 +27,18 @@ const useForm = <T extends object = {}>(
         } else {
             setValues(() => initialState);
         }
-    }
+    };
 
     const handleSubmit: UseFormResult['handleSubmit'] = (event) => {
         event.preventDefault();
         onSubmit(values);
-    }
+    };
 
     useEffect(() => {
         if (validate) {
             setErrors(() => validate(values));
         }
-    }, [values])
+    }, [values]);
 
     return {
         values,
@@ -48,7 +48,7 @@ const useForm = <T extends object = {}>(
         errors,
         isValid,
         handleSubmit,
-    }
-}
+    };
+};
 
 export default useForm;
