@@ -1,9 +1,10 @@
 @import '../../../assets/base';
 
-.game-main-wrap {
+.gameMainWrap {
   @extend %for-wrap;
-  background: url('/www/images/SkyEmpty.svg') no-repeat fixed $dark-gray-100;
-  background-size: cover;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
