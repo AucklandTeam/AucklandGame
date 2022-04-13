@@ -1,13 +1,12 @@
 import React from 'react';
-import Heading1 from 'src/components/elements/Headings/Heading1';
 import { Link } from 'react-router-dom';
 import styles from './Main.scss';
-
-const title = 'Destroy Asteroids';
+import TemplatePage from '../../Template/TemplatePage';
 
 const menuItems = [
     { url: 'game', name: 'Start Game' },
-    { url: 'sign-in', name: 'Sign In / Sign Up' },
+    { url: 'sign-in', name: 'Sign In' },
+    { url: 'sign-up', name: 'Sign Up' },
     { url: 'profile', name: 'Profile' },
     { url: 'results', name: 'High-Scores' },
     { url: 'forum', name: 'Forum' }
@@ -15,7 +14,7 @@ const menuItems = [
 
 const menuList = menuItems.map(item => {
     return (
-        <li className={styles.menuItem}>
+        <li className={styles.menuItem} key={item.url}>
             <Link to={item.url}>{item.name}</Link>
         </li>
     );
@@ -23,14 +22,9 @@ const menuList = menuItems.map(item => {
 
 const Main = () => {
     return (
-        <div className={ styles.notGame }>
-            <Heading1 headingTitle = { title } />
-                <nav className={ styles.w100 }>
-                    <ul className={ styles.contentWrap }>
-                        { menuList }
-                    </ul>
-                </nav>
-        </div>
+        <TemplatePage>
+            { menuList }
+        </TemplatePage>
     );
 };
 export default Main;

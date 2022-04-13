@@ -3,7 +3,7 @@ import './Button.scss';
 
 interface ButtonProps {
     buttonType: 'button' | 'submit' | 'reset';
-    buttonName: string;
+    buttonName?: string;
     buttonTitle: string;
 }
 

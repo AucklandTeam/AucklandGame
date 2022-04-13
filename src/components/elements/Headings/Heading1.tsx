@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import './Headings.scss';
+import {HeadingProps} from './types';
 
-const Heading1 = ({ headingTitle } : any) => {
+const Heading1:FC<HeadingProps> = ({ headingTitle }) => {
     return <h1>{ headingTitle }</h1>;
 };
 
