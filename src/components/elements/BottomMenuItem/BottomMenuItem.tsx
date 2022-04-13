@@ -9,7 +9,6 @@ interface BottomMenuItemType {
 }
 const isHidden = (url: string): string => {
     const location = useLocation();
-    console.log(location.pathname, url);
     if (location.pathname === url) {
         return `${styles.bottomMenuItem} ${styles.hidden}`;
     } else {

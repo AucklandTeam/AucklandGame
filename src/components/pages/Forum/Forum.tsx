@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 import NotGameWrap from '../../elements/NotGameWrap/NotGameWrap';
 
 const ForumContent: FC = () => {
-    return <h3>Auckland Forum</h3>;
+    return <div>Auckland Forum</div>;
 };
 
 const Forum = () => {
     return (
-        <NotGameWrap>
+        <NotGameWrap titlePage={'Auckland Forum'}>
             <ForumContent />
         </NotGameWrap>
     );

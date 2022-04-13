@@ -3,6 +3,11 @@ import styles from './NotGameWrap.scss';
 import BottomMenu from '../BottomMenu/BottomMenu';
 import BottomMenuItem from '../BottomMenuItem/BottomMenuItem';
 
+
+type TemplatePageProps = {
+    titlePage?: string;
+}
+
 const bottomMenuItems = [
     { icon: styles.asRocket, url: '/game', name: 'Return to Game' },
     { icon: styles.asTrophy, url: '/results', name: 'High-Scores' },
@@ -23,17 +28,14 @@ const bottomMenuList = bottomMenuItems.map((item, index) => {
     );
 });
 
-const NotGameWrap: FC = ({ children }) => {
-    return (
-        <div className={styles.notGame}>
-            <div className={styles.contentWrap}>
-                {children}
-                <BottomMenu>
-                    { bottomMenuList }
-                </BottomMenu>
-            </div>
+const NotGameWrap: FC<TemplatePageProps> = ({ titlePage, children }) => (
+    <div className={styles.notGame}>
+        <div className={styles.contentWrap}>
+            <h3>{titlePage}</h3>
+            {children}
+            <BottomMenu>{bottomMenuList}</BottomMenu>
         </div>
-    );
-};
+    </div>
+);
 
 export default NotGameWrap;

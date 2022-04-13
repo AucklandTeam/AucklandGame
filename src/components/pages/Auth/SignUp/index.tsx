@@ -1,6 +1,5 @@
 import React, {FC, useState} from 'react';
 import {Link} from 'react-router-dom';
-import TemplatePage from '../../../Template/TemplatePage';
 import useForm from '../../../../hooks/useForm';
 import {SignUpForm} from './types';
 import {initialState, TextFieldsSignUp} from './shared';
@@ -8,6 +7,7 @@ import TextInput from '../../../elements/Inputs/TextInput';
 import Form from '../../../elements/Form';
 import {RouterPath} from '../../../../shared/consts';
 import {signUp} from '../api';
+import NotGameWrap from "../../../elements/NotGameWrap/NotGameWrap";
 
 const SignUp: FC = () => {
     const [formError, setFormError] = useState('');
@@ -26,7 +26,7 @@ const SignUp: FC = () => {
         },
     });
     return (
-        <TemplatePage titleContent={'Registration'}>
+        <NotGameWrap titlePage={'Registration'}>
             <Form
                 handleSubmit={handleSubmit}
                 submitTitle={'Welcome aboard!'}
@@ -46,7 +46,7 @@ const SignUp: FC = () => {
                     ))}
             </Form>
             <Link to={RouterPath.SignIn}>Have account already?</Link>
-        </TemplatePage>
+        </NotGameWrap>
     );
 };
 export default SignUp;

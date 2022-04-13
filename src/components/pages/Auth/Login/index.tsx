@@ -2,13 +2,13 @@ import React, {FC, useState} from 'react';
 import {Link} from 'react-router-dom';
 import useForm from 'src/hooks/useForm';
 import {FormErrors} from 'src/hooks/useForm/types';
-import TemplatePage from '../../../Template/TemplatePage';
 import {LoginForm} from './types';
 import {loginRequest} from '../api';
-import TextInput from '../../../elements/Inputs/TextInput';
+import TextInput from 'src/components/elements/Inputs/TextInput';
 import {initialState, TextFieldsLogin} from './shared';
-import Form from '../../../elements/Form';
-import {RouterPath} from '../../../../shared/consts';
+import Form from 'src/components/elements/Form';
+import {RouterPath} from 'src/shared/consts';
+import NotGameWrap from "src/components/elements/NotGameWrap/NotGameWrap";
 
 
 const Login: FC = () => {
@@ -33,7 +33,7 @@ const Login: FC = () => {
         }
     });
     return (
-        <TemplatePage titleContent={'Sign In'}>
+        <NotGameWrap titlePage={'Sign In'}>
             <Form
                 handleSubmit={handleSubmit}
                 submitTitle={'Let’s shoot!'}
@@ -50,7 +50,7 @@ const Login: FC = () => {
                     ))}
             </Form>
             <Link to={RouterPath.SignUp}>No account yet?</Link>
-        </TemplatePage>
+        </NotGameWrap>
     );
 };
 

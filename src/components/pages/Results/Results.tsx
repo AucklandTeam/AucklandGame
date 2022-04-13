@@ -30,7 +30,6 @@ const ScoresLine = scoreItems.sort(byField('userScore')).map((item, i = 1) => {
 const ResultContent: FC = () => {
     return (
         <>
-            <h3>High-Scores</h3>
             <table>
                 <tbody>{ScoresLine}</tbody>
             </table>
@@ -40,7 +39,7 @@ const ResultContent: FC = () => {
 
 const Results = () => {
     return (
-        <NotGameWrap>
+        <NotGameWrap titlePage={'High-Scores'}>
             <ResultContent />
         </NotGameWrap>
     );

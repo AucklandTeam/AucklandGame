@@ -24,7 +24,7 @@ const menuList = menuItems.map( (item, index) => {
 const Main = () => {
     return (
         <div className={styles.notGame}>
-            <h1>{title}</h1>
+            <h1>Destroy Asteroids</h1>
             <nav className={styles.w100}>
                 <ul className={styles.menuWrap}>{menuList}</ul>
             </nav>
