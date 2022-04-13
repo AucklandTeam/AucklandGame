@@ -18,7 +18,7 @@ const bottomMenuItems = [
 
 const GameTopBar = ({restartGame}: any) => (
     <div className={styles.gameTopBar}>
-        <div onClick={restartGame}>
+        <div onClick={restartGame} className={styles.menuItem}>
             <i className={styles.asRocket} />
             <span> Restart</span>
         </div>
