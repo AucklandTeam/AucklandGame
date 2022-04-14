@@ -14,6 +14,8 @@ import styles from '../../Game.scss';
 
 interface CanvasProps {
     attempts: number;
+    setLives: (arg0: number) => void;
+    setScore: (arg0: number) => void;
 }
 
 import {
@@ -28,7 +30,7 @@ import {
 } from './consts';
 import Base from './BaseClass';
 
-const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
+const CanvasComponent: FC<CanvasProps> = ({attempts, setLives, setScore}) => {
     const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>;
     let canvas: any = {};
     let isLoaded = false;
@@ -184,6 +186,7 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
                     const explosion = new Explosion(asteroid.x, asteroid.y);
                     explosions.push(explosion);
                     count += 1;
+                    setScore(count);
                 }
             });
             if (Math.abs(xMove + 50 - asteroid.getCenterX()) < 70 &&
@@ -192,6 +195,7 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
                 const explosion = new Explosion(asteroid.x, asteroid.y);
                 explosions.push(explosion);
                 lives -= 1;
+                setLives(lives);
                 if (!lives) {
                     isGameEnd = true;
                 }
@@ -267,8 +271,6 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
         ctx.restore();
         ctx.fillStyle = 'white';
         ctx.font = '24px serif';
-        ctx.fillText(`score: ${count}`, 100, 50);
-        ctx.fillText(`lives: ${lives}`, canvas.width - 100, 50);
     };
 
     const loop = (time: number) => {
