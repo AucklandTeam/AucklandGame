@@ -7,7 +7,7 @@ interface AvatarProps {
     handleClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-const Avatar: FC<AvatarProps> = ({ imageSrc, divClass, imageTitle, handleClick }) => {
+const Index: FC<AvatarProps> = ({ imageSrc, divClass, imageTitle, handleClick }) => {
     return (
         <div
             className={divClass}
@@ -22,4 +22,4 @@ const Avatar: FC<AvatarProps> = ({ imageSrc, divClass, imageTitle, handleClick }
     );
 };
 
-export default Avatar;
+export default Index;

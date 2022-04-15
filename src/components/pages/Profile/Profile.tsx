@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Profile.scss';
 import NotGameWrap from 'src/components/elements/NotGameWrap/NotGameWrap';
-import Avatar from 'src/components/elements/Avatar/Avatar';
+import Index from 'src/components/elements/Avatar';
 import noImage from 'www/Images/noImage.svg';
 
 
@@ -9,9 +9,9 @@ const ProfileContent: FC = () => {
     return (
         <>
             <div className={styles.userCard}>
-                <Avatar
+                <Index
                     imageSrc={noImage}
-                    imageTitle={'Avatar'}
+                    imageTitle={'Index'}
                     divClass={styles.userAvatar}
                 />
                 <div className={styles.userData}>
