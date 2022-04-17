@@ -10,6 +10,55 @@
   justify-content: center;
 }
 
+.modalStartWrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left:  0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalStart {
+  background-color:rgba(0, 0, 0, 0.5);
+  padding: 50px;
+  font-family: 'Bender';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 96px;
+  line-height: 108px;
+}
+
+.buttonsConfig {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  width: 600px;
+}
+.configTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalScore {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  width: 600px;
+}
 .gameCanvas {
   border: 3px solid white;
 }
