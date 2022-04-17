@@ -39,10 +39,9 @@ const showLives = (lives: number) => {
     );
 };
 
-const GameTopBar = ({restartGame, lives, score}: any) => (
+const GameTopBar = ({ lives, score }: any) => (
     <div className={styles.gameTopBar}>
         <div className={styles.gameState}>
-            <div onClick={restartGame} className={styles.gameScore}>Restart</div>
             {showLives(lives)}
             <div className={styles.gameScore}>Score: [{score}]</div>
         </div>

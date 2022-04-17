@@ -13,9 +13,10 @@ import { getRandomArbitrary } from './utils';
 import styles from '../../Game.scss';
 
 interface CanvasProps {
-    attempts: number;
     setLives: (arg0: number) => void;
     setScore: (arg0: number) => void;
+    isGameStart: boolean;
+    setIsGameStart: (arg0: boolean) => void;
 }
 
 import {
@@ -30,7 +31,12 @@ import {
 } from './consts';
 import Base from './BaseClass';
 
-const CanvasComponent: FC<CanvasProps> = ({attempts, setLives, setScore}) => {
+const CanvasComponent: FC<CanvasProps> = ({
+    setLives, 
+    setScore, 
+    isGameStart,
+    setIsGameStart
+}) => {
     const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>;
     let canvas: any = {};
     let isLoaded = false;
@@ -177,6 +183,9 @@ const CanvasComponent: FC<CanvasProps> = ({attempts, setLives, setScore}) => {
     };
 
     const checkCollision = () => {
+        if (!isGameStart) {
+            return;
+        }
         asteroids.forEach((asteroid: any) => {
             bullets.forEach((bullet: any) => {
                 if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < 50 &&
@@ -198,6 +207,7 @@ const CanvasComponent: FC<CanvasProps> = ({attempts, setLives, setScore}) => {
                 setLives(lives);
                 if (!lives) {
                     isGameEnd = true;
+                    setIsGameStart(false);
                 }
 
             }
@@ -325,6 +335,7 @@ const CanvasComponent: FC<CanvasProps> = ({attempts, setLives, setScore}) => {
     };
 
     useEffect(() => {
+
         canvas= canvasRef.current;
         canvas.width = 1279;
         canvas.height = 720;
@@ -347,12 +358,18 @@ const CanvasComponent: FC<CanvasProps> = ({attempts, setLives, setScore}) => {
 
             debrisY = canvas.height / 5;
         };
-
         startAnimation();
-        window.addEventListener('keydown', keyDownHandler);
-        window.addEventListener('keyup', keyUpHandler);
-        return () => cancelAnimationFrame(requestRef.current);
-    }, [attempts]);
+        if (isGameStart) {
+            window.addEventListener('keydown', keyDownHandler);
+            window.addEventListener('keyup', keyUpHandler);
+        }
+
+        return () => {
+            cancelAnimationFrame(requestRef.current);
+            window.removeEventListener('keydown', keyDownHandler);
+            window.removeEventListener('keyup', keyUpHandler);
+        };
+    }, [isGameStart]);
 
     return <canvas
         ref={canvasRef}
