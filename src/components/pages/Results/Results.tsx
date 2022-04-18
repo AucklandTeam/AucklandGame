@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import NotGameWrap from 'src/components/elements/NotGameWrap/NotGameWrap';
+import Index from 'src/components/elements/NotGameWrap';
 import styles from './Results.scss';
 
 const scoreItems = [
@@ -39,9 +39,9 @@ const ResultContent: FC = () => {
 
 const Results = () => {
     return (
-        <NotGameWrap titlePage={'High-Scores'}>
+        <Index titlePage={'High-Scores'}>
             <ResultContent />
-        </NotGameWrap>
+        </Index>
     );
 };
 

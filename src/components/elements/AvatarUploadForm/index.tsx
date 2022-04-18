@@ -1,7 +1,7 @@
-import React, {useState} from "react";
-import useForm from "../../../hooks/useForm";
-import Form from "../Form";
-import TextInput from "../Inputs/TextInput";
+import React, {useState} from 'react';
+import useForm from '../../../hooks/useForm';
+import Form from '../Form';
+import TextInput from '../Inputs/TextInput';
 
 type UploadAvatarForm = {
     formData: FormData | undefined;

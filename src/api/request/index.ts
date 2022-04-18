@@ -1,11 +1,11 @@
 import axios, {AxiosRequestConfig} from 'axios';
-import {ENDPOINTS} from '../../shared/consts';
+import {ENDPOINTS} from 'src/shared/consts';
 
 type RequestSettings = Pick<AxiosRequestConfig, 'url' | 'method'>;
 
 type RequestResponse<RESPONSE, REQUEST> = (params?: REQUEST) => Promise<RESPONSE>
 
-export function request<RESPONSE, REQUEST extends Record<string, unknown> | undefined = undefined>
+export function request<RESPONSE, REQUEST extends Record<string, unknown> | FormData | undefined = undefined>
 (settings: RequestSettings): RequestResponse<RESPONSE, REQUEST> {
     return async (data?: REQUEST) => {
         try {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Main.scss';
+import Index from "../../elements/HomePageWrap";
 
 const menuItems = [
     { url: 'game', name: 'Start Game' },
@@ -10,10 +11,10 @@ const menuItems = [
     { url: 'forum', name: 'Forum' },
 ];
 
-const menuList = menuItems.map( (item, index) => {
+const menuList = menuItems.map( (item) => {
     return (
         <li
-            key={index}
+            key={item.url}
             className={styles.menuItem}
         >
             <Link to={item.url}>{item.name}</Link>
@@ -23,12 +24,9 @@ const menuList = menuItems.map( (item, index) => {
 
 const Main = () => {
     return (
-        <div className={styles.notGame}>
-            <h1>Destroy Asteroids</h1>
-            <nav className={styles.w100}>
-                <ul className={styles.menuWrap}>{menuList}</ul>
-            </nav>
-        </div>
+        <Index>
+                <ul>{menuList}</ul>
+        </Index>
     );
 };
 export default Main;

@@ -14,7 +14,7 @@ const Form:FC<FormProps> = ({handleSubmit, children, errorText, submitTitle})=>(
             {children}
         </div>
         {errorText && (
-            <span className={styles.errors}>{errorText}</span>
+            <div className={styles.errors}>{errorText}</div>
         )}
         <Button
             buttonType={'submit'}

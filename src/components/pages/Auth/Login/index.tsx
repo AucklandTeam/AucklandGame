@@ -8,8 +8,7 @@ import TextInput from 'src/components/elements/Inputs/TextInput';
 import {initialState, TextFieldsLogin} from './shared';
 import Form from 'src/components/elements/Form';
 import {RouterPath} from 'src/shared/consts';
-import NotGameWrap from "src/components/elements/NotGameWrap/NotGameWrap";
-
+import HomePageWrap from "src/components/elements/HomePageWrap";
 
 const Login: FC = () => {
     const [formError, setFormError] = useState('');
@@ -17,12 +16,13 @@ const Login: FC = () => {
         initialState,
         validate: (values) => {
             let errors: FormErrors<LoginForm> = {} as FormErrors<LoginForm>;
-            if (values.login.length < 5) {
+            if (values.login.length < 3) {
                 errors.login = 'Поле короткое';
             }
             return errors;
         },
         onSubmit: (values) => {
+            //console.log(values, isValid);
             if (isValid) {
                 loginRequest({...values},).then((res) => {
                     console.log(res, 'rest');
@@ -33,24 +33,25 @@ const Login: FC = () => {
         }
     });
     return (
-        <NotGameWrap titlePage={'Sign In'}>
+        <HomePageWrap titleContent={'Sign In'}>
             <Form
                 handleSubmit={handleSubmit}
                 submitTitle={'Let’s shoot!'}
                 errorText={formError}
             >
-                {TextFieldsLogin.map(({name, type}) =>
+                {TextFieldsLogin.map(({name, type,title}) =>
                     (<TextInput
                         key={name}
-                        inputTitle={name}
-                        inputType={type}
-                        inputName={name}
+                        title={title}
+                        type={type}
+                        name={name}
                         onChange={handleChange}
-                        value={values[name]}/>
+                        value={values[name]}
+                        />
                     ))}
             </Form>
             <Link to={RouterPath.SignUp}>No account yet?</Link>
-        </NotGameWrap>
+        </HomePageWrap>
     );
 };
 

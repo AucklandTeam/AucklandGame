@@ -7,6 +7,7 @@ export type UseFormProps<T extends object = {}> = {
     onSubmit: (values:T)=>void;
     validate?: (values:T)=>FormErrors<T>;
 }
+
 export type UseFormResult<T extends object = {}> = {
     values: T;
     setFieldValue: <T>(name: keyof T, value: any) => void;

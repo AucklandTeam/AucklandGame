@@ -1,52 +1,53 @@
-import useForm from '../../../hooks/useForm';
+import useForm from 'src/hooks/useForm';
 import TextInput from '../Inputs/TextInput';
-import Button from '../Buttons/Button';
-import React from 'react';
-
-type EditUserPwdForm = {
-    password: string;
-};
+import React, {useState} from 'react';
+import Form from "../Form";
+import {initialState, TextFieldsChangePassword} from "./shared";
+import {FormErrors} from "src/hooks/useForm/types";
+import {changeUserPasswordRequest} from "src/components/pages/ProfileEdit/api";
+import {ChangePasswordForm} from "./types";
 
 const EditUserPassword = () => {
-    const { handleSubmit, handleChange } = useForm<EditUserPwdForm>({
-        initialState: {
-            password: '',
+    const [formError, setFormError] = useState('');
+    const { values, handleChange, handleSubmit, isValid } = useForm<ChangePasswordForm>({
+        initialState,
+        validate: values => {
+            let errors: FormErrors<ChangePasswordForm> = {} as FormErrors<ChangePasswordForm>;
+            if (values.newPassword.length < 5) {
+                errors.newPassword = 'Password is too short';
+            }
+            return errors;
         },
         onSubmit: values => {
-            console.log(values, 'values');
+            if (isValid) {
+                changeUserPasswordRequest(values)
+                    .then((res)=>{
+                        console.log(res);
+                    })
+                    .catch((error)=>{
+                        setFormError((error.reason));
+                    });
+            }
         },
     });
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <TextInput
-                    inputType={'password'}
-                    inputName={'old-password'}
-                    inputTitle={'Old Password'}
-                    value={''}
-                    onChange={handleChange}
-                />
-                <TextInput
-                    inputType={'password'}
-                    inputName={'password'}
-                    inputTitle={'New Password'}
-                    value={''}
-                    onChange={handleChange}
-                />
-                <TextInput
-                    inputType={'password'}
-                    inputName={'password'}
-                    inputTitle={'Repeat Password'}
-                    value={''}
-                    onChange={handleChange}
-                />
-                <Button
-                    buttonType={'submit'}
-                    buttonName={'userPwd'}
-                    buttonTitle={'Save Password'}
-                />
-            </form>
-        </>
+        <Form
+            handleSubmit={handleSubmit}
+            submitTitle={'Change Password'}
+            errorText={formError}
+        >
+            {TextFieldsChangePassword
+                .map(({name, type, title}) => (
+                    <TextInput
+                        key={name}
+                        title={title}
+                        type={type}
+                        name={name}
+                        value={values[name]}
+                        onChange={handleChange}
+                    />
+                ))}
+        </Form>
     );
 };
 
