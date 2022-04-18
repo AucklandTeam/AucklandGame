@@ -2,10 +2,10 @@ import useForm from 'src/hooks/useForm';
 import TextInput from '../Inputs/TextInput';
 import React, {useState} from 'react';
 import {FormErrors} from 'src/hooks/useForm/types';
-import Form from "../Form";
-import {userRequest} from "src/components/pages/ProfileEdit/api";
-import {initialState, TextFieldsEditUser} from "./shared";
-import {EditUserDataForm} from "./types";
+import Form from '../Form';
+import {userRequest} from 'src/components/pages/ProfileEdit/api';
+import {initialState, TextFieldsEditUser} from './shared';
+import {EditUserDataForm} from './types';
 
 const EditUserData = () => {
     const [formError, setFormError] = useState('');
@@ -19,36 +19,36 @@ const EditUserData = () => {
             return errors;
         },
         onSubmit: values => {
-                if (isValid) {
-                    userRequest(values)
-                        .then((res)=>{
-                            console.log(res);
-                        })
-                        .catch((error)=>{
-                            setFormError((error.reason));
-                        });
-                }
-            },
+            if (isValid) {
+                userRequest(values)
+                    .then((res)=>{
+                        console.log(res);
+                    })
+                    .catch((error)=>{
+                        setFormError((error.reason));
+                    });
+            }
+        },
     });
     return (
-            <Form
-                handleSubmit={handleSubmit}
-                submitTitle={'Save Changes'}
-                errorText={formError}
-                >
-                {TextFieldsEditUser
-                    .filter(({isHide})=>!isHide)
-                    .map(({name, type, title}) => (
-                        <TextInput
-                            key={name}
-                            title={title}
-                            type={type}
-                            name={name}
-                            value={values[name]}
-                            onChange={handleChange}
-                        />
-                    ))}
-            </Form>
+        <Form
+            handleSubmit={handleSubmit}
+            submitTitle={'Save Changes'}
+            errorText={formError}
+        >
+            {TextFieldsEditUser
+                .filter(({isHide})=>!isHide)
+                .map(({name, type, title}) => (
+                    <TextInput
+                        key={name}
+                        title={title}
+                        type={type}
+                        name={name}
+                        value={values[name]}
+                        onChange={handleChange}
+                    />
+                ))}
+        </Form>
     );
 };
 
