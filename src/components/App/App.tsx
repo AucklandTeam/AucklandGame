@@ -10,6 +10,7 @@ import styles from './App.scss';
 import {getUserRequest} from '../pages/Auth/api';
 import SignUp from 'src/components/pages/Auth/SignUp';
 import ProfileEdit from 'src/components/pages/ProfileEdit/ProfileEdit';
+import ErrorBoundary from '../elements/ErrorBoundary/ErrorBoundary';
 
 const App = () => {
     useEffect(()=>{
@@ -19,41 +20,43 @@ const App = () => {
     },[]);
     return (
         <>
-            <HashRouter>
-                <div>
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={<Main />}
-                        />
-                        <Route
-                            path="/game"
-                            element={<Game />}
-                        />
-                        <Route
-                            path="/profile"
-                            element={<Profile />}
-                        />
-                        <Route
-                            path="/results"
-                            element={<Results />}
-                        />
-                        <Route
-                            path="/sign-in"
-                            element={<Login />}
-                        />
-                        <Route
-                            path="/forum"
-                            element={<Forum />}
-                        />
-                        <Route
-                            path="/settings"
-                            element={<ProfileEdit />}
-                        />
-                        <Route path="/sign-up" element={<SignUp />} />
-                    </Routes>
-                </div>
-            </HashRouter>
+            <ErrorBoundary>
+                <HashRouter>
+                    <div>
+                        <Routes>
+                            <Route
+                                path="/"
+                                element={<Main />}
+                            />
+                            <Route
+                                path="/game"
+                                element={<Game />}
+                            />
+                            <Route
+                                path="/profile"
+                                element={<Profile />}
+                            />
+                            <Route
+                                path="/results"
+                                element={<Results />}
+                            />
+                            <Route
+                                path="/sign-in"
+                                element={<Login />}
+                            />
+                            <Route
+                                path="/forum"
+                                element={<Forum />}
+                            />
+                            <Route
+                                path="/settings"
+                                element={<ProfileEdit />}
+                            />
+                            <Route path="/sign-up" element={<SignUp />} />
+                        </Routes>
+                    </div>
+                </HashRouter>
+            </ErrorBoundary>
         </>
     );
 };
