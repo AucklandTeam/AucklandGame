@@ -10,7 +10,7 @@ const Profile = () => {
             <div className={styles.userCard}>
                 <Avatar
                     imageSrc={noImage}
-                    imageTitle={'Index'}
+                    imageTitle={'Avatar'}
                     divClass={styles.userAvatar}
                 />
                 <div className={styles.userData}>

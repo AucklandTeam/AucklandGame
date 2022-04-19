@@ -14,7 +14,6 @@ const SignUp: FC = () => {
     const {values, handleChange, handleSubmit, isValid} = useForm<SignUpForm>({
         initialState,
         onSubmit: (values) => {
-            //console.log(values, isValid);
             if (isValid) {
                 signUp(values)
                     .then((res)=>{
