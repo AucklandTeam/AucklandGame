@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Main.scss';
-import Index from "../../elements/HomePageWrap";
+import Index from '../../elements/HomePageWrap';
 
 const menuItems = [
     { url: 'game', name: 'Start Game' },
@@ -25,7 +25,7 @@ const menuList = menuItems.map( (item) => {
 const Main = () => {
     return (
         <Index>
-                <ul>{menuList}</ul>
+            <ul>{menuList}</ul>
         </Index>
     );
 };

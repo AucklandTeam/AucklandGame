@@ -30,7 +30,7 @@ const ScoresLine = scoreItems.sort(byField('userScore')).map((item, i = 1) => {
 const ResultContent: FC = () => {
     return (
         <>
-            <table>
+            <table className={styles.highScoresTable}>
                 <tbody>{ScoresLine}</tbody>
             </table>
         </>

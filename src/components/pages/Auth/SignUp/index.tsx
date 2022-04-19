@@ -7,7 +7,7 @@ import TextInput from 'src/components/elements/Inputs/TextInput';
 import Form from 'src/components/elements/Form';
 import {RouterPath} from 'src/shared/consts';
 import {signUp} from '../api';
-import HomePageWrap from "src/components/elements/HomePageWrap";
+import HomePageWrap from 'src/components/elements/HomePageWrap';
 
 const SignUp: FC = () => {
     const [formError, setFormError] = useState('');

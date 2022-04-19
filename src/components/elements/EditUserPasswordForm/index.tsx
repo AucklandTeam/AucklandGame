@@ -1,11 +1,11 @@
 import useForm from 'src/hooks/useForm';
 import TextInput from '../Inputs/TextInput';
 import React, {useState} from 'react';
-import Form from "../Form";
-import {initialState, TextFieldsChangePassword} from "./shared";
-import {FormErrors} from "src/hooks/useForm/types";
-import {changeUserPasswordRequest} from "src/components/pages/ProfileEdit/api";
-import {ChangePasswordForm} from "./types";
+import Form from '../Form';
+import {initialState, TextFieldsChangePassword} from './shared';
+import {FormErrors} from 'src/hooks/useForm/types';
+import {changeUserPasswordRequest} from 'src/components/pages/ProfileEdit/api';
+import {ChangePasswordForm} from './types';
 
 const EditUserPassword = () => {
     const [formError, setFormError] = useState('');

@@ -5,8 +5,7 @@ import Results from 'src/components/pages/Results/Results';
 import Profile from 'src/components/pages/Profile/Profile';
 import Main from 'src/components/pages/Main/Main';
 import Login from 'src/components/pages/Auth/Login';
-import Forum from 'src/components/pages/Forum/Forum';
-import styles from './App.scss';
+import ForumMain from 'src/components/pages/Forum/ForumMain';
 import {getUserRequest} from '../pages/Auth/api';
 import SignUp from 'src/components/pages/Auth/SignUp';
 import ProfileEdit from 'src/components/pages/ProfileEdit/ProfileEdit';
@@ -44,7 +43,7 @@ const App = () => {
                         />
                         <Route
                             path="/forum"
-                            element={<Forum />}
+                            element={<ForumMain />}
                         />
                         <Route
                             path="/settings"

@@ -8,7 +8,7 @@ import TextInput from 'src/components/elements/Inputs/TextInput';
 import {initialState, TextFieldsLogin} from './shared';
 import Form from 'src/components/elements/Form';
 import {RouterPath} from 'src/shared/consts';
-import HomePageWrap from "src/components/elements/HomePageWrap";
+import HomePageWrap from 'src/components/elements/HomePageWrap';
 
 const Login: FC = () => {
     const [formError, setFormError] = useState('');
@@ -47,7 +47,7 @@ const Login: FC = () => {
                         name={name}
                         onChange={handleChange}
                         value={values[name]}
-                        />
+                    />
                     ))}
             </Form>
             <Link to={RouterPath.SignUp}>No account yet?</Link>
