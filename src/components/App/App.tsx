@@ -9,6 +9,7 @@ import ForumMain from 'src/components/pages/Forum/ForumMain';
 import { getUserRequest } from 'src/components/pages/Auth/api';
 import SignUp from 'src/components/pages/Auth/SignUp';
 import ProfileEdit from 'src/components/pages/ProfileEdit/ProfileEdit';
+import Error404 from "../pages/Errors/404";
 
 const App = () => {
     useEffect(() => {
@@ -53,6 +54,10 @@ const App = () => {
                     <Route
                         path="/sign-up"
                         element={<SignUp />}
+                    />
+                    <Route
+                        path="*"
+                        element={<Error404 />}
                     />
                 </Routes>
             </HashRouter>

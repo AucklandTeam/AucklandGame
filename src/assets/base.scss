@@ -62,6 +62,12 @@ h4 {
     width: 100vw;
 }
 
+.centered {
+    text-align: center;
+    width: 100%;
+}
+
+
 .hidden {
     display: none;
 }
@@ -83,6 +89,18 @@ h4 {
     margin: 0 auto;
     padding: $base-vertical-padding $base-horizontal-padding;
     position: relative;
+}
+
+.contentWrapCenter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 50vw;
+    background: $dark-gray-75;
+    border: $base-content-block-border;;
+    margin: 3em auto;
+    padding: 1em;
 }
 
 .userCard {
