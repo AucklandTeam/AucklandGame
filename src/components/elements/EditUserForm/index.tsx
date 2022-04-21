@@ -1,8 +1,8 @@
-import useForm from 'src/hooks/useForm';
-import TextInput from '../Inputs/TextInput';
 import React, {useState} from 'react';
+import useForm from 'src/hooks/useForm';
+import TextInput from 'src/components/elements/Inputs/TextInput';
 import {FormErrors} from 'src/hooks/useForm/types';
-import Form from '../Form';
+import Form from 'src/components/elements/Form';
 import {userRequest} from 'src/components/pages/ProfileEdit/api';
 import {initialState, TextFieldsEditUser} from './shared';
 import {EditUserDataForm} from './types';
@@ -12,22 +12,21 @@ const EditUserData = () => {
     const { values, handleChange, handleSubmit, isValid } = useForm<EditUserDataForm>({
         initialState,
         validate: values => {
-            let errors: FormErrors<EditUserDataForm> = {} as FormErrors<EditUserDataForm>;
+            const errors: FormErrors<EditUserDataForm> = {} as FormErrors<EditUserDataForm>;
             if (values.login.length < 5) {
                 errors.login = 'Field is too short';
             }
             return errors;
         },
         onSubmit: values => {
-            if (isValid) {
-                userRequest(values)
-                    .then((res)=>{
-                        console.log(res);
-                    })
-                    .catch((error)=>{
-                        setFormError((error.reason));
-                    });
-            }
+            if (!isValid) return;
+            userRequest(values)
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(error => {
+                    setFormError(error.reason);
+                });
         },
     });
     return (
