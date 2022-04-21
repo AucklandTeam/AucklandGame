@@ -1,6 +1,6 @@
+import React, {useState} from 'react';
 import useForm from 'src/hooks/useForm';
 import TextInput from '../Inputs/TextInput';
-import React, {useState} from 'react';
 import Form from '../Form';
 import {initialState, TextFieldsChangePassword} from './shared';
 import {FormErrors} from 'src/hooks/useForm/types';

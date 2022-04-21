@@ -10,6 +10,8 @@ import EditUserPassword from 'src/components/elements/EditUserPasswordForm';
 
 const ProfileEdit: FC = () => {
     const modal: MutableRefObject<null> = useRef(null);
+    //const avatar: MutableRefObject<null> = useRef(null);
+
     return (
         <NotGameWrap titlePage={'Profile Edit'}>
             <div className={styles.userCard}>
@@ -25,7 +27,7 @@ const ProfileEdit: FC = () => {
                 </div>
             </div>
             <Modal ref={modal}>
-                <UploadAvatar />
+                <UploadAvatar/>
             </Modal>
         </NotGameWrap>
     );

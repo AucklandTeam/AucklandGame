@@ -9,7 +9,7 @@ import ForumMain from 'src/components/pages/Forum/ForumMain';
 import { getUserRequest } from 'src/components/pages/Auth/api';
 import SignUp from 'src/components/pages/Auth/SignUp';
 import ProfileEdit from 'src/components/pages/ProfileEdit/ProfileEdit';
-import Error404 from "../pages/Errors/404";
+import Error404 from 'src/components/pages/Errors/404';
 
 const App = () => {
     useEffect(() => {
@@ -20,48 +20,46 @@ const App = () => {
             .catch(err => console.log(err, 'err'));
     }, []);
     return (
-        <>
-            <HashRouter>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={<Main />}
-                    />
-                    <Route
-                        path="/game"
-                        element={<Game />}
-                    />
-                    <Route
-                        path="/profile"
-                        element={<Profile />}
-                    />
-                    <Route
-                        path="/results"
-                        element={<Results />}
-                    />
-                    <Route
-                        path="/sign-in"
-                        element={<Login />}
-                    />
-                    <Route
-                        path="/forum"
-                        element={<ForumMain />}
-                    />
-                    <Route
-                        path="/settings"
-                        element={<ProfileEdit />}
-                    />
-                    <Route
-                        path="/sign-up"
-                        element={<SignUp />}
-                    />
-                    <Route
-                        path="*"
-                        element={<Error404 />}
-                    />
-                </Routes>
-            </HashRouter>
-        </>
+        <HashRouter>
+            <Routes>
+                <Route
+                    path="/"
+                    element={<Main />}
+                />
+                <Route
+                    path="/game"
+                    element={<Game />}
+                />
+                <Route
+                    path="/profile"
+                    element={<Profile />}
+                />
+                <Route
+                    path="/results"
+                    element={<Results />}
+                />
+                <Route
+                    path="/sign-in"
+                    element={<Login />}
+                />
+                <Route
+                    path="/forum"
+                    element={<ForumMain />}
+                />
+                <Route
+                    path="/settings"
+                    element={<ProfileEdit />}
+                />
+                <Route
+                    path="/sign-up"
+                    element={<SignUp />}
+                />
+                <Route
+                    path="*"
+                    element={<Error404 />}
+                />
+            </Routes>
+        </HashRouter>
     );
 };
 

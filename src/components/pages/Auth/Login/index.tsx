@@ -15,14 +15,13 @@ const Login: FC = () => {
     const {values, handleChange, handleSubmit, isValid} = useForm<LoginForm>({
         initialState,
         validate: (values) => {
-            let errors: FormErrors<LoginForm> = {} as FormErrors<LoginForm>;
+            const errors: FormErrors<LoginForm> = {} as FormErrors<LoginForm>;
             if (values.login.length < 3) {
                 errors.login = 'Поле короткое';
             }
             return errors;
         },
         onSubmit: (values) => {
-            //console.log(values, isValid);
             if (isValid) {
                 loginRequest({...values},).then((res) => {
                     console.log(res, 'rest');

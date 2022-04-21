@@ -34,7 +34,7 @@ const SignUp: FC = () => {
             >
                 {TextFieldsSignUp
                     .filter(({isHide})=>!isHide)
-                    .map(({name, type,title}) => (
+                    .map(({name, type, title}) => (
                         <TextInput
                             key={name}
                             title={title}
