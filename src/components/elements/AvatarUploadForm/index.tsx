@@ -1,40 +1,40 @@
 import React, {useState} from 'react';
-import useForm from '../../../hooks/useForm';
+import useForm from 'src/hooks/useForm';
+import {FormErrors} from 'src/hooks/useForm/types';
 import Form from '../Form';
 import TextInput from '../Inputs/TextInput';
-import {changeUserAvatarRequest, userRequest} from '../../pages/ProfileEdit/api';
-import {FormErrors} from '../../../hooks/useForm/types';
-import {EditUserDataForm} from '../EditUserForm/types';
+import {changeUserAvatarRequest} from 'src/components/pages/ProfileEdit/api';
 
 type UploadAvatarForm = {
-    //formData?: FormData;
-    avatar?: string;
+    avatar: string | Blob ;
 };
 
 const UploadAvatar = () => {
     const [formError, setFormError] = useState('');
     const { handleChange, handleSubmit, isValid } = useForm<UploadAvatarForm>({
         initialState: {
-            //formData: undefined,
             avatar: ''
         },
+
         validate: values => {
             let errors: FormErrors<UploadAvatarForm> = {} as FormErrors<UploadAvatarForm>;
-            if (values.avatar === '') {
-                errors.avatar = 'Nothin\' to upload';
+            if (values.avatar === undefined) {
+                errors.avatar = 'Nothing to upload';
             }
             return errors;
         },
         onSubmit: values => {
             if (isValid) {
-                console.log(values);
-                /*changeUserAvatarRequest(values)
+                const formData = new FormData();
+                formData.append('avatar', values.avatar);
+                console.log(formData.entries());
+                changeUserAvatarRequest(formData)
                     .then((res)=>{
                         console.log(res);
                     })
                     .catch((error)=>{
                         setFormError((error.reason));
-                    });*/
+                    });
             }
         },
     });
