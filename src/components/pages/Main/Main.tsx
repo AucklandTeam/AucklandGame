@@ -11,22 +11,21 @@ const menuItems = [
     { url: 'forum', name: 'Forum' },
 ];
 
-const menuList = menuItems.map( (item) => {
-    return (
-        <li
-            key={item.url}
-            className={styles.menuItem}
-        >
-            <Link to={item.url}>{item.name}</Link>
-        </li>
-    );
-});
+const Main = () => (
+    <HomePageWrap>
+        <ul>
+            {menuItems.map(item => {
+                return (
+                    <li
+                        key={item.url}
+                        className={styles.menuItem}
+                    >
+                        <Link to={item.url}>{item.name}</Link>
+                    </li>
+                );
+            })}
+        </ul>
+    </HomePageWrap>
+);
 
-const Main = () => {
-    return (
-        <HomePageWrap>
-            <ul>{menuList}</ul>
-        </HomePageWrap>
-    );
-};
 export default Main;

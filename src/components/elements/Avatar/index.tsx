@@ -7,19 +7,17 @@ interface AvatarProps {
     handleClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-const Avatar: FC<AvatarProps> = ({ imageSrc, divClass, imageTitle, handleClick }) => {
-    return (
-        <div
-            className={divClass}
-            onClick={handleClick}
-        >
-            <img
-                src={imageSrc}
-                title={imageTitle}
-                alt={imageTitle}
-            />
-        </div>
-    );
-};
+const Avatar: FC<AvatarProps> = ({ imageSrc, divClass, imageTitle, handleClick }) => (
+    <div
+        className={divClass}
+        onClick={handleClick}
+    >
+        <img
+            src={imageSrc}
+            title={imageTitle}
+            alt={imageTitle}
+        />
+    </div>
+);
 
 export default Avatar;
