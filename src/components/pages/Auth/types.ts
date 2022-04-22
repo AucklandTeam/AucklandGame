@@ -1,4 +1,4 @@
-import {ActionWithPayload, GenerateState, LoadStatus, ParamForFormRequest, User} from '../../../shared/types';
+import {ActionWithPayload, GenerateState, LoadStatus, ParamForFormRequest, User} from 'src/shared/types';
 import {userActions} from './actions';
 import {LoginForm} from './Login/types';
 import {SignUpForm} from './SignUp/types';

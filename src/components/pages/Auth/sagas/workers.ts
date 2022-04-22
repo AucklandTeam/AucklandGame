@@ -9,7 +9,7 @@ export function* fetchUserWorker():SagaIterator<void> {
         const response = yield call(getUserRequest);
         yield put(setUserData(response));
         yield put(setUserStatus('success'));
-    }catch (e) {
+    } catch (e) {
         // @ts-ignore
         yield put(setUserFailed(e.reason));
         yield put(setUserStatus('failed'));
@@ -20,7 +20,7 @@ export function* signInWorker({payload}:ReturnType<typeof signIn>):SagaIterator<
     const {setFormError, ...values} = payload;
     try {
         const response = yield call(loginRequest, values);
-    }catch (e) {
+    } catch (e) {
         if (setFormError) {
             // @ts-ignore
             setFormError(e.reason);
@@ -32,7 +32,7 @@ export function* signUpWorker({payload}:ReturnType<typeof signUp>):SagaIterator<
     const {setFormError, ...values} = payload;
     try {
         const response = yield call(signUpRequest, values);
-    }catch (e){
+    } catch (e){
         if (setFormError) {
             // @ts-ignore
             setFormError(e.reason);
@@ -44,7 +44,7 @@ export function* logoutWorker():SagaIterator<void>{
     try {
         const response = yield call(logoutRequest);
         yield put(setUserData(null));
-    }catch (e){
+    } catch (e){
         console.error(e);
     }
 }

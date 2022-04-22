@@ -1,7 +1,7 @@
 import {ID, SuccessResponse, User} from 'src/shared/types';
-import {request} from '../../../api/request';
+import {request} from 'src/api/request';
 import { LoginForm } from './Login/types';
-import {ENDPOINTS} from '../../../shared/consts';
+import {ENDPOINTS} from 'src/shared/consts';
 import {SignUpForm} from './SignUp/types';
 
 export const loginRequest = request<SuccessResponse, LoginForm>({method: 'POST', url: ENDPOINTS.AUTH.SIGNIN});

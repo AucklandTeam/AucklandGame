@@ -1,5 +1,5 @@
 import {createAction} from 'redux-actions';
-import {LoadStatus, Nullable, User} from '../../../shared/types';
+import {LoadStatus, Nullable, User} from 'src/shared/types';
 import {ParamSignIn, ParamSignUp} from './types';
 
 export const fetchUser = createAction('user/fetchUser');

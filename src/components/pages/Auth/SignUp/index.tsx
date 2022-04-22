@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
 import {Link} from 'react-router-dom';
-import useForm from '../../../../hooks/useForm';
+import useForm from 'src/hooks/useForm';
 import {SignUpForm} from './types';
 import {initialState, TextFieldsSignUp} from './shared';
-import TextInput from '../../../elements/Inputs/TextInput';
+import TextInput from 'src/components/elements/Inputs/TextInput';
 import Form from '../../../elements/Form';
-import {RouterPath} from '../../../../shared/consts';
+import {RouterPath} from 'src/shared/consts';
 import NotGameWrap from 'src/components/elements/NotGameWrap/NotGameWrap';
 import {useAppDispatch} from 'src';
 import {signUp} from '../actions';
