@@ -7,10 +7,9 @@ import TextInput from 'src/components/elements/Inputs/TextInput';
 import {initialState, TextFieldsLogin} from './shared';
 import Form from 'src/components/elements/Form';
 import {RouterPath} from 'src/shared/consts';
-import NotGameWrap from 'src/components/elements/NotGameWrap/NotGameWrap';
+import HomePageWrap from "src/components/elements/HomePageWrap";
 import {useAppDispatch} from 'src';
 import {signIn} from '../actions';
-
 
 const Login: FC = () => {
     const dispatch = useAppDispatch();
@@ -18,36 +17,38 @@ const Login: FC = () => {
         initialState,
         validate: (values) => {
             let errors: FormErrors<LoginForm> = {} as FormErrors<LoginForm>;
-            if (values.login.length < 5) {
+            if (values.login.length < 3) {
                 errors.login = 'Поле короткое';
             }
             return errors;
         },
         onSubmit: (values) => {
+            //console.log(values, isValid);
             if (isValid) {
                 dispatch(signIn({...values, setFormError}));
             }
         }
     });
     return (
-        <NotGameWrap titlePage={'Sign In'}>
+        <HomePageWrap titleContent={'Sign In'}>
             <Form
                 handleSubmit={handleSubmit}
                 submitTitle={'Let’s shoot!'}
                 errorText={formError}
             >
-                {TextFieldsLogin.map(({name, type}) =>
+                {TextFieldsLogin.map(({name, type,title}) =>
                     (<TextInput
                         key={name}
-                        inputTitle={name}
-                        inputType={type}
-                        inputName={name}
+                        title={title}
+                        type={type}
+                        name={name}
                         onChange={handleChange}
-                        value={values[name]}/>
+                        value={values[name]}
+                        />
                     ))}
             </Form>
             <Link to={RouterPath.SignUp}>No account yet?</Link>
-        </NotGameWrap>
+        </HomePageWrap>
     );
 };
 

@@ -28,7 +28,7 @@ const bottomMenuList = bottomMenuItems.map((item, index) => {
     );
 });
 
-const NotGameWrap: FC<TemplatePageProps> = ({ titlePage, children }) => (
+const Index: FC<TemplatePageProps> = ({ titlePage, children }) => (
     <div className={styles.notGame}>
         <div className={styles.contentWrap}>
             <h3>{titlePage}</h3>
@@ -38,4 +38,4 @@ const NotGameWrap: FC<TemplatePageProps> = ({ titlePage, children }) => (
     </div>
 );
 
-export default NotGameWrap;
+export default Index;

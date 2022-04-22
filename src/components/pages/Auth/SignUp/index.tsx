@@ -4,9 +4,10 @@ import useForm from 'src/hooks/useForm';
 import {SignUpForm} from './types';
 import {initialState, TextFieldsSignUp} from './shared';
 import TextInput from 'src/components/elements/Inputs/TextInput';
-import Form from '../../../elements/Form';
+import Form from 'src/components/elements/Form';
 import {RouterPath} from 'src/shared/consts';
-import NotGameWrap from 'src/components/elements/NotGameWrap/NotGameWrap';
+import {signUp} from '../api';
+import HomePageWrap from "src/components/elements/HomePageWrap";
 import {useAppDispatch} from 'src';
 import {signUp} from '../actions';
 
@@ -15,13 +16,14 @@ const SignUp: FC = () => {
     const {values, handleChange, handleSubmit, isValid, formError, setFormError} = useForm<SignUpForm>({
         initialState,
         onSubmit: (values) => {
+            //console.log(values, isValid);
             if (isValid) {
                 dispatch(signUp({...values, setFormError}));
             }
         },
     });
     return (
-        <NotGameWrap titlePage={'Registration'}>
+        <HomePageWrap titleContent={'Registration'}>
             <Form
                 handleSubmit={handleSubmit}
                 submitTitle={'Welcome aboard!'}
@@ -29,19 +31,19 @@ const SignUp: FC = () => {
             >
                 {TextFieldsSignUp
                     .filter(({isHide})=>!isHide)
-                    .map(({name, type}) => (
+                    .map(({name, type,title}) => (
                         <TextInput
                             key={name}
-                            inputTitle={name}
-                            inputType={type}
-                            inputName={name}
+                            title={title}
+                            type={type}
+                            name={name}
                             value={values[name]}
                             onChange={handleChange}
                         />
                     ))}
             </Form>
             <Link to={RouterPath.SignIn}>Have account already?</Link>
-        </NotGameWrap>
+        </HomePageWrap>
     );
 };
 export default SignUp;

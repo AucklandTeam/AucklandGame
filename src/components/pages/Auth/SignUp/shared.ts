@@ -1,7 +1,7 @@
-import {TextField} from 'src/shared/types';
+import {TextInputProps} from 'src/components/elements/Inputs/TextInput';
 import { SignUpForm } from './types';
 
-export const TextFieldsSignUp: TextField<keyof SignUpForm>[] = [
+export const TextFieldsSignUp: TextInputProps<keyof SignUpForm>[] = [
     {
         name: 'first_name',
         type: 'text',
@@ -15,10 +15,12 @@ export const TextFieldsSignUp: TextField<keyof SignUpForm>[] = [
     {
         name: 'login',
         type: 'text',
+        title: 'Login'
     },
     {
         name: 'email',
         type: 'text',
+        title: 'E-mail'
     },
     {
         name: 'phone',
@@ -28,10 +30,12 @@ export const TextFieldsSignUp: TextField<keyof SignUpForm>[] = [
     {
         name: 'password',
         type: 'password',
+        title: 'Choose Password'
     },
     {
         name: 'confirm',
         type: 'password',
+        title: 'Confirm Password'
     },
 ];
 

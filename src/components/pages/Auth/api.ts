@@ -11,5 +11,3 @@ export const getUserRequest = request<User>({method: 'GET', url: ENDPOINTS.AUTH.
 export const signUpRequest = request<ID, SignUpForm>({method: 'POST', url: ENDPOINTS.AUTH.SIGNUP});
 
 export const logoutRequest = request<SuccessResponse>({method:'POST', url: ENDPOINTS.AUTH.LOGOUT});
-
-

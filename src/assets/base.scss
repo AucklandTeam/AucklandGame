@@ -107,16 +107,3 @@ h4 {
     width: calc(100% - 200px - 2em);
 }
 
-form {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    width: 100%;
-    margin: 0 $form-margin-vertical $form-margin-horizontal;
-}
-.contentWrapTitle {
-    width: 100%;
-}
-.contentInner {
-    width: 100%;
-}

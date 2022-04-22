@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import NotGameWrap from '../../elements/NotGameWrap/NotGameWrap';
+import Index from '../../elements/NotGameWrap';
 
 const ForumContent: FC = () => {
     return <div>Auckland Forum</div>;
@@ -7,9 +7,9 @@ const ForumContent: FC = () => {
 
 const Forum = () => {
     return (
-        <NotGameWrap titlePage={'Auckland Forum'}>
+        <Index titlePage={'Auckland Forum'}>
             <ForumContent />
-        </NotGameWrap>
+        </Index>
     );
 };
 

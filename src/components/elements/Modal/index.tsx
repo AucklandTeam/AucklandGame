@@ -12,7 +12,7 @@ import styles from './Modal.scss';
 const modalElement = document.getElementById('modalWrap') as HTMLElement;
 
 // @ts-ignore
-export function Modal({ children, fade = false, defaultOpened = false }, ref: ForwardedRef<any>) {
+export function Index({ children, fade = false, defaultOpened = false }, ref: ForwardedRef<any>) {
     const [isOpen, setIsOpen] = useState(defaultOpened);
 
     const close = useCallback(() => setIsOpen(false), []);
@@ -62,4 +62,4 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref: Fo
     );
 }
 
-export default forwardRef(Modal);
+export default forwardRef(Index);
