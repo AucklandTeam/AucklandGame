@@ -1,0 +1,41 @@
+@import '../../../../../assets/base';
+
+.gameTopBar {
+  display: flex;
+  width: 1285px;
+  height: 50px;
+  margin-top: 30px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gameMenu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.gameState {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.gameScore {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 37px;
+}
+.gameScore svg {
+  margin: 0 5px;
+}
+.quit {
+  color: #EE7676;
+}
+.menuItem {
+  cursor: pointer;
+  padding: 0 10px;
+}

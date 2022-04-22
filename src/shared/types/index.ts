@@ -28,3 +28,22 @@ export type UpdatePasswordData = {
     oldPassword: string;
     newPassword: string;
 }
+
+export type LoadStatus = 'success' | 'pending' | 'failed' | 'default';
+
+export type Nullable<T> = T | null;
+
+export type GenerateState<T> = {
+    data: Nullable<T>;
+    status: LoadStatus;
+    error: string;
+}
+
+export interface ActionWithPayload<ACTION,PAYLOAD> {
+    type: ACTION;
+    payload: PAYLOAD;
+}
+
+export type ParamForFormRequest = {
+    setFormError?: (message: string)=>void;
+}
