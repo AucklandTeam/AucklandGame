@@ -13,7 +13,10 @@ import { getRandomArbitrary } from './utils';
 import styles from '../../Game.scss';
 
 interface CanvasProps {
-    attempts: number;
+    setLives: (arg0: number) => void;
+    setScore: (arg0: number) => void;
+    isGameStart: boolean;
+    setIsGameStart: (arg0: boolean) => void;
 }
 
 import {
@@ -28,7 +31,12 @@ import {
 } from './consts';
 import Base from './BaseClass';
 
-const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
+const CanvasComponent: FC<CanvasProps> = ({
+    setLives, 
+    setScore, 
+    isGameStart,
+    setIsGameStart
+}) => {
     const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>;
     let canvas: any = {};
     let isLoaded = false;
@@ -175,6 +183,9 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
     };
 
     const checkCollision = () => {
+        if (!isGameStart) {
+            return;
+        }
         asteroids.forEach((asteroid: any) => {
             bullets.forEach((bullet: any) => {
                 if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < 50 &&
@@ -184,6 +195,7 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
                     const explosion = new Explosion(asteroid.x, asteroid.y);
                     explosions.push(explosion);
                     count += 1;
+                    setScore(count);
                 }
             });
             if (Math.abs(xMove + 50 - asteroid.getCenterX()) < 70 &&
@@ -192,8 +204,10 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
                 const explosion = new Explosion(asteroid.x, asteroid.y);
                 explosions.push(explosion);
                 lives -= 1;
+                setLives(lives);
                 if (!lives) {
                     isGameEnd = true;
+                    setIsGameStart(false);
                 }
 
             }
@@ -267,8 +281,6 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
         ctx.restore();
         ctx.fillStyle = 'white';
         ctx.font = '24px serif';
-        ctx.fillText(`score: ${count}`, 100, 50);
-        ctx.fillText(`lives: ${lives}`, canvas.width - 100, 50);
     };
 
     const loop = (time: number) => {
@@ -323,6 +335,7 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
     };
 
     useEffect(() => {
+
         canvas= canvasRef.current;
         canvas.width = 1279;
         canvas.height = 720;
@@ -345,12 +358,18 @@ const CanvasComponent: FC<CanvasProps> = ({attempts}) => {
 
             debrisY = canvas.height / 5;
         };
-
         startAnimation();
-        window.addEventListener('keydown', keyDownHandler);
-        window.addEventListener('keyup', keyUpHandler);
-        return () => cancelAnimationFrame(requestRef.current);
-    }, [attempts]);
+        if (isGameStart) {
+            window.addEventListener('keydown', keyDownHandler);
+            window.addEventListener('keyup', keyUpHandler);
+        }
+
+        return () => {
+            cancelAnimationFrame(requestRef.current);
+            window.removeEventListener('keydown', keyDownHandler);
+            window.removeEventListener('keyup', keyUpHandler);
+        };
+    }, [isGameStart]);
 
     return <canvas
         ref={canvasRef}
