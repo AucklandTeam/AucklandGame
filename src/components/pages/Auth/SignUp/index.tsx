@@ -1,27 +1,22 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {Link} from 'react-router-dom';
-import useForm from '../../../../hooks/useForm';
+import useForm from 'src/hooks/useForm';
 import {SignUpForm} from './types';
 import {initialState, TextFieldsSignUp} from './shared';
-import TextInput from '../../../elements/Inputs/TextInput';
+import TextInput from 'src/components/elements/Inputs/TextInput';
 import Form from '../../../elements/Form';
-import {RouterPath} from '../../../../shared/consts';
-import {signUp} from '../api';
-import NotGameWrap from "../../../elements/NotGameWrap/NotGameWrap";
+import {RouterPath} from 'src/shared/consts';
+import NotGameWrap from 'src/components/elements/NotGameWrap/NotGameWrap';
+import {useAppDispatch} from 'src';
+import {signUp} from '../actions';
 
 const SignUp: FC = () => {
-    const [formError, setFormError] = useState('');
-    const {values, handleChange, handleSubmit, isValid} = useForm<SignUpForm>({
+    const dispatch = useAppDispatch();
+    const {values, handleChange, handleSubmit, isValid, formError, setFormError} = useForm<SignUpForm>({
         initialState,
         onSubmit: (values) => {
             if (isValid) {
-                signUp(values)
-                    .then((res)=>{
-                        console.log(res);
-                    })
-                    .catch((error)=>{
-                        setFormError((error.reason));
-                    });
+                dispatch(signUp({...values, setFormError}));
             }
         },
     });
