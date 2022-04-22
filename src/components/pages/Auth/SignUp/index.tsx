@@ -16,7 +16,6 @@ const SignUp: FC = () => {
     const {values, handleChange, handleSubmit, isValid, formError, setFormError} = useForm<SignUpForm>({
         initialState,
         onSubmit: (values) => {
-            //console.log(values, isValid);
             if (isValid) {
                 dispatch(signUp({...values, setFormError}));
             }
@@ -31,7 +30,7 @@ const SignUp: FC = () => {
             >
                 {TextFieldsSignUp
                     .filter(({isHide})=>!isHide)
-                    .map(({name, type,title}) => (
+                    .map(({name, type, title}) => (
                         <TextInput
                             key={name}
                             title={title}

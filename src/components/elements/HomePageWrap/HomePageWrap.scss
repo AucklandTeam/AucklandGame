@@ -7,15 +7,3 @@
 .contentInner {
   width: 100%;
 }
-
-.contentWrapCenter {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  width: 50vw;
-  background: $dark-gray-75;
-  border: $base-content-block-border;;
-  margin: 3em auto;
-  padding: 1em;
-}

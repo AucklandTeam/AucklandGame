@@ -16,14 +16,13 @@ const Login: FC = () => {
     const {values, handleChange, handleSubmit, isValid, setFormError, formError} = useForm<LoginForm>({
         initialState,
         validate: (values) => {
-            let errors: FormErrors<LoginForm> = {} as FormErrors<LoginForm>;
+            const errors: FormErrors<LoginForm> = {} as FormErrors<LoginForm>;
             if (values.login.length < 3) {
                 errors.login = 'Поле короткое';
             }
             return errors;
         },
         onSubmit: (values) => {
-            //console.log(values, isValid);
             if (isValid) {
                 dispatch(signIn({...values, setFormError}));
             }
@@ -44,7 +43,7 @@ const Login: FC = () => {
                         name={name}
                         onChange={handleChange}
                         value={values[name]}
-                        />
+                    />
                     ))}
             </Form>
             <Link to={RouterPath.SignUp}>No account yet?</Link>
