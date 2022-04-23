@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, HashRouter, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Game from 'src/components/pages/Game/Game';
 import Results from 'src/components/pages/Results/Results';
 import Profile from 'src/components/pages/Profile/Profile';
@@ -20,7 +20,7 @@ const App = () => {
             .catch(err => console.log(err, 'err'));
     }, []);
     return (
-        <HashRouter>
+        <Router>
             <Routes>
                 <Route
                     path="/"
@@ -59,7 +59,7 @@ const App = () => {
                     element={<Error404 />}
                 />
             </Routes>
-        </HashRouter>
+        </Router>
     );
 };
 
