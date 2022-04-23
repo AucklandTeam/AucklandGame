@@ -10,6 +10,7 @@ import { getUserRequest } from 'src/components/pages/Auth/api';
 import SignUp from 'src/components/pages/Auth/SignUp';
 import ProfileEdit from 'src/components/pages/ProfileEdit/ProfileEdit';
 import Error404 from 'src/components/pages/Errors/404';
+import initWorkerApi from '../../api/worker/workerservice';
 
 const App = () => {
     useEffect(() => {
@@ -19,6 +20,18 @@ const App = () => {
             })
             .catch(err => console.log(err, 'err'));
     }, []);
+
+    // обработчик для воркера
+    const workerMessageHandler = ({data}: any) => {
+        // если воркер прислал сообщение
+        console.log('worker callback data:', data);
+    };
+
+    // подключаем воркер
+    useEffect(() => {
+        initWorkerApi(workerMessageHandler);
+    }, []);
+
     return (
         <Router>
             <Routes>
