@@ -24,7 +24,7 @@ const App = () => {
     // обработчик для воркера
     const workerMessageHandler = ({data}: any) => {
         // если воркер прислал сообщение
-        console.log('worker callback data:', data);
+        console.log('web-worker callback data:', data);
     };
 
     // подключаем воркер

@@ -1,11 +1,11 @@
 // test here: https://www.piesocket.com/websocket-tester
 function workerFunction(this: any) {
     const self = this;
-    console.log('worker init');
+    console.log('web-worker init');
 
     self.onmessage = function (message: any) {
         // сообщение, которое приходит воркеру
-        console.log('message for worker:', message);
+        console.log('message for web-worker:', message);
 
 
         // можно подключить какой-нибудь апи
@@ -15,7 +15,7 @@ function workerFunction(this: any) {
         });
         */
         // сообщение, которое отсылает воркер
-        postMessage({data: 'worker connect here'});
+        postMessage({data: 'web-worker connect here'});
     };
 }
 

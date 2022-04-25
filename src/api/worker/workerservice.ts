@@ -11,12 +11,12 @@ const initWorkerApi = (callback: any) => {
 
     const myWorker = new Worker(blobURL);
 
-    const message = 'message to worker';
+    const message = 'message to web-worker';
     // отправляем сообщение воркеру
     myWorker.postMessage(message);
     // обработка сообщений от воркера
     myWorker.onmessage = ({ data }) => {
-        console.log('message from worker:', data);
+        console.log('message from web-worker:', data);
 
         if (data) {
             callback(data);
