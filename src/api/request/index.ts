@@ -1,7 +1,7 @@
 import axios, {AxiosRequestConfig} from 'axios';
 import {ENDPOINTS} from 'src/shared/consts';
 
-type RequestSettings = Pick<AxiosRequestConfig, 'url' | 'method'>;
+type RequestSettings = Pick<AxiosRequestConfig, 'url' | 'method' | 'headers'>;
 
 type RequestResponse<RESPONSE, REQUEST> = (params?: REQUEST) => Promise<RESPONSE>
 

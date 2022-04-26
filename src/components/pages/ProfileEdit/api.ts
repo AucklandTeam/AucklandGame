@@ -10,4 +10,6 @@ export const changeUserPasswordRequest = request<SuccessResponse, UpdatePassword
     url: ENDPOINTS.USER.PASSWORD});
 export const changeUserAvatarRequest = request<SuccessResponse, FormData>({
     method: 'PUT',
-    url: ENDPOINTS.USER.AVATAR});
+    headers: {'Content-Type': 'multipart/form-data'},
+    url: ENDPOINTS.USER.AVATAR
+});
