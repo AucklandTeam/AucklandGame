@@ -25,7 +25,7 @@ const Main = () => {
         <HomePageWrap>
             <ul>
                 {menuItems
-                    .filter((item)=>isAuth ? item.url !== 'sign-in': item)
+                    .filter((item) => isAuth ? item.url !== 'sign-in' : item)
                     .map(item => {
                         return (
                             <li
