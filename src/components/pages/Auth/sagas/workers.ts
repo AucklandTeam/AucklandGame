@@ -1,7 +1,9 @@
 import {SagaIterator} from 'redux-saga';
 import {call, put} from '@redux-saga/core/effects';
 import {getUserRequest, loginRequest, logoutRequest, signUpRequest} from '../api';
-import {setUserData, setUserFailed, setUserStatus, signIn, signUp} from '../actions';
+import {fetchUser, setUserData, setUserFailed, setUserStatus, signIn, signUp} from '../actions';
+import history from '../../../../core/history';
+import {RouterPath} from '../../../../shared/consts';
 
 export function* fetchUserWorker():SagaIterator<void> {
     yield put(setUserStatus('pending'));
@@ -19,7 +21,10 @@ export function* fetchUserWorker():SagaIterator<void> {
 export function* signInWorker({payload}:ReturnType<typeof signIn>):SagaIterator<void>{
     const {setFormError, ...values} = payload;
     try {
-        const response = yield call(loginRequest, values);
+        yield call(loginRequest, values);
+        yield put(fetchUser());
+        history.push(RouterPath.Main);
+
     } catch (e) {
         if (setFormError) {
             // @ts-ignore
@@ -31,7 +36,9 @@ export function* signInWorker({payload}:ReturnType<typeof signIn>):SagaIterator<
 export function* signUpWorker({payload}:ReturnType<typeof signUp>):SagaIterator<void> {
     const {setFormError, ...values} = payload;
     try {
-        const response = yield call(signUpRequest, values);
+        yield call(signUpRequest, values);
+        yield put(fetchUser());
+        history.push(RouterPath.Main);
     } catch (e){
         if (setFormError) {
             // @ts-ignore
@@ -42,8 +49,11 @@ export function* signUpWorker({payload}:ReturnType<typeof signUp>):SagaIterator<
 
 export function* logoutWorker():SagaIterator<void>{
     try {
-        const response = yield call(logoutRequest);
+        yield call(logoutRequest);
+
         yield put(setUserData(null));
+
+        history.push(RouterPath.Main);
     } catch (e){
         console.error(e);
     }
