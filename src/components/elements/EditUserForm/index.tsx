@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useForm from 'src/hooks/useForm';
 import TextInput from 'src/components/elements/Inputs/TextInput';
 import { FormErrors } from 'src/hooks/useForm/types';
@@ -10,16 +10,15 @@ import { useAppDispatch } from 'src/index';
 import { editUser } from 'src/components/pages/ProfileEdit/actions';
 
 const EditUserData = () => {
-    const user = useUserInfo();
+    const { data } = useUserInfo();
     const dispatch = useAppDispatch();
-    const [formError, setFormError] = useState('');
-    const { values, handleChange, handleSubmit, isValid } = useForm<EditUserDataForm>({
+    const { values, handleChange, handleSubmit, isValid, formError, setFormError } = useForm<EditUserDataForm>({
         initialState: {
             first_name: '',
             second_name: '',
             display_name: '',
-            email: user.data?.email ? user.data.email : '',
-            login: user.data?.login ? user.data.login : '',
+            email: data?.email || 'N/A',
+            login: data?.login || 'N/A',
             phone: '89991112233',
         },
         validate: values => {
