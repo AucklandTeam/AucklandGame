@@ -23,3 +23,5 @@ export enum RouterPath {
     Results = '/results',
     Forum = '/forum',
 }
+
+export const RESOURCE_URL = 'https://ya-praktikum.tech/api/v2/resources';

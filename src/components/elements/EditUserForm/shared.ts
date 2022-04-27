@@ -33,12 +33,3 @@ export const TextFieldsEditUser: TextInputProps<keyof EditUserDataForm>[] = [
         isHide: true,
     },
 ];
-
-export const initialState: EditUserDataForm = {
-    first_name: '',
-    second_name: '',
-    display_name: '',
-    email: 'gamer12@info.net',
-    login: 'gamer12',
-    phone: '89991112233',
-};

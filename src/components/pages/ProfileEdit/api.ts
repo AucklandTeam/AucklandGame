@@ -8,8 +8,8 @@ export const userRequest = request<SuccessResponse, UpdateProfileData>({
 export const changeUserPasswordRequest = request<SuccessResponse, UpdatePasswordData>({
     method: 'PUT',
     url: ENDPOINTS.USER.PASSWORD});
-export const changeUserAvatarRequest = request<SuccessResponse, FormData>({
+export const changeAvatarRequest = request<SuccessResponse, FormData>({
     method: 'PUT',
-    headers: {'Content-Type': 'multipart/form-data'},
+    headers: { 'Content-Type' : 'multipart/form-data' },
     url: ENDPOINTS.USER.AVATAR
 });
