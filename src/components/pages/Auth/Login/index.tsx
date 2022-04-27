@@ -7,8 +7,8 @@ import TextInput from 'src/components/elements/Inputs/TextInput';
 import {initialState, TextFieldsLogin} from './shared';
 import Form from 'src/components/elements/Form';
 import {RouterPath} from 'src/shared/consts';
-import HomePageWrap from "src/components/elements/HomePageWrap";
-import {useAppDispatch} from 'src';
+import HomePageWrap from 'src/components/elements/HomePageWrap';
+import {useAppDispatch} from 'src/index';
 import {signIn} from '../actions';
 
 const Login: FC = () => {
