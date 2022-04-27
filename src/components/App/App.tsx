@@ -10,7 +10,7 @@ import { getUserRequest } from 'src/components/pages/Auth/api';
 import SignUp from 'src/components/pages/Auth/SignUp';
 import ProfileEdit from 'src/components/pages/ProfileEdit/ProfileEdit';
 import Error404 from 'src/components/pages/Errors/404';
-import initWorkerApi from '../../api/worker/workerservice';
+import initWorkerApi from 'src/api/worker/workerservice';
 
 const App = () => {
     useEffect(() => {

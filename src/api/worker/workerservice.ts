@@ -2,10 +2,10 @@ import workerFunction from './worker';
 
 // initialization with webworker
 const initWorkerApi = (callback: any) => {
-    const dataObj = '(' + workerFunction + ')();';
+    const dataObj = `(${workerFunction})();`;
     const blob = new Blob([dataObj.replace('"use strict";', '')]);
     // @ts-ignore
-    const blobURL = (window.URL ? window.URL : window.webkitURL).createObjectURL(blob, {
+    const blobURL = (window.URL || window.webkitURL).createObjectURL(blob, {
         type: 'application/javascript; charset=utf-8',
     });
 
