@@ -8,6 +8,7 @@ const useForm = <T extends object = {}>(
         validate
     }: UseFormProps<T>): UseFormResult<T> => {
 
+    const [formError, setFormError] = useState('');
     const [values, setValues] = useState<T>(() => initialState);
     const [errors, setErrors] = useState<FormErrors<T>>({} as FormErrors<T>);
 
@@ -48,6 +49,8 @@ const useForm = <T extends object = {}>(
         errors,
         isValid,
         handleSubmit,
+        formError,
+        setFormError,
     };
 };
 

@@ -16,6 +16,7 @@ $base-unit: 'em';
 
 // The default font family.
 $base-font-family: null !default;
+$base-font-weight: 400;
 
 // The font sizes for h1-h6.
 $h1-font-size: 5    * $base-font-size !default;

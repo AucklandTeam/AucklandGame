@@ -1,24 +1,28 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import styles from './Inputs.scss';
 
-interface InputProps {
-    inputTitle?: string;
-    inputType: string;
-    inputName: string;
+export interface TextInputProps<NAME> {
+    title?: string;
+    name: NAME;
+    type: HTMLInputElement['type'];
+    value?: string;
     placeholder?: string;
-    value: string;
-    onChange: React.ChangeEventHandler<HTMLInputElement>;
+    isHide?: boolean;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const classes = `${styles.inputWrap}`;
-
-const TextInput: FC<InputProps> = ({ inputTitle, inputType, inputName, value, onChange }) => {
-    return (
-        <div className={classes}>
-            <input type={inputType} name={inputName} required value={value} onChange={onChange}/>
-            <label htmlFor={inputName}>{inputTitle}</label>
-        </div>
-    );
-};
+const TextInput: FC<TextInputProps<string>> = ({ title, type, name, value, onChange }) => (
+    <div className={styles.inputWrap}>
+        <input
+            type={type}
+            name={name}
+            title={title}
+            value={value}
+            onChange={onChange}
+            required
+        />
+        <label htmlFor={name}>{title}</label>
+    </div>
+);
 
 export default TextInput;

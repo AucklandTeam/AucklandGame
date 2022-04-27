@@ -8,9 +8,9 @@ export const ENDPOINTS = {
     },
     USER: {
         PATH: '/user',
-        PROFILE: '/profile',
-        PASSWORD: '/password',
-        AVATAR: '/profile/avatar',
+        PROFILE: 'user/profile',
+        PASSWORD: 'user/password',
+        AVATAR: 'user/profile/avatar',
     },
 };
 
