@@ -11,7 +11,8 @@
     "build": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "serve": "webpack serve",
-    "eslint": "eslint ./src"
+    "eslint": "eslint ./src",
+    "test": "jest --env=jsdom"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,11 @@
   "bugs": {
     "url": "https://github.com/madcher/game_sprint5-6/issues"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
+  },
   "homepage": "https://github.com/madcher/game_sprint5-6#readme",
   "devDependencies": {
     "@babel/core": "^7.17.8",
@@ -30,6 +36,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
     "@types/react-redux": "^7.1.24",
@@ -50,6 +57,7 @@
     "file-loader": "^6.2.0",
     "helmet": "^5.0.2",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.5.1",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
     "postcss-modules-values": "^4.0.0",
@@ -69,10 +77,12 @@
     "@babel/runtime": "^7.17.9",
     "axios": "^0.26.1",
     "express": "^4.17.3",
+    "identity-obj-proxy": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^8.0.0",
     "react-router-dom": "^6.3.0",
+    "react-test-renderer": "^17.0.0",
     "redux": "^4.1.2",
     "redux-actions": "^2.6.5",
     "redux-saga": "^1.1.3"
