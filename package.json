@@ -75,8 +75,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.9",
-    "acorn": "^8.7.0",
-    "acorn-import-assertions": "^1.8.0",
     "axios": "^0.26.1",
     "express": "^4.17.3",
     "identity-obj-proxy": "^3.0.0",
