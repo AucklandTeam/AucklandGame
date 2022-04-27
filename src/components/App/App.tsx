@@ -9,7 +9,7 @@ import ForumMain from 'src/components/pages/Forum/ForumMain';
 import SignUp from 'src/components/pages/Auth/SignUp';
 import ProfileEdit from 'src/components/pages/ProfileEdit/ProfileEdit';
 import Error404 from 'src/components/pages/Errors/404';
-import {useAppDispatch} from 'src';
+import {useAppDispatch} from 'src/index';
 import {fetchUser} from 'src/components/pages/Auth/actions';
 import history, {useInitHistory} from 'src/core/history';
 

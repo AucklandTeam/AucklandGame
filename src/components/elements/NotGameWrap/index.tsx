@@ -5,7 +5,7 @@ import BottomMenuItem from '../BottomMenuItem/BottomMenuItem';
 import {useAuth} from 'src/components/pages/Auth/selectors';
 import history from 'src/core/history';
 import {RouterPath} from 'src/shared/consts';
-import {useAppDispatch} from 'src';
+import {useAppDispatch} from 'src/index';
 import {logout} from 'src/components/pages/Auth/actions';
 
 type TemplatePageProps = {
