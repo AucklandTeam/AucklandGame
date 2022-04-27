@@ -37,10 +37,13 @@ const postCSSLoader = {
 };
 
 const config = {
-    entry: './src/index.tsx',
+    entry: {
+        'bundle': './src/index.tsx',
+        'service-worker': './src/service-worker.js',
+    },
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'bundle.js',
+        filename: '[name].js',
     },
     devServer: {
         open: false,
