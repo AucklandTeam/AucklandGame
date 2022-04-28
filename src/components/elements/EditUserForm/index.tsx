@@ -3,7 +3,7 @@ import useForm from 'src/hooks/useForm';
 import TextInput from 'src/components/elements/Inputs/TextInput';
 import { FormErrors } from 'src/hooks/useForm/types';
 import Form from 'src/components/elements/Form';
-import { initialState, TextFieldsEditUser } from './shared';
+import { TextFieldsEditUser } from './shared';
 import { EditUserDataForm } from './types';
 import { useUserInfo } from 'src/components/pages/Auth/selectors';
 import { useAppDispatch } from 'src/index';
@@ -11,10 +11,16 @@ import { editUser } from 'src/components/pages/ProfileEdit/actions';
 
 const EditUserData = () => {
     const { data } = useUserInfo();
-    console.log(data);
     const dispatch = useAppDispatch();
     const { values, handleChange, handleSubmit, isValid, formError, setFormError } = useForm<EditUserDataForm>({
-        initialState,
+        initialState: {
+            first_name: '',
+            second_name: '',
+            display_name: '',
+            email: data?.email || '',
+            login: data?.login || '',
+            phone: '89991112233',
+        },
         validate: values => {
             const errors: FormErrors<EditUserDataForm> = {} as FormErrors<EditUserDataForm>;
             if (values.login.length < 3) {
