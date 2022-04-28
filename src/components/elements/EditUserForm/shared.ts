@@ -34,11 +34,11 @@ export const TextFieldsEditUser: TextInputProps<keyof EditUserDataForm>[] = [
     },
 ];
 
-export const initialState: EditUserDataForm = {
+export const initialState = {
     first_name: '',
     second_name: '',
     display_name: '',
-    email: 'gamer12@info.net',
-    login: 'gamer12',
+    email: '',
+    login: '',
     phone: '89991112233',
 };

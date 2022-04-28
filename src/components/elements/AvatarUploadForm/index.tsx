@@ -1,26 +1,23 @@
 import React, { FC, FormEvent, useState } from 'react';
 import Form from 'src/components/elements/Form';
 import TextInput from 'src/components/elements/Inputs/TextInput';
-import { changeUserAvatarRequest } from 'src/components/pages/ProfileEdit/api';
+import { useAppDispatch } from 'src/index';
+import { changeAvatar } from 'src/components/pages/ProfileEdit/actions';
 
-type UploadAvatarForm = {
-    avatar?: string;
+
+export type UploadAvatarForm = {
+    formData?: FormData;
 };
 
 const UploadAvatar: FC<UploadAvatarForm> = () => {
+    const dispatch = useAppDispatch();
     const [formError, setFormError] = useState('');
     const onSubmit = (event: FormEvent) => {
         event.preventDefault();
         const form = event.target as HTMLFormElement;
         const formData = new FormData(form);
         console.log(formData.getAll('avatar'));
-        changeUserAvatarRequest(formData)
-            .then(res => {
-                console.log(res, 'rest');
-            })
-            .catch(err => {
-                setFormError(err.reason);
-            });
+        dispatch(changeAvatar({formData, setFormError}));
     };
 
     return (
