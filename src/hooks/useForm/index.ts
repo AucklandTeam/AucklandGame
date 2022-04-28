@@ -36,8 +36,6 @@ const useForm = <T extends object = {}>(
     };
 
     useEffect(() => {
-        setValues(() => values);
-
         if (validate) {
             setErrors(() => validate(values));
         }
