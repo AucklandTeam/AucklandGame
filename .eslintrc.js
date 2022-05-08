@@ -19,7 +19,7 @@ module.exports = {
     plugins: ['react', '@typescript-eslint'],
     rules: {
         indent: ['error', 4, { SwitchCase: 1 }],
-        'max-len': [2, 110],
+        'max-len': [2, 200],
         '@typescript-eslint/no-unused-vars': 'off',
         'no-unused-vars': 'off',
         'no-tabs': 0,

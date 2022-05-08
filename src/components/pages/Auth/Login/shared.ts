@@ -5,12 +5,14 @@ export const TextFieldsLogin: TextInputProps<keyof LoginForm>[] = [
     {
         name: 'login',
         type: 'text',
-        title: 'Login'
+        title: 'Login',
+        validType: 'login'
     },
     {
         name: 'password',
         type: 'password',
-        title: 'Password'
+        title: 'Password',
+        validType: 'password'
     },
 ];
 

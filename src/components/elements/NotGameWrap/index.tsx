@@ -27,11 +27,13 @@ const NotGameWrap: FC<TemplatePageProps> = ({ titlePage, children }) => {
         dispatch(logout());
     },[]);
     const {isAuth, isLoaded} = useAuth();
+
     useLayoutEffect(()=>{
         if(!isAuth && isLoaded){
             history.push(RouterPath.SignIn);
         }
     },[isAuth]);
+
     return (
         <div className={styles.notGame}>
             <div className={styles.contentWrap}>
