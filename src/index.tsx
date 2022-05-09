@@ -28,4 +28,4 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.querySelector('#root'));
+ReactDOM.hydrate(<Provider store={store}><App /></Provider>, document.querySelector('#root'));

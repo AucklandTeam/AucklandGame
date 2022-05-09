@@ -40,10 +40,12 @@ const config = {
     entry: {
         'bundle': './src/index.tsx',
         'service-worker': './src/service-worker.js',
+        'server': './server/server.js'
     },
     output: {
         path: path.join(__dirname, '/dist'),
         filename: '[name].js',
+        publicPath: '/',
     },
     devServer: {
         open: false,
@@ -66,11 +68,13 @@ const config = {
             },
             {
                 test: /\.scss$/i,
+                exclude: /node_modules/,
                 use: ['style-loader', CSSModuleLoader, postCSSLoader, 'sass-loader'],
             },
 
             {
                 test: /\.jpe?g$|\.ico$|\.gif$|\.png$/i,
+                exclude: /node_modules/,
                 type: 'asset/resource',
                 generator: {
                     filename: 'assets/[name][ext]',
@@ -78,6 +82,7 @@ const config = {
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/i,
+                exclude: /node_modules/,
                 type: 'asset/resource',
                 generator: {
                     filename: 'assets/[name][ext]',
@@ -87,7 +92,22 @@ const config = {
     },
     resolve: {
         extensions: ['.ts', '.js', '.tsx', '.jsx'],
-        modules: [ path.resolve(__dirname, './'), 'node_modules' ]
+        modules: [ path.resolve(__dirname, './'), 'node_modules' ],
+        fallback: {
+            'fs': false,
+            'tls': false,
+            'net': false,
+            'path': false,
+            'zlib': false,
+            'http': false,
+            'https': false,
+            'stream': false,
+            'crypto': false,
+            'querystring': false,
+            'url': false,
+            'util': false,
+            'buffer': false
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -103,5 +123,6 @@ module.exports = () => {
     } else {
         config.mode = 'development';
     }
+
     return config;
 };

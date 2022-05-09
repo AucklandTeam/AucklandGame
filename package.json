@@ -12,7 +12,8 @@
     "watch": "webpack --watch",
     "serve": "webpack serve",
     "eslint": "eslint ./src",
-    "test": "jest --env=jsdom"
+    "test": "jest --env=jsdom",
+    "ssr": "node dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@babel/register": "^7.17.7",
     "@types/jest": "^27.4.1",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
