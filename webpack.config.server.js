@@ -1,11 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let nodeExternals = require('webpack-node-externals');
 
 const isProduction = process.env.NODE_ENV === 'production';
+const CSSModuleLoader = {
+    loader: 'css-loader',
+    options: {
+        modules: { localIdentName: '[name]_[local]__[hash:base64:5]' },
+        sourceMap: true,
+    },
+};
 
 const config = {
     entry: {
@@ -38,7 +43,8 @@ const config = {
             {
                 test: /\.scss$/i,
                 exclude: /node_modules/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader']
+                //use: [MiniCssExtractPlugin.loader, 'css-loader']
+                use: [CSSModuleLoader, 'sass-loader'],
                 // use: ['style-loader', 'css-loader']
             },
             {

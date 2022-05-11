@@ -61,6 +61,7 @@
     "helmet": "^5.0.2",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
+    "jsdom": "^19.0.0",
     "mini-css-extract-plugin": "^2.6.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
