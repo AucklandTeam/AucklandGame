@@ -9,6 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode=production --node-env=production",
+    "buildserv": "webpack --config webpack.config.server.js --mode=production --node-env=production",
     "watch": "webpack --watch",
     "serve": "webpack serve",
     "eslint": "eslint ./src",
@@ -60,6 +61,7 @@
     "helmet": "^5.0.2",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
+    "mini-css-extract-plugin": "^2.6.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
     "postcss-modules-values": "^4.0.0",
@@ -78,6 +80,7 @@
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "axios": "^0.26.1",
+    "canvas": "^2.9.1",
     "express": "^4.17.3",
     "identity-obj-proxy": "^3.0.0",
     "react": "^17.0.2",
@@ -87,6 +90,7 @@
     "react-test-renderer": "^17.0.0",
     "redux": "^4.1.2",
     "redux-actions": "^2.6.5",
-    "redux-saga": "^1.1.3"
+    "redux-saga": "^1.1.3",
+    "webpack-node-externals": "^3.0.0"
   }
 }
