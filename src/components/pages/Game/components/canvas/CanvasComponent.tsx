@@ -276,7 +276,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         // переносим центр обратно
         ctx.translate(-xMove - shipWith/2, -yMove - shipHeight/2);
         // отрисовываем корабль
-        ctx.drawImage(spaceship, xMove, yMove);
+        ctx.drawImage(spaceship, xMove, yMove, shipWith, shipHeight);
         // восстанавливаем канвас
         ctx.restore();
         ctx.fillStyle = 'white';
