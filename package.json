@@ -14,7 +14,7 @@
     "serve": "webpack serve",
     "eslint": "eslint ./src",
     "test": "jest --env=jsdom",
-    "ssr": "node dist/server.js"
+    "ssr": "npm run build && npm run buildserv"
   },
   "repository": {
     "type": "git",

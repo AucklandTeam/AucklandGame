@@ -3,9 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import React from 'react';
 import jsdom from 'jsdom';
-import {StaticRouter} from 'react-router-dom/server'
+import {StaticRouter} from 'react-router-dom/server';
 import ReactDOMServer from 'react-dom/server';
-import App from '../src/components/App/App';
+import CanvasComponent from '../src/components/pages/Game/components/canvas/CanvasComponent';
 import Canvas from'canvas';
 global.Image = Canvas.Image;
 
@@ -24,7 +24,7 @@ app.use('^/$', (req, res, next) => {
         }
         const html = ReactDOMServer.renderToString(
             <StaticRouter location={req.url}>
-                <App />
+                <CanvasComponent />
             </StaticRouter>
         );
         global.document = new JSDOM('<div id="root"></div>').window.document;

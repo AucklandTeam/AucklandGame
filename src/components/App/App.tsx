@@ -12,9 +12,11 @@ import Error404 from 'src/components/pages/Errors/404';
 import initWorkerApi from 'src/api/worker/workerservice';
 import {useAppDispatch} from 'src/index';
 import {fetchUser} from 'src/components/pages/Auth/actions';
+import history, {useInitHistory} from 'src/core/history';
 
 const App = () => {
     const dispatch = useAppDispatch();
+    const {stateHistory} = useInitHistory();
 
     useEffect(() => {
         dispatch(fetchUser());
@@ -31,7 +33,51 @@ const App = () => {
         initWorkerApi(workerMessageHandler);
     }, []);
 
-    return (<Results />);
+    return (
+        <HashRouter
+            location={stateHistory.location}
+            navigator={history}
+            navigationType={stateHistory.action}>
+            <Routes>
+                <Route
+                    path="/"
+                    element={<Main />}
+                />
+                <Route
+                    path="/game"
+                    element={<Game />}
+                />
+                <Route
+                    path="/profile"
+                    element={<Profile />}
+                />
+                <Route
+                    path="/results"
+                    element={<Results />}
+                />
+                <Route
+                    path="/sign-in"
+                    element={<Login />}
+                />
+                <Route
+                    path="/forum"
+                    element={<ForumMain />}
+                />
+                <Route
+                    path="/settings"
+                    element={<ProfileEdit />}
+                />
+                <Route
+                    path="/sign-up"
+                    element={<SignUp />}
+                />
+                <Route
+                    path="*"
+                    element={<Error404 />}
+                />
+            </Routes>
+        </HashRouter>
+    );
 };
 
 export default App;
