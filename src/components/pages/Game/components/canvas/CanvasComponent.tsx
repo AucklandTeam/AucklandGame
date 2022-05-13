@@ -6,7 +6,7 @@ import bgImg from '../../../../../../www/Images/sky.png';
 // @ts-ignore
 import debrisImg from '../../../../../../www/Images/debris.png';
 // @ts-ignore
-import explosionImg from '../../../../../../www/Images/Explosion.png';
+import explosionImg from '../../../../../../www/Images/exp.png';
 // @ts-ignore
 import asterImg from '../../../../../../www/Images/aster.png';
 import { getRandomArbitrary } from './utils';
@@ -74,14 +74,45 @@ const CanvasComponent: FC<CanvasProps> = ({
     let asteroids: any = [];
     let explosions: any = [];
 
+
+    const updateExploseion2 = () => {
+    };
+
     class Explosion extends Base {
         private timeLives: number;
+        private row: number;
+        private column: number;
+        currentFrame: number;
+        frameWidth: number;
+        frameHeight: number;
+        numColumns: number;
+        numRows: number;
+        private tickExplosion: number;
         constructor(x: number,y: number) {
             super(x,y);
             this.timeLives = 10;
+            // анимация взрыва
+            this.row = 0;
+            this.column = 0;
+            this.currentFrame = 0;
+            this.frameWidth = 550;
+            this.frameHeight = 550;
+            this.numColumns = 10;
+            this.numRows = 1;
+            this.tickExplosion = 0;
         }
         update() {
-            this.timeLives -= 1;
+            this.tickExplosion++;
+            if ( this.tickExplosion % 5 === 0) {
+                this.currentFrame++;
+                let maxFrame = this.numColumns * this.numRows - 1;
+                if ( this.currentFrame > maxFrame){
+                    this.timeLives = 0;
+                }
+                // Update rows and columns
+                this.column = this.currentFrame % this.numColumns;
+                this.row = Math.floor(this.currentFrame / this.numColumns);
+            }
         }
     }
 
@@ -263,9 +294,12 @@ const CanvasComponent: FC<CanvasProps> = ({
             el.update();
         });
         explosions.forEach((el: any) => {
-            ctx.drawImage(explosion, el.x, el.y, 200, 140);
+            ctx.drawImage(explosion, el.column * el.frameWidth + 17,
+                el.row * el.frameHeight + 17,
+                el.frameWidth, el.frameHeight, el.x, el.y, el.frameWidth/2, el.frameHeight/2);
             el.update();
         });
+
         // корабль
         // сохраняем канвас
         ctx.save();
