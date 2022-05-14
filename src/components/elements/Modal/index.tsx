@@ -7,7 +7,7 @@ import React, {
     ForwardedRef }
     from 'react';
 import { createPortal } from 'react-dom';
-import styles from './Modal.scss';
+//import styles from './Modal.scss';
 
 const modalElement = document.getElementById('modalWrap') as HTMLElement;
 
@@ -42,20 +42,20 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref: Fo
 
     return createPortal(
         isOpen ? (
-            <div className={`${styles.modal} ${fade ? styles.modalFade : ''}`}>
+            <div className={`${'modal'} ${fade ? 'modalFade' : ''}`}>
                 <div
-                    className={styles.modalOverlay}
+                    className="modalOverlay"
                     onClick={close}
                 />
                 <span
                     role="button"
-                    className={styles.modalClose}
+                    className="modalClose"
                     aria-label="close"
                     onClick={close}
                 >
                     X
                 </span>
-                <div className={styles.modalBody}>{children}</div>
+                <div className="modalBody">{children}</div>
             </div>
         ) : null,
         modalElement,

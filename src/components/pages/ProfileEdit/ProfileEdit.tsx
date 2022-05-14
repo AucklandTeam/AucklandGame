@@ -1,5 +1,5 @@
 import React, { FC, MutableRefObject, useRef } from 'react';
-import styles from './ProfileEdit.scss';
+//import styles from './ProfileEdit.scss';
 import NotGameWrap from 'src/components/elements/NotGameWrap';
 import Avatar from 'src/components/elements/Avatar';
 import Modal from 'src/components/elements/Modal';
@@ -15,14 +15,14 @@ const ProfileEdit: FC = () => {
     const user = useUserInfo();
     return (
         <NotGameWrap titlePage={'Profile Edit'}>
-            <div className={styles.userCard}>
+            <div className="userCard">
                 <Avatar
                     imageSrc={user.data?.avatar ? RESOURCE_URL + user.data.avatar : noImage}
                     imageTitle={user.data?.avatar ? user.data.login : 'Avatar'}
-                    divClass={styles.userAvatar}
+                    divClass="userAvatar"
                     handleClick={() => (modal as MutableRefObject<any>).current.open()}
                 />
-                <div className={styles.userData}>
+                <div className="userData">
                     <EditUserData />
                     <EditUserPassword />
                 </div>

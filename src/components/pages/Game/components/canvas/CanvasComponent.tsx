@@ -10,7 +10,7 @@ import explosionImg from '../../../../../../www/Images/Explosion.png';
 // @ts-ignore
 import asterImg from '../../../../../../www/Images/aster.png';
 import { getRandomArbitrary } from './utils';
-import styles from '../../Game.scss';
+//import styles from '../../Game.scss';
 
 interface CanvasProps {
     setLives: (arg0: number) => void;
@@ -373,7 +373,7 @@ const CanvasComponent: FC<CanvasProps> = ({
 
     return <canvas
         ref={canvasRef}
-        className={styles.gameCanvas}
+        className="gameCanvas"
     />;
 };
 

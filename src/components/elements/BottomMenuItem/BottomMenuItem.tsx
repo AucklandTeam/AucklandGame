@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import styles from './BottomMenuItem.scss';
+//import styles from './BottomMenuItem.scss';
 import { Link, useLocation } from 'react-router-dom';
 
 interface BottomMenuItemType {
@@ -11,9 +11,9 @@ interface BottomMenuItemType {
 const isHidden = (url: string): string => {
     const location = useLocation();
     if (location.pathname === url) {
-        return `${styles.bottomMenuItem} ${styles.hidden}`;
+        return 'bottomMenuItem hidden';
     } else {
-        return `${styles.bottomMenuItem}`;
+        return 'bottomMenuItem';
     }
 };
 

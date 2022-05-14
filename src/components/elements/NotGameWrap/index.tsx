@@ -1,5 +1,5 @@
 import React, {FC, useCallback, useLayoutEffect} from 'react';
-import styles from './NotGameWrap.scss';
+//import styles from './NotGameWrap.scss';
 import BottomMenu from '../BottomMenu/BottomMenu';
 import BottomMenuItem from '../BottomMenuItem/BottomMenuItem';
 import {useAuth} from 'src/components/pages/Auth/selectors';
@@ -13,12 +13,12 @@ type TemplatePageProps = {
 };
 
 const bottomMenuItems = [
-    { icon: styles.asRocket, url: '/game', name: 'Return to Game' },
-    { icon: styles.asTrophy, url: '/results', name: 'High-Scores' },
-    { icon: styles.asPerson, url: '/profile', name: 'View Profile' },
-    { icon: styles.asEdit, url: '/settings', name: 'Edit Profile' },
-    { icon: styles.asForum, url: '/forum', name: 'Forum' },
-    { icon: styles.asPower, url: '/', name: 'Quit' },
+    { icon: 'asRocket', url: '/game', name: 'Return to Game' },
+    { icon: 'asTrophy', url: '/results', name: 'High-Scores' },
+    { icon: 'asPerson', url: '/profile', name: 'View Profile' },
+    { icon: 'asEdit', url: '/settings', name: 'Edit Profile' },
+    { icon: 'asForum', url: '/forum', name: 'Forum' },
+    { icon: 'asPower', url: '/', name: 'Quit' },
 ];
 
 const NotGameWrap: FC<TemplatePageProps> = ({ titlePage, children }) => {
@@ -33,8 +33,8 @@ const NotGameWrap: FC<TemplatePageProps> = ({ titlePage, children }) => {
         }
     },[isAuth]);
     return (
-        <div className={styles.notGame}>
-            <div className={styles.contentWrap}>
+        <div className="notGame">
+            <div className="contentWrap">
                 <h3>{titlePage}</h3>
                 {children}
                 <BottomMenu>

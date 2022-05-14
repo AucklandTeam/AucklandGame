@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './GameTopBar.scss';
+//import styles from './GameTopBar.scss';
 import {Link} from 'react-router-dom';
 import LivesIcon from '../../Icons/LivesIcon';
 import LivesIconEmpty from '../../Icons/LivesIconEmpty';
@@ -12,11 +12,11 @@ interface BottomMenuItemType {
 }
 
 const bottomMenuItems = [
-    { icon: styles.asEdit, url: '/settings', name: '', text: 'settings' },
-    { icon: styles.asForum, url: '/forum', name: '', text: 'forum' },
-    { icon: styles.asPerson, url: '/profile', name: '', text: 'profile' },
-    { icon: styles.asTrophy, url: '/results', name: '', text: 'results' },
-    { icon: styles.asPower, url: '/', name: '', text: 'quit' },
+    { icon: 'asEdit', url: '/settings', name: '', text: 'settings' },
+    { icon: 'asForum', url: '/forum', name: '', text: 'forum' },
+    { icon: 'asPerson', url: '/profile', name: '', text: 'profile' },
+    { icon: 'asTrophy', url: '/results', name: '', text: 'results' },
+    { icon: 'asPower', url: '/', name: '', text: 'quit' },
 ];
 
 const showLives = (lives: number) => {
@@ -40,21 +40,21 @@ const showLives = (lives: number) => {
 };
 
 const GameTopBar = ({ lives, score }: any) => (
-    <div className={styles.gameTopBar}>
-        <div className={styles.gameState}>
+    <div className="gameTopBar">
+        <div className="gameState">
             {showLives(lives)}
-            <div className={styles.gameScore}>Score: [{score}]</div>
+            <div className="gameScore">Score: [{score}]</div>
         </div>
-        <div className={styles.gameMenu}>
+        <div className="gameMenu">
             {
                 bottomMenuItems.map((item: BottomMenuItemType, index) =>
-                    <div className={styles.menuItem} key={item.url}>
+                    <div className="menuItem" key={item.url}>
                         <Link
                             to={item.url}
                         >
                             <i
                                 className={`${item.icon} 
-                                    ${index === bottomMenuItems.length - 1 ? styles.quit : ''}`}
+                                    ${index === bottomMenuItems.length - 1 ? 'quit' : ''}`}
                             />
                             <span>{item.name}</span>
                         </Link>

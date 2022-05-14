@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CanvasComponent from './components/canvas/CanvasComponent';
-import styles from './Game.scss';
+//import styles from './Game.scss';
 import GameTopBar from './components/GameTopBar/GameTopBar';
 import StartModal from './components/StartModal';
 
@@ -21,7 +21,7 @@ const Game = () => {
     };
 
     return (
-        <div className={styles.gameMainWrap}>
+        <div className="gameMainWrap">
             <GameTopBar lives={lives} score={score} />
             <div>
                 {

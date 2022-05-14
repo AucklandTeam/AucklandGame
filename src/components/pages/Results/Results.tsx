@@ -1,6 +1,6 @@
 import React from 'react';
 import NotGameWrap from 'src/components/elements/NotGameWrap';
-import styles from './Results.scss';
+//import styles from './Results.scss';
 
 const scoreItems = [
     { userLogin: 'Gamer345', userScore: 2345678 },
@@ -17,18 +17,18 @@ const byField = (field: string) => (
 
 const Results = () => (
     <NotGameWrap titlePage={'High-Scores'}>
-        <table className={styles.highScoresTable}>
+        <table className="highScoresTable">
             <tbody>{scoreItems
                 .sort(byField('userScore'))
                 .map((item, i = 1) => {
                     return (
                         <tr
                             key={i++}
-                            className={styles.scoreLine}
+                            className="scoreLine"
                         >
-                            <td className={styles.userRange}>{i++}</td>
-                            <td className={styles.userLogin}>{item.userLogin}</td>
-                            <td className={styles.userScore}>{item.userScore}</td>
+                            <td className="userRange">{i++}</td>
+                            <td className="userLogin">{item.userLogin}</td>
+                            <td className="userScore">{item.userScore}</td>
                         </tr>
                     );
                 })}

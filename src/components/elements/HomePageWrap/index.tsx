@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import styles from './HomePageWrap.scss';
+//import styles from './HomePageWrap.scss';
 
 type HomePageWrapProps = {
     titlePage?: string;
@@ -7,12 +7,12 @@ type HomePageWrapProps = {
 };
 
 const HomePageWrap: FC<HomePageWrapProps> = ({ children, titleContent }) => (
-    <div className={styles.notGame}>
+    <div className="notGame">
         <h1>Destroy Asteroids</h1>
-        <main className={styles.w100}>
-            <div className={styles.contentWrapCenter}>
+        <main className="w100">
+            <div className="contentWrapCenter">
                 {titleContent && (
-                    <div className={styles.contentWrapTitle}>
+                    <div className="contentWrapTitle">
                         <h3>{titleContent}</h3>
                     </div>
                 )}

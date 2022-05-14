@@ -1,6 +1,6 @@
 import React, {FC, FormEvent} from 'react';
 import Button from '../Buttons/Button';
-import styles from './Form.scss';
+//import styles from './Form.scss';
 
 type FormProps = {
     handleSubmit: (event: FormEvent<HTMLFormElement>)=>void;
@@ -9,12 +9,12 @@ type FormProps = {
 }
 
 const Form:FC<FormProps> = ({handleSubmit, children, errorText, submitTitle})=>(
-    <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.inputs}>
+    <form onSubmit={handleSubmit} className="form">
+        <div className="inputs">
             {children}
         </div>
         {errorText && (
-            <div className={styles.errors}>{errorText}</div>
+            <div className="errors">{errorText}</div>
         )}
         <Button
             buttonType={'submit'}

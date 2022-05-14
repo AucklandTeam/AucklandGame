@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC } from 'react';
-import styles from './Inputs.scss';
+//import styles from './Inputs.scss';
 
 export interface TextInputProps<NAME> {
     title?: string;
@@ -12,7 +12,7 @@ export interface TextInputProps<NAME> {
 }
 
 const TextInput: FC<TextInputProps<string>> = ({ title, type, name, value, onChange }) => (
-    <div className={styles.inputWrap}>
+    <div className="inputWrap">
         <input
             type={type}
             name={name}

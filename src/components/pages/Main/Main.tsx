@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Main.scss';
+//import styles from './Main.scss';
 import HomePageWrap from '../../elements/HomePageWrap';
 import {useAuth} from '../Auth/selectors';
 
@@ -30,7 +30,7 @@ const Main = () => {
                         return (
                             <li
                                 key={item.url}
-                                className={styles.menuItem}
+                                className="menuItem"
                             >
                                 <Link to={item.url}>{item.name}</Link>
                             </li>
