@@ -21,11 +21,13 @@ export const TextFieldsEditUser: TextInputProps<keyof EditUserDataForm>[] = [
         name: 'login',
         type: 'text',
         title: 'Login',
+        validType: 'login',
     },
     {
         name: 'email',
         type: 'text',
         title: 'E-mail',
+        validType: 'email',
     },
     {
         name: 'phone',
@@ -33,3 +35,12 @@ export const TextFieldsEditUser: TextInputProps<keyof EditUserDataForm>[] = [
         isHide: true,
     },
 ];
+export const initialState = {
+    first_name: '',
+    second_name: '',
+    display_name: '',
+    email: '',
+    login: '',
+    phone: '89991112233',
+};
+

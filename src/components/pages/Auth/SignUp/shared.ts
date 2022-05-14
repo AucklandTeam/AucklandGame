@@ -15,12 +15,14 @@ export const TextFieldsSignUp: TextInputProps<keyof SignUpForm>[] = [
     {
         name: 'login',
         type: 'text',
-        title: 'Login'
+        title: 'Login',
+        validType: 'login'
     },
     {
         name: 'email',
         type: 'text',
-        title: 'E-mail'
+        title: 'E-mail',
+        validType: 'email'
     },
     {
         name: 'phone',
@@ -30,12 +32,14 @@ export const TextFieldsSignUp: TextInputProps<keyof SignUpForm>[] = [
     {
         name: 'password',
         type: 'password',
-        title: 'Choose Password'
+        title: 'Choose Password',
+        validType: 'password'
     },
     {
         name: 'confirm',
         type: 'password',
-        title: 'Confirm Password'
+        title: 'Confirm Password',
+        validType: 'password'
     },
 ];
 

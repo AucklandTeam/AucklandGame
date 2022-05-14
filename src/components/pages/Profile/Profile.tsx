@@ -14,7 +14,7 @@ const Profile = () => {
         <NotGameWrap titlePage={'Gamer Profile'}>
             <div className={styles.userCard}>
                 <Avatar
-                    imageSrc={`${RESOURCE_URL}${data?.avatar}` || noImage}
+                    imageSrc={data?.avatar ? `${RESOURCE_URL}${data.avatar}` : noImage}
                     imageTitle={data?.login || 'Avatar'}
                     divClass={styles.userAvatar}
                 />

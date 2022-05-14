@@ -16,7 +16,6 @@ const UploadAvatar: FC<UploadAvatarForm> = () => {
         event.preventDefault();
         const form = event.target as HTMLFormElement;
         const formData = new FormData(form);
-        console.log(formData.getAll('avatar'));
         dispatch(changeAvatar({formData, setFormError}));
     };
 

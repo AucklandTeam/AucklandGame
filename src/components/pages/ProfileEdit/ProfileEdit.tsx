@@ -12,13 +12,13 @@ import {useUserInfo} from '../Auth/selectors';
 
 const ProfileEdit: FC = () => {
     const modal: MutableRefObject<null> = useRef(null);
-    const user = useUserInfo();
+    const {data} = useUserInfo();
     return (
         <NotGameWrap titlePage={'Profile Edit'}>
             <div className={styles.userCard}>
                 <Avatar
-                    imageSrc={user.data?.avatar ? RESOURCE_URL + user.data.avatar : noImage}
-                    imageTitle={user.data?.avatar ? user.data.login : 'Avatar'}
+                    imageSrc={data?.avatar ? `${RESOURCE_URL}${data.avatar}` : noImage}
+                    imageTitle={data?.avatar ? data.login : 'Avatar'}
                     divClass={styles.userAvatar}
                     handleClick={() => (modal as MutableRefObject<any>).current.open()}
                 />

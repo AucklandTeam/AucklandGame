@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Route, Routes, HashRouter} from 'react-router-dom';
+import {Route, Routes, Router} from 'react-router-dom';
 import Game from 'src/components/pages/Game/Game';
 import Results from 'src/components/pages/Results/Results';
 import Profile from 'src/components/pages/Profile/Profile';
@@ -34,7 +34,7 @@ const App = () => {
     }, []);
 
     return (
-        <HashRouter
+        <Router
             location={stateHistory.location}
             navigator={history}
             navigationType={stateHistory.action}>
@@ -76,7 +76,7 @@ const App = () => {
                     element={<Error404 />}
                 />
             </Routes>
-        </HashRouter>
+        </Router>
     );
 };
 
