@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import sampleImage1 from "../resources/images/sample-image-1.png";
-import sampleImage2 from "../resources/images/sample-image-2.png";
 
 export default function SamplePage2() {
 
@@ -12,10 +10,7 @@ export default function SamplePage2() {
             <h2>Static content</h2>
             <p>The images below were fetched from the server.</p>
             <div className="images-sample">
-                <img src={sampleImage1} />
-                <img src={sampleImage2} />
             </div>
-
         </Wrapper>
     )
 }

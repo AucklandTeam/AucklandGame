@@ -2,9 +2,10 @@ import React, { StrictMode } from 'react'
 import { Link, Routes, Route } from 'react-router-dom';
 import styled from "styled-components";
 import HomePage from './pages/HomePage';
-import SamplePage1 from './pages/SamplePage1';
 import SamplePage2 from './pages/SamplePage2';
 import { ServerDataProvider } from './serverData';
+import Main from "client/pages/Main/Main";
+import Game from "client/pages/Game/Game";
 
 interface Props {
     /** Data used in the react prerender process. Use only in the server side. */
@@ -25,14 +26,14 @@ export default function App(props: Props) {
                     <Link to="/">Home</Link>
                     {/* use a common anchor (<a></a>) below if you want this route to always be rendered by the server */}
                     <Link to="sample-page-1">Sample page 1</Link>
-                    <Link to="sample-page2">Sample page 2</Link>
+                    <Link to="game">game</Link>
                 </div>
 
                 <div className="content">
                     <Routes>
-                        <Route path="/sample-page-1" element={<SamplePage1 />} />
+                        <Route path="/" element={<Main />} />
                         <Route path="/sample-page2" element={<SamplePage2 />} />
-                        <Route path="/" element={<HomePage />} />
+                        <Route path="/game" element={<Game />} />
                     </Routes>
                 </div>
 
