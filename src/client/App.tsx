@@ -1,7 +1,6 @@
-import React, { StrictMode } from 'react'
-import { Link, Routes, Route } from 'react-router-dom';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom';
 import styled from "styled-components";
-import HomePage from './pages/HomePage';
 import SamplePage2 from './pages/SamplePage2';
 import { ServerDataProvider } from './serverData';
 import Main from "client/pages/Main/Main";
@@ -17,27 +16,11 @@ export default function App(props: Props) {
 
     return (
         <ServerDataProvider value={props ? props.serverData : null}>
-
-            <Wrapper>
-
-                <div className="header">React SSR Template</div>
-
-                <div className="sidebar">
-                    <Link to="/">Home</Link>
-                    {/* use a common anchor (<a></a>) below if you want this route to always be rendered by the server */}
-                    <Link to="sample-page-1">Sample page 1</Link>
-                    <Link to="game">game</Link>
-                </div>
-
-                <div className="content">
-                    <Routes>
-                        <Route path="/" element={<Main />} />
-                        <Route path="/sample-page2" element={<SamplePage2 />} />
-                        <Route path="/game" element={<Game />} />
-                    </Routes>
-                </div>
-
-            </Wrapper>
+            <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/sample-page2" element={<SamplePage2 />} />
+                <Route path="/game" element={<Game />} />
+            </Routes>
         </ServerDataProvider>
     );
 
