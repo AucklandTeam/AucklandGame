@@ -1,0 +1,18 @@
+@import 'oldCode/src../../assets/base';
+
+.highScoresTable {
+  width: 100%;
+  border: 1px solid $white-100;
+  border-collapse: collapse;
+  & tr > td {
+    padding: $base-vertical-padding/2 $base-horizontal-padding/2;
+    border-right: 1px solid $white-100;
+    border-top: 1px solid $white-100;
+  }
+  & tr:first-child > td {
+    border-top: 0;
+  }
+  & tr > td:last-child {
+    border-right: 0;
+  }
+}

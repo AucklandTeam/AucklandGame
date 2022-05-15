@@ -1,36 +1,19 @@
 {
+  "exclude": ["node_modules", "oldCode"],
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noEmit": true,
-    "allowSyntheticDefaultImports": true,
+    "target": "es6",
+    "module": "commonjs",
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
+    "strict": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "baseUrl": "src",
+    "paths": {
+      "client/*": ["client/*"],
+      "shared/*": ["shared/*"],
+      "server/*": ["server/*"]
+    }
+  }
 }

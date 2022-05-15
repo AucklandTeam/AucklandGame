@@ -1,0 +1,127 @@
+@import 'normalize';
+@import 'variables';
+@import 'vertical-rhythm';
+@import 'colors';
+@import 'fonts';
+@import 'transition';
+@import 'forms';
+
+
+// Initials
+
+$base-vertical-padding: 30px;
+$base-horizontal-padding: 0.75 * $base-vertical-padding;
+$base-content-block-border: 3px solid $dark-gray-100;
+
+%for-headings {
+    position: relative;
+    font-family: $font-heading-family;
+    font-weight: $font-heading-weight;
+    text-align: center;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+%for-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+body {
+    background: $dark-gray-100;
+    color: $white-100;
+    font-family: $font-default-family;
+}
+
+a {
+    text-decoration: none;
+    color: $accent-100;
+    transition: $base-transition;
+    &:hover {
+        color: $accent-80;
+        transition: $base-transition;
+    }
+}
+
+h1 {
+    @extend %for-headings;
+    text-shadow: 0 0 30px $dark-gray-100, 1px 1px 2px $dark-gray-100, 1px 1px 10px $dark-gray-100;
+}
+
+h3 {
+    @extend %for-headings;
+}
+
+h4 {
+    font-family: $base-font-family;
+}
+
+.w100 {
+    width: 100vw;
+}
+
+.centered {
+    text-align: center;
+    width: 100%;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.notGame {
+    @extend %for-wrap;
+    background: url('/oldCode/wwwCode/www/Images/hero.jpg') no-repeat fixed $dark-gray-100;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+.contentWrap {
+    @extend %for-wrap;
+    width: 67vw;
+    height: calc(100% - 2 * #{$base-vertical-padding});
+    background: $dark-gray-75;
+    border: $base-content-block-border;
+    margin: 0 auto;
+    padding: $base-vertical-padding $base-horizontal-padding;
+    position: relative;
+}
+
+.contentWrapCenter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 50vw;
+    background: $dark-gray-75;
+    border: $base-content-block-border;;
+    margin: 3em auto;
+    padding: 1em;
+}
+
+.userCard {
+    display: flex;
+    margin: 1%  0;
+}
+
+.userAvatar {
+    width: 200px;
+    position: relative;
+    overflow: hidden;
+    margin: $form-margin-vertical 0;
+    border-radius: $form-border-radius;
+    & img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+.userData {
+    padding-left: 2em;
+    width: calc(100% - 200px - 2em);
+}
+

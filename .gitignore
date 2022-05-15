@@ -1,7 +1,3 @@
-node_modules
-package-lock.json
-.github
-.idea
-dist
-.cache
-.DS_Store
+node_modules/
+.vscode/
+dist/
