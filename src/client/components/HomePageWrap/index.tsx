@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-//import styles from './HomePageWrap.scss';
+import './HomePageWrap.scss';
 
 type HomePageWrapProps = {
     titlePage?: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//import styles from './Main.scss';
+import './Main.scss';
 import HomePageWrap from "client/components/HomePageWrap";
 //import {useAuth} from "client/pages/Auth/selectors";
 

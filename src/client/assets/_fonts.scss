@@ -1,0 +1,200 @@
+@import url('https://fonts.cdnfonts.com/css/bender?styles=24998,24996');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+$font-default-family: 'Play', sans-serif;
+$font-heading-family: 'Bender', sans-serif;
+
+$font-default-weight: 400;
+$font-default-bold-weight: 700;
+$font-heading-weight: 700;
+$font-heading-bold-weight: 900;
+
+// Custom Icon Font - Astero
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?wlmhb');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?wlmhb#iefix') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?wlmhb') format('truetype'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?wlmhb') format('woff'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?wlmhb##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.asWarning {
+  &:before {
+    content: $as-warning;
+  }
+}
+.asAddImage {
+  &:before {
+    content: $as-add_image;
+  }
+}
+.asVolumeMute {
+  &:before {
+    content: $as-volume_mute;
+  }
+}
+.asVolumeOff {
+  &:before {
+    content: $as-volume_off;
+  }
+}
+.asVolumeUp {
+  &:before {
+    content: $as-volume_up;
+  }
+}
+.asForum {
+  &:before {
+    content: $as-forum;
+  }
+}
+.asLightbulb {
+  &:before {
+    content: $as-lightbulb;
+  }
+}
+.asReply {
+  &:before {
+    content: $as-reply;
+  }
+}
+.asDeleteSweep {
+  &:before {
+    content: $as-delete_sweep;
+  }
+}
+.asFormatQuote {
+  &:before {
+    content: $as-format_quote;
+  }
+}
+.asInsertComment {
+  &:before {
+    content: $as-insert_comment;
+  }
+}
+.asCreateNewFolder {
+  &:before {
+    content: $as-create_new_folder;
+  }
+}
+.asFullscreen {
+  &:before {
+    content: $as-fullscreen;
+  }
+}
+.asFullscreenExit {
+  &:before {
+    content: $as-fullscreen_exit;
+  }
+}
+.asMenu {
+  &:before {
+    content: $as-menu;
+  }
+}
+.asPerson {
+  &:before {
+    content: $as-person;
+  }
+}
+.asDelete {
+  &:before {
+    content: $as-delete;
+  }
+}
+.asDone {
+  &:before {
+    content: $as-done;
+  }
+}
+.asDoneAll {
+  &:before {
+    content: $as-done_all;
+  }
+}
+.asPower {
+  &:before {
+    content: $as-power;
+  }
+}
+.asSearch {
+  &:before {
+    content: $as-search;
+  }
+}
+.asThumbDown {
+  &:before {
+    content: $as-thumb_down;
+  }
+}
+.asThumbUp {
+  &:before {
+    content: $as-thumb_up;
+  }
+}
+.asEdit {
+  &:before {
+    content: $as-edit;
+  }
+}
+.asEast {
+  &:before {
+    content: $as-east;
+  }
+}
+.asNorth {
+  &:before {
+    content: $as-north;
+  }
+}
+.asPushPin {
+  &:before {
+    content: $as-push_pin;
+  }
+}
+.asSource {
+  &:before {
+    content: $as-source;
+  }
+}
+.asSouth {
+  &:before {
+    content: $as-south;
+  }
+}
+.asWest {
+  &:before {
+    content: $as-west;
+  }
+}
+.asTrophy {
+  &:before {
+    content: $as-trophy;
+  }
+}
+.asRocket {
+  &:before {
+    content: $as-rocket;
+  }
+}

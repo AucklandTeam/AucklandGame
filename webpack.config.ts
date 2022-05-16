@@ -7,12 +7,44 @@ import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { merge } from "webpack-merge";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const autoprefixer = require('autoprefixer');
 
 interface Env {
     production: boolean;
     hot: boolean;
 }
 
+const CSSModuleLoader = {
+    loader: 'css-loader',
+    options: {
+        modules: { localIdentName: '[name]_[local]__[hash:base64:5]' },
+        sourceMap: true,
+    },
+};
+
+const postCSSLoader = {
+    loader: 'postcss-loader',
+    options: {
+        sourceMap: true,
+        postcssOptions: {
+            ident: 'postcss',
+            plugins: [
+                require('postcss-flexbugs-fixes'),
+                autoprefixer({
+                    overrideBrowserslist: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                    ],
+                    flexbox: 'no-2009',
+                }),
+                require('postcss-modules-values'),
+            ],
+        },
+    },
+};
 function createBaseConfig(env: Env): Configuration {
     return {
 
@@ -81,7 +113,11 @@ function createServerConfig(env: Env): Configuration {
                             name: "[name].[contenthash].[ext]",
                             emitFile: false 
                         }}
-                }
+                },
+                {
+                    test: /\.scss$/i,
+                    use: [MiniCssExtractPlugin.loader, CSSModuleLoader, postCSSLoader, 'sass-loader'],
+                },
             ]
         },
 
@@ -89,10 +125,10 @@ function createServerConfig(env: Env): Configuration {
             new CleanWebpackPlugin({
                 cleanOnceBeforeBuildPatterns: ["!public/**"]
             }),
-
             new DefinePlugin({
                 __Server__: JSON.stringify(true)
             }),
+            new MiniCssExtractPlugin(),
         ]
 
     }
@@ -142,7 +178,6 @@ function createClientConfig(env: Env): Configuration {
                     exclude: /node_modules/,
                     use: { loader: "babel-loader", options: babelConfig },
                 },
-
                 {
                     test: /\.(jpg|png|gif|svg)$/, 
                     use: { 
@@ -151,13 +186,17 @@ function createClientConfig(env: Env): Configuration {
                             outputPath: "images",
                             name: "[name].[contenthash].[ext]"
                         }}
-                }
+                },
+                {
+                    test: /\.scss$/i,
+                    use: [MiniCssExtractPlugin.loader, CSSModuleLoader, postCSSLoader, 'sass-loader'],
+                },
             ]
         },
 
         plugins: [
             new CleanWebpackPlugin(),
-
+            new MiniCssExtractPlugin(),
             new HtmlWebpackPlugin({
                 template: "./index.html"
             }),
