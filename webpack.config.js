@@ -87,11 +87,20 @@ const config = {
     },
     resolve: {
         extensions: ['.ts', '.js', '.tsx', '.jsx'],
+        alias: {
+            client: path.resolve(__dirname, 'src/client/'),
+            components: path.resolve(__dirname, 'src/client/components'),
+            pages: path.resolve(__dirname, 'src/client/pages'),
+            shared: path.resolve(__dirname, 'src/client/components/@shared'),
+            assets: path.resolve(__dirname, 'src/client/assets/*'),
+            styles: path.resolve(__dirname, 'src/client/styles'),
+            core: path.resolve(__dirname, 'src/core'),
+        },
         modules: [ path.resolve(__dirname, './'), 'node_modules' ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './www/index.html',
+            template: 'src/client/assets/index.html',
         }),
         new CleanWebpackPlugin(),
     ],

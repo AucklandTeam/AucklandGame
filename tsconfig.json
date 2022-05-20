@@ -1,36 +1,35 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noEmit": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "skipLibCheck": true,
-    "baseUrl": ".",
-  },
+
+  "exclude": ["node_modules", "oldCode"],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+	"compilerOptions": {
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"module": "commonjs",
+		"target": "esnext",
+		"jsx": "react-jsx",
+		"baseUrl": "./",
+		"paths": {
+			"src/*": ["src/*"],
+			"server/*": ["src/server/*"],
+			"client/*": ["src/client/*"],
+			"components/*": ["src/client/components/*"],
+			"shared/*": ["src/client/components/@shared/*"],
+			"pages/*": ["src/client/pages/*"],
+			"utils/*": ["src/client/utils/*"],
+			"assets/*": ["src/client/assets/*"],
+			"styles/*": ["src/client/styles/*"],
+			"config/*": ["config/*"],
+			"core/*": ["src/core/*"]
+		},
+		"typeRoots": ["@types", "node_modules/@types"]
+	}
 }

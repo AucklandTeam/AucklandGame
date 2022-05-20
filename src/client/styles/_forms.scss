@@ -1,0 +1,118 @@
+$form-font-family: $font-default-family;
+$form-font-size: $base-font-size;
+$form-line-height: $base-line-height;
+$form-border-width: 0;
+$form-border-radius: 2px;
+$form-box-shadow: 0 4px 4px $accent-100;
+$form-box-error-shadow: 0 4px 4px $error-dark;
+$form-margin-vertical: 10px;
+$form-margin-horizontal: auto;
+$form-input-padding: 15px 5px 5px 15px;
+$button-font-weight: 700;
+$button-line-height: 1.5;
+$button-border-width: 0;
+$button-border-radius: 2px;
+$button-padding-vertical: 5px;
+$button-padding-horizontal: 40px;
+
+form {
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	width: 100%;
+	margin: 0 0 $form-margin-vertical;
+}
+
+.inputs {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.errors {
+	color: $error-light;
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+	width: 100%;
+}
+
+button[type='submit'],
+button[type='button'] {
+	background: $form-background-gradient;
+	font-family: $form-font-family;
+	color: $dark-gray-100;
+	border: none;
+	border-radius: $button-border-radius;
+	cursor: pointer;
+	font-weight: $button-font-weight;
+	line-height: $button-line-height;
+	padding: $button-padding-vertical $button-padding-horizontal;
+	text-decoration: none;
+	box-shadow: none;
+	transition: $base-transition;
+	margin: $form-margin-vertical 0;
+
+	&:focus,
+	&:hover {
+		background: $form-background-gradient-hover;
+		transition: $base-transition;
+	}
+}
+
+.inputWrap {
+	display: flex;
+	width: 100%;
+	position: relative;
+	margin: $form-margin-vertical $form-margin-horizontal;
+
+	& label {
+		position: absolute;
+		top: 10px;
+		left: 15px;
+		color: $dark-gray-100;
+		pointer-events: none;
+		transition: transform $base-transition, font-size $base-transition;
+	}
+
+	& input:focus ~ label,
+	& input:valid ~ label,
+	& input:placeholder-shown ~ label {
+		transform: translateY(-50%);
+		font-size: 0.65em;
+		color: $accent-60;
+	}
+
+	&.error input,
+	&.error input:focus {
+		box-shadow: $form-box-error-shadow;
+	}
+
+	&.error input ~ label {
+		transform: translateY(-50%);
+		font-size: 0.65em;
+		color: $error-dark;
+	}
+}
+
+input[type='email'],
+input[type='password'],
+input[type='text'] {
+	font-family: $form-font-family;
+	border: 0 solid;
+	background: $form-background-gradient;
+	color: $dark-gray-100;
+	line-height: $base-line-height;
+	padding: $form-input-padding;
+	width: 100%;
+	transition: box-shadow $base-transition;
+
+	&:focus {
+		color: $dark-gray-100;
+		outline: 0;
+		box-shadow: $form-box-shadow;
+	}
+
+	&:disabled {
+		color: $dark-gray-45;
+	}
+}

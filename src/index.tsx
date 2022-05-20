@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from 'src/components/App/App';
-import 'src/assets/base.scss';
+import App from 'client/App/App';
+import 'styles/base.scss';
 import {Provider, TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import createSagaMiddleware from '@redux-saga/core';
-import configureStore from './core/store';
-import {rootSaga} from './core/Saga';
+import configureStore from 'core/store';
+import {rootSaga} from 'core/Saga';
 
 const sagaMiddleWare = createSagaMiddleware();
 
