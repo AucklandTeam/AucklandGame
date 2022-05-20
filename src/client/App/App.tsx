@@ -52,7 +52,7 @@ const App = () => {
                     element={<Profile />}
                 />
                 <Route
-                    path="/results"
+                    path="/scores"
                     element={<Scores />}
                 />
                 <Route

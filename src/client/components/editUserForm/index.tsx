@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import useForm from 'src/hooks/useForm'
-import TextInput from 'src/components/elements/Inputs/TextInput'
-import Form from 'src/components/elements/Form'
+import TextInput from 'components/inputs'
+import Form from 'components/form'
 import { initialState, TextFieldsEditUser } from './shared'
 import { EditUserDataForm } from './types'
-import { useUserInfo } from 'src/components/pages/Auth/selectors'
+import { useUserInfo } from 'pages/Auth/selectors'
 import { useAppDispatch } from 'src/index'
-import { editUser } from 'src/components/pages/ProfileEdit/actions'
+import { editUser } from 'pages/ProfileEdit/actions'
 
 const EditUserData = () => {
 	const { data } = useUserInfo()
@@ -42,7 +42,7 @@ const EditUserData = () => {
 						title={title}
 						type={type}
 						name={name}
-						value={values[name]}
+						value={values[name as keyof EditUserDataForm]}
 						validType={validType}
 						onChange={handleChange}
 						onBlur={handleBlur}

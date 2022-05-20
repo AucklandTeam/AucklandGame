@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import useForm from 'src/hooks/useForm'
-import TextInput from '../inputs/TextInput'
+import TextInput from 'components/inputs'
 import Form from '../form'
 import { initialState, TextFieldsChangePassword } from './shared'
-import { changeUserPasswordRequest } from 'src/components/pages/ProfileEdit/api'
+import { changeUserPasswordRequest } from 'pages/ProfileEdit/api'
 import { ChangePasswordForm } from './types'
 
 const EditUserPassword = () => {
@@ -32,7 +32,7 @@ const EditUserPassword = () => {
 					title={title}
 					type={type}
 					name={name}
-					value={values[name]}
+					value={values[name as keyof ChangePasswordForm]}
 					onChange={handleChange}
 					onBlur={handleBlur}
 				/>

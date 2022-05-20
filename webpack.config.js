@@ -70,19 +70,19 @@ const config = {
             },
 
             {
-                test: /\.jpe?g$|\.ico$|\.gif$|\.png$/i,
+                test: /\.svg$|\.jpe?g$|\.ico$|\.gif$|\.png$/i,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'assets/[name][ext]',
+                    filename: 'images/[name][ext]',
                 },
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2)$/i,
+                test: /astero\.(eot|svg|ttf|woff|woff2)$/i,
                 type: 'asset/resource',
                 generator: {
                     filename: 'assets/[name][ext]',
                 },
-            },
+            }
         ],
     },
     resolve: {

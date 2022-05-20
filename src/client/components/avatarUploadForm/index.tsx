@@ -1,8 +1,8 @@
 import React, { FC, FormEvent, useState } from 'react'
-import Form from 'src/components/elements/Form'
-import TextInput from 'src/components/elements/Inputs/TextInput'
+import Form from 'components/form'
+import TextInput from 'components/inputs'
 import { useAppDispatch } from 'src/index'
-import { changeAvatar } from 'src/components/pages/ProfileEdit/actions'
+import { changeAvatar } from 'pages/ProfileEdit/actions'
 
 export type UploadAvatarForm = {
 	formData?: FormData
