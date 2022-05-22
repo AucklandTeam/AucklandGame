@@ -18,6 +18,10 @@ const config = {
     },
     ...CommonConfig,
     plugins: [
+        plugins.miniCssExtractPlugin,
+        plugins.cleanWebpackPlugin,
+        plugins.htmlWebpackPlugin,
+        plugins.tsPaths,
         plugins.nodemonPlugin,
         plugins.definePlugin({ server: true })
     ],

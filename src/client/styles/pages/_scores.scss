@@ -1,10 +1,12 @@
+@use 'sass:math';
+
 .highScoresTable {
 	width: 100%;
 	border: 1px solid $white-100;
 	border-collapse: collapse;
 
 	& tr > td {
-		padding: $base-vertical-padding / 2 $base-horizontal-padding / 2;
+		padding: math.div($base-vertical-padding, 2) math.div($base-horizontal-padding, 2);
 		border-right: 1px solid $white-100;
 		border-top: 1px solid $white-100;
 	}

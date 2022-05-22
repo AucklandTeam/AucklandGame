@@ -1,6 +1,6 @@
 import React from 'react'
-import NotGameWrap from 'components/notGameWrap'
-import styles from 'styles/base.scss'
+import NotGameWrap from 'client/components/notGameWrap'
+import styles from 'client/styles/base.scss'
 import { scoreItems } from './shared'
 
 const byField =

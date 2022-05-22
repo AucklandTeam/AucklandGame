@@ -1,5 +1,5 @@
 import axios, {AxiosRequestConfig} from 'axios';
-import {ENDPOINTS} from 'src/shared/consts';
+import {ENDPOINTS} from 'shared/consts';
 
 type RequestSettings = Pick<AxiosRequestConfig, 'url' | 'method' | 'headers'>;
 

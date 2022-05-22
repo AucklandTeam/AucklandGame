@@ -2,9 +2,9 @@ import {SagaIterator} from 'redux-saga';
 import {call, put} from '@redux-saga/core/effects';
 import {changeAvatarRequest, userRequest} from '../api';
 import {editUser, changeAvatar} from '../actions';
-import history from 'core/history';
-import {RouterPath} from 'src/shared/consts';
-import {setUserData} from 'src/components/pages/Auth/actions';
+import history from 'src/core/history';
+import {RouterPath} from 'shared/consts';
+import {setUserData} from 'pages/Auth/actions';
 
 export function* editUserWorker({payload}:ReturnType<typeof editUser>):SagaIterator<void>{
     const {setFormError, ...values} = payload;

@@ -1,5 +1,5 @@
 import { Patterns } from './types';
-import styles from 'styles/base.scss';
+import styles from 'client/styles/base.scss';
 import { validationType } from './shared';
 
 const useValidate = (input: HTMLInputElement) => {

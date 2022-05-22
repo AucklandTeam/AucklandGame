@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { RouterPath } from 'shared/consts'
-import styles from 'styles/base.scss'
-import HomePageWrap from 'components/homePageWrap'
+import styles from 'client/styles/base.scss'
+import HomePageWrap from 'client/components/homePageWrap'
 
 const Error404 = () => (
 	<HomePageWrap>

@@ -2,7 +2,7 @@ import { SagaIterator } from 'redux-saga'
 import { call, put } from '@redux-saga/core/effects'
 import { getUserRequest, loginRequest, logoutRequest, signUpRequest } from '../api'
 import { fetchUser, setUserData, setUserFailed, setUserStatus, signIn, signUp } from '../actions'
-import history from 'core/history'
+import history from 'src/core/history'
 import { RouterPath } from 'shared/consts'
 
 export function* fetchUserWorker(): SagaIterator<void> {

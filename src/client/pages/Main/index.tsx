@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from 'styles/base.scss'
+import styles from 'client/styles/base.scss'
 import { Link } from 'react-router-dom'
-import HomePageWrap from 'components/homePageWrap'
+import HomePageWrap from 'client/components/homePageWrap'
 import { menuItems } from './shared'
 
 const Main = () => {

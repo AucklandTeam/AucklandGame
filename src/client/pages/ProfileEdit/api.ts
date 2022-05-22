@@ -1,6 +1,6 @@
-import {SuccessResponse, UpdateProfileData, UpdatePasswordData} from 'src/shared/types';
+import {SuccessResponse, UpdateProfileData, UpdatePasswordData} from 'shared/types';
 import {request} from 'src/api/request';
-import {ENDPOINTS} from 'src/shared/consts';
+import {ENDPOINTS} from 'shared/consts';
 
 export const userRequest = request<SuccessResponse, UpdateProfileData>({
     method: 'PUT',

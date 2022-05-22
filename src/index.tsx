@@ -4,8 +4,8 @@ import App from 'client/App/App';
 import 'styles/base.scss';
 import {Provider, TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import createSagaMiddleware from '@redux-saga/core';
-import configureStore from 'core/store';
-import {rootSaga} from 'core/Saga';
+import configureStore from './core/store';
+import {rootSaga} from './core/Saga';
 
 const sagaMiddleWare = createSagaMiddleware();
 
@@ -16,6 +16,7 @@ export type AppState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch = () => useDispatch();
+
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
 
 if ('serviceWorker' in navigator) {

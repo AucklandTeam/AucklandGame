@@ -4,7 +4,7 @@ import NotGameWrap from 'components/notGameWrap'
 import Avatar from 'components/avatar'
 import { useUserInfo } from 'pages/Auth/selectors'
 import { RESOURCE_URL } from 'shared/consts'
-import noImage from 'src/client/assets/images/noImage.svg'
+import noImage from '../../assets/images/noImage.svg'
 
 const Profile = () => {
 	const { data } = useUserInfo()

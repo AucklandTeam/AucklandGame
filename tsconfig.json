@@ -1,13 +1,14 @@
 {
 	"exclude": ["node_modules"],
 	"compilerOptions": {
+		"module": "esnext",
+		"moduleResolution": "node",
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"noImplicitAny": true,
 		"noImplicitThis": true,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
-		"module": "commonjs",
 		"target": "esnext",
 		"jsx": "react-jsx",
 		"baseUrl": "./",
@@ -16,13 +17,16 @@
 			"server/*": ["src/server/*"],
 			"client/*": ["src/client/*"],
 			"components/*": ["src/client/components/*"],
-			"shared/*": ["src/client/components/@shared/*"],
 			"pages/*": ["src/client/pages/*"],
-			"utils/*": ["src/client/utils/*"],
+			"shared/*": ["src/client/components/@shared/*"],
 			"assets/*": ["src/client/assets/*"],
 			"styles/*": ["src/client/styles/*"],
-			"core/*": ["src/core/*"]
 		},
 		"typeRoots": ["@types", "node_modules/@types"]
-	}
+	},
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx"
+	]
 }

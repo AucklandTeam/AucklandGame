@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import NotGameWrap from 'components/notGameWrap'
-import styles from 'styles/base.scss'
-import ForumListItem from 'components/forumListItem'
+import NotGameWrap from 'client/components/notGameWrap'
+import styles from 'client/styles/base.scss'
+import ForumListItem from 'client/components/forumListItem'
 import { ForumListItems } from './shared'
 
 const ForumMain: FC = () => (

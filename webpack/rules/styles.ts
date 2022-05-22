@@ -56,15 +56,6 @@ export const cssRule = {
 	test: /\.(sa|sc|c)ss$/,
 	use: [
 		miniCssExtractLoader,
-		{
-			...cssLoader,
-			options: {
-				modules: {
-					exportLocalsConvention: 'camelCaseOnly',
-					localIdentName: '[local]__[hash:base64:5]'
-				}
-			}
-		},
 		CSSModuleLoader,
 		postCssLoader,
 		sassLoader

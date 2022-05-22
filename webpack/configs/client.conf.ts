@@ -4,11 +4,10 @@ import { DIST_DIR, IS_DEV, ROOT_DIR } from '../env'
 
 const config = {
     name: 'client',
-    target: 'web',
-    devtool: IS_DEV ? 'eval-cheap-module-source-map' : 'source-map',
+    devtool: 'source-map',
     context: ROOT_DIR,
     mode: IS_DEV ? 'development' : 'production',
-    entry: [IS_DEV && 'webpack-hot-middleware/client?name=client', './src/client'].filter(Boolean),
+    entry: './src/index.tsx',
     output: {
         path: DIST_DIR,
         filename: IS_DEV ? '[name].client.js' : '[name].[hash].client.js',
@@ -16,6 +15,10 @@ const config = {
     },
     ...CommonConfig,
     plugins: [
+        plugins.miniCssExtractPlugin,
+        plugins.cleanWebpackPlugin,
+        plugins.htmlWebpackPlugin,
+        plugins.tsPaths,
         plugins.definePlugin()
     ]
 }

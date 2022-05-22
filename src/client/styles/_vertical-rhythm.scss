@@ -1,7 +1,8 @@
-// Vertical Rhythm
+/* Vertical Rhythm
 // This is the minimal amount of code needed to create vertical rhythm in our
 // CSS. If you are looking for a robust solution, look at the excellent Typey
 // library. @see https://github.com/jptaranto/typey
+ */
 @use 'sass:math';
 
 @function normalize-rhythm($value, $relative-to: $base-font-size, $unit: $base-unit) {
@@ -13,7 +14,7 @@
 	} @else if $unit == em {
 		@return math.div($value, $relative-to) * 1em;
 	} @else {
-		// $unit == px
+		/* $unit == px */
 		@return $value;
 	}
 }

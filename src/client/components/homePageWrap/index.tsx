@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react'
-import css from '../../styles/base.scss'
+import css from 'styles/base.scss'
 
 type HomePageWrapProps = {
 	titlePage?: string
