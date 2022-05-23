@@ -5,6 +5,9 @@ export const ENDPOINTS = {
         SIGNIN: '/auth/signin',
         SIGNUP: '/auth/signup',
         LOGOUT: '/auth/logout',
+        OAUTH: '/oauth/yandex/service-id',
+        OAUTH_LOGIN: '/oauth/yandex'
+
     },
     USER: {
         PATH: '/user',
@@ -17,6 +20,7 @@ export const ENDPOINTS = {
 export enum RouterPath {
     Main = '/',
     SignIn = '/sign-in',
+    SignYandex = '/sign-via-yandex',
     SignUp = '/sign-up',
     Profile = '/profile',
     Game = '/game',

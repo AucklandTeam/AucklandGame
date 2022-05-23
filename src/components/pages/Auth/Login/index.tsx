@@ -8,7 +8,7 @@ import Form from 'src/components/elements/Form';
 import { RouterPath } from 'src/shared/consts';
 import HomePageWrap from 'src/components/elements/HomePageWrap';
 import { useAppDispatch } from 'src/index';
-import { signIn } from '../actions';
+import {signIn} from '../actions';
 
 const Login: FC = () => {
     const dispatch = useAppDispatch();
@@ -41,6 +41,7 @@ const Login: FC = () => {
                     />
                 ))}
             </Form>
+            <Link style={{width: '100%', textAlign: 'center'}} to={RouterPath.SignYandex}>Sign via Yandex?</Link>
             <Link to={RouterPath.SignUp}>No account yet?</Link>
         </HomePageWrap>
     );

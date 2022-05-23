@@ -13,14 +13,12 @@ import initWorkerApi from 'src/api/worker/workerservice';
 import {useAppDispatch} from 'src/index';
 import {fetchUser} from 'src/components/pages/Auth/actions';
 import history, {useInitHistory} from 'src/core/history';
+import {RouterPath} from '../../shared/consts';
+import AuthViaYandex from '../pages/Auth/AuthViaYandex';
 
 const App = () => {
     const dispatch = useAppDispatch();
     const {stateHistory} = useInitHistory();
-
-    useEffect(() => {
-        dispatch(fetchUser());
-    }, []);
 
     // обработчик для воркера
     const workerMessageHandler = ({data}: any) => {
@@ -28,8 +26,8 @@ const App = () => {
         console.log('web-worker callback data:', data);
     };
 
-    // подключаем воркер
     useEffect(() => {
+        dispatch(fetchUser());
         initWorkerApi(workerMessageHandler);
     }, []);
 
@@ -58,6 +56,10 @@ const App = () => {
                 <Route
                     path="/sign-in"
                     element={<Login />}
+                />
+                <Route
+                    path={RouterPath.SignYandex}
+                    element={<AuthViaYandex/>}
                 />
                 <Route
                     path="/forum"
