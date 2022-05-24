@@ -1,16 +1,10 @@
-import express from 'express'
-import serialize from 'serialize-javascript'
-import { App } from 'client/App'
-import { serverRender } from '@issr/core'
-import { StaticRouter } from 'react-router-dom/server'
+import {StaticRouter} from 'react-router-dom/server';
+import {App} from 'client/App';
+import {serverRender} from '@issr/core';
+import serialize from 'serialize-javascript';
+import { NextFunction, Request, Response } from 'express'
 
-const app = express();
-
-const PORT = process.env.PORT || 4000;
-
-app.use(express.static('./public'));
-
-app.get('/*', async (req, res) => {
+export const render = async (req: Request, res: Response, next: NextFunction) => {
 
     const appHtml =
         <StaticRouter location={req.url}>
@@ -35,8 +29,5 @@ app.get('/*', async (req, res) => {
         </body>
     </html>
 `)
-})
-
-app.listen(PORT, () => {
-    console.log(`Application is started on localhost: ${PORT}`);
-})
+    next()
+}

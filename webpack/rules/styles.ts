@@ -7,7 +7,7 @@ import autoprefixer from 'autoprefixer';
 export const CSSModuleLoader = {
 	loader: 'css-loader',
 	options: {
-		modules: { localIdentName: '[name]__[fullhash]' },
+		modules: { localIdentName: '[name]_[local]__[hash:base64:5]' },
 		sourceMap: true,
 	},
 }

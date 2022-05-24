@@ -10,7 +10,7 @@
     "spa": "NODE_ENV=development webpack serve --config webpack/configs/client.conf.ts",
     "start": "NODE_ENV=production run-s server:*",
     "server:build": "tsc && webpack",
-    "server:start": "node src/server.tsx",
+    "server:start": "node src/server.js",
     "spa:serve": "webpack serve --mode development --open --hot --config webpack/configs/client.conf.ts",
     "spa:build": "webpack --mode=production --node-env=production",
     "test": "jest --env=jsdom",
