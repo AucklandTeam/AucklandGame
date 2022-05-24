@@ -1,4 +1,4 @@
-import {ActionWithPayload, GenerateState, LoadStatus, ParamForFormRequest, User} from 'src/shared/types';
+import {ActionWithPayload, GenerateState, LoadStatus, ParamForFormRequest, User} from 'shared/types';
 import {userActions} from 'pages/Auth/actions';
 import {EditUserDataForm} from 'components/editUserForm/types';
 import {UploadAvatarForm} from 'components/avatarUploadForm';

@@ -1,5 +1,5 @@
 import { EditUserDataForm } from './types'
-import { TextInputProps } from 'src/components/elements/Inputs/TextInput'
+import { TextInputProps } from 'components/inputs'
 
 export const TextFieldsEditUser: TextInputProps<keyof EditUserDataForm>[] = [
 	{

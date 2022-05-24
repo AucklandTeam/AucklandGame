@@ -7,7 +7,7 @@ import { initialState, TextFieldsLogin } from './shared'
 import Form from 'components/form'
 import { RouterPath } from 'shared/consts'
 import HomePageWrap from 'components/homePageWrap'
-import { useAppDispatch } from 'src/index'
+import { useAppDispatch } from 'src/client/App'
 import { signIn } from '../actions'
 
 const Login: FC = () => {

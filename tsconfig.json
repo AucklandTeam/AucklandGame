@@ -1,15 +1,16 @@
 {
 	"exclude": ["node_modules"],
 	"compilerOptions": {
-		"module": "esnext",
+		"module": "commonjs",
 		"moduleResolution": "node",
+		"outDir": "./dist/",
+		"target": "esnext",
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"noImplicitAny": true,
 		"noImplicitThis": true,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
-		"target": "esnext",
 		"jsx": "react-jsx",
 		"baseUrl": "./",
 		"paths": {
@@ -25,7 +26,6 @@
 		"typeRoots": ["@types", "node_modules/@types"]
 	},
 	"include": [
-		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx"
 	]

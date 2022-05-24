@@ -24,5 +24,6 @@ export const CommonConfig = {
 		extensions: ['.ts', '.js', '.tsx', '.jsx'],
 		modules: [ROOT_DIR, 'node_modules'],
 		plugins: [plugins.tsPaths]
-	}
+	},
+	plugins: [plugins.tsPaths]
 }

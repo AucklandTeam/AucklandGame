@@ -1,4 +1,4 @@
-import { TextInputProps } from 'src/components/elements/Inputs/TextInput'
+import { TextInputProps } from 'components/inputs'
 import { SignUpForm } from './types'
 
 export const TextFieldsSignUp: TextInputProps<keyof SignUpForm>[] = [

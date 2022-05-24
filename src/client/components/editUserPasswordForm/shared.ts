@@ -1,5 +1,5 @@
 import { ChangePasswordForm } from './types'
-import { TextInputProps } from 'src/components/elements/Inputs/TextInput'
+import { TextInputProps } from 'components/inputs'
 
 export const TextFieldsChangePassword: TextInputProps<keyof ChangePasswordForm>[] = [
 	{

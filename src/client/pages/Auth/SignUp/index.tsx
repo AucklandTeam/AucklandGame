@@ -7,7 +7,7 @@ import TextInput from 'components/inputs'
 import Form from 'components/form'
 import { RouterPath } from 'shared/consts'
 import HomePageWrap from 'components/homePageWrap'
-import { useAppDispatch } from 'src'
+import { useAppDispatch } from 'src/client/App'
 import { signUp } from '../actions'
 
 const SignUp: FC = () => {

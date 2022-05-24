@@ -5,7 +5,7 @@ import Form from 'components/form'
 import { initialState, TextFieldsEditUser } from './shared'
 import { EditUserDataForm } from './types'
 import { useUserInfo } from 'pages/Auth/selectors'
-import { useAppDispatch } from 'src/index'
+import { useAppDispatch } from 'src/client/App'
 import { editUser } from 'pages/ProfileEdit/actions'
 
 const EditUserData = () => {

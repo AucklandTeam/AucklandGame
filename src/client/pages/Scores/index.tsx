@@ -1,13 +1,13 @@
 import React from 'react'
-import NotGameWrap from 'client/components/notGameWrap'
-import styles from 'client/styles/base.scss'
+import NotGameWrap from 'components/notGameWrap'
+import styles from 'styles/base.scss'
 import { scoreItems } from './shared'
 
 const byField =
 	(field: string) => (a: Record<string, string | number>, b: Record<string, string | number>) =>
 		a[field] > b[field] ? -1 : 1
 
-const Results = () => (
+const Scores = () => (
 	<NotGameWrap titlePage={'High-Scores'}>
 		<table className={styles.highScoresTable}>
 			<tbody>
@@ -25,4 +25,4 @@ const Results = () => (
 	</NotGameWrap>
 )
 
-export default Results
+export default Scores

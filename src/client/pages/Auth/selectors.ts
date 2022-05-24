@@ -1,6 +1,5 @@
-import { SelectorResponse } from 'src/core/store/selectors'
+import { SelectorResponse, useAppSelector } from 'src/core/store/selectors'
 import { UserState } from './types'
-import { useAppSelector } from 'src'
 
 export const userSelector: SelectorResponse<UserState> = ({ user }) => user as UserState
 
