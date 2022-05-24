@@ -1,8 +1,8 @@
-import {StaticRouter} from 'react-router-dom/server';
-import {App} from 'client/App';
-import {serverRender} from '@issr/core';
-import serialize from 'serialize-javascript';
 import { NextFunction, Request, Response } from 'express'
+import { StaticRouter } from 'react-router-dom/server'
+import { App } from 'client/App'
+import { serverRender } from '@issr/core'
+import serialize from 'serialize-javascript'
 
 export const render = async (req: Request, res: Response, next: NextFunction) => {
 

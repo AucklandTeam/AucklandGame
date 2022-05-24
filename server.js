@@ -1,6 +1,6 @@
 const express = require('express')
+const render = require('./src/ssr.tsx')
 //const helmet = require('helmet')
-const render = require('./ssr')
 
 const app = express()
 const PORT = process.env.PORT || 4000
