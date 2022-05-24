@@ -9,7 +9,7 @@ import React, {
 import { createPortal } from 'react-dom'
 import styles from 'styles/base.scss'
 
-const modalElement = document.getElementById('modalWrap') as HTMLElement
+const modalElement = () => document.getElementById('modalWrap') as HTMLElement
 
 // @ts-ignore
 export function Modal({ children, fade = false, defaultOpened = false }, ref: ForwardedRef<any>) {
@@ -55,7 +55,7 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref: Fo
 				<div className={styles.modalBody}>{children}</div>
 			</div>
 		) : null,
-		modalElement
+		modalElement()
 	)
 }
 

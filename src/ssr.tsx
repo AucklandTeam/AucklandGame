@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { StaticRouter } from 'react-router-dom/server'
-import { App } from 'client/App'
+import App from 'client/App'
 import { serverRender } from '@issr/core'
 import serialize from 'serialize-javascript'
 

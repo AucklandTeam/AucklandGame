@@ -1,6 +1,6 @@
 import { hydrate } from 'react-dom';
-//import { App } from 'client/App';
-const App = require('client/App')
+import App from 'client/App';
+//const App = require('client/App')
 import 'styles/base.scss';
 import createSsr from '@issr/core';
 import createStore from 'src/core/store';

@@ -1,6 +1,8 @@
-const express = require('express')
-const render = require('./src/ssr.tsx')
+//const express = require('express')
+//const render = require('./src/ssr.tsx')
 //const helmet = require('helmet')
+import express from 'express'
+import {render} from './src/ssr.tsx'
 
 const app = express()
 const PORT = process.env.PORT || 4000
