@@ -10,7 +10,7 @@ const config = {
     entry: './src/client.tsx',
     output: {
         path: PUB_DIR,
-        filename: IS_DEV ? '[name].client.js' : '[name].[hash].client.js',
+        filename: IS_DEV ? '[name].client.js' : '[name].[fullhash].client.js',
         publicPath: '/'
     },
     ...CommonConfig,

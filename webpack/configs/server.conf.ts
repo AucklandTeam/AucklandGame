@@ -21,7 +21,6 @@ const config: Configuration = {
     plugins: [
         plugins.miniCssExtractPlugin,
         plugins.cleanWebpackPlugin,
-        plugins.htmlWebpackPlugin,
         plugins.nodemonPlugin,
         plugins.definePlugin({ server: true })
     ],

@@ -4,7 +4,7 @@ import App from 'client/App'
 import { serverRender } from '@issr/core'
 import serialize from 'serialize-javascript'
 
-export const render = async (req: Request, res: Response, next: NextFunction) => {
+export const render = async (req: Request, res: Response) => {
 
     const appHtml =
         <StaticRouter location={req.url}>
@@ -29,5 +29,4 @@ export const render = async (req: Request, res: Response, next: NextFunction) =>
         </body>
     </html>
 `)
-    next()
 }
