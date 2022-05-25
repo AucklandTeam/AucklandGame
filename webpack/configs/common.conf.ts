@@ -3,13 +3,6 @@ import * as plugins from '../plugins'
 import {ROOT_DIR} from '../env';
 
 export const CommonConfig = {
-	devServer: {
-		open: false,
-		host: 'localhost',
-		port: '4000',
-		historyApiFallback: true,
-		magicHtml: true
-	},
 	module: {
 		rules: [
 			rules.javascriptRule,
@@ -25,5 +18,5 @@ export const CommonConfig = {
 		modules: [ROOT_DIR, 'node_modules'],
 		plugins: [plugins.tsPaths]
 	},
-	plugins: [plugins.tsPaths]
+	plugins: [ plugins.tsPaths ]
 }

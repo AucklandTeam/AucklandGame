@@ -2,7 +2,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { IS_DEV } from '../env'
 
 const config = {
-	filename: IS_DEV ? 'css/[name].css' : 'css/[name].[hash:base64:5].css'
+	filename: IS_DEV ? 'css/[name].css' : 'css/[name].[fullhash].css'
 }
 
 export const miniCssExtractPlugin = new MiniCssExtractPlugin(config)

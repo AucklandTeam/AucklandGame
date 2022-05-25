@@ -12,8 +12,7 @@
     ]
   ],
   "plugins": [
-    "@babel/plugin-transform-runtime",
-    "@issr/babel-plugin"
+    "@babel/plugin-transform-runtime"
   ]
 }
 

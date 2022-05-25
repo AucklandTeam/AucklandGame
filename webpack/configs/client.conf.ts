@@ -1,6 +1,6 @@
 import { CommonConfig } from './common.conf'
 import * as plugins from '../plugins'
-import {IS_DEV, PUB_DIR, ROOT_DIR} from '../env';
+import {DIST_DIR, IS_DEV, PUB_DIR, ROOT_DIR} from '../env';
 
 const config = {
     name: 'client',
@@ -10,14 +10,21 @@ const config = {
     entry: './src/client.tsx',
     output: {
         path: PUB_DIR,
-        filename: IS_DEV ? '[name].client.js' : '[name].[fullhash].client.js',
+        filename: 'client.js',
         publicPath: '/'
+    },
+    devServer: {
+        open: false,
+        host: 'localhost',
+        port: '4000',
+        historyApiFallback: true,
+        magicHtml: true
     },
     ...CommonConfig,
     plugins: [
         plugins.miniCssExtractPlugin,
         plugins.cleanWebpackPlugin,
-        plugins.htmlWebpackPlugin,
+        //plugins.htmlWebpackPlugin,
         plugins.definePlugin()
     ]
 }

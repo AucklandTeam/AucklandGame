@@ -8,11 +8,11 @@ const config: Configuration = {
     name: 'server',
     target: 'node',
     devtool: IS_DEV ? false : 'source-map',
-    entry: 'server.js',
+    entry: './server.js',
     mode: IS_DEV ? 'development' : 'production',
     context: ROOT_DIR,
     output: {
-        filename: 'app.server.cjs',
+        filename: 'server.cjs',
         libraryTarget: 'commonjs2',
         path: DIST_DIR,
         publicPath: '/'

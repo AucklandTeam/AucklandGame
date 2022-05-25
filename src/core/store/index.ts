@@ -1,11 +1,11 @@
 import { rootReducer } from './rootReducer'
-import {configureStore} from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit'
 import createSagaMiddleware from '@redux-saga/core'
 import { rootSaga } from 'src/core/Saga'
 
 export default ({ initState = {} } = {}) => {
 
-    const sagaMiddleware = createSagaMiddleware();
+    const sagaMiddleware = createSagaMiddleware()
 
     const store = configureStore({
         reducer: rootReducer,
@@ -17,8 +17,8 @@ export default ({ initState = {} } = {}) => {
         }).concat([sagaMiddleware]),
         preloadedState: initState
     })
+    const RSaga = sagaMiddleware.run(rootSaga)
 
-    const RSaga = sagaMiddleware.run(rootSaga);
+    return { store, RSaga }
 
-    return { store, RSaga };
 }
