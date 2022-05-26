@@ -34,11 +34,6 @@ export const postCssLoader = {
 	},
 }
 
-export const cssLoader = {
-	loader: 'css-loader'
-}
-
-
 export const miniCssExtractLoader = {
 	loader: MiniCssExtractPlugin.loader
 }

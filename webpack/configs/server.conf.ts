@@ -12,7 +12,7 @@ const config: Configuration = {
     mode: IS_DEV ? 'development' : 'production',
     context: ROOT_DIR,
     output: {
-        filename: 'server.cjs',
+        filename: 'server.js',
         libraryTarget: 'commonjs2',
         path: DIST_DIR,
         publicPath: '/'
@@ -21,6 +21,7 @@ const config: Configuration = {
     plugins: [
         plugins.miniCssExtractPlugin,
         plugins.cleanWebpackPlugin,
+
         plugins.nodemonPlugin,
         plugins.definePlugin({ server: true })
     ],

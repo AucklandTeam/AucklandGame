@@ -24,7 +24,7 @@ const config = {
     plugins: [
         plugins.miniCssExtractPlugin,
         plugins.cleanWebpackPlugin,
-        //plugins.htmlWebpackPlugin,
+        plugins.htmlWebpackPlugin,
         plugins.definePlugin()
     ]
 }

@@ -2,7 +2,6 @@
   "name": "aucklandgame",
   "version": "1.0.0",
   "description": "Asteroid game on js",
-  "type": "module",
   "engines": {
     "node": ">=12"
   },
@@ -10,8 +9,8 @@
     "dev": "NODE_ENV=development ts-node src/server",
     "spa": "NODE_ENV=development webpack serve --config webpack/configs/client.conf.ts",
     "start": "NODE_ENV=production run-s server:*",
-    "server:build": "tsc && webpack --config webpack/configs/server.conf.ts",
-    "server:start": "node --trace-warnings dist/server.cjs",
+    "server:build": "tsc && webpack",
+    "server:start": "node --trace-warnings dist/server.js",
     "spa:serve": "webpack serve --mode development --open --hot --config webpack/configs/client.conf.ts",
     "spa:build": "webpack --mode=production --node-env=production",
     "test": "jest --env=jsdom",

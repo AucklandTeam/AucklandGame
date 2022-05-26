@@ -27,13 +27,14 @@ export const render = async (req: Request, res: Response) => {
         <head>
             <meta charset="UTF-8">
             <title>Destroy Asteroids SSR</title>
+            <script defer="defer" src="/server.js"></script>
+            <link href="/css/main.f136b428f1d329607cb8.css" rel="stylesheet">
             <script>
               window.SSR_DATA = ${serialize(store.getState(), {isJSON: true})}
             </script>
         </head>
         <body>
             <div id="root">${html}</div>
-            <script src="/app.server.js"></script>
         </body>
     </html>
 `)
