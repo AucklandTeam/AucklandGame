@@ -6,7 +6,8 @@ import {
     setUserData,
     setUserStatus,
     signIn,
-    signUp
+    signUp,
+    setUserFailed
 } from '@src/components/pages/Auth/actions';
 import {getAuthYandexId, getUserRequest, loginRequest, logoutRequest, signUpRequest, authWithYandex} from '@src/components/pages/Auth/api';
 import { RouterPath } from '@src/shared/consts';
