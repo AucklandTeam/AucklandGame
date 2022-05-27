@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
-import {authYandexGetServiceID, authYandexLogin} from '../actions';
-import HomePageWrap from 'src/components/elements/HomePageWrap';
-import {useAppDispatch} from 'src/index';
+
 import yandex from 'src/../www/Images/yandex.svg';
 import {useLocation} from 'react-router-dom';
-import {RouterPath} from '../../../../shared/consts';
+import {useAppDispatch} from '@src/index';
+import {authYandexGetServiceID, authYandexLogin} from '../actions';
+import {RouterPath} from '@src/shared/consts';
+import HomePageWrap from '@src/components/elements/HomePageWrap';
+
 
 
 

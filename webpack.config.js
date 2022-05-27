@@ -87,7 +87,19 @@ const config = {
     },
     resolve: {
         extensions: ['.ts', '.js', '.tsx', '.jsx'],
-        modules: [ path.resolve(__dirname, './'), 'node_modules' ]
+        modules: [ path.resolve(__dirname, './'), 'node_modules' ],
+        alias: {
+            '@components': path.resolve(__dirname, './src/components/elements'),
+            '@shared': path.resolve(__dirname, './src/shared'),
+            '@core': path.resolve(__dirname, './src/core'),
+            '@pages': path.resolve(__dirname, './src/components/pages'),
+            '@src': path.resolve(__dirname, './src'),
+            '@utils': path.resolve(__dirname, './src/utils'),
+            '@hooks': path.resolve(__dirname, './src/hooks'),
+            '@api': path.resolve(__dirname, './src/api'),
+            '@assets': path.resolve(__dirname, './src/assets'),
+            '@www': path.resolve(__dirname, './www'),
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({

@@ -1,10 +1,18 @@
 import {SagaIterator} from 'redux-saga';
 import {call, put} from '@redux-saga/core/effects';
-import {authWithYandex, getAuthYandexId, getUserRequest, loginRequest, logoutRequest, signUpRequest} from '../api';
-import {authYandexLogin, fetchUser, setUserData, setUserFailed, setUserStatus, signIn, signUp} from '../actions';
-import history from 'src/core/history';
-import {RouterPath} from 'src/shared/consts';
-import {ServiceID} from '../types';
+import {
+    authYandexLogin,
+    fetchUser,
+    setUserData,
+    setUserStatus,
+    signIn,
+    signUp
+} from '@src/components/pages/Auth/actions';
+import {getAuthYandexId, getUserRequest, loginRequest, logoutRequest, signUpRequest, authWithYandex} from '@src/components/pages/Auth/api';
+import { RouterPath } from '@src/shared/consts';
+import history from '@src/core/history';
+import { ServiceID } from '../types';
+
 
 export function* fetchUserWorker():SagaIterator<void> {
     yield put(setUserStatus('pending'));
@@ -64,7 +72,7 @@ export function* authYandexWorker():SagaIterator<void>{
     try {
         const response: ServiceID = yield call(getAuthYandexId);
         history.push(`https://oauth.yandex.ru/authorize?response_type=code&client_id=${response.service_id}&redirect_uri=${window.location.host}${RouterPath.SignYandex}`);
-    }catch (e) {
+    } catch (e) {
         console.error(e);
     }
 }
@@ -74,7 +82,7 @@ export function* authYandexLoginWorker({payload}:ReturnType<typeof authYandexLog
         yield call(authWithYandex, payload);
         yield put(fetchUser());
         history.push(RouterPath.Main);
-    }catch (e) {
+    } catch (e) {
         console.error(e);
     }
 

@@ -23,7 +23,18 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
+    "paths": {
+      "@assets/*": ["./assets/*"],
+      "@components/*": ["./components/elements/*"],
+      "@pages/*": ["./components/pages/*"],
+      "@core/*": ["./core/*"],
+      "@utils/*": ["./utils/*"],
+      "@api/*": ["./api/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@src/*": ["./src/*"],
+      "@shared/*": ["./shared/*"],
+    }
   },
   "include": [
     "next-env.d.ts",
