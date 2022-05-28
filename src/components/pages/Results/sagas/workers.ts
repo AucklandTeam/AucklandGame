@@ -12,7 +12,7 @@ import {userSelector} from '@src/components/pages/Auth/selectors';
 export function* getLeaderBoardWorker():SagaIterator<void>{
     yield put(setLeaderBoardStatus('pending'));
     try {
-        const response:ResponseLeaderBoardList = yield call(getAllLeaderBoard, {cursor: 0, limit:2, ratingFieldName: fieldRating});
+        const response:ResponseLeaderBoardList = yield call(getAllLeaderBoard, {cursor: 0, limit:10, ratingFieldName: fieldRating});
         yield put(seLeaderBoardData(response.map(({data})=>({...data}))));
         yield put(setLeaderBoardStatus('success'));
     }catch (e) {

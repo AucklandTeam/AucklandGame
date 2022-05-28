@@ -30,7 +30,7 @@ const Results = () => {
                             key={i}
                             className={styles.scoreLine}
                         >
-                            <td className={styles.userRange}>{i++}</td>
+                            <td className={styles.userRange}>{++i}</td>
                             <td className={styles.userLogin}>{item.login}</td>
                             <td className={styles.userScore}>{item.aucklandScope}</td>
                         </tr>
