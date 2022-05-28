@@ -3,8 +3,11 @@ import CanvasComponent from './components/canvas/CanvasComponent';
 import styles from './Game.scss';
 import GameTopBar from './components/GameTopBar/GameTopBar';
 import StartModal from './components/StartModal';
+import {useAppDispatch} from '@src/index';
+import {addUserToLeaderBoardAction} from '@src/components/pages/Results/actions';
 
 const Game = () => {
+    const dispatch = useAppDispatch();
     const [attempts, setAttempts] = useState(0);
     const [lives, setLives] = useState(3);
     const [score, setScore] = useState(0);
@@ -19,6 +22,11 @@ const Game = () => {
         restartGame();
         setIsGameStart(true);
     };
+    useEffect(()=>{
+        if(!lives){
+            dispatch(addUserToLeaderBoardAction(score));
+        }
+    },[lives]);
 
     return (
         <div className={styles.gameMainWrap}>

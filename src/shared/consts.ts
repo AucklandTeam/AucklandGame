@@ -15,6 +15,11 @@ export const ENDPOINTS = {
         PASSWORD: 'user/password',
         AVATAR: 'user/profile/avatar',
     },
+    LEADERBOARD: {
+        GET_ALL: '/leaderboard/all',
+        ADD_USER:'/leaderboard',
+        GET_TEAM:'/leaderboard/AucklandTeam'
+    }
 };
 
 export enum RouterPath {
