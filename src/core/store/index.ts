@@ -1,14 +1,20 @@
 import { rootReducer } from './rootReducer'
 import { configureStore } from '@reduxjs/toolkit'
-import createSagaMiddleware from '@redux-saga/core'
-import { rootSaga } from 'src/core/Saga'
+import createSagaMiddleware, { END } from '@redux-saga/core'
+import { rootSaga } from 'src/core/saga'
+import { AppStore } from 'types/app'
 
-export default ({ initState = {} } = {}) => {
+export const IS_SERVER = !(
+	typeof window !== 'undefined' &&
+	window.document &&
+	window.document.createElement
+)
+
+export default (initState: {}) => {
 	const sagaMiddleware = createSagaMiddleware()
 
 	const store = configureStore({
 		reducer: rootReducer,
-		devTools: IS_DEV,
 		middleware: getDefaultMiddleware =>
 			getDefaultMiddleware({
 				immutableCheck: true,
@@ -16,8 +22,14 @@ export default ({ initState = {} } = {}) => {
 				thunk: false
 			}).concat([sagaMiddleware]),
 		preloadedState: initState
-	})
-	const RSaga = sagaMiddleware.run(rootSaga)
+	}) as AppStore
 
-	return { store, RSaga }
+	store.runSaga = sagaMiddleware.run
+	store.close = () => store.dispatch(END)
+
+	if (!IS_SERVER) {
+		sagaMiddleware.run(rootSaga)
+	}
+
+	return { store }
 }

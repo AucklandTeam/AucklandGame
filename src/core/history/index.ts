@@ -1,11 +1,6 @@
 import { createBrowserHistory, createMemoryHistory } from 'history'
 import { useEffect, useState } from 'react'
-
-export const IS_SERVER = !(
-	typeof window !== 'undefined' &&
-	window.document &&
-	window.document.createElement
-)
+import { IS_SERVER } from 'src/core/store'
 
 const history = IS_SERVER
 	? createMemoryHistory({ initialEntries: ['/'] })

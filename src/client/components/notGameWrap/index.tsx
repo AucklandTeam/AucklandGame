@@ -4,7 +4,7 @@ import BottomMenuItem from 'components/bottomMenuItem'
 import { useAuth } from 'pages/Auth/selectors'
 import history from 'src/core/history'
 import { RouterPath } from 'shared/consts'
-import { useAppDispatch } from 'src/client/App'
+import { useAppDispatch } from 'src/client'
 import { logout } from 'pages/Auth/actions'
 
 type TemplatePageProps = {

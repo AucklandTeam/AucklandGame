@@ -13,7 +13,7 @@ const config = {
     ].filter(Boolean)),
     output: {
         path: DIST_DIR,
-        filename: 'client.js',
+        filename: '[name].js',
         publicPath: '/'
     },
     ...CommonConfig,

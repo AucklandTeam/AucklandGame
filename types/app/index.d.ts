@@ -1,4 +1,6 @@
-import {InitStateInterface} from '@issr/core/dist/iSSR';
+import { Action, Store } from 'redux'
+import { SagaMiddleware } from '@redux-saga/core'
+import {Dispatch} from 'redux';
 
 type Collection<K extends string | number, V> = Record<K, V>
 
@@ -6,14 +8,18 @@ declare global {
 	interface Window { SSR_DATA: any; }
 }
 
-interface Window {
-	IS_SERVER: boolean
-	IS_DEV: boolean
-	SSR_DATA: InitStateInterface
+export interface ReduxAction<T = any, P = any> extends Action {
+	type: T
+	payload?: P
 }
 
-declare namespace Express {
-	interface Response {
-		renderApp(): void
-	}
+export type RouterFetchDataArgs = {
+	dispatch: Dispatch<ReduxAction>;
+	match: match<{ slug: string }>;
 }
+
+export type AppStore = Store & {
+	runSaga: SagaMiddleware['run']
+	close: () => void
+}
+

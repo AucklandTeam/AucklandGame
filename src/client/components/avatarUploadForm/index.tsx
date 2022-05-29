@@ -1,7 +1,7 @@
 import React, { FC, FormEvent, useState } from 'react'
 import Form from 'components/form'
 import TextInput from 'components/inputs'
-import { useAppDispatch } from 'src/client/App'
+import { useAppDispatch } from 'src/client'
 import { changeAvatar } from 'pages/ProfileEdit/actions'
 
 export type UploadAvatarForm = {
