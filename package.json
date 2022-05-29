@@ -100,6 +100,7 @@
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "axios": "^0.26.1",
+    "canvas": "^2.9.1",
     "dotenv": "^16.0.1",
     "express": "^4.17.3",
     "identity-obj-proxy": "^3.0.0",

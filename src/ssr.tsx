@@ -5,6 +5,9 @@ import serialize from 'serialize-javascript'
 import createStore from 'src/core/store';
 import {Provider} from 'react-redux';
 import {renderToString} from 'react-dom/server';
+import Canvas from 'canvas';
+// @ts-ignore
+global.Image = Canvas.Image;
 
 export const render = async (req: Request, res: Response) => {
 
