@@ -20,6 +20,7 @@ export default async (req: Request, res: Response) => {
 	)
 
 	const html = renderToString(appHtml)
+	const reduxState = store.getState()
 
 	res.send(`
     <!DOCTYPE html>
@@ -31,12 +32,14 @@ export default async (req: Request, res: Response) => {
 				<title>Destroy Asteroids SSR</title>
 				<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
 				<link href="/css/main.css" rel="stylesheet">
-            <script>
-              window.SSR_DATA = ${serialize(store.getState(), { isJSON: true })}
-            </script>
         </head>
         <body>
             <div id="root">${html}</div>
+            <div id="modalWrap"></div>
+            <script defer="defer" src="/server.js"></script>
+			<script>
+			  window.SSR_DATA = ${serialize(reduxState, { isJSON: true })}
+			</script>
         </body>
     </html>
 `)
