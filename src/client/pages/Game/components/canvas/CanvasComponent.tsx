@@ -39,6 +39,9 @@ const CanvasComponent: FC<CanvasProps> = ({
     isGameStart,
     setIsGameStart
 }) => {
+    if (!Image) {
+        return;
+    }
     const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>;
     let canvas: any = {};
     let isLoaded = false;
