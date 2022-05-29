@@ -1,5 +1,5 @@
 import { createBrowserHistory, createMemoryHistory } from 'history'
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const IS_SERVER = !(
 	typeof window !== 'undefined' &&
@@ -17,7 +17,7 @@ export const useInitHistory = () => {
 		location: history.location
 	})
 
-	useLayoutEffect(() => history.listen(setState), [history])
+	useEffect(() => history.listen(setState), [history])
 	return {
 		stateHistory
 	}

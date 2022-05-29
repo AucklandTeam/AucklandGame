@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback, useLayoutEffect } from 'react'
+import React, {FC, ReactNode, useCallback, useEffect} from 'react';
 import styles from 'styles/base.scss'
 import BottomMenuItem from 'components/bottomMenuItem'
 import { useAuth } from 'pages/Auth/selectors'
@@ -28,7 +28,7 @@ const NotGameWrap: FC<TemplatePageProps> = ({ titlePage, children }) => {
 	}, [])
 	const { isAuth, isLoaded } = useAuth()
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		if (!isAuth && isLoaded) {
 			history.push(RouterPath.SignIn)
 		}

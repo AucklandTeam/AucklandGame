@@ -9,7 +9,7 @@ export const CommonConfig = {
 			rules.typescriptRule,
 			rules.htmlRule,
 			rules.mediasRule,
-			rules.fontsRule,
+			rules.svgRule,
 			rules.cssRule
 		]
 	},

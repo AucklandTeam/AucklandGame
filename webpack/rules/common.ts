@@ -22,17 +22,15 @@ export const htmlRule = {
 }
 
 export const mediasRule = {
-	test: /\.svg$|\.jpe?g$|\.ico$|\.gif$|\.png$/i,
+	test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
 	type: 'asset/resource',
 	generator: {
 		filename: 'images/[name][ext]',
 	}
 }
 
-export const fontsRule = {
-	test: /\.(woff(2)?|eot|ttf|otf|)$/,
-	type: 'asset/resource',
-	generator: {
-		filename: 'assets/[name][ext]',
-	},
+
+export const svgRule = {
+	test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+	type: 'asset/inline'
 }

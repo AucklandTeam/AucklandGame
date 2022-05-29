@@ -8,8 +8,7 @@ const config = {
     devtool: 'source-map',
     context: ROOT_DIR,
     entry: ([
-        IS_DEV && 'webpack-hot-middleware/client',
-        IS_DEV && 'css-hot-loader/hotModuleReplacement',
+        IS_DEV && 'react-hot-loader/patch',
         path.join(SRC_DIR, 'client'),
     ].filter(Boolean)),
     output: {

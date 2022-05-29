@@ -8,7 +8,8 @@ import { IS_DEV, DIST_DIR, SRC_DIR } from '../env'
 const config: Configuration = {
     name: 'server',
     mode: IS_DEV ? 'development' : 'production',
-    target: 'node',
+    //target: 'node',
+    externalsPresets: { node: true },
     node: { __dirname: false },
     devtool: 'source-map',
     entry: path.join(SRC_DIR, 'server'),
@@ -24,7 +25,7 @@ const config: Configuration = {
         plugins.nodemonPlugin,
         plugins.definePlugin({ server: true })
     ],
-    externals: [nodeExternals({ allowlist: [/\.(?!(?:tsx?|json)$).{1,5}$/i] })],
+    externals: [nodeExternals({allowlist: [/\.(?!(?:jsx?|json)$).{1,5}$/i], importType: 'commonjs'})],
     optimization: { nodeEnv: false }
 }
 

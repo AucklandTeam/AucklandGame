@@ -25,10 +25,12 @@ export default async (req: Request, res: Response) => {
     <!DOCTYPE html>
     <html lang="en">
         <head>
-            <meta charset="UTF-8">
-            <title>Destroy Asteroids SSR</title>
-            <script defer="defer" src="/server.js"></script>
-            <link href="/css/main.css" rel="stylesheet">
+           <meta charset="UTF-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<meta http-equiv="X-UA-Compatible" content="ie=edge">
+				<title>Destroy Asteroids SSR</title>
+				<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+				<link href="/css/main.css" rel="stylesheet">
             <script>
               window.SSR_DATA = ${serialize(store.getState(), { isJSON: true })}
             </script>

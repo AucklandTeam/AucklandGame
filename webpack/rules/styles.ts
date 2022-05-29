@@ -50,7 +50,6 @@ export const sassLoader = {
 export const cssRule = {
 	test: /\.(sa|sc|c)ss$/,
 	use: [
-		IS_DEV && 'css-hot-loader',
 		miniCssExtractLoader,
 		CSSModuleLoader,
 		postCssLoader,
