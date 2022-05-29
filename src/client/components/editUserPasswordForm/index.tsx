@@ -8,8 +8,8 @@ import { ChangePasswordForm } from './types'
 
 const EditUserPassword = () => {
 	const [formError, setFormError] = useState('')
-	const { values, handleChange, handleBlur, handleSubmit, isValid } = useForm<ChangePasswordForm>(
-		{
+	const { values, handleChange, handleBlur, handleSubmit, isValid } =
+		useForm<ChangePasswordForm>({
 			initialState,
 			onSubmit: values => {
 				if (isValid) {
@@ -17,15 +17,22 @@ const EditUserPassword = () => {
 						.then((res: any) => {
 							console.log(res)
 						})
-						.catch((error: { reason: React.SetStateAction<string> }) => {
-							setFormError(error.reason)
-						})
+						.catch(
+							(error: {
+								reason: React.SetStateAction<string>
+							}) => {
+								setFormError(error.reason)
+							}
+						)
 				}
 			}
-		}
-	)
+		})
 	return (
-		<Form handleSubmit={handleSubmit} submitTitle={'Change Password'} errorText={formError}>
+		<Form
+			handleSubmit={handleSubmit}
+			submitTitle={'Change Password'}
+			errorText={formError}
+		>
 			{TextFieldsChangePassword.map(({ name, type, title }) => (
 				<TextInput
 					key={name}

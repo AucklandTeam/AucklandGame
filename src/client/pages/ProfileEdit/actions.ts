@@ -1,6 +1,6 @@
-import {createAction} from 'redux-actions';
-import {ParamChangeAvatar, ParamEditUser} from './types';
+import { createAction } from 'redux-actions'
+import { ParamChangeAvatar, ParamEditUser } from './types'
 
-export const editUser = createAction<ParamEditUser>('user/editUser');
+export const editUser = createAction<ParamEditUser>('user/editUser')
 
-export const changeAvatar = createAction<ParamChangeAvatar>('user/changeAvatar');
+export const changeAvatar = createAction<ParamChangeAvatar>('user/changeAvatar')

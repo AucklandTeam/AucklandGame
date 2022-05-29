@@ -9,7 +9,12 @@ type FormProps = {
 	children: ReactNode
 }
 
-const Form: FC<FormProps> = ({ handleSubmit, children, errorText, submitTitle }) => (
+const Form: FC<FormProps> = ({
+	handleSubmit,
+	children,
+	errorText,
+	submitTitle
+}) => (
 	<form onSubmit={handleSubmit} className={styles.form}>
 		<div className={styles.inputs}>{children}</div>
 		{errorText && <div className={styles.errors}>{errorText}</div>}

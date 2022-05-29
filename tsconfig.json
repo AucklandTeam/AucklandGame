@@ -20,10 +20,11 @@
 			"components/*": ["src/client/components/*"],
 			"pages/*": ["src/client/pages/*"],
 			"shared/*": ["src/client/components/@shared/*"],
-			"assets/*": ["src/client/assets/*"],
 			"styles/*": ["src/client/styles/*"],
+			"static/*": ["static/*"]
 		},
-		"typeRoots": ["@types", "node_modules/@types"]
+		"typeRoots": [
+          "types", "node_modules/@types"]
 	},
 	"include": [
 		"**/*.ts",

@@ -4,15 +4,23 @@ import React, {
 	useState,
 	forwardRef,
 	useCallback,
-	ForwardedRef
-} from 'react'
+	ForwardedRef, ReactNode
+} from 'react';
 import { createPortal } from 'react-dom'
 import styles from 'styles/base.scss'
 
+type ModalProps = {
+	children?: ReactNode
+	fade?: boolean
+	defaultOpened?: boolean
+}
+
 const modalElement = () => document.getElementById('modalWrap') as HTMLElement
 
-// @ts-ignore
-export function Modal({ children, fade = false, defaultOpened = false }, ref: ForwardedRef<any>) {
+export function Modal(
+	{ children, fade = false, defaultOpened = false }: ModalProps,
+	ref: ForwardedRef<any>
+) {
 	const [isOpen, setIsOpen] = useState(defaultOpened)
 
 	const close = useCallback(() => setIsOpen(false), [])

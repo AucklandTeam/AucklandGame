@@ -21,7 +21,11 @@ const UploadAvatar: FC<UploadAvatarForm> = () => {
 	return (
 		<>
 			<h4>Upload Avatar</h4>
-			<Form handleSubmit={onSubmit} submitTitle={'Upload'} errorText={formError}>
+			<Form
+				handleSubmit={onSubmit}
+				submitTitle={'Upload'}
+				errorText={formError}
+			>
 				<TextInput type={'file'} name={'avatar'} />
 			</Form>
 		</>

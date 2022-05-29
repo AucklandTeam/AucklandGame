@@ -1,6 +1,6 @@
 import * as rules from '../rules'
 import * as plugins from '../plugins'
-import {ROOT_DIR} from '../env';
+import { SRC_DIR } from '../env'
 
 export const CommonConfig = {
 	module: {
@@ -15,7 +15,7 @@ export const CommonConfig = {
 	},
 	resolve: {
 		extensions: ['.ts', '.js', '.tsx', '.jsx'],
-		modules: [ROOT_DIR, 'node_modules'],
+		modules: [SRC_DIR, 'node_modules'],
 		plugins: [plugins.tsPaths]
 	},
 	plugins: [ plugins.tsPaths ]

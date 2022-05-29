@@ -12,19 +12,30 @@ import { signIn } from '../actions'
 
 const Login: FC = () => {
 	const dispatch = useAppDispatch()
-	const { values, handleChange, handleBlur, handleSubmit, isValid, setFormError, formError } =
-		useForm<LoginForm>({
-			initialState,
-			onSubmit: values => {
-				console.log(isValid)
-				if (!isValid) return
-				dispatch(signIn({ ...values, setFormError }))
-			}
-		})
+	const {
+		values,
+		handleChange,
+		handleBlur,
+		handleSubmit,
+		isValid,
+		setFormError,
+		formError
+	} = useForm<LoginForm>({
+		initialState,
+		onSubmit: values => {
+			console.log(isValid)
+			if (!isValid) return
+			dispatch(signIn({ ...values, setFormError }))
+		}
+	})
 
 	return (
 		<HomePageWrap titleContent={'Sign In'}>
-			<Form handleSubmit={handleSubmit} submitTitle={'Let’s shoot!'} errorText={formError}>
+			<Form
+				handleSubmit={handleSubmit}
+				submitTitle={'Let’s shoot!'}
+				errorText={formError}
+			>
 				{TextFieldsLogin.map(({ name, type, title, validType }) => (
 					<TextInput
 						key={name}

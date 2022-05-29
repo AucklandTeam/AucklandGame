@@ -1,9 +1,9 @@
 export type Patterns = {
-    pattern: RegExp;
-    error: string;
-    test?(value: string): boolean;
+	pattern: RegExp
+	error: string
+	test?(value: string): boolean
 }
 
 export type ValTypes = {
-    [key: string]: Patterns;
+	[key: string]: Patterns
 }

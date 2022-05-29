@@ -12,17 +12,28 @@ import { signUp } from '../actions'
 
 const SignUp: FC = () => {
 	const dispatch = useAppDispatch()
-	const { values, handleChange, handleBlur, handleSubmit, isValid, formError, setFormError } =
-		useForm<SignUpForm>({
-			initialState,
-			onSubmit: values => {
-				if (!isValid) return
-				dispatch(signUp({ ...values, setFormError }))
-			}
-		})
+	const {
+		values,
+		handleChange,
+		handleBlur,
+		handleSubmit,
+		isValid,
+		formError,
+		setFormError
+	} = useForm<SignUpForm>({
+		initialState,
+		onSubmit: values => {
+			if (!isValid) return
+			dispatch(signUp({ ...values, setFormError }))
+		}
+	})
 	return (
 		<HomePageWrap titleContent={'Registration'}>
-			<Form handleSubmit={handleSubmit} submitTitle={'Welcome aboard!'} errorText={formError}>
+			<Form
+				handleSubmit={handleSubmit}
+				submitTitle={'Welcome aboard!'}
+				errorText={formError}
+			>
 				{TextFieldsSignUp.filter(({ isHide }) => !isHide).map(
 					({ name, type, title, validType }) => (
 						<TextInput

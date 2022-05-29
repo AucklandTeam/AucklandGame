@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import { SRC_DIR } from '../env'
+import { SRC_DIR, IS_DEV } from '../env'
 import autoprefixer from 'autoprefixer';
 
 
@@ -50,6 +50,7 @@ export const sassLoader = {
 export const cssRule = {
 	test: /\.(sa|sc|c)ss$/,
 	use: [
+		IS_DEV && 'css-hot-loader',
 		miniCssExtractLoader,
 		CSSModuleLoader,
 		postCssLoader,

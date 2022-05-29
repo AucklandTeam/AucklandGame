@@ -7,7 +7,9 @@ import HomePageWrap from 'client/components/homePageWrap'
 const Error404 = () => (
 	<HomePageWrap>
 		<h1>404</h1>
-		<h4 className={styles.centered}>Oops! This page is lost in the void.</h4>
+		<h4 className={styles.centered}>
+			Oops! This page is lost in the void.
+		</h4>
 		<Link to={RouterPath.Main}>Return to Main Menu</Link>
 	</HomePageWrap>
 )

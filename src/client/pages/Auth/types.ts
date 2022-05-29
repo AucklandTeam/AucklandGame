@@ -16,7 +16,10 @@ export type UserActionStatus = ActionWithPayload<
 	LoadStatus
 >
 
-export type UserActionData = ActionWithPayload<Extract<typeof userActions, 'setUserStatus'>, User>
+export type UserActionData = ActionWithPayload<
+	Extract<typeof userActions, 'setUserStatus'>,
+	User
+>
 
 export type UserActions = UserActionStatus | UserActionData
 

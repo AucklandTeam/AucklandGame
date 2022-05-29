@@ -1,7 +1,19 @@
 import { SagaIterator } from 'redux-saga'
 import { call, put } from '@redux-saga/core/effects'
-import { getUserRequest, loginRequest, logoutRequest, signUpRequest } from '../api'
-import { fetchUser, setUserData, setUserFailed, setUserStatus, signIn, signUp } from '../actions'
+import {
+	getUserRequest,
+	loginRequest,
+	logoutRequest,
+	signUpRequest
+} from '../api'
+import {
+	fetchUser,
+	setUserData,
+	setUserFailed,
+	setUserStatus,
+	signIn,
+	signUp
+} from '../actions'
 import history from 'src/core/history'
 import { RouterPath } from 'shared/consts'
 
@@ -18,7 +30,9 @@ export function* fetchUserWorker(): SagaIterator<void> {
 	}
 }
 
-export function* signInWorker({ payload }: ReturnType<typeof signIn>): SagaIterator<void> {
+export function* signInWorker({
+	payload
+}: ReturnType<typeof signIn>): SagaIterator<void> {
 	const { setFormError, ...values } = payload
 	try {
 		yield call(loginRequest, values)
@@ -32,7 +46,9 @@ export function* signInWorker({ payload }: ReturnType<typeof signIn>): SagaItera
 	}
 }
 
-export function* signUpWorker({ payload }: ReturnType<typeof signUp>): SagaIterator<void> {
+export function* signUpWorker({
+	payload
+}: ReturnType<typeof signUp>): SagaIterator<void> {
 	const { setFormError, ...values } = payload
 	try {
 		yield call(signUpRequest, values)

@@ -4,7 +4,7 @@ import NotGameWrap from 'components/notGameWrap'
 import Avatar from 'components/avatar'
 import { useUserInfo } from 'pages/Auth/selectors'
 import { RESOURCE_URL } from 'shared/consts'
-import noImage from '../../assets/images/noImage.svg'
+import noImage from '../../../../static/images/noImage.svg'
 
 const Profile = () => {
 	const { data } = useUserInfo()
@@ -13,7 +13,9 @@ const Profile = () => {
 		<NotGameWrap titlePage={'Gamer Profile'}>
 			<div className={styles.userCard}>
 				<Avatar
-					imageSrc={data?.avatar ? `${RESOURCE_URL}${data.avatar}` : noImage}
+					imageSrc={
+						data?.avatar ? `${RESOURCE_URL}${data.avatar}` : noImage
+					}
 					imageTitle={data?.login || 'Avatar'}
 					divClass={styles.userAvatar}
 				/>

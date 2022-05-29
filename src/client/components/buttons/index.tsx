@@ -7,7 +7,11 @@ interface ButtonProps {
 	buttonTitle: string
 }
 
-const Button: React.FC<ButtonProps> = ({ buttonType, buttonName, buttonTitle }) => {
+const Button: React.FC<ButtonProps> = ({
+	buttonType,
+	buttonName,
+	buttonTitle
+}) => {
 	return (
 		<button type={buttonType} name={buttonName} title={buttonTitle}>
 			{buttonTitle}

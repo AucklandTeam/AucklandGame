@@ -34,7 +34,11 @@ const EditUserData = () => {
 	}, [data])
 
 	return (
-		<Form handleSubmit={handleSubmit} submitTitle={'Save Changes'} errorText={formError}>
+		<Form
+			handleSubmit={handleSubmit}
+			submitTitle={'Save Changes'}
+			errorText={formError}
+		>
 			{TextFieldsEditUser.filter(({ isHide }) => !isHide).map(
 				({ name, type, title, validType }) => (
 					<TextInput

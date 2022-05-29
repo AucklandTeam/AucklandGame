@@ -17,7 +17,12 @@ const isHidden = (loc: Location, url: string): string => {
 	}
 }
 
-const BottomMenuItem: FC<BottomMenuItemType> = ({ icon, title, url, handler }) => {
+const BottomMenuItem: FC<BottomMenuItemType> = ({
+	icon,
+	title,
+	url,
+	handler
+}) => {
 	const location = useLocation()
 
 	return (

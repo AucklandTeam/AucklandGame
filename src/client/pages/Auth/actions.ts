@@ -20,6 +20,8 @@ export enum userActions {
 
 export const setUserStatus = createAction<LoadStatus>(userActions.setUserStatus)
 
-export const setUserData = createAction<Nullable<User>>(userActions.setUserSuccess)
+export const setUserData = createAction<Nullable<User>>(
+	userActions.setUserSuccess
+)
 
 export const setUserFailed = createAction<string>(userActions.setUserFailed)

@@ -1,0 +1,6 @@
+{
+  "watch path": "./",
+  "exitcrash": false,
+  "ext": "ts,js,tsx",
+  "verbose": true
+}

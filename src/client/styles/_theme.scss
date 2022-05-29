@@ -38,7 +38,8 @@ a {
 h1 {
 	@extend %for-headings;
 
-	text-shadow: 0 0 30px $dark-gray-100, 1px 1px 2px $dark-gray-100, 1px 1px 10px $dark-gray-100;
+	text-shadow: 0 0 30px $dark-gray-100, 1px 1px 2px $dark-gray-100,
+		1px 1px 10px $dark-gray-100;
 }
 
 h3 {
@@ -65,7 +66,8 @@ h4 {
 .notGame {
 	@extend %for-wrap;
 
-	background: url('src/client/assets/images/hero.jpg') no-repeat fixed $dark-gray-100;
+	background: url('static/images/hero.jpg') no-repeat fixed
+		$dark-gray-100;
 	background-size: cover;
 	width: 100vw;
 	height: 100vh;

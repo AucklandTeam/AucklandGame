@@ -1,6 +1,11 @@
 import { all, takeLatest } from '@redux-saga/core/effects'
 import { fetchUser, logout, signIn, signUp } from '../actions'
-import { fetchUserWorker, logoutWorker, signInWorker, signUpWorker } from './workers'
+import {
+	fetchUserWorker,
+	logoutWorker,
+	signInWorker,
+	signUpWorker
+} from './workers'
 
 export default function* userWatcher() {
 	yield all([
