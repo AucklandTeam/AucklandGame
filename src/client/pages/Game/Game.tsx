@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import CanvasComponent from './components/canvas/CanvasComponent';
-//import styles from './Game.scss';
-import styles from 'client/styles/base.scss'
+import styles from 'styles/base.scss';
 import GameTopBar from './components/GameTopBar/GameTopBar';
 import StartModal from './components/StartModal';
 
@@ -27,7 +26,7 @@ const Game = () => {
             <div>
                 {
                     !isGameStart &&
-                    <StartModal startGameHandler={startGameHandler} attempts={attempts} score={score} />
+                        <StartModal startGameHandler={startGameHandler} attempts={attempts} score={score} />
                 }
                 <CanvasComponent
                     setLives={setLives}
