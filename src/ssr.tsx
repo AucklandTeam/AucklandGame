@@ -8,6 +8,8 @@ import { renderToString } from 'react-dom/server'
 import { rootSaga } from 'src/core/saga'
 import { matchPath } from 'react-router-dom'
 import routes from 'src/core/routes'
+import 'static/images/favicon.png'
+
 
 export default async (req: Request, res: Response) => {
 	const baseURL = req.protocol + '://' + req.headers.host + '/'
@@ -71,7 +73,7 @@ const getHtml = (reactHtml: string, reduxState = {}) => (`
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<meta http-equiv="X-UA-Compatible" content="ie=edge">
 				<title>Destroy Asteroids SSR</title>
-				<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+				<link rel="shortcut icon" type="image/png" href="/favicon.png">
 				<link href="/css/main.css" rel="stylesheet">
         </head>
         <body>

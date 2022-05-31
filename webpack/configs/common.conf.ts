@@ -10,7 +10,8 @@ export const CommonConfig = {
 			rules.htmlRule,
 			rules.mediasRule,
 			rules.svgRule,
-			rules.cssRule
+			rules.cssRule,
+			rules.faviconRule
 		]
 	},
 	resolve: {
