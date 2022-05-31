@@ -1,6 +1,6 @@
 const { app } = require('./dist/server.js')
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 80
 
 app.listen(PORT, function () {
 	console.log(`Example app listening on port ${PORT}!`)
