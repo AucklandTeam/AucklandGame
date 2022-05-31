@@ -3,7 +3,7 @@ import useForm from 'src/hooks/useForm'
 import TextInput from 'components/inputs'
 import Form from '../form'
 import { initialState, TextFieldsChangePassword } from './shared'
-import { changeUserPasswordRequest } from 'client/pages/ProfileEdit/api'
+import { changeUserPasswordRequest } from 'src/core/ducks/profile/api'
 import { ChangePasswordForm } from './types'
 
 const EditUserPassword = () => {

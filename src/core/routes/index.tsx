@@ -7,13 +7,13 @@ import ForumMain from 'pages/Forum/ForumMain'
 import SignUp from 'pages/Auth/SignUp'
 import ProfileEdit from 'pages/ProfileEdit'
 import Error404 from 'pages/Errors/404'
-import { fetchUser } from 'pages/Auth/actions'
+import { fetchUser } from 'src/core/ducks/auth/actions'
 import { RouterFetchDataArgs } from 'types/app'
 
 export default [
 	{
 		path: '/',
-		component: Main,
+		element: <Main />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
 			dispatch(fetchUser())
@@ -21,7 +21,7 @@ export default [
 	},
 	{
 		path: '/sign-in',
-		component: SignIn,
+		element: <SignIn />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
 			dispatch(fetchUser())
@@ -29,7 +29,7 @@ export default [
 	},
 	{
 		path: '/sign-up',
-		component: SignUp,
+		element: <SignUp />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
 			dispatch(fetchUser())
@@ -37,7 +37,7 @@ export default [
 	},
 	{
 		path: '/game',
-		component: Game,
+		element: <Game />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
 			dispatch(fetchUser())
@@ -45,7 +45,7 @@ export default [
 	},
 	{
 		path: '/profile',
-		component: Profile,
+		element: <Profile />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
 			dispatch(fetchUser())
@@ -53,7 +53,7 @@ export default [
 	},
 	{
 		path: '/settings',
-		component: ProfileEdit,
+		element: <ProfileEdit />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
 			dispatch(fetchUser())
@@ -61,7 +61,7 @@ export default [
 	},
 	{
 		path: '/scores',
-		component: Scores,
+		element: <Scores />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
 			dispatch(fetchUser())
@@ -69,7 +69,7 @@ export default [
 	},
 	{
 		path: '/forum',
-		component: ForumMain,
+		element: <ForumMain />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
 			dispatch(fetchUser())
@@ -77,7 +77,7 @@ export default [
 	},
 	{
 		path: '*',
-		component: Error404,
+		element: <Error404 />,
 		exact: true
 	}
 ]

@@ -4,9 +4,9 @@ import TextInput from 'components/inputs'
 import Form from 'components/form'
 import { initialState, TextFieldsEditUser } from './shared'
 import { EditUserDataForm } from './types'
-import { useUserInfo } from 'pages/Auth/selectors'
-import { useAppDispatch } from 'src/client'
-import { editUser } from 'pages/ProfileEdit/actions'
+import { useUserInfo } from 'src/core/ducks/auth/selectors'
+import { useAppDispatch } from 'src/core/store'
+import { editUser } from 'src/core/ducks/profile/actions'
 
 const EditUserData = () => {
 	const { data } = useUserInfo()

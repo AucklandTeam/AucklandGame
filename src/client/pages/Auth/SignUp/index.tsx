@@ -7,8 +7,8 @@ import TextInput from 'components/inputs'
 import Form from 'components/form'
 import { RouterPath } from 'shared/consts'
 import HomePageWrap from 'components/homePageWrap'
-import { useAppDispatch } from 'src/client'
-import { signUp } from '../actions'
+import { useAppDispatch } from 'src/core/store'
+import { signUp } from 'src/core/ducks/auth/actions'
 
 const SignUp: FC = () => {
 	const dispatch = useAppDispatch()

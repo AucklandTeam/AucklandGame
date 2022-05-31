@@ -15,6 +15,7 @@ export const CommonConfig = {
 	},
 	resolve: {
 		extensions: ['.ts', '.js', '.tsx', '.jsx'],
+		alias: { 'react-dom': '@hot-loader/react-dom' },
 		modules: [SRC_DIR, 'node_modules'],
 		plugins: [plugins.tsPaths]
 	},

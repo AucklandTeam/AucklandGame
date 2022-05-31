@@ -2,7 +2,7 @@ import React from 'react'
 import styles from 'styles/base.scss'
 import NotGameWrap from 'components/notGameWrap'
 import Avatar from 'components/avatar'
-import { useUserInfo } from 'pages/Auth/selectors'
+import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import { RESOURCE_URL } from 'shared/consts'
 import noImage from '../../../../static/images/noImage.svg'
 

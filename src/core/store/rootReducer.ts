@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { userReducer } from 'pages/Auth/reducer'
+import { userReducer } from 'src/core/ducks/auth/reducer'
 
 export const rootReducer = combineReducers({
 	user: userReducer

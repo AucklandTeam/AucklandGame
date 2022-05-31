@@ -13,7 +13,7 @@ import ProfileEdit from 'pages/ProfileEdit'
 import Error404 from 'pages/Errors/404'
 
 import { useDispatch } from 'react-redux'
-import { fetchUser } from 'pages/Auth/actions'
+import { fetchUser } from 'src/core/ducks/auth/actions'
 /*const MainPage = loadable(() => import('pages/Main'))
 const SighInPage = loadable(() => import('pages/Auth/SignIn'))
 const SighUpPage = loadable(() => import('pages/Auth/SignUp'))

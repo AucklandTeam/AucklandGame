@@ -5,9 +5,9 @@ import {
 	ParamForFormRequest,
 	User
 } from 'shared/types'
-import { userActions } from 'pages/Auth/actions'
-import { EditUserDataForm } from 'components/editUserForm/types'
-import { UploadAvatarForm } from 'components/avatarUploadForm'
+import { userActions } from './actions'
+import { LoginForm } from 'pages/Auth/SignIn/types'
+import { SignUpForm } from 'pages/Auth/SignUp/types'
 
 export type UserState = GenerateState<User>
 
@@ -23,6 +23,6 @@ export type UserActionData = ActionWithPayload<
 
 export type UserActions = UserActionStatus | UserActionData
 
-export type ParamEditUser = EditUserDataForm & ParamForFormRequest
+export type ParamSignIn = LoginForm & ParamForFormRequest
 
-export type ParamChangeAvatar = UploadAvatarForm & ParamForFormRequest
+export type ParamSignUp = SignUpForm & ParamForFormRequest

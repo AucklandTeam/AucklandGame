@@ -1,8 +1,8 @@
 import React, { FC, FormEvent, useState } from 'react'
 import Form from 'components/form'
 import TextInput from 'components/inputs'
-import { useAppDispatch } from 'src/client'
-import { changeAvatar } from 'pages/ProfileEdit/actions'
+import { useAppDispatch } from 'src/core/store'
+import { changeAvatar } from 'src/core/ducks/profile/actions'
 
 export type UploadAvatarForm = {
 	formData?: FormData

@@ -5,9 +5,9 @@ import {
 	ParamForFormRequest,
 	User
 } from 'shared/types'
-import { userActions } from './actions'
-import { LoginForm } from './SignIn/types'
-import { SignUpForm } from './SignUp/types'
+import { userActions } from 'src/core/ducks/auth/actions'
+import { EditUserDataForm } from 'components/editUserForm/types'
+import { UploadAvatarForm } from 'components/avatarUploadForm'
 
 export type UserState = GenerateState<User>
 
@@ -23,6 +23,6 @@ export type UserActionData = ActionWithPayload<
 
 export type UserActions = UserActionStatus | UserActionData
 
-export type ParamSignIn = LoginForm & ParamForFormRequest
+export type ParamEditUser = EditUserDataForm & ParamForFormRequest
 
-export type ParamSignUp = SignUpForm & ParamForFormRequest
+export type ParamChangeAvatar = UploadAvatarForm & ParamForFormRequest

@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware, { END } from '@redux-saga/core'
 import { rootSaga } from 'src/core/saga'
 import { AppStore } from 'types/app'
+import {useDispatch} from 'react-redux';
 
 export const IS_SERVER = !(
 	typeof window !== 'undefined' &&
@@ -10,7 +11,7 @@ export const IS_SERVER = !(
 	window.document.createElement
 )
 
-export default (initState: {}) => {
+export function CreateStore(initState: {}) {
 	const sagaMiddleware = createSagaMiddleware()
 
 	const store = configureStore({
@@ -31,5 +32,10 @@ export default (initState: {}) => {
 		sagaMiddleware.run(rootSaga)
 	}
 
-	return { store }
+	return  store
 }
+const store = CreateStore({})
+export type AppState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+
+export const useAppDispatch = () => useDispatch<AppDispatch>()

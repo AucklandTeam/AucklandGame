@@ -1,8 +1,8 @@
 import { ID, SuccessResponse, User } from 'shared/types'
 import { request } from 'src/api/request'
 import { ENDPOINTS } from 'shared/consts'
-import { LoginForm } from './SignIn/types'
-import { SignUpForm } from './SignUp/types'
+import { LoginForm } from 'pages/Auth/SignIn/types'
+import { SignUpForm } from 'pages/Auth/SignUp/types'
 
 export const loginRequest = request<SuccessResponse, LoginForm>({
 	method: 'POST',

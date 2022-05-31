@@ -2,8 +2,8 @@ import { Request, Response } from 'express'
 import { StaticRouter } from 'react-router-dom/server'
 import App from 'client/App'
 import serialize from 'serialize-javascript'
-import createStore from 'src/core/store'
-import { Provider } from 'react-redux'
+import { CreateStore } from 'src/core/store'
+import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server'
 import { rootSaga } from 'src/core/saga'
 import { matchPath } from 'react-router-dom'
@@ -13,9 +13,9 @@ export default async (req: Request, res: Response) => {
 	const baseURL = req.protocol + '://' + req.headers.host + '/'
 	const reqUrl = new URL(req.url, baseURL)
 
-	const { store } = createStore({
-		initState: {}
+	const store = CreateStore({
 	})
+
 	function renderApp() {
 		const appHtml = (
 			<Provider store={store}>
@@ -63,7 +63,7 @@ export default async (req: Request, res: Response) => {
 
 }
 
-	const getHtml = (reactHtml: string, reduxState = {}) => (`
+const getHtml = (reactHtml: string, reduxState = {}) => (`
     <!DOCTYPE html>
     <html lang="en">
         <head>

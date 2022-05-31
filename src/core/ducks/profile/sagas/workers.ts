@@ -4,7 +4,7 @@ import { changeAvatarRequest, userRequest } from '../api'
 import { editUser, changeAvatar } from '../actions'
 import history from 'src/core/history'
 import { RouterPath } from 'shared/consts'
-import { setUserData } from 'pages/Auth/actions'
+import { setUserData } from 'src/core/ducks/auth/actions'
 
 export function* editUserWorker({
 	payload

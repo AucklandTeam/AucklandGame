@@ -7,7 +7,7 @@ import UploadAvatar from 'components/avatarUploadForm'
 import EditUserData from 'components/editUserForm'
 import EditUserPassword from 'components/editUserPasswordForm'
 import { RESOURCE_URL } from 'shared/consts'
-import { useUserInfo } from 'pages/Auth/selectors'
+import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import noImage from '../../../../static/images/noImage.svg'
 
 const ProfileEdit: FC = () => {
