@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  auckland:
+    container_name: auckland
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./shared:/shared
+    ports:
+      - 80:80
