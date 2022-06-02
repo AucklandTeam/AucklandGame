@@ -26,3 +26,12 @@ export type UserActions = UserActionStatus | UserActionData
 export type ParamSignIn = LoginForm & ParamForFormRequest
 
 export type ParamSignUp = SignUpForm & ParamForFormRequest
+
+export type ServiceID = {
+	service_id: string;
+}
+
+export type OAuthYandex = {
+	code: string;
+	redirect_uri: string;
+}

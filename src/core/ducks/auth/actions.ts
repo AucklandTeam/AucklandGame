@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions'
 import { LoadStatus, Nullable, User } from 'shared/types'
-import { ParamSignIn, ParamSignUp } from './types'
+import { OAuthYandex, ParamSignIn, ParamSignUp } from './types'
 
 export const fetchUser = createAction('user/fetchUser')
 
@@ -17,6 +17,10 @@ export enum userActions {
 	setUserFailed = 'user/setUserFailed',
 	setUserStatus = 'user/setUserStatus'
 }
+
+export const authYandexGetServiceID = createAction('user/authYandexGetServiceID');
+
+export const authYandexLogin = createAction<OAuthYandex>('user/authYandexLogin');
 
 export const setUserStatus = createAction<LoadStatus>(userActions.setUserStatus)
 

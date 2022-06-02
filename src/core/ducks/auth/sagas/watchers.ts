@@ -1,10 +1,12 @@
 import { all, takeLatest } from '@redux-saga/core/effects'
-import { fetchUser, logout, signIn, signUp } from '../actions'
+import { fetchUser, logout, signIn, signUp, authYandexLogin, authYandexGetServiceID } from '../actions'
 import {
 	fetchUserWorker,
 	logoutWorker,
 	signInWorker,
-	signUpWorker
+	signUpWorker,
+	authYandexWorker,
+	authYandexLoginWorker,
 } from './workers'
 
 export default function* userWatcher() {
@@ -12,6 +14,8 @@ export default function* userWatcher() {
 		takeLatest(fetchUser, fetchUserWorker),
 		takeLatest(signIn, signInWorker),
 		takeLatest(signUp, signUpWorker),
-		takeLatest(logout, logoutWorker)
+		takeLatest(logout, logoutWorker),
+		takeLatest(authYandexGetServiceID, authYandexWorker),
+		takeLatest(authYandexLogin,authYandexLoginWorker)
 	])
 }

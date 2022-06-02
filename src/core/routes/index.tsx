@@ -9,6 +9,8 @@ import ProfileEdit from 'pages/ProfileEdit'
 import Error404 from 'pages/Errors/404'
 import { fetchUser } from 'src/core/ducks/auth/actions'
 import { RouterFetchDataArgs } from 'types/app'
+import { RouterPath } from "shared/consts";
+import AuthViaYandex from "pages/Auth/AuthViaYandex";
 
 export default [
 	{
@@ -70,6 +72,14 @@ export default [
 	{
 		path: '/forum',
 		element: <ForumMain />,
+		exact: true,
+		fetchData({ dispatch }: RouterFetchDataArgs) {
+			dispatch(fetchUser())
+		}
+	},
+	{
+		path: RouterPath.SignYandex,
+		element: <AuthViaYandex/>,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
 			dispatch(fetchUser())

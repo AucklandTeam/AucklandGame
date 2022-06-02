@@ -50,6 +50,7 @@ const Login: FC = () => {
 				))}
 			</Form>
 			<Link to={RouterPath.SignUp}>No account yet?</Link>
+			<Link style={{width: '100%', textAlign: 'center'}} to={RouterPath.SignYandex}>Sign via Yandex?</Link>
 		</HomePageWrap>
 	)
 }
