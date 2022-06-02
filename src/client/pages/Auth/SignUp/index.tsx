@@ -8,7 +8,7 @@ import Form from 'components/form'
 import { RouterPath } from 'shared/consts'
 import HomePageWrap from 'components/homePageWrap'
 import { signUp } from 'src/core/ducks/auth/actions'
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux'
 
 const SignUp: FC = () => {
 	const dispatch = useDispatch()

@@ -66,8 +66,7 @@ h4 {
 .notGame {
 	@extend %for-wrap;
 
-	background: url('static/images/hero.jpg') no-repeat fixed
-		$dark-gray-100;
+	background: url('static/images/hero.jpg') no-repeat fixed $dark-gray-100;
 	background-size: cover;
 	width: 100vw;
 	height: 100vh;

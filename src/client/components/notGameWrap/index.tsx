@@ -1,11 +1,11 @@
-import React, {FC, ReactNode, useCallback, useEffect} from 'react';
+import React, { FC, ReactNode, useCallback, useEffect } from 'react'
 import styles from 'styles/base.scss'
 import BottomMenuItem from 'components/bottomMenuItem'
 import { useAuth } from 'src/core/ducks/auth/selectors'
 import history from 'src/core/history'
 import { RouterPath } from 'shared/consts'
 import { logout } from 'src/core/ducks/auth/actions'
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux'
 
 type TemplatePageProps = {
 	titlePage?: string

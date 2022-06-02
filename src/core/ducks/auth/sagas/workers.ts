@@ -6,7 +6,7 @@ import {
 	loginRequest,
 	logoutRequest,
 	signUpRequest,
-	authWithYandex,
+	authWithYandex
 } from '../api'
 import {
 	authYandexLogin,
@@ -78,22 +78,25 @@ export function* logoutWorker(): SagaIterator<void> {
 	}
 }
 
-export function* authYandexWorker():SagaIterator<void>{
+export function* authYandexWorker(): SagaIterator<void> {
 	try {
-		const response: ServiceID = yield call(getAuthYandexId);
-		history.push(`https://oauth.yandex.ru/authorize?response_type=code&client_id=${response.service_id}&redirect_uri=${window.location.host}${RouterPath.SignYandex}`);
+		const response: ServiceID = yield call(getAuthYandexId)
+		history.push(
+			`https://oauth.yandex.ru/authorize?response_type=code&client_id=${response.service_id}&redirect_uri=${window.location.host}${RouterPath.SignYandex}`
+		)
 	} catch (e) {
-		console.error(e);
+		console.error(e)
 	}
 }
 
-export function* authYandexLoginWorker({payload}:ReturnType<typeof authYandexLogin>):SagaIterator<void>{
+export function* authYandexLoginWorker({
+	payload
+}: ReturnType<typeof authYandexLogin>): SagaIterator<void> {
 	try {
-		yield call(authWithYandex, payload);
-		yield put(fetchUser());
-		history.push(RouterPath.Main);
+		yield call(authWithYandex, payload)
+		yield put(fetchUser())
+		history.push(RouterPath.Main)
 	} catch (e) {
-		console.error(e);
+		console.error(e)
 	}
-
 }

@@ -2,7 +2,7 @@ import React, { FC, FormEvent, useState } from 'react'
 import Form from 'components/form'
 import TextInput from 'components/inputs'
 import { changeAvatar } from 'src/core/ducks/profile/actions'
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 
 export type UploadAvatarForm = {
 	formData?: FormData

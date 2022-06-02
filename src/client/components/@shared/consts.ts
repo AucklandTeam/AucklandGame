@@ -16,8 +16,8 @@ export const ENDPOINTS = {
 	},
 	LEADERBOARD: {
 		GET_ALL: '/leaderboard/all',
-		ADD_USER:'/leaderboard',
-		GET_TEAM:'/leaderboard/AucklandTeam'
+		ADD_USER: '/leaderboard',
+		GET_TEAM: '/leaderboard/AucklandTeam'
 	}
 }
 

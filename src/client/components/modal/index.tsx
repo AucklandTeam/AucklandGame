@@ -4,8 +4,9 @@ import React, {
 	useState,
 	forwardRef,
 	useCallback,
-	ForwardedRef, ReactNode
-} from 'react';
+	ForwardedRef,
+	ReactNode
+} from 'react'
 import { createPortal } from 'react-dom'
 import styles from 'styles/base.scss'
 

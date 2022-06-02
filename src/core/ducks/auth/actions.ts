@@ -18,9 +18,11 @@ export enum userActions {
 	setUserStatus = 'user/setUserStatus'
 }
 
-export const authYandexGetServiceID = createAction('user/authYandexGetServiceID');
+export const authYandexGetServiceID = createAction(
+	'user/authYandexGetServiceID'
+)
 
-export const authYandexLogin = createAction<OAuthYandex>('user/authYandexLogin');
+export const authYandexLogin = createAction<OAuthYandex>('user/authYandexLogin')
 
 export const setUserStatus = createAction<LoadStatus>(userActions.setUserStatus)
 

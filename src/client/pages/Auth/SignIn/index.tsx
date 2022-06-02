@@ -8,7 +8,7 @@ import Form from 'components/form'
 import { RouterPath } from 'shared/consts'
 import HomePageWrap from 'components/homePageWrap'
 import { signIn } from 'src/core/ducks/auth/actions'
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 
 const Login: FC = () => {
 	const dispatch = useDispatch()
@@ -50,7 +50,12 @@ const Login: FC = () => {
 				))}
 			</Form>
 			<Link to={RouterPath.SignUp}>No account yet?</Link>
-			<Link style={{width: '100%', textAlign: 'center'}} to={RouterPath.SignYandex}>Sign via Yandex?</Link>
+			<Link
+				style={{ width: '100%', textAlign: 'center' }}
+				to={RouterPath.SignYandex}
+			>
+				Sign via Yandex?
+			</Link>
 		</HomePageWrap>
 	)
 }
