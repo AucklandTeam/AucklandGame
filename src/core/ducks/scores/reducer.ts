@@ -1,7 +1,7 @@
-import {LeaderBoardActions, LeaderBoardState} from "pages/Scores/types";
+import {LeaderBoardActions, LeaderBoardState} from "src/core/ducks/scores/types";
 import { leaderBoardActions } from "./actions";
 
-const initialState:LeaderBoardState = {
+export const initialState:LeaderBoardState = {
     data: null,
     error: '',
     status: 'default',

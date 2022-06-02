@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import initWorkerApi from 'src/api/worker/workerservice'
 import routes from 'src/core/routes'
+import {hot} from 'react-hot-loader/root';
 
 const serviceWorker = () => {
 	if ('serviceWorker' in navigator) {

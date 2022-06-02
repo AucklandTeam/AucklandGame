@@ -4,8 +4,8 @@ import BottomMenuItem from 'components/bottomMenuItem'
 import { useAuth } from 'src/core/ducks/auth/selectors'
 import history from 'src/core/history'
 import { RouterPath } from 'shared/consts'
-import { useAppDispatch } from 'src/core/store'
 import { logout } from 'src/core/ducks/auth/actions'
+import {useDispatch} from 'react-redux';
 
 type TemplatePageProps = {
 	titlePage?: string
@@ -22,7 +22,7 @@ const bottomMenuItems = [
 ]
 
 const NotGameWrap: FC<TemplatePageProps> = ({ titlePage, children }) => {
-	const dispatch = useAppDispatch()
+	const dispatch = useDispatch()
 	const logoutHandler = useCallback(() => {
 		dispatch(logout())
 	}, [])

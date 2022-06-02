@@ -1,14 +1,13 @@
 import React, {useEffect, useState } from 'react';
 import CanvasComponent from './components/canvas/CanvasComponent';
-//import styles from './Game.scss';
-import styles from 'client/styles/base.scss'
+import styles from 'styles/base.scss'
 import GameTopBar from './components/GameTopBar/GameTopBar';
 import StartModal from './components/StartModal';
-import { useAppDispatch } from 'src/core/store';
-import {addUserToLeaderBoardAction} from "pages/Scores/actions";
+import {addUserToLeaderBoardAction} from "src/core/ducks/scores/actions";
+import {useDispatch} from 'react-redux';
 
 const Game = () => {
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const [attempts, setAttempts] = useState(0);
     const [lives, setLives] = useState(3);
     const [score, setScore] = useState(0);

@@ -1,27 +1,27 @@
 import { Request, Response } from 'express'
-import { StaticRouter } from 'react-router-dom/server'
 import App from 'client/App'
 import serialize from 'serialize-javascript'
-import { CreateStore } from 'src/core/store'
+import { configureStore } from 'src/core/store'
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server'
 import { rootSaga } from 'src/core/saga'
-import { matchPath } from 'react-router-dom'
 import routes from 'src/core/routes'
 import 'static/images/favicon.png'
-
+import { getInitialState } from 'src/core/store/initialState'
+import {StaticRouter} from 'react-router-dom/server';
+import {matchPath} from 'react-router';
 
 export default async (req: Request, res: Response) => {
 	const baseURL = req.protocol + '://' + req.headers.host + '/'
 	const reqUrl = new URL(req.url, baseURL)
+	const location = req.url
 
-	const store = CreateStore({
-	})
+	const { store } = configureStore(getInitialState(location), location);
 
 	function renderApp() {
 		const appHtml = (
 			<Provider store={store}>
-				<StaticRouter location={req.url}>
+				<StaticRouter location={location}>
 					<App/>
 				</StaticRouter>
 			</Provider>
@@ -30,7 +30,11 @@ export default async (req: Request, res: Response) => {
 		const reactHtml = renderToString(appHtml)
 		const reduxState = store.getState()
 
-		res.status(200).send(getHtml(reactHtml, reduxState))
+
+		res.status(200).send(
+			getHtml(reactHtml, reduxState)
+		)
+
 	}
 		store
 			.runSaga(rootSaga)

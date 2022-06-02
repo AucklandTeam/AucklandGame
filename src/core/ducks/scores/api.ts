@@ -1,6 +1,6 @@
 import { request } from "src/api/request";
-import { ENDPOINTS } from "src/client/components/@shared/consts";
-import { SuccessResponse } from "src/client/components/@shared/types";
+import { ENDPOINTS } from "shared/consts";
+import { SuccessResponse } from "shared/types";
 import { ParamLeaderBoardAddUser, ParamLeaderBoardGet, ResponseLeaderBoardList } from "./types";
 
 export const addUserToLeaderBoard = request<SuccessResponse,ParamLeaderBoardAddUser>({method:'POST', url: ENDPOINTS.LEADERBOARD.ADD_USER});

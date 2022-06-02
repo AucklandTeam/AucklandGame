@@ -1,7 +1,7 @@
 import { UserActions, UserState } from './types'
 import { userActions } from './actions'
 
-const initialState: UserState = {
+export const initialState: UserState = {
 	data: null,
 	error: '',
 	status: 'default'

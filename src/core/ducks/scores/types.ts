@@ -1,5 +1,5 @@
 import {ActionWithPayload, GenerateState, LoadStatus} from "shared/types";
-import {leaderBoardActions} from "pages/Scores/actions";
+import {leaderBoardActions} from "src/core/ducks/scores/actions";
 
 export const teamName = 'AucklandTeam';
 export const fieldRating = 'aucklandScope';

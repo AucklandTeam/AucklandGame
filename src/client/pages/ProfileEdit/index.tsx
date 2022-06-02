@@ -8,7 +8,7 @@ import EditUserData from 'components/editUserForm'
 import EditUserPassword from 'components/editUserPasswordForm'
 import { RESOURCE_URL } from 'shared/consts'
 import { useUserInfo } from 'src/core/ducks/auth/selectors'
-import noImage from '../../../../static/images/noImage.svg'
+import noImage from 'static/images/noImage.svg'
 
 const ProfileEdit: FC = () => {
 	const modal: MutableRefObject<null> = useRef(null)

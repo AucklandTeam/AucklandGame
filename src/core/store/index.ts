@@ -1,9 +1,13 @@
-import { rootReducer } from './rootReducer'
-import { configureStore } from '@reduxjs/toolkit'
+import {
+	legacy_createStore as createStore,
+	compose,
+	applyMiddleware
+} from 'redux'
 import createSagaMiddleware, { END } from '@redux-saga/core'
+import { createBrowserHistory, createMemoryHistory } from 'history'
 import { rootSaga } from 'src/core/saga'
-import { AppStore } from 'types/app'
-import {useDispatch} from 'react-redux';
+import { AppStore, State } from 'types/app'
+import { rootReducer } from './rootReducer'
 
 export const IS_SERVER = !(
 	typeof window !== 'undefined' &&
@@ -11,19 +15,28 @@ export const IS_SERVER = !(
 	window.document.createElement
 )
 
-export function CreateStore(initState: {}) {
-	const sagaMiddleware = createSagaMiddleware()
+function getComposeEnhancers() {
+	if (process.env.NODE_ENV !== 'production' && !IS_SERVER) {
+		return window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+	}
 
-	const store = configureStore({
-		reducer: rootReducer,
-		middleware: getDefaultMiddleware =>
-			getDefaultMiddleware({
-				immutableCheck: true,
-				serializableCheck: true,
-				thunk: false
-			}).concat([sagaMiddleware]),
-		preloadedState: initState
-	}) as AppStore
+	return compose
+}
+
+export function configureStore(initialState: State, url: string) {
+	const history = IS_SERVER
+		? createMemoryHistory({ initialEntries: [url] })
+		: createBrowserHistory()
+
+	const sagaMiddleware = createSagaMiddleware()
+	const composeEnhancers = getComposeEnhancers()
+	const middlewares = [sagaMiddleware]
+
+	const store = createStore(
+		rootReducer,
+		initialState,
+		composeEnhancers(applyMiddleware(...middlewares))
+	) as AppStore
 
 	store.runSaga = sagaMiddleware.run
 	store.close = () => store.dispatch(END)
@@ -32,10 +45,5 @@ export function CreateStore(initState: {}) {
 		sagaMiddleware.run(rootSaga)
 	}
 
-	return  store
+	return { store, history }
 }
-const store = CreateStore({})
-export type AppState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-
-export const useAppDispatch = () => useDispatch<AppDispatch>()

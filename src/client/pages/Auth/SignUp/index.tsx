@@ -7,11 +7,11 @@ import TextInput from 'components/inputs'
 import Form from 'components/form'
 import { RouterPath } from 'shared/consts'
 import HomePageWrap from 'components/homePageWrap'
-import { useAppDispatch } from 'src/core/store'
 import { signUp } from 'src/core/ducks/auth/actions'
+import {useDispatch} from 'react-redux';
 
 const SignUp: FC = () => {
-	const dispatch = useAppDispatch()
+	const dispatch = useDispatch()
 	const {
 		values,
 		handleChange,
