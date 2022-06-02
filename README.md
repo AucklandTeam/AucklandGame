@@ -11,11 +11,21 @@ npm run serve - dev server
 ```
 Стэк: NodeJS, React, Sass
 
-Сборка в контейнере
+Сборка в контейнерах
 ```
-docker build . --tag auckland 
+docker-compose up
 ```
-Запуск контейнера
+Проверяем, что все запущено
 ```
-docker run -d -p 80:80 auckland
+docker-compose ps
 ```
+Захожим на localhost:8080 в PG admin и коннектимся к нашей базе:
+```
+- правой кнопкой create -> server
+- general -> name: postgres
+- connertion -> host name: postgres
+                username: смотри POSTGRES_USER в dot.env
+                password: смотри POSTGRES_PASSWORD в dot.env
+                остальное по умолчанию
+```
+
