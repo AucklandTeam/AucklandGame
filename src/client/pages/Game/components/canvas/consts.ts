@@ -5,5 +5,5 @@ export const speedInertion = 0.96;
 export const shipWith = 100;
 export const shipHeight = 124;
 export const bulletRadius = 4;
-export const shotDelay = 150;
+export const shotDelay = 100;
 export const asteroidSpeed = 2;
