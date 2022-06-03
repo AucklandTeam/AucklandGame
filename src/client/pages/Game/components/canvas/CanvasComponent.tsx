@@ -1,20 +1,11 @@
 import React, {FC, useEffect, useRef} from 'react';
 import spaceshipImg from 'static/images/buran.png'
-//import spaceshipImg from 'static/image/buran.png';
 import bgImg from 'static/images/sky.png';
 import debrisImg from 'static/images/debris.png';
 import explosionImg from 'static/images/exp.png';
 import asterImg from 'static/images/aster.png';
 import { getRandomArbitrary } from './utils';
 import styles from 'styles/base.scss'
-
-interface CanvasProps {
-    setLives: (arg0: number) => void;
-    setScore: (arg0: number) => void;
-    isGameStart: boolean;
-    setIsGameStart: (arg0: boolean) => void;
-}
-
 import {
     angleIncValue,
     speedIncValue,
@@ -27,15 +18,19 @@ import {
 } from './consts';
 import Base from './BaseClass';
 
+interface CanvasProps {
+    setLives: (arg0: number) => void;
+    setScore: (arg0: number) => void;
+    isGameStart: boolean;
+    setIsGameStart: (arg0: boolean) => void;
+}
+
 const CanvasComponent: FC<CanvasProps> = ({
-    setLives, 
-    setScore, 
-    isGameStart,
-    setIsGameStart
-}) => {
-    if (!Image) {
-        return;
-    }
+      setLives,
+      setScore,
+      isGameStart,
+      setIsGameStart
+    }) => {
     const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>;
     let canvas: any = {};
     let isLoaded = false;
@@ -75,24 +70,55 @@ const CanvasComponent: FC<CanvasProps> = ({
 
     class Explosion extends Base {
         private timeLives: number;
-        constructor(x: number,y: number) {
+        private row: number;
+        private column: number;
+        currentFrame: number;
+        frameWidth: number;
+        frameHeight: number;
+        numColumns: number;
+        numRows: number;
+        isSmall: boolean;
+        private tickExplosion: number;
+        constructor(x: number,y: number, isSmall: boolean) {
             super(x,y);
+            this.isSmall = isSmall;
             this.timeLives = 10;
+            // анимация взрыва
+            this.row = 0;
+            this.column = 0;
+            this.currentFrame = 0;
+            this.frameWidth = 550;
+            this.frameHeight = 550;
+            this.numColumns = 10;
+            this.numRows = 1;
+            this.tickExplosion = 0;
         }
         update() {
-            this.timeLives -= 1;
+            this.tickExplosion++;
+            if ( this.tickExplosion % 5 === 0) {
+                this.currentFrame++;
+                let maxFrame = this.numColumns * this.numRows - 1;
+                if ( this.currentFrame > maxFrame){
+                    this.timeLives = 0;
+                }
+                // Update rows and columns
+                this.column = this.currentFrame % this.numColumns;
+                this.row = Math.floor(this.currentFrame / this.numColumns);
+            }
         }
     }
 
     class Asteroid extends Base {
-        private readonly speed: number;
+        public speed: number;
         private readonly angle: number;
-        private readonly radius: number;
+        public radius: number;
+        public isSmall: boolean;
         constructor(x:number, y:number) {
             super(x, y);
             this.speed = asteroidSpeed;
             this.angle = getRandomArbitrary(0, 360);
             this.radius = 50;
+            this.isSmall = false;
         }
         update() {
             this.x += Math.cos(Math.PI/180*(this.angle - 90)) * this.speed;
@@ -112,12 +138,12 @@ const CanvasComponent: FC<CanvasProps> = ({
             }
         }
         getCenterX() {
-            return this.x + 100;
+            return this.x + this.radius * 2;
         }
         getCenterY() {
-            return this.y + 100;
+            return this.y + this.radius * 2;
         }
-    }
+    };
 
     class Bullet extends Base {
         private angle: number;
@@ -135,7 +161,7 @@ const CanvasComponent: FC<CanvasProps> = ({
                 this.visible = false;
             }
         }
-    }
+    };
 
     const fireShip = () => {
         const bullet = new Bullet(xMove + shipWith/2, yMove + shipHeight/2, angle);
@@ -187,20 +213,30 @@ const CanvasComponent: FC<CanvasProps> = ({
         }
         asteroids.forEach((asteroid: any) => {
             bullets.forEach((bullet: any) => {
-                if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < 50 &&
-                        Math.abs(bullet.getPos().y + 1 - asteroid.getCenterY()) < 50) {
+                if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < asteroid.radius &&
+                    Math.abs(bullet.getPos().y + 1 - asteroid.getCenterY()) < asteroid.radius) {
                     bullet.visible = false;
                     asteroid.visible = false;
-                    const explosion = new Explosion(asteroid.x, asteroid.y);
+                    const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
+                    // появление новых астеройдов
+                    if (!asteroid.isSmall) {
+                        for (let i = 0; i < 2; i++) {
+                            const smallAsteroid = new Asteroid(asteroid.x, asteroid.y);
+                            smallAsteroid.speed = 3;
+                            smallAsteroid.radius = 25;
+                            smallAsteroid.isSmall = true;
+                            asteroids.push(smallAsteroid);
+                        }
+                    }
                     explosions.push(explosion);
                     count += 1;
                     setScore(count);
                 }
             });
             if (Math.abs(xMove + 50 - asteroid.getCenterX()) < 70 &&
-                    Math.abs(yMove + 50 - asteroid.getCenterY()) < 70) {
+                Math.abs(yMove + 50 - asteroid.getCenterY()) < 70) {
                 asteroid.visible = false;
-                const explosion = new Explosion(asteroid.x, asteroid.y);
+                const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
                 explosions.push(explosion);
                 lives -= 1;
                 setLives(lives);
@@ -230,13 +266,13 @@ const CanvasComponent: FC<CanvasProps> = ({
         ctx.drawImage(bg, 0, 0);
         // фон метеориты
         ctx.drawImage(debris, debrisX, debrisY);
-        // пули
-        if (timestampAsteroid - asteroidDelay > 1000) {
+        // добавляем астеройды
+        if (timestampAsteroid - asteroidDelay > 1500) {
             asteroidDelay = timestampAsteroid;
             const {x, y} = getAsteroidCoords();
             const asteroid = new Asteroid(x, y);
             asteroids.push(asteroid);
-        }
+        };
 
         if (isGameEnd) {
             ctx.fillStyle = 'white';
@@ -258,13 +294,19 @@ const CanvasComponent: FC<CanvasProps> = ({
         explosions = explosions.filter((el: any) => el.timeLives > 0);
         checkCollision();
         asteroids.forEach((el: any) => {
-            ctx.drawImage(aster, el.getPos().x, el.getPos().y, 200, 200);
+            const size = el.isSmall ? 100 : 200;
+            ctx.drawImage(aster, el.getPos().x, el.getPos().y, size, size);
             el.update();
         });
         explosions.forEach((el: any) => {
-            ctx.drawImage(explosion, el.x, el.y, 200, 140);
+            const posX = el.isSmall ? el.x - 100 : el.x;
+            const posY = el.isSmall ? el.y - 100 : el.y;
+            ctx.drawImage(explosion, el.column * el.frameWidth + 17,
+                el.row * el.frameHeight + 17,
+                el.frameWidth, el.frameHeight, posX, posY, el.frameWidth/2, el.frameHeight/2);
             el.update();
         });
+
         // корабль
         // сохраняем канвас
         ctx.save();
@@ -275,7 +317,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         // переносим центр обратно
         ctx.translate(-xMove - shipWith/2, -yMove - shipHeight/2);
         // отрисовываем корабль
-        ctx.drawImage(spaceship, xMove, yMove);
+        ctx.drawImage(spaceship, xMove, yMove, shipWith, shipHeight);
         // восстанавливаем канвас
         ctx.restore();
         ctx.fillStyle = 'white';
@@ -334,7 +376,6 @@ const CanvasComponent: FC<CanvasProps> = ({
     };
 
     useEffect(() => {
-
         canvas= canvasRef.current;
         canvas.width = 1279;
         canvas.height = 720;
