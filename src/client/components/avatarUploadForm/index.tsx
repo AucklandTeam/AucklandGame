@@ -2,14 +2,14 @@ import React, { FC, FormEvent, useState } from 'react'
 import Form from 'components/form'
 import TextInput from 'components/inputs'
 import { changeAvatar } from 'src/core/ducks/profile/actions'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from 'src/ssr'
 
 export type UploadAvatarForm = {
 	formData?: FormData
 }
 
 const UploadAvatar: FC<UploadAvatarForm> = () => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const [formError, setFormError] = useState('')
 	const onSubmit = (event: FormEvent) => {
 		event.preventDefault()

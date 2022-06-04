@@ -1,6 +1,6 @@
 import * as rules from '../rules'
 import * as plugins from '../plugins'
-import {ROOT_DIR, SRC_DIR} from '../env';
+import {ROOT_DIR} from '../env';
 
 export const CommonConfig = {
 	module: {

@@ -4,10 +4,10 @@ import styles from 'styles/base.scss'
 import GameTopBar from './components/GameTopBar/GameTopBar'
 import StartModal from './components/StartModal'
 import { addUserToLeaderBoardAction } from 'src/core/ducks/scores/actions'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from 'src/ssr'
 
 const Game = () => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const [attempts, setAttempts] = useState(0)
 	const [lives, setLives] = useState(3)
 	const [score, setScore] = useState(0)

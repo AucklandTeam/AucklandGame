@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom'
 import initWorkerApi from 'src/api/worker/workerservice'
 import routes from 'src/core/routes'
 import { hot } from 'react-hot-loader/root'
+import { useAppDispatch } from 'src/ssr'
+import { fetchUser } from 'src/core/ducks/auth/actions'
 
 const serviceWorker = () => {
 	if ('serviceWorker' in navigator) {
@@ -20,6 +22,10 @@ const serviceWorker = () => {
 }
 
 const App = () => {
+	/*const dispatch = useAppDispatch()
+	useEffect(() => {
+		dispatch(fetchUser())
+	})*/
 	const workerMessageHandler = ({ data }: any) => {
 		console.log('web-worker callback data:', data)
 	}

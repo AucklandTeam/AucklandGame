@@ -11,6 +11,7 @@ import { fetchUser } from 'src/core/ducks/auth/actions'
 import { RouterFetchDataArgs } from 'types/app'
 import { RouterPath } from 'shared/consts'
 import AuthViaYandex from 'pages/Auth/AuthViaYandex'
+import {getLeaderBoard} from 'src/core/ducks/scores/actions';
 
 export default [
 	{
@@ -67,6 +68,7 @@ export default [
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
 			dispatch(fetchUser())
+			dispatch(getLeaderBoard())
 		}
 	},
 	{

@@ -3,7 +3,7 @@ import NotGameWrap from 'components/notGameWrap'
 import styles from 'styles/base.scss'
 import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
 import { getLeaderBoard } from 'src/core/ducks/scores/actions'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from 'src/ssr'
 
 const byField =
 	(field: string) =>
@@ -11,7 +11,7 @@ const byField =
 		a[field] > b[field] ? -1 : 1
 
 const Scores = () => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 
 	const { data: list } = useLeaderBordInfo()
 

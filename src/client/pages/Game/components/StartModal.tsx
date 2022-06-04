@@ -1,5 +1,4 @@
-//import styles from '../Game.scss';
-import styles from 'client/styles/base.scss'
+import styles from 'styles/base.scss'
 import React from 'react'
 import ConfigArrowButton from './ConfigArrowButton'
 import SpaceButtonIcon from '../Icons/SpaceButtonIcon'

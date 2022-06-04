@@ -21,7 +21,6 @@ export interface ReduxAction<T = any, P = any> extends Action {
 export interface State {
 		readonly user: UserState
 		readonly leaderBoard: LeaderBoardState
-		readonly router: RouterState
 	}
 
 export type RouterFetchDataArgs = {
@@ -33,3 +32,7 @@ export type AppStore = Store & {
 	runSaga: SagaMiddleware['run']
 	close: () => void
 }
+
+export type AppState = ReturnType<typeof store.getState>
+
+export type AppDispatch = typeof store.dispatch

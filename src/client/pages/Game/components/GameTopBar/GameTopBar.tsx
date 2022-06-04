@@ -11,11 +11,11 @@ interface BottomMenuItemType {
 	text: string
 }
 
-const bottomMenuItems = [
-	{ icon: styles.asEdit, url: '/settings', name: '', text: 'settings' },
-	{ icon: styles.asForum, url: '/forum', name: '', text: 'forum' },
+const topMenuItems = [
 	{ icon: styles.asPerson, url: '/profile', name: '', text: 'profile' },
-	{ icon: styles.asTrophy, url: '/results', name: '', text: 'results' },
+	{ icon: styles.asEdit, url: '/settings', name: '', text: 'settings' },
+	{ icon: styles.asTrophy, url: '/scores', name: '', text: 'scores' },
+	{ icon: styles.asForum, url: '/forum', name: '', text: 'forum' },
 	{ icon: styles.asPower, url: '/', name: '', text: 'quit' }
 ]
 
@@ -40,13 +40,13 @@ const GameTopBar = ({ lives, score }: any) => (
 			<div className={styles.gameScore}>Score: [{score}]</div>
 		</div>
 		<div className={styles.gameMenu}>
-			{bottomMenuItems.map((item: BottomMenuItemType, index) => (
+			{topMenuItems.map((item: BottomMenuItemType, index) => (
 				<div className={styles.topMenuItem} key={item.url}>
 					<Link to={item.url}>
 						<i
 							className={`${item.icon} 
                                     ${
-										index === bottomMenuItems.length - 1
+										index === topMenuItems.length - 1
 											? styles.quit
 											: ''
 									}`}

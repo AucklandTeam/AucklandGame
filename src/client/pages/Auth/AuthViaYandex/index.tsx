@@ -7,10 +7,10 @@ import {
 	authYandexLogin
 } from 'src/core/ducks/auth/actions'
 import yandex from 'src/../static/images/yandex.svg'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from 'src/ssr'
 
 const AuthViaYandex = () => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const location = useLocation()
 	const param = new URLSearchParams(location.search)
 	useEffect(() => {

@@ -4,7 +4,8 @@ import { userSelector } from 'src/core/ducks/auth/selectors'
 import {
 	addUserToLeaderBoardAction,
 	seLeaderBoardData,
-	setLeaderBoardStatus
+	setLeaderBoardStatus,
+	setLeaderBoardFailed
 } from '../actions'
 import { addUserToLeaderBoard, getAllLeaderBoard } from '../api'
 import { fieldRating, ResponseLeaderBoardList, teamName } from '../types'

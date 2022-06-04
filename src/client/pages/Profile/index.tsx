@@ -4,11 +4,11 @@ import NotGameWrap from 'components/notGameWrap'
 import Avatar from 'components/avatar'
 import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import { RESOURCE_URL } from 'shared/consts'
-import noImage from '../../../../static/images/noImage.svg'
+import noImage from 'static/images/noImage.svg'
 
 const Profile = () => {
 	const { data } = useUserInfo()
-
+console.log(data)
 	return (
 		<NotGameWrap titlePage={'Gamer Profile'}>
 			<div className={styles.userCard}>

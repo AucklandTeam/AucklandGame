@@ -8,10 +8,10 @@ import Form from 'components/form'
 import { RouterPath } from 'shared/consts'
 import HomePageWrap from 'components/homePageWrap'
 import { signIn } from 'src/core/ducks/auth/actions'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from 'src/ssr'
 
 const Login: FC = () => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const {
 		values,
 		handleChange,

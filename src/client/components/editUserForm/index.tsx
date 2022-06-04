@@ -6,11 +6,11 @@ import { initialState, TextFieldsEditUser } from './shared'
 import { EditUserDataForm } from './types'
 import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import { editUser } from 'src/core/ducks/profile/actions'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from 'src/ssr'
 
 const EditUserData = () => {
 	const { data } = useUserInfo()
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const {
 		values,
 		handleChange,

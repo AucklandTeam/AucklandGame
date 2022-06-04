@@ -5,7 +5,7 @@ import { useAuth } from 'src/core/ducks/auth/selectors'
 import history from 'src/core/history'
 import { RouterPath } from 'shared/consts'
 import { logout } from 'src/core/ducks/auth/actions'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from 'src/ssr'
 
 type TemplatePageProps = {
 	titlePage?: string
@@ -22,7 +22,7 @@ const bottomMenuItems = [
 ]
 
 const NotGameWrap: FC<TemplatePageProps> = ({ titlePage, children }) => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const logoutHandler = useCallback(() => {
 		dispatch(logout())
 	}, [])
