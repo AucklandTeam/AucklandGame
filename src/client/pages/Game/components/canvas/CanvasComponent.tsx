@@ -16,7 +16,7 @@ import {
     shotDelay,
     asteroidSpeed,
 } from './consts';
-import Base from './BaseClass';
+import Base from './BaseClass'
 
 interface CanvasProps {
     setLives: (arg0: number) => void;
@@ -143,7 +143,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         getCenterY() {
             return this.y + this.radius * 2;
         }
-    };
+    }
 
     class Bullet extends Base {
         private angle: number;
@@ -161,7 +161,7 @@ const CanvasComponent: FC<CanvasProps> = ({
                 this.visible = false;
             }
         }
-    };
+    }
 
     const fireShip = () => {
         const bullet = new Bullet(xMove + shipWith/2, yMove + shipHeight/2, angle);
@@ -272,7 +272,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             const {x, y} = getAsteroidCoords();
             const asteroid = new Asteroid(x, y);
             asteroids.push(asteroid);
-        };
+        }
 
         if (isGameEnd) {
             ctx.fillStyle = 'white';

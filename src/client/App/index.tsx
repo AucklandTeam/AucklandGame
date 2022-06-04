@@ -5,6 +5,7 @@ import routes from 'src/core/routes'
 import { hot } from 'react-hot-loader/root'
 import { useAppDispatch } from 'src/ssr'
 import { fetchUser } from 'src/core/ducks/auth/actions'
+import {useUserInfo} from 'src/core/ducks/auth/selectors';
 
 const serviceWorker = () => {
 	if ('serviceWorker' in navigator) {
@@ -22,17 +23,23 @@ const serviceWorker = () => {
 }
 
 const App = () => {
-	/*const dispatch = useAppDispatch()
+	const dispatch = useAppDispatch()
+
+	const { data } = useUserInfo()
+
 	useEffect(() => {
+		if (!data) {
+		console.log(data)
 		dispatch(fetchUser())
-	})*/
-	const workerMessageHandler = ({ data }: any) => {
+		}
+	},[])
+	/*const workerMessageHandler = ({ data }: any) => {
 		console.log('web-worker callback data:', data)
 	}
 
 	useEffect(() => {
 		initWorkerApi(workerMessageHandler)
-	})
+	})*/
 
 	return (
 		<Routes>

@@ -13,6 +13,7 @@ import noImage from 'static/images/noImage.svg'
 const ProfileEdit: FC = () => {
 	const modal: MutableRefObject<null> = useRef(null)
 	const { data } = useUserInfo()
+	console.log(data)
 	return (
 		<NotGameWrap titlePage={'Profile Edit'}>
 			<div className={styles.userCard}>

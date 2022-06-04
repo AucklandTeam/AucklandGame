@@ -17,7 +17,7 @@ export default async (req: Request, res: Response) => {
 	const reqUrl = new URL(req.url, baseURL)
 
 	const { store } = configureStore(getInitialState(), reqUrl.pathname)
-//console.log(store.getState())
+
 	function renderApp() {
 		const appHtml = (
 			<Provider store={store}>
@@ -83,10 +83,10 @@ const getHtml = (reactHtml: string, reduxState = {}) => `
         <body>
             <div id="root">${reactHtml}</div>
             <div id="modalWrap"></div>
-            <script defer="defer" src="/main.js"></script>
 			<script>
 			  window.SSR_DATA = ${serialize(reduxState, { isJSON: true })}
 			</script>
+			<script defer="defer" src="/main.js"></script>
         </body>
     </html>
 `

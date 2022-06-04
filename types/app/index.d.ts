@@ -1,6 +1,5 @@
 import { Action, Store } from 'redux'
 import { SagaMiddleware } from '@redux-saga/core'
-import {Dispatch} from 'redux'
 import {UserState} from 'src/core/ducks/auth/types'
 import {LeaderBoardState} from 'src/core/ducks/scores/types';
 
@@ -24,7 +23,7 @@ export interface State {
 	}
 
 export type RouterFetchDataArgs = {
-	dispatch: Dispatch<ReduxAction>
+	dispatch: AppDispatch
 	match: match<{ slug: string }>
 }
 

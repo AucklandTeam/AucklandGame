@@ -5,7 +5,7 @@ const URLS = [
     '/game',
     '/forum',
     '/sign-up',
-    '/bundle.js',
+    '/main.js',
 ];
 
 self.addEventListener('install', (event) => {

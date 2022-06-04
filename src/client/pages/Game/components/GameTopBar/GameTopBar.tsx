@@ -41,7 +41,7 @@ const GameTopBar = ({ lives, score }: any) => (
 		</div>
 		<div className={styles.gameMenu}>
 			{topMenuItems.map((item: BottomMenuItemType, index) => (
-				<div className={styles.topMenuItem} key={item.url}>
+				<div key={item.url} className={styles.topMenuItem}>
 					<Link to={item.url}>
 						<i
 							className={`${item.icon} 
