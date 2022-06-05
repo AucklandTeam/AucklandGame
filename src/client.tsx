@@ -3,16 +3,18 @@ import { App } from 'client/App'
 import 'styles/base.scss'
 import { configureStore } from 'src/core/store'
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import { unstable_HistoryRouter as Router } from 'react-router-dom'
+import history from 'src/core/history'
+
 
 const { store } = configureStore(window.SSR_DATA, '/')
 delete window.SSR_DATA
 
 hydrate(
 	<Provider store={store}>
-		<BrowserRouter>
+		<Router history={history}>
 			<App />
-		</BrowserRouter>
+		</Router>
 	</Provider>,
 	document.querySelector('#root')
 )

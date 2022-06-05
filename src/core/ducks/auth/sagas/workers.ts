@@ -71,7 +71,6 @@ export function* logoutWorker(): SagaIterator<void> {
 		yield call(logoutRequest)
 
 		yield put(setUserData(null))
-
 		history.push(RouterPath.Main)
 	} catch (e) {
 		console.error(e)

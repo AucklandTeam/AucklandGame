@@ -1,21 +1,21 @@
-import Game from 'pages/Game'
-import Scores from 'pages/Scores'
-import Profile from 'pages/Profile'
 import Main from 'pages/Main'
 import SignIn from 'pages/Auth/SignIn'
-import ForumMain from 'pages/Forum/ForumMain'
-import SignUp from 'pages/Auth/SignUp'
-import ProfileEdit from 'pages/ProfileEdit'
-import Error404 from 'pages/Errors/404'
 import { fetchUser } from 'src/core/ducks/auth/actions'
 import { RouterFetchDataArgs } from 'types/app'
 import { RouterPath } from 'shared/consts'
-import AuthViaYandex from 'pages/Auth/AuthViaYandex'
+import SignUp from 'pages/Auth/SignUp'
+import Game from 'pages/Game'
+import Profile from 'pages/Profile'
+import ProfileEdit from 'pages/ProfileEdit'
+import Scores from 'pages/Scores'
 import { getLeaderBoard } from 'src/core/ducks/scores/actions'
+import ForumMain from 'pages/Forum/ForumMain'
+import AuthViaYandex from 'pages/Auth/AuthViaYandex'
+import Error404 from 'pages/Errors/404'
 
 export default [
 	{
-		path: '/',
+		path: RouterPath.Main,
 		element: <Main />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
@@ -23,7 +23,7 @@ export default [
 		}
 	},
 	{
-		path: '/sign-in',
+		path: RouterPath.SignIn,
 		element: <SignIn />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
@@ -31,7 +31,7 @@ export default [
 		}
 	},
 	{
-		path: '/sign-up',
+		path: RouterPath.SignUp,
 		element: <SignUp />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
@@ -39,7 +39,7 @@ export default [
 		}
 	},
 	{
-		path: '/game',
+		path: RouterPath.Game,
 		element: <Game />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
@@ -47,7 +47,7 @@ export default [
 		}
 	},
 	{
-		path: '/profile',
+		path: RouterPath.Profile,
 		element: <Profile />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
@@ -55,7 +55,7 @@ export default [
 		}
 	},
 	{
-		path: '/settings',
+		path: RouterPath.Settings,
 		element: <ProfileEdit />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
@@ -63,7 +63,7 @@ export default [
 		}
 	},
 	{
-		path: '/scores',
+		path: RouterPath.Scores,
 		element: <Scores />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
@@ -72,7 +72,7 @@ export default [
 		}
 	},
 	{
-		path: '/forum',
+		path: RouterPath.Forum,
 		element: <ForumMain />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {

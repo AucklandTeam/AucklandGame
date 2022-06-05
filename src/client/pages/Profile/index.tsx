@@ -8,7 +8,7 @@ import noImage from 'static/images/noImage.svg'
 
 const Profile = () => {
 	const { data } = useUserInfo()
-console.log(data)
+
 	return (
 		<NotGameWrap titlePage={'Gamer Profile'}>
 			<div className={styles.userCard}>

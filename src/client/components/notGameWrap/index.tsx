@@ -30,7 +30,7 @@ const NotGameWrap: FC<TemplatePageProps> = ({ titlePage, children }) => {
 
 	useEffect(() => {
 		if (!isAuth && isLoaded) {
-			history.push(RouterPath.SignIn)
+			history.push(RouterPath.Main)
 		}
 	}, [isAuth])
 

@@ -27,8 +27,9 @@ export enum RouterPath {
 	SignYandex = '/sign-via-yandex',
 	SignUp = '/sign-up',
 	Profile = '/profile',
+	Settings = '/settings',
 	Game = '/game',
-	Results = '/results',
+	Scores = '/scores',
 	Forum = '/forum'
 }
 

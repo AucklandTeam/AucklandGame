@@ -2,7 +2,12 @@ import { Request, Response } from 'express'
 import { App } from 'client/App'
 import serialize from 'serialize-javascript'
 import { configureStore } from 'src/core/store'
-import {Provider, TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
+import {
+	Provider,
+	TypedUseSelectorHook,
+	useDispatch,
+	useSelector
+} from 'react-redux'
 import { renderToString } from 'react-dom/server'
 import { rootSaga } from 'src/core/saga'
 import routes from 'src/core/routes'
@@ -10,7 +15,7 @@ import 'static/images/favicon.png'
 import { getInitialState } from 'src/core/store/initialState'
 import { StaticRouter } from 'react-router-dom/server'
 import { matchPath } from 'react-router'
-import {AppState} from '../types/app';
+import { AppState } from '../types/app'
 
 export default async (req: Request, res: Response) => {
 	const baseURL = req.protocol + '://' + req.headers.host + '/'
@@ -29,7 +34,7 @@ export default async (req: Request, res: Response) => {
 
 		const reactHtml = renderToString(appHtml)
 		const reduxState = store.getState()
-	console.log(reduxState)
+		console.log(reduxState)
 		res.status(200).send(getHtml(reactHtml, reduxState))
 	}
 	store
@@ -58,7 +63,7 @@ export default async (req: Request, res: Response) => {
 
 		return Boolean(match)
 	})
-console.log(dataRequirements)
+	console.log(dataRequirements)
 	return Promise.all(dataRequirements)
 		.then(() => store.close())
 		.catch(err => {
