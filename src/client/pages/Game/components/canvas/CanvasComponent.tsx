@@ -2,7 +2,10 @@ import React, {FC, useEffect, useRef} from 'react';
 import spaceshipImg from 'static/images/buran.png'
 import bgImg from 'static/images/sky.png';
 import debrisImg from 'static/images/debris.png';
+import bomb3Img from 'static/images/bomb3.png';
 import explosionImg from 'static/images/exp.png';
+import fireImg from 'static/images/fire.png';
+import bombExp from 'static/images/bomb_spritesheet.png'
 import asterImg from 'static/images/aster.png';
 import { getRandomArbitrary } from './utils';
 import styles from 'styles/base.scss'
@@ -40,6 +43,9 @@ const CanvasComponent: FC<CanvasProps> = ({
     const bg = new Image();
     const debris = new Image();
     const explosion = new Image();
+    const fire = new Image();
+    const bomb3 = new Image();
+    const bombExplosion = new Image();
     const aster = new Image();
 
     // скорость кораблля
@@ -68,6 +74,45 @@ const CanvasComponent: FC<CanvasProps> = ({
     let asteroids: any = [];
     let explosions: any = [];
 
+    class Sprite extends Base {
+        private timeLives: number;
+        row: number;
+        column: number;
+        currentFrame: number;
+        frameWidth: number;
+        frameHeight: number;
+        numColumns: number;
+        numRows: number;
+        isSmall: boolean;
+        private tickSprite: number;
+        constructor(x: number,y: number, frameSize: number, cols = 1, rows = 1) {
+            super(x,y);
+            this.timeLives = 10;
+            // анимация взрыва
+            this.row = 0;
+            this.column = 0;
+            this.currentFrame = 0;
+            this.frameWidth = frameSize;
+            this.frameHeight = frameSize;
+            this.numColumns = cols;
+            this.numRows = rows;
+            this.tickSprite = 0;
+        }
+        update() {
+            this.tickSprite++;
+            if ( this.tickSprite % 5 === 0) {
+                this.currentFrame++;
+                let maxFrame = this.numColumns * this.numRows - 1;
+                if ( this.currentFrame > maxFrame){
+                    //this.timeLives = 0;
+                    this.currentFrame = 0;
+                }
+                // Update rows and columns
+                this.column = this.currentFrame % this.numColumns;
+                this.row = Math.floor(this.currentFrame / this.numColumns);
+            }
+        }
+    }
     class Explosion extends Base {
         private timeLives: number;
         private row: number;
@@ -258,6 +303,9 @@ const CanvasComponent: FC<CanvasProps> = ({
         return ({x, y});
     };
 
+    const bombObj = new Sprite(100, 100, 810, 9, 1);
+    const fireObj = new Sprite(300, 300, 190, 10, 1)
+    const bomb3Obj = new Sprite(500, 500, 450, 10, 1)
     const updateScene = () => {
         // очищаем весь канвас перед перерисовкой
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -296,6 +344,8 @@ const CanvasComponent: FC<CanvasProps> = ({
         asteroids.forEach((el: any) => {
             const size = el.isSmall ? 100 : 200;
             ctx.drawImage(aster, el.getPos().x, el.getPos().y, size, size);
+            //this.context.drawImage(Circle.image, this.column * Circle.frameWidth, this.row * Circle.frameHeight, Circle.frameWidth, Circle.frameHeight, (this.x - this.radius), (this.y - this.radius) - this.radius * 0.4, this.radius * 2, this.radius * 2.42);
+            //this.context.drawImage(Circle.sprite, column * Circle.frameWidth, row * Circle.frameHeight, Circle.frameWidth, Circle.frameHeight, (this.x - this.radius), (this.y - this.radius) - this.radius * 0.4, this.radius * 2, this.radius * 2.42)
             el.update();
         });
         explosions.forEach((el: any) => {
@@ -307,6 +357,17 @@ const CanvasComponent: FC<CanvasProps> = ({
             el.update();
         });
 
+        // bomb
+        ctx.drawImage(bombExplosion, bombObj.column * bombObj.frameWidth,
+            bombObj.row * bombObj.frameHeight,
+            bombObj.frameWidth, bombObj.frameHeight, bombObj.x, bombObj.y, bombObj.frameWidth/3, bombObj.frameHeight/3);
+        bombObj.update();
+
+        ctx.drawImage(bomb3, bomb3Obj.column * bomb3Obj.frameWidth,
+            bomb3Obj.row * bomb3Obj.frameHeight,
+            bomb3Obj.frameWidth, bomb3Obj.frameHeight, bomb3Obj.x, bomb3Obj.y, bomb3Obj.frameWidth/4, bomb3Obj.frameHeight/4);
+        bomb3Obj.update();
+
         // корабль
         // сохраняем канвас
         ctx.save();
@@ -317,6 +378,13 @@ const CanvasComponent: FC<CanvasProps> = ({
         // переносим центр обратно
         ctx.translate(-xMove - shipWith/2, -yMove - shipHeight/2);
         // отрисовываем корабль
+        if (keyUp) {
+            // отрисовывавем пламя двигателя
+            ctx.drawImage(fire, fireObj.column * fireObj.frameWidth,
+                fireObj.row * fireObj.frameHeight,
+                fireObj.frameWidth, fireObj.frameHeight, xMove, yMove + 100, fireObj.frameWidth/2, fireObj.frameHeight/2);
+        }
+        fireObj.update();
         ctx.drawImage(spaceship, xMove, yMove, shipWith, shipHeight);
         // восстанавливаем канвас
         ctx.restore();
@@ -388,6 +456,9 @@ const CanvasComponent: FC<CanvasProps> = ({
         debris.src = debrisImg;
         spaceship.src = spaceshipImg;
         explosion.src = explosionImg;
+        fire.src = fireImg;
+        bomb3.src = bomb3Img;
+        bombExplosion.src = bombExp;
         aster.src = asterImg;
 
         const startAnimation = () => {
