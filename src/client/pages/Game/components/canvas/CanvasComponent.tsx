@@ -74,7 +74,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     let asteroids: any = [];
     let explosions: any = [];
     let bombs: any = [];
-    let bombExplosions: any = [];
+    let bombExpArray: any = [];
 
     class Sprite extends Base {
         private timeLives: number;
@@ -86,8 +86,10 @@ const CanvasComponent: FC<CanvasProps> = ({
         numColumns: number;
         numRows: number;
         isSmall: boolean;
+        isVisible: boolean;
+        timeCount: number;
         private tickSprite: number;
-        constructor(x: number,y: number, frameSize: number, cols = 1, rows = 1) {
+        constructor(x: number,y: number, frameSize: number, cols = 1, rows = 1, timeCount?: number) {
             super(x,y);
             this.timeLives = 10;
             // анимация взрыва
@@ -99,6 +101,8 @@ const CanvasComponent: FC<CanvasProps> = ({
             this.numColumns = cols;
             this.numRows = rows;
             this.tickSprite = 0;
+            this.isVisible = true;
+            this.timeCount = timeCount;
         }
         update() {
             this.tickSprite++;
@@ -106,8 +110,12 @@ const CanvasComponent: FC<CanvasProps> = ({
                 this.currentFrame++;
                 let maxFrame = this.numColumns * this.numRows - 1;
                 if ( this.currentFrame > maxFrame){
-                    //this.timeLives = 0;
+                    this.timeLives = 0;
                     this.currentFrame = 0;
+                    if (this.timeCount) {
+                        this.timeCount = this.timeCount -= 1;
+                        this.isVisible = this.timeCount === 0 ? false : true;
+                    }
                 }
                 // Update rows and columns
                 this.column = this.currentFrame % this.numColumns;
@@ -258,6 +266,14 @@ const CanvasComponent: FC<CanvasProps> = ({
         if (!isGameStart) {
             return;
         }
+        bombs.forEach((bomb: any) => {
+            if (Math.abs(xMove + 50 - bomb.x - 30) < 50 &&
+                Math.abs(yMove + 50 - bomb.y - 30) < 50) {
+                bomb.isVisible = false;
+                const bombObj = new Sprite(bomb.x + 20, bomb.y + 20, 810, 9, 1);
+                bombExpArray.push(bombObj)
+            }
+        });
         asteroids.forEach((asteroid: any) => {
             bullets.forEach((bullet: any) => {
                 if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < asteroid.radius &&
@@ -268,9 +284,9 @@ const CanvasComponent: FC<CanvasProps> = ({
 
                     // появление новых астеройдов и бонусов
                     if (!asteroid.isSmall) {
-                        const num = Math.ceil(getRandomArbitrary(0, 9));
-                        if (num === 2 || num === 4) {
-                            const bomb3Obj = new Sprite(asteroid.x, asteroid.y, 450, 10, 1)
+                        const num = Math.ceil(getRandomArbitrary(0, 5));
+                        if (num === 2 || num === 4 || true) {
+                            const bomb3Obj = new Sprite(asteroid.x + 50, asteroid.y + 50, 450, 10, 1, 10)
                             bombs.push(bomb3Obj);
                         }
 
@@ -312,9 +328,8 @@ const CanvasComponent: FC<CanvasProps> = ({
         return ({x, y});
     };
 
-    const bombObj = new Sprite(100, 100, 810, 9, 1);
     const fireObj = new Sprite(300, 300, 190, 10, 1)
-
+    const bombObj = new Sprite(100, 100, 810, 9, 1);
     const updateScene = () => {
         // очищаем весь канвас перед перерисовкой
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -331,12 +346,6 @@ const CanvasComponent: FC<CanvasProps> = ({
             asteroids.push(asteroid);
         }
 
-        if (isGameEnd) {
-            ctx.fillStyle = 'white';
-            ctx.font = '48px serif';
-            ctx.fillText('GAME OVER !', canvas.width/2 - 100, canvas.height/2);
-            return;
-        }
         bullets = bullets.filter((el: any) => el.getVisible());
         bullets.forEach((el: any) => {
             ctx.beginPath();
@@ -349,6 +358,8 @@ const CanvasComponent: FC<CanvasProps> = ({
 
         asteroids = asteroids.filter((el: any) => el.getVisible());
         explosions = explosions.filter((el: any) => el.timeLives > 0);
+        bombs = bombs.filter((el: any) => el.isVisible);
+        bombExpArray = bombExpArray.filter((el: any) => el.timeLives > 0);
         checkCollision();
 
         bombs.forEach((bomb3Obj: any) => {
@@ -361,8 +372,6 @@ const CanvasComponent: FC<CanvasProps> = ({
         asteroids.forEach((el: any) => {
             const size = el.isSmall ? 100 : 200;
             ctx.drawImage(aster, el.getPos().x, el.getPos().y, size, size);
-            //this.context.drawImage(Circle.image, this.column * Circle.frameWidth, this.row * Circle.frameHeight, Circle.frameWidth, Circle.frameHeight, (this.x - this.radius), (this.y - this.radius) - this.radius * 0.4, this.radius * 2, this.radius * 2.42);
-            //this.context.drawImage(Circle.sprite, column * Circle.frameWidth, row * Circle.frameHeight, Circle.frameWidth, Circle.frameHeight, (this.x - this.radius), (this.y - this.radius) - this.radius * 0.4, this.radius * 2, this.radius * 2.42)
             el.update();
         });
         explosions.forEach((el: any) => {
@@ -374,11 +383,14 @@ const CanvasComponent: FC<CanvasProps> = ({
             el.update();
         });
 
-        // bomb
-        ctx.drawImage(bombExplosion, bombObj.column * bombObj.frameWidth,
-            bombObj.row * bombObj.frameHeight,
-            bombObj.frameWidth, bombObj.frameHeight, bombObj.x, bombObj.y, bombObj.frameWidth/3, bombObj.frameHeight/3);
-        bombObj.update();
+
+        // взрывы бомб
+        bombExpArray.forEach((el: any) => {
+            ctx.drawImage(bombExplosion, el.column * el.frameWidth,
+                el.row * el.frameHeight,
+                el.frameWidth, el.frameHeight, el.x - 100, el.y - 100, el.frameWidth/3, el.frameHeight/3);
+            el.update();
+        });
 
         // корабль
         // сохраняем канвас
@@ -468,7 +480,6 @@ const CanvasComponent: FC<CanvasProps> = ({
         canvas.style.width = '1279px';
         canvas.style.height = '720px';
         ctx = canvas.getContext('2d');
-
 
         bg.src = bgImg;
         debris.src = debrisImg;
