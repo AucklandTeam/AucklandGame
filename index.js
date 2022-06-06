@@ -1,8 +1,16 @@
-const { app } = require('./dist/server.js')
+const { app, dbConnect } = require(`${__dirname}/dist/server.js`)
 
 
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, function () {
-	console.log(`Example app listening on port ${PORT}!`)
-})
+const init = async ()=>{
+	await dbConnect();
+
+	console.log(`Starting Sequelize!`);
+
+	app.listen(PORT, function () {
+		console.log(`test Example app listening on port ${PORT}!`)
+	})
+}
+
+init();

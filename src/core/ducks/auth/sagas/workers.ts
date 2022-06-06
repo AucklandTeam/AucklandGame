@@ -6,7 +6,7 @@ import {
 	loginRequest,
 	logoutRequest,
 	signUpRequest,
-	authWithYandex
+	authWithYandex, userLocalSync
 } from '../api'
 import {
 	authYandexLogin,
@@ -20,13 +20,15 @@ import {
 import history from 'src/core/history'
 import { RouterPath } from 'shared/consts'
 import { ServiceID } from '../types'
+import { User } from 'src/client/components/@shared/types'
 
 export function* fetchUserWorker(): SagaIterator<void> {
 	yield put(setUserStatus('pending'))
 	try {
-		const response = yield call(getUserRequest)
+		const response:User = yield call(getUserRequest)
 		yield put(setUserData(response))
 		yield put(setUserStatus('success'))
+		yield call(userLocalSync, {login: response.login});
 	} catch (e) {
 		// @ts-ignore
 		yield put(setUserFailed(e.reason))
