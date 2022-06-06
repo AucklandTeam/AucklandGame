@@ -270,8 +270,13 @@ const CanvasComponent: FC<CanvasProps> = ({
             if (Math.abs(xMove + 50 - bomb.x - 30) < 50 &&
                 Math.abs(yMove + 50 - bomb.y - 30) < 50) {
                 bomb.isVisible = false;
-                const bombObj = new Sprite(bomb.x + 20, bomb.y + 20, 810, 9, 1);
-                bombExpArray.push(bombObj)
+                const bombExpObj = new Sprite(bomb.x + 20, bomb.y + 20, 810, 9, 1);
+                bombExpArray.push(bombExpObj);
+                asteroids.forEach((asteroid: any) => {
+                    asteroid.visible = false;
+                    const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
+                    explosions.push(explosion);
+                })
             }
         });
         asteroids.forEach((asteroid: any) => {
