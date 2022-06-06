@@ -290,8 +290,8 @@ const CanvasComponent: FC<CanvasProps> = ({
                     // появление новых астеройдов и бонусов
                     if (!asteroid.isSmall) {
                         const num = Math.ceil(getRandomArbitrary(0, 5));
-                        if (num === 2 || num === 4 || true) {
-                            const bomb3Obj = new Sprite(asteroid.x + 50, asteroid.y + 50, 450, 10, 1, 10)
+                        if (num === 2) {
+                            const bomb3Obj = new Sprite(asteroid.x + 50, asteroid.y + 50, 450, 10, 1, 5)
                             bombs.push(bomb3Obj);
                         }
 
