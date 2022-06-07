@@ -2,7 +2,10 @@ import React, {FC, useEffect, useRef} from 'react';
 import spaceshipImg from 'static/images/buran.png'
 import bgImg from 'static/images/sky.png';
 import debrisImg from 'static/images/debris.png';
+import bomb3Img from 'static/images/bomb3.png';
 import explosionImg from 'static/images/exp.png';
+import fireImg from 'static/images/fire.png';
+import bombExp from 'static/images/bomb_spritesheet.png'
 import asterImg from 'static/images/aster.png';
 import { getRandomArbitrary } from './utils';
 import styles from 'styles/base.scss'
@@ -40,6 +43,9 @@ const CanvasComponent: FC<CanvasProps> = ({
     const bg = new Image();
     const debris = new Image();
     const explosion = new Image();
+    const fire = new Image();
+    const bomb3 = new Image();
+    const bombExplosion = new Image();
     const aster = new Image();
 
     // скорость кораблля
@@ -67,7 +73,56 @@ const CanvasComponent: FC<CanvasProps> = ({
     let bullets: any = [];
     let asteroids: any = [];
     let explosions: any = [];
+    let bombs: any = [];
+    let bombExpArray: any = [];
 
+    class Sprite extends Base {
+        private timeLives: number;
+        row: number;
+        column: number;
+        currentFrame: number;
+        frameWidth: number;
+        frameHeight: number;
+        numColumns: number;
+        numRows: number;
+        isSmall: boolean;
+        isVisible: boolean;
+        timeCount: number;
+        private tickSprite: number;
+        constructor(x: number,y: number, frameSize: number, cols = 1, rows = 1, timeCount?: number) {
+            super(x,y);
+            this.timeLives = 10;
+            // анимация взрыва
+            this.row = 0;
+            this.column = 0;
+            this.currentFrame = 0;
+            this.frameWidth = frameSize;
+            this.frameHeight = frameSize;
+            this.numColumns = cols;
+            this.numRows = rows;
+            this.tickSprite = 0;
+            this.isVisible = true;
+            this.timeCount = timeCount;
+        }
+        update() {
+            this.tickSprite++;
+            if ( this.tickSprite % 5 === 0) {
+                this.currentFrame++;
+                let maxFrame = this.numColumns * this.numRows - 1;
+                if ( this.currentFrame > maxFrame){
+                    this.timeLives = 0;
+                    this.currentFrame = 0;
+                    if (this.timeCount) {
+                        this.timeCount = this.timeCount -= 1;
+                        this.isVisible = this.timeCount === 0 ? false : true;
+                    }
+                }
+                // Update rows and columns
+                this.column = this.currentFrame % this.numColumns;
+                this.row = Math.floor(this.currentFrame / this.numColumns);
+            }
+        }
+    }
     class Explosion extends Base {
         private timeLives: number;
         private row: number;
@@ -211,6 +266,19 @@ const CanvasComponent: FC<CanvasProps> = ({
         if (!isGameStart) {
             return;
         }
+        bombs.forEach((bomb: any) => {
+            if (Math.abs(xMove + 50 - bomb.x - 30) < 50 &&
+                Math.abs(yMove + 50 - bomb.y - 30) < 50) {
+                bomb.isVisible = false;
+                const bombExpObj = new Sprite(bomb.x + 20, bomb.y + 20, 810, 9, 1);
+                bombExpArray.push(bombExpObj);
+                asteroids.forEach((asteroid: any) => {
+                    asteroid.visible = false;
+                    const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
+                    explosions.push(explosion);
+                })
+            }
+        });
         asteroids.forEach((asteroid: any) => {
             bullets.forEach((bullet: any) => {
                 if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < asteroid.radius &&
@@ -218,8 +286,15 @@ const CanvasComponent: FC<CanvasProps> = ({
                     bullet.visible = false;
                     asteroid.visible = false;
                     const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
-                    // появление новых астеройдов
+
+                    // появление новых астеройдов и бонусов
                     if (!asteroid.isSmall) {
+                        const num = Math.ceil(getRandomArbitrary(0, 5));
+                        if (num === 2) {
+                            const bomb3Obj = new Sprite(asteroid.x + 50, asteroid.y + 50, 450, 10, 1, 5)
+                            bombs.push(bomb3Obj);
+                        }
+
                         for (let i = 0; i < 2; i++) {
                             const smallAsteroid = new Asteroid(asteroid.x, asteroid.y);
                             smallAsteroid.speed = 3;
@@ -258,6 +333,8 @@ const CanvasComponent: FC<CanvasProps> = ({
         return ({x, y});
     };
 
+    const fireObj = new Sprite(300, 300, 190, 10, 1)
+    const bombObj = new Sprite(100, 100, 810, 9, 1);
     const updateScene = () => {
         // очищаем весь канвас перед перерисовкой
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -274,12 +351,6 @@ const CanvasComponent: FC<CanvasProps> = ({
             asteroids.push(asteroid);
         }
 
-        if (isGameEnd) {
-            ctx.fillStyle = 'white';
-            ctx.font = '48px serif';
-            ctx.fillText('GAME OVER !', canvas.width/2 - 100, canvas.height/2);
-            return;
-        }
         bullets = bullets.filter((el: any) => el.getVisible());
         bullets.forEach((el: any) => {
             ctx.beginPath();
@@ -292,7 +363,17 @@ const CanvasComponent: FC<CanvasProps> = ({
 
         asteroids = asteroids.filter((el: any) => el.getVisible());
         explosions = explosions.filter((el: any) => el.timeLives > 0);
+        bombs = bombs.filter((el: any) => el.isVisible);
+        bombExpArray = bombExpArray.filter((el: any) => el.timeLives > 0);
         checkCollision();
+
+        bombs.forEach((bomb3Obj: any) => {
+            ctx.drawImage(bomb3, bomb3Obj.column * bomb3Obj.frameWidth,
+                bomb3Obj.row * bomb3Obj.frameHeight,
+                bomb3Obj.frameWidth, bomb3Obj.frameHeight, bomb3Obj.x, bomb3Obj.y, bomb3Obj.frameWidth/4, bomb3Obj.frameHeight/4);
+            bomb3Obj.update();
+        });
+
         asteroids.forEach((el: any) => {
             const size = el.isSmall ? 100 : 200;
             ctx.drawImage(aster, el.getPos().x, el.getPos().y, size, size);
@@ -307,6 +388,15 @@ const CanvasComponent: FC<CanvasProps> = ({
             el.update();
         });
 
+
+        // взрывы бомб
+        bombExpArray.forEach((el: any) => {
+            ctx.drawImage(bombExplosion, el.column * el.frameWidth,
+                el.row * el.frameHeight,
+                el.frameWidth, el.frameHeight, el.x - 100, el.y - 100, el.frameWidth/3, el.frameHeight/3);
+            el.update();
+        });
+
         // корабль
         // сохраняем канвас
         ctx.save();
@@ -317,6 +407,19 @@ const CanvasComponent: FC<CanvasProps> = ({
         // переносим центр обратно
         ctx.translate(-xMove - shipWith/2, -yMove - shipHeight/2);
         // отрисовываем корабль
+        if (keyUp) {
+            // отрисовывавем пламя двигателя
+            ctx.drawImage(fire, fireObj.column * fireObj.frameWidth,
+                fireObj.row * fireObj.frameHeight,
+                fireObj.frameWidth, fireObj.frameHeight, xMove + 13, yMove + 95, fireObj.frameWidth/4, fireObj.frameHeight/4);
+            ctx.drawImage(fire, fireObj.column * fireObj.frameWidth,
+                fireObj.row * fireObj.frameHeight,
+                fireObj.frameWidth, fireObj.frameHeight, xMove + 26.5, yMove + 120, fireObj.frameWidth/4, fireObj.frameHeight/4);
+            ctx.drawImage(fire, fireObj.column * fireObj.frameWidth,
+                fireObj.row * fireObj.frameHeight,
+                fireObj.frameWidth, fireObj.frameHeight, xMove + 39, yMove + 95, fireObj.frameWidth/4, fireObj.frameHeight/4);
+        }
+        fireObj.update();
         ctx.drawImage(spaceship, xMove, yMove, shipWith, shipHeight);
         // восстанавливаем канвас
         ctx.restore();
@@ -383,11 +486,13 @@ const CanvasComponent: FC<CanvasProps> = ({
         canvas.style.height = '720px';
         ctx = canvas.getContext('2d');
 
-
         bg.src = bgImg;
         debris.src = debrisImg;
         spaceship.src = spaceshipImg;
         explosion.src = explosionImg;
+        fire.src = fireImg;
+        bomb3.src = bomb3Img;
+        bombExplosion.src = bombExp;
         aster.src = asterImg;
 
         const startAnimation = () => {
