@@ -1,6 +1,6 @@
 import React, { FC, FormEvent, useState } from 'react'
-import Form from 'components/form'
-import TextInput from 'components/inputs'
+import Form from 'src/client/components/form'
+import TextInput from 'src/client/components/Inputs'
 import { changeAvatar } from 'src/core/ducks/profile/actions'
 import { useAppDispatch } from 'src/ssr'
 

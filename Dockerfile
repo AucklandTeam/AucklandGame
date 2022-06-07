@@ -1,6 +1,6 @@
 FROM node:13-alpine
 
-COPY package.json ./
+WORKDIR /app
 
 COPY package.json ./
 
@@ -8,9 +8,8 @@ RUN npm install
 
 COPY . ./
 
-RUN npm run build
+RUN npm run prod:build
 
-COPY ./dist ./dist
 
 EXPOSE 80
 

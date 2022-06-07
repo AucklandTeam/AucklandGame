@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import useForm from 'src/hooks/useForm'
-import TextInput from 'components/inputs'
+import TextInput from '../Inputs'
 import Form from '../form'
 import { initialState, TextFieldsChangePassword } from './shared'
 import { changeUserPasswordRequest } from 'src/core/ducks/profile/api'
