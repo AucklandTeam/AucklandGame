@@ -2,6 +2,7 @@ import React from 'react'
 import NotGameWrap from 'components/notGameWrap'
 import styles from 'styles/base.scss'
 import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
+import {PageMeta} from 'components/pageMeta';
 
 const byField =
 	(field: string) =>
@@ -13,6 +14,10 @@ const Scores = () => {
 
 	return (
 		<NotGameWrap titlePage={'High-Scores'}>
+			<PageMeta
+				title='High-Scores | Destroy Asteroids'
+				description='Game by Auckland Team on Yandex Practicum'
+			/>
 			<table className={styles.highScoresTable}>
 				<tbody>
 					{list &&

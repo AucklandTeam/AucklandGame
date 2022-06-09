@@ -1,19 +1,24 @@
-import React from 'react';
+import React from 'react'
 import styles from 'styles/base.scss'
 import NotGameWrap from 'components/notGameWrap'
 import Avatar from 'components/avatar'
 import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import { RESOURCE_URL } from 'shared/consts'
 import noImage from 'static/images/noImage.svg'
-import {useLeaderBordInfo} from 'src/core/ducks/scores/selectors'
+import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
+import { PageMeta } from 'components/pageMeta'
 
 const Profile = () => {
-	const { data:list } = useLeaderBordInfo()
+	const { data: list } = useLeaderBordInfo()
 	const { data } = useUserInfo()
 	const userScore = list.filter(x => x.login === data.login)
 
 	return (
 		<NotGameWrap titlePage={'Gamer Profile'}>
+			<PageMeta
+				title='User Profile | Destroy Asteroids'
+				description='Game by Auckland Team on Yandex Practicum'
+			/>
 			<div className={styles.userCard}>
 				<Avatar
 					imageSrc={
