@@ -6,28 +6,13 @@ import { hot } from 'react-hot-loader/root'
 import { useAppDispatch } from 'src/ssr'
 import { fetchUser } from 'src/core/ducks/auth/actions'
 import { useUserInfo } from 'src/core/ducks/auth/selectors'
-import {getLeaderBoard} from 'src/core/ducks/scores/actions';
-import {useLeaderBordInfo} from 'src/core/ducks/scores/selectors';
-
-const serviceWorker = () => {
-	if ('serviceWorker' in navigator) {
-		window.addEventListener('load', () => {
-			navigator.serviceWorker
-				.register('/service-worker.js')
-				.then(registration => {
-					console.log('SW registered: ', registration)
-				})
-				.catch(registrationError => {
-					console.log('SW registration failed: ', registrationError)
-				})
-		})
-	}
-}
+import { getLeaderBoard } from 'src/core/ducks/scores/actions'
+import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
 
 const App = () => {
 	const dispatch = useAppDispatch()
 	const { data } = useUserInfo()
-	const { data:list } = useLeaderBordInfo()
+	const { data: list } = useLeaderBordInfo()
 	useEffect(() => {
 		if (!data) {
 			dispatch(fetchUser())
@@ -46,11 +31,11 @@ const App = () => {
 	})
 
 	return (
-			<Routes>
-				{routes.map(({ fetchData, ...routeProps }) => (
-					<Route key={routeProps.path} {...routeProps} />
-				))}
-			</Routes>
+		<Routes>
+			{routes.map(({ fetchData, ...routeProps }) => (
+				<Route key={routeProps.path} {...routeProps} />
+			))}
+		</Routes>
 	)
 }
 
