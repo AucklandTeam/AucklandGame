@@ -6,7 +6,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rm -rf dist",
     "prod:build": "NODE_ENV=production NODE_PATH=. npm run clean && webpack --mode production",
     "prod:server": "nodemon index.js --watch dist/server.js",
     "start": "NODE_ENV=production npm-run-all --print-label --parallel prod:*",
@@ -85,6 +85,7 @@
     "postcss-modules-values": "^4.0.0",
     "prettier": "2.6.1",
     "redux-devtools-extension": "^2.13.9",
+    "rimraf": "^3.0.2",
     "sass": "^1.49.11",
     "sass-loader": "^12.6.0",
     "stylelint": "^14.8.2",

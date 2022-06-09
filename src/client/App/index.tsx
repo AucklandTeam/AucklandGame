@@ -6,6 +6,8 @@ import { hot } from 'react-hot-loader/root'
 import { useAppDispatch } from 'src/ssr'
 import { fetchUser } from 'src/core/ducks/auth/actions'
 import { useUserInfo } from 'src/core/ducks/auth/selectors'
+import {getLeaderBoard} from 'src/core/ducks/scores/actions';
+import {useLeaderBordInfo} from 'src/core/ducks/scores/selectors';
 
 const serviceWorker = () => {
 	if ('serviceWorker' in navigator) {
@@ -25,10 +27,13 @@ const serviceWorker = () => {
 const App = () => {
 	const dispatch = useAppDispatch()
 	const { data } = useUserInfo()
-
+	const { data:list } = useLeaderBordInfo()
 	useEffect(() => {
 		if (!data) {
 			dispatch(fetchUser())
+		}
+		if (!list) {
+			dispatch(getLeaderBoard())
 		}
 	}, [])
 

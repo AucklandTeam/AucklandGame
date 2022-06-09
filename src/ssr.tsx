@@ -34,7 +34,6 @@ export default async (req: Request, res: Response) => {
 
 		const reactHtml = renderToString(appHtml)
 		const reduxState = store.getState()
-		console.log(reduxState)
 		res.status(200).send(getHtml(reactHtml, reduxState))
 	}
 	store
@@ -50,7 +49,6 @@ export default async (req: Request, res: Response) => {
 	routes.some(route => {
 		const { fetchData: fetchMethod } = route
 		const match = matchPath(reqUrl.pathname, route.path)
-		console.log(match)
 
 		if (match && fetchMethod) {
 			dataRequirements.push(
@@ -63,7 +61,6 @@ export default async (req: Request, res: Response) => {
 
 		return Boolean(match)
 	})
-	console.log(dataRequirements)
 	return Promise.all(dataRequirements)
 		.then(() => store.close())
 		.catch(err => {
