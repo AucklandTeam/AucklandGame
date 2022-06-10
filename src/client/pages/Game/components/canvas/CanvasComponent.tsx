@@ -165,7 +165,20 @@ const CanvasComponent: FC<CanvasProps> = ({
 
     const fireShip = () => {
         const bullet = new Bullet(xMove + shipWith/2, yMove + shipHeight/2, angle);
+
         bullets.push(bullet);
+
+        const isTripleFire = true;
+        if (isTripleFire) {
+            const x1 = xMove + shipWith/2 - bulletRadius/2 + 50 * Math.sin((-angle + 50) * Math.PI / 180);
+            const y1 = yMove - bulletRadius/2 + shipHeight/2 + 50 * Math.cos((-angle + 50) * Math.PI / 180);
+            const x2 = xMove + shipWith/2 - bulletRadius/2 + 50 * Math.sin((-angle - 50) * Math.PI / 180);
+            const y2 = yMove - bulletRadius/2 + shipHeight/2 + 50 * Math.cos((-angle - 50) * Math.PI / 180)
+            const bullet1 = new Bullet(x1, y1, angle);
+            const bullet2 = new Bullet(x2, y2, angle);
+            bullets.push(bullet1);
+            bullets.push(bullet2);
+        }
     };
 
     const updateShip = (time: number) => {
@@ -307,6 +320,8 @@ const CanvasComponent: FC<CanvasProps> = ({
             el.update();
         });
 
+
+
         // корабль
         // сохраняем канвас
         ctx.save();
@@ -316,12 +331,29 @@ const CanvasComponent: FC<CanvasProps> = ({
         ctx.rotate(Math.PI/180 * angle);
         // переносим центр обратно
         ctx.translate(-xMove - shipWith/2, -yMove - shipHeight/2);
+
+
         // отрисовываем корабль
         ctx.drawImage(spaceship, xMove, yMove, shipWith, shipHeight);
         // восстанавливаем канвас
         ctx.restore();
         ctx.fillStyle = 'white';
         ctx.font = '24px serif';
+
+        ctx.beginPath();
+        ctx.arc(xMove + shipWith/2 - bulletRadius/2 + 50*Math.sin((-angle - 50) * Math.PI / 180), yMove - bulletRadius/2 + shipHeight/2 + 50*Math.cos((-angle - 50) * Math.PI / 180), bulletRadius, 0, 2 * Math.PI);
+        ctx.fillStyle = 'orange';
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        const angRemainer = angle % 360;
+        const angle2 =  angRemainer < 0 ? 360 +  angRemainer :  angRemainer;
+        ctx.arc(xMove + shipWith/2 - bulletRadius/2 + 50*Math.sin((-angle + 50) * Math.PI / 180), yMove - bulletRadius/2 + shipHeight/2 + 50*Math.cos((-angle + 50) * Math.PI / 180), bulletRadius, 0, 2 * Math.PI);
+
+        ctx.fillStyle = 'orange';
+        ctx.fill();
+        ctx.closePath();
     };
 
     const loop = (time: number) => {
