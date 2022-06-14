@@ -7,17 +7,18 @@ import noImage from 'www/Images/noImage.svg';
 import UploadAvatar from 'src/components/elements/AvatarUploadForm';
 import EditUserData from 'src/components/elements/EditUserForm';
 import EditUserPassword from 'src/components/elements/EditUserPasswordForm';
+import {RESOURCE_URL} from '../../../shared/consts';
+import {useUserInfo} from '../Auth/selectors';
 
 const ProfileEdit: FC = () => {
     const modal: MutableRefObject<null> = useRef(null);
-    //const avatar: MutableRefObject<null> = useRef(null);
-
+    const {data} = useUserInfo();
     return (
         <NotGameWrap titlePage={'Profile Edit'}>
             <div className={styles.userCard}>
                 <Avatar
-                    imageSrc={noImage}
-                    imageTitle={'Avatar'}
+                    imageSrc={data?.avatar ? `${RESOURCE_URL}${data.avatar}` : noImage}
+                    imageTitle={data?.avatar ? data.login : 'Avatar'}
                     divClass={styles.userAvatar}
                     handleClick={() => (modal as MutableRefObject<any>).current.open()}
                 />

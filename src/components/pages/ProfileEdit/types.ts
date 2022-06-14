@@ -1,7 +1,7 @@
 import {ActionWithPayload, GenerateState, LoadStatus, ParamForFormRequest, User} from 'src/shared/types';
-import {userActions} from './actions';
-import {LoginForm} from './Login/types';
-import {SignUpForm} from './SignUp/types';
+import {userActions} from 'src/components/pages/Auth/actions';
+import {EditUserDataForm} from 'src/components/elements/EditUserForm/types';
+import {UploadAvatarForm} from '../../elements/AvatarUploadForm';
 
 export type UserState = GenerateState<User>;
 
@@ -12,15 +12,7 @@ export type UserActionData = ActionWithPayload<Extract<typeof userActions, 'setU
 
 export type UserActions = UserActionStatus | UserActionData;
 
-export type ParamSignIn = LoginForm & ParamForFormRequest;
+export type ParamEditUser = EditUserDataForm & ParamForFormRequest;
 
-export type ParamSignUp = SignUpForm & ParamForFormRequest;
+export type ParamChangeAvatar = UploadAvatarForm & ParamForFormRequest;
 
-export type ServiceID = {
-    service_id: string;
-}
-
-export type OAuthYandex = {
-    code: string;
-    redirect_uri: string;
-}

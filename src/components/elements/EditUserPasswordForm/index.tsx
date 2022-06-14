@@ -3,21 +3,13 @@ import useForm from 'src/hooks/useForm';
 import TextInput from '../Inputs/TextInput';
 import Form from '../Form';
 import {initialState, TextFieldsChangePassword} from './shared';
-import {FormErrors} from 'src/hooks/useForm/types';
 import {changeUserPasswordRequest} from 'src/components/pages/ProfileEdit/api';
 import {ChangePasswordForm} from './types';
 
 const EditUserPassword = () => {
     const [formError, setFormError] = useState('');
-    const { values, handleChange, handleSubmit, isValid } = useForm<ChangePasswordForm>({
+    const { values, handleChange, handleBlur, handleSubmit, isValid } = useForm<ChangePasswordForm>({
         initialState,
-        validate: values => {
-            let errors: FormErrors<ChangePasswordForm> = {} as FormErrors<ChangePasswordForm>;
-            if (values.newPassword.length < 5) {
-                errors.newPassword = 'Password is too short';
-            }
-            return errors;
-        },
         onSubmit: values => {
             if (isValid) {
                 changeUserPasswordRequest(values)
@@ -45,6 +37,7 @@ const EditUserPassword = () => {
                         name={name}
                         value={values[name]}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                 ))}
         </Form>

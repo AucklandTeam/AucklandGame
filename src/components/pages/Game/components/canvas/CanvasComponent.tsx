@@ -1,12 +1,12 @@
 import React, {FC, useEffect, useRef} from 'react';
 // @ts-ignore
-import spaceshipImg from '../../../../../../www/Images/buran.png';
+import spaceshipImg from '/www/Images/buran.png';
 // @ts-ignore
-import bgImg from '../../../../../../www/Images/sky.png';
+import bgImg from '/www/Images/sky.png';
 // @ts-ignore
-import debrisImg from '../../../../../../www/Images/debris.png';
+import debrisImg from '/www/Images/debris.png';
 // @ts-ignore
-import explosionImg from '../../../../../../www/Images/Explosion.png';
+import explosionImg from '/www/Images/Explosion.png';
 // @ts-ignore
 import asterImg from '../../../../../../www/Images/aster.png';
 import { getRandomArbitrary } from './utils';
@@ -118,7 +118,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         getCenterY() {
             return this.y + 100;
         }
-    };
+    }
 
     class Bullet extends Base {
         private angle: number;
@@ -136,7 +136,7 @@ const CanvasComponent: FC<CanvasProps> = ({
                 this.visible = false;
             }
         }
-    };
+    }
 
     const fireShip = () => {
         const bullet = new Bullet(xMove + shipWith/2, yMove + shipHeight/2, angle);
@@ -237,7 +237,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             const {x, y} = getAsteroidCoords();
             const asteroid = new Asteroid(x, y);
             asteroids.push(asteroid);
-        };
+        }
 
         if (isGameEnd) {
             ctx.fillStyle = 'white';

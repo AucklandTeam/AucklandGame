@@ -1,28 +1,32 @@
-import {useCallback, useEffect, useMemo, useState} from 'react';
-import {UseFormProps, UseFormResult, FormErrors} from './types';
+import { useCallback, useMemo, useState } from 'react';
+import { UseFormProps, UseFormResult, FormErrors } from './types';
+import useValidate from '../useValidate';
 
-const useForm = <T extends object = {}>(
-    {
-        initialState,
-        onSubmit,
-        validate
-    }: UseFormProps<T>): UseFormResult<T> => {
-
+const useForm = <T extends object = {}>({ initialState, onSubmit }: UseFormProps<T>): UseFormResult<T> => {
     const [formError, setFormError] = useState('');
     const [values, setValues] = useState<T>(() => initialState);
-    const [errors, setErrors] = useState<FormErrors<T>>({} as FormErrors<T>);
+    const [errors, setErrors] = useState({} as FormErrors);
 
-    const setFieldValue: UseFormResult<T>['setFieldValue'] = useCallback((name, value) => {
-        setValues((prev) => ({...prev, [name]: value}));
-    }, [values]);
+    const setFieldValue: UseFormResult<T>['setFieldValue'] = useCallback(
+        (name, value) => {
+            setValues(prev => ({ ...prev, [name]: value }));
+        },
+        [values],
+    );
 
-    const handleChange: UseFormResult['handleChange'] = useCallback(({target}) => {
+    const handleChange: UseFormResult['handleChange'] = useCallback(({ target }) => {
         setFieldValue(target.name, target.value);
     }, []);
 
-    const isValid = useMemo(() => !Object.keys(errors).length, [errors]);
+    const handleBlur: UseFormResult['handleBlur'] = ({ target }) => {
+        const validate = useValidate(target);
+        setErrors(prev => ({ ...prev, [target.name]: validate }));
+        return errors;
+    };
 
-    const handleReset: UseFormResult<T>['handleReset'] = (state) => {
+    const isValid = useMemo(() => !Object.values(errors).includes('wrong'), [errors]);
+
+    const handleReset: UseFormResult<T>['handleReset'] = state => {
         if (state) {
             setValues(() => state);
         } else {
@@ -30,21 +34,16 @@ const useForm = <T extends object = {}>(
         }
     };
 
-    const handleSubmit: UseFormResult['handleSubmit'] = (event) => {
+    const handleSubmit: UseFormResult['handleSubmit'] = event => {
         event.preventDefault();
         onSubmit(values);
     };
-
-    useEffect(() => {
-        if (validate) {
-            setErrors(() => validate(values));
-        }
-    }, [values]);
 
     return {
         values,
         setFieldValue,
         handleChange,
+        handleBlur,
         handleReset,
         errors,
         isValid,

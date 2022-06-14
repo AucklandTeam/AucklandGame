@@ -1,10 +1,10 @@
-@import '../../../../../assets/base';
+@import 'src/assets/base';
 
 .gameTopBar {
   display: flex;
   width: 1285px;
   height: 50px;
-  margin-top: 30px;
+  margin-top: $base-vertical-padding/2;
   align-items: center;
   justify-content: space-between;
 }
@@ -22,20 +22,21 @@
 .gameScore {
   display: flex;
   align-items: center;
-  margin: 0 20px;
-  font-family: 'Play';
+  margin-right: $base-horizontal-padding/3;
+  font-family: $font-default-family;
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
   line-height: 37px;
 }
-.gameScore svg {
-  margin: 0 5px;
+.gameState svg {
+  margin-right: $base-horizontal-padding/3;
 }
 .quit {
-  color: #EE7676;
+  color: $error-light;
 }
 .menuItem {
   cursor: pointer;
-  padding: 0 10px;
+  padding: 0 $base-horizontal-padding/3;
+  font-size: 32px;
 }

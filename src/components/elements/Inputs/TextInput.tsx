@@ -8,17 +8,28 @@ export interface TextInputProps<NAME> {
     value?: string;
     placeholder?: string;
     isHide?: boolean;
+    validType?: string;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextInput: FC<TextInputProps<string>> = ({ title, type, name, value, onChange }) => (
+const TextInput: FC<TextInputProps<string>> = ({
+    title,
+    type,
+    name,
+    value,
+    validType,
+    onBlur,
+    onChange }) => (
     <div className={styles.inputWrap}>
         <input
             type={type}
             name={name}
             title={title}
             value={value}
-            onChange={onChange}
+            data-vtype={validType}
+            onBlur={onBlur}
+            onChange ={onChange}
             required
         />
         <label htmlFor={name}>{title}</label>

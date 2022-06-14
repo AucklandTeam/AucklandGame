@@ -20,7 +20,8 @@
         font-size: 0.65em;
         color: $accent-60;
     }
-    &.error input{
+    &.error input,
+    &.error input:focus {
         box-shadow: $form-box-error-shadow;
     }
     &.error input ~ label {

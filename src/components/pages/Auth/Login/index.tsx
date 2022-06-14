@@ -1,33 +1,26 @@
 import React, {FC} from 'react';
 import {Link} from 'react-router-dom';
-import useForm from 'src/hooks/useForm';
-import {FormErrors} from 'src/hooks/useForm/types';
+import useForm from '@src/hooks/useForm';
+import {useAppDispatch} from '@src/index';
 import {LoginForm} from './types';
-import TextInput from 'src/components/elements/Inputs/TextInput';
-import {initialState, TextFieldsLogin} from './shared';
-import Form from 'src/components/elements/Form';
-import {RouterPath} from 'src/shared/consts';
-import HomePageWrap from 'src/components/elements/HomePageWrap';
-import {useAppDispatch} from 'src/index';
 import {signIn} from '../actions';
+import HomePageWrap from '@src/components/elements/HomePageWrap';
+import Form from '@src/components/elements/Form';
+import {initialState, TextFieldsLogin} from './shared';
+import TextInput from '@src/components/elements/Inputs/TextInput';
+import {RouterPath} from '@src/shared/consts';
 
 const Login: FC = () => {
     const dispatch = useAppDispatch();
-    const {values, handleChange, handleSubmit, isValid, setFormError, formError} = useForm<LoginForm>({
+    const { values, handleChange, handleBlur, handleSubmit, isValid, setFormError, formError } = useForm<LoginForm>({
         initialState,
-        validate: (values) => {
-            const errors: FormErrors<LoginForm> = {} as FormErrors<LoginForm>;
-            if (values.login.length < 3) {
-                errors.login = 'Поле короткое';
-            }
-            return errors;
+        onSubmit: values => {
+            console.log(isValid);
+            if (!isValid) return;
+            dispatch(signIn({ ...values, setFormError }));
         },
-        onSubmit: (values) => {
-            if (isValid) {
-                dispatch(signIn({...values, setFormError}));
-            }
-        }
     });
+
     return (
         <HomePageWrap titleContent={'Sign In'}>
             <Form
@@ -35,17 +28,20 @@ const Login: FC = () => {
                 submitTitle={'Let’s shoot!'}
                 errorText={formError}
             >
-                {TextFieldsLogin.map(({name, type,title}) =>
-                    (<TextInput
+                {TextFieldsLogin.map(({ name, type, title, validType }) => (
+                    <TextInput
                         key={name}
                         title={title}
                         type={type}
                         name={name}
+                        validType={validType}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={values[name]}
                     />
-                    ))}
+                ))}
             </Form>
+            <Link style={{width: '100%', textAlign: 'center'}} to={RouterPath.SignYandex}>Sign via Yandex?</Link>
             <Link to={RouterPath.SignUp}>No account yet?</Link>
         </HomePageWrap>
     );
