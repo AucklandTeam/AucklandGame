@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
-import useForm from 'src/hooks/useForm';
-import { LoginForm } from './types';
-import TextInput from 'src/components/elements/Inputs/TextInput';
-import { initialState, TextFieldsLogin } from './shared';
-import Form from 'src/components/elements/Form';
-import { RouterPath } from 'src/shared/consts';
-import HomePageWrap from 'src/components/elements/HomePageWrap';
-import { useAppDispatch } from 'src/index';
-import { signIn } from '../actions';
+import React, {FC} from 'react';
+import {Link} from 'react-router-dom';
+import useForm from '@src/hooks/useForm';
+import {useAppDispatch} from '@src/index';
+import {LoginForm} from './types';
+import {signIn} from '../actions';
+import HomePageWrap from '@src/components/elements/HomePageWrap';
+import Form from '@src/components/elements/Form';
+import {initialState, TextFieldsLogin} from './shared';
+import TextInput from '@src/components/elements/Inputs/TextInput';
+import {RouterPath} from '@src/shared/consts';
 
 const Login: FC = () => {
     const dispatch = useAppDispatch();
@@ -41,6 +41,7 @@ const Login: FC = () => {
                     />
                 ))}
             </Form>
+            <Link style={{width: '100%', textAlign: 'center'}} to={RouterPath.SignYandex}>Sign via Yandex?</Link>
             <Link to={RouterPath.SignUp}>No account yet?</Link>
         </HomePageWrap>
     );

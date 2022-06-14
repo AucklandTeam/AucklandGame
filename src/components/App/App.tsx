@@ -1,26 +1,24 @@
 import React, {useEffect} from 'react';
 import {Route, Routes, Router} from 'react-router-dom';
-import Game from 'src/components/pages/Game/Game';
-import Results from 'src/components/pages/Results/Results';
-import Profile from 'src/components/pages/Profile/Profile';
-import Main from 'src/components/pages/Main/Main';
-import Login from 'src/components/pages/Auth/Login';
-import ForumMain from 'src/components/pages/Forum/ForumMain';
-import SignUp from 'src/components/pages/Auth/SignUp';
-import ProfileEdit from 'src/components/pages/ProfileEdit/ProfileEdit';
-import Error404 from 'src/components/pages/Errors/404';
-import initWorkerApi from 'src/api/worker/workerservice';
-import {useAppDispatch} from 'src/index';
-import {fetchUser} from 'src/components/pages/Auth/actions';
 import history, {useInitHistory} from 'src/core/history';
+import {useAppDispatch} from '@src/index';
+import { fetchUser } from '@src/components/pages/Auth/actions';
+import initWorkerApi from '@src/api/worker/workerservice';
+import Game from '@src/components/pages/Game/Game';
+import Results from '@src/components/pages/Results/Results';
+import Login from '@src/components/pages/Auth/Login';
+import {RouterPath} from '@src/shared/consts';
+import AuthViaYandex from '@src/components/pages/Auth/AuthViaYandex';
+import ForumMain from '@src/components/pages/Forum/ForumMain';
+import ProfileEdit from '@src/components/pages/ProfileEdit/ProfileEdit';
+import SignUp from '@src/components/pages/Auth/SignUp';
+import Error404 from '@src/components/pages/Errors/404';
+import Main from '@src/components/pages/Main/Main';
+import Profile from '@src/components/pages/Profile/Profile';
 
 const App = () => {
     const dispatch = useAppDispatch();
     const {stateHistory} = useInitHistory();
-
-    useEffect(() => {
-        dispatch(fetchUser());
-    }, []);
 
     // обработчик для воркера
     const workerMessageHandler = ({data}: any) => {
@@ -28,8 +26,8 @@ const App = () => {
         console.log('web-worker callback data:', data);
     };
 
-    // подключаем воркер
     useEffect(() => {
+        dispatch(fetchUser());
         initWorkerApi(workerMessageHandler);
     }, []);
 
@@ -58,6 +56,10 @@ const App = () => {
                 <Route
                     path="/sign-in"
                     element={<Login />}
+                />
+                <Route
+                    path={RouterPath.SignYandex}
+                    element={<AuthViaYandex/>}
                 />
                 <Route
                     path="/forum"
