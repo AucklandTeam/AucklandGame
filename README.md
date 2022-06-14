@@ -19,7 +19,7 @@ docker-compose up
 ```
 docker-compose ps
 ```
-Захожим на localhost:8080 в PG admin и коннектимся к нашей базе:
+Заходим на localhost:8080 в PG admin и коннектимся к нашей базе:
 ```
 - правой кнопкой create -> server
 - general -> name: postgres
