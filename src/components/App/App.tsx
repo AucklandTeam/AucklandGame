@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import {Route, Routes, Router} from 'react-router-dom';
-import history, {useInitHistory} from 'src/core/history';
+import ErrorBoundary from '@src/components/elements/ErrorBoundary/ErrorBoundary';
+import Error404 from '@src/components/pages/Errors/404';
+import history, {useInitHistory} from '@src/core/history';
 import {useAppDispatch} from '@src/index';
 import { fetchUser } from '@src/components/pages/Auth/actions';
 import initWorkerApi from '@src/api/worker/workerservice';
@@ -32,53 +34,51 @@ const App = () => {
     }, []);
 
     return (
-        <Router
-            location={stateHistory.location}
-            navigator={history}
-            navigationType={stateHistory.action}>
-            <Routes>
-                <Route
-                    path="/"
-                    element={<Main />}
-                />
-                <Route
-                    path="/game"
-                    element={<Game />}
-                />
-                <Route
-                    path="/profile"
-                    element={<Profile />}
-                />
-                <Route
-                    path="/results"
-                    element={<Results />}
-                />
-                <Route
-                    path="/sign-in"
-                    element={<Login />}
-                />
-                <Route
-                    path={RouterPath.SignYandex}
-                    element={<AuthViaYandex/>}
-                />
-                <Route
-                    path="/forum"
-                    element={<ForumMain />}
-                />
-                <Route
-                    path="/settings"
-                    element={<ProfileEdit />}
-                />
-                <Route
-                    path="/sign-up"
-                    element={<SignUp />}
-                />
-                <Route
-                    path="*"
-                    element={<Error404 />}
-                />
-            </Routes>
-        </Router>
+        <>
+          <Router
+              location={stateHistory.location}
+              navigator={history}
+              navigationType={stateHistory.action}>
+              <Routes>
+                  <Route
+                      path="/"
+                      element={<Main />}
+                  />
+                  <Route
+                      path="/game"
+                      element={<Game />}
+                  />
+                  <Route
+                      path="/profile"
+                      element={<Profile />}
+                  />
+                  <Route
+                      path="/results"
+                      element={<Results />}
+                  />
+                  <Route
+                      path="/sign-in"
+                      element={<Login />}
+                  />
+                  <Route
+                      path="/forum"
+                      element={<ForumMain />}
+                  />
+                  <Route
+                      path="/settings"
+                      element={<ProfileEdit />}
+                  />
+                  <Route
+                      path="/sign-up"
+                      element={<SignUp />}
+                  />
+                  <Route
+                      path="*"
+                      element={<Error404 />}
+                  />
+              </Routes>
+          </Router>
+        </>
     );
 };
 
