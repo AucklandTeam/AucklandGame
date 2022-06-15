@@ -13,6 +13,7 @@ class UserService  {
             const newUser = await this.createUser(name);
             return newUser;
         }
+        return user;
     }
 }
 
