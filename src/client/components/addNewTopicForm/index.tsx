@@ -40,7 +40,7 @@ const AddNewTopicForm: FC = () => {
 					value={values['topicTitle' as keyof NewTopicForm]}
 					onChange={handleChange}
 					onBlur={handleBlur}
-					data-vtype={'text'}
+					validType={'text'}
 				/>
 				<TextArea
 					name={'topicText'}
@@ -48,7 +48,7 @@ const AddNewTopicForm: FC = () => {
 					value={values['topicText' as keyof NewTopicForm]}
 					onChange={handleChange}
 					onBlur={handleBlur}
-					data-vtype={'text'}
+					validType={'text'}
 				/>
 			</Form>
 		</>
