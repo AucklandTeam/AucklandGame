@@ -5,6 +5,7 @@ import { useAppDispatch } from 'src/ssr'
 import useForm from 'src/hooks/useForm'
 import { NewTopicForm } from './types'
 import { initialState } from './shared'
+import TextArea from 'components/textArea';
 
 const AddNewTopicForm: FC = () => {
 	//const dispatch = useAppDispatch()
@@ -39,7 +40,15 @@ const AddNewTopicForm: FC = () => {
 					value={values['topicTitle' as keyof NewTopicForm]}
 					onChange={handleChange}
 					onBlur={handleBlur}
-					validType={'notnull'}
+					data-vtype={'text'}
+				/>
+				<TextArea
+					name={'topicText'}
+					title={'Your text here...'}
+					value={values['topicText' as keyof NewTopicForm]}
+					onChange={handleChange}
+					onBlur={handleBlur}
+					data-vtype={'text'}
 				/>
 			</Form>
 		</>

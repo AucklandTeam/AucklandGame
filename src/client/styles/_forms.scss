@@ -76,18 +76,24 @@ button[type='button'] {
 
 	& input:focus ~ label,
 	& input:valid ~ label,
-	& input:placeholder-shown ~ label {
+	& input:placeholder-shown ~ label,
+	& textarea:focus ~ label,
+	& textarea:valid ~ label,
+	& textarea:placeholder-shown ~ label{
 		transform: translateY(-50%);
 		font-size: 0.65em;
 		color: $accent-60;
 	}
 
 	&.error input,
-	&.error input:focus {
+	&.error input:focus,
+	&.error textarea,
+	&.error textarea:focus{
 		box-shadow: $form-box-error-shadow;
 	}
 
-	&.error input ~ label {
+	&.error input ~ label,
+	&.error textarea ~ label{
 		transform: translateY(-50%);
 		font-size: 0.65em;
 		color: $error-dark;
@@ -96,7 +102,8 @@ button[type='button'] {
 
 input[type='email'],
 input[type='password'],
-input[type='text'] {
+input[type='text'],
+textarea{
 	font-family: $form-font-family;
 	border: 0 solid;
 	background: $form-background-gradient;

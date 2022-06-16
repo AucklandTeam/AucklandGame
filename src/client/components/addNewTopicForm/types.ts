@@ -1,3 +1,4 @@
 export type NewTopicForm = {
-	title: string
+	topicTitle: string
+	topicText: string
 }

@@ -10,8 +10,8 @@ export type UseFormProps<T extends object = {}> = {
 export type UseFormResult<T extends object = {}> = {
 	values: T
 	setFieldValue: <T>(name: keyof T, value: any) => void
-	handleChange: (event: ChangeEvent<HTMLInputElement>) => void
-	handleBlur: (e: ChangeEvent<HTMLInputElement>) => FormErrors
+	handleChange: (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => void
+	handleBlur: (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => FormErrors
 	errors: FormErrors
 	handleReset: (state?: T) => void
 	isValid: boolean
