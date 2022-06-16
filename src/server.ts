@@ -1,6 +1,5 @@
 import path from 'path'
 import express, {Request} from 'express'
-
 import compression from 'compression'
 import serverRenderMiddleware from 'src/ssr'
 import {dbConnect} from 'server/db/connect';
@@ -65,7 +64,9 @@ app.get(ApiLocation.TOPIC, async (req, res)=>{
     }
     res.send('Error params');
 })
-
+app.get("/service-worker.js", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "public", "service-worker.js"))
+})
 app.get('/*', serverRenderMiddleware)
 
 export {app, dbConnect}
