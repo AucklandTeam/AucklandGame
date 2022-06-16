@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import Helmet, { HelmetData } from 'react-helmet'
 import { App } from 'client/App'
 import serialize from 'serialize-javascript'
 import { configureStore } from 'src/core/store'
@@ -20,7 +21,7 @@ import { AppState } from '../types/app'
 export default async (req: Request, res: Response) => {
 	const baseURL = req.protocol + '://' + req.headers.host + '/'
 	const reqUrl = new URL(req.url, baseURL)
-
+	const helmetData = Helmet.renderStatic()
 	const { store } = configureStore(getInitialState(), reqUrl.pathname)
 
 	function renderApp() {
@@ -34,8 +35,7 @@ export default async (req: Request, res: Response) => {
 
 		const reactHtml = renderToString(appHtml)
 		const reduxState = store.getState()
-		console.log(reduxState)
-		res.status(200).send(getHtml(reactHtml, reduxState))
+		res.status(200).send(getHtml(reactHtml, reduxState, helmetData))
 	}
 	store
 		.runSaga(rootSaga)
@@ -50,7 +50,6 @@ export default async (req: Request, res: Response) => {
 	routes.some(route => {
 		const { fetchData: fetchMethod } = route
 		const match = matchPath(reqUrl.pathname, route.path)
-		console.log(match)
 
 		if (match && fetchMethod) {
 			dataRequirements.push(
@@ -63,7 +62,6 @@ export default async (req: Request, res: Response) => {
 
 		return Boolean(match)
 	})
-	console.log(dataRequirements)
 	return Promise.all(dataRequirements)
 		.then(() => store.close())
 		.catch(err => {
@@ -74,7 +72,7 @@ export default async (req: Request, res: Response) => {
 export const useAppDispatch = () => useDispatch()
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector
 
-const getHtml = (reactHtml: string, reduxState = {}) => `
+const getHtml = (reactHtml: string, reduxState = {}, helmetData: HelmetData) => `
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -84,6 +82,8 @@ const getHtml = (reactHtml: string, reduxState = {}) => `
 				<title>Destroy Asteroids SSR</title>
 				<link rel="shortcut icon" type="image/png" href="/favicon.png">
 				<link href="/css/main.css" rel="stylesheet">
+				${helmetData.title.toString()}
+				${helmetData.meta.toString()}
         </head>
         <body>
             <div id="root">${reactHtml}</div>

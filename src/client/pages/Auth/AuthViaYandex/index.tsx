@@ -1,6 +1,6 @@
 import HomePageWrap from 'components/homePageWrap'
 import { useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { RouterPath } from 'src/client/components/@shared/consts'
 import {
 	authYandexGetServiceID,
@@ -8,6 +8,7 @@ import {
 } from 'src/core/ducks/auth/actions'
 import yandex from 'src/../static/images/yandex.svg'
 import { useAppDispatch } from 'src/ssr'
+import {PageMeta} from 'components/pageMeta';
 
 const AuthViaYandex = () => {
 	const dispatch = useAppDispatch()
@@ -26,6 +27,10 @@ const AuthViaYandex = () => {
 	}, [param])
 	return (
 		<HomePageWrap titleContent={'Sign via Yandex'}>
+			<PageMeta
+				title='Yandex Sign In | Destroy Asteroids'
+				description='Game by Auckland Team on Yandex Practicum'
+			/>
 			<div onClick={() => dispatch(authYandexGetServiceID())}>
 				<img src={yandex} alt='' />
 			</div>

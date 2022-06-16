@@ -9,6 +9,7 @@ import { RouterPath } from 'shared/consts'
 import HomePageWrap from 'src/client/components/homePageWrap'
 import { signIn } from 'src/core/ducks/auth/actions'
 import { useAppDispatch } from 'src/ssr'
+import {PageMeta} from 'components/pageMeta';
 
 const Login: FC = () => {
 	const dispatch = useAppDispatch()
@@ -31,6 +32,10 @@ const Login: FC = () => {
 
 	return (
 		<HomePageWrap titleContent={'Sign In'}>
+			<PageMeta
+				title='Sign In | Destroy Asteroids'
+				description='Game by Auckland Team on Yandex Practicum'
+			/>
 			<Form
 				handleSubmit={handleSubmit}
 				submitTitle={'Let’s shoot!'}

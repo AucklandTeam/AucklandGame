@@ -3,9 +3,14 @@ import NotGameWrap from 'client/components/notGameWrap'
 import styles from 'client/styles/base.scss'
 import ForumListItem from 'client/components/forumListItem'
 import { ForumListItems } from './shared'
+import {PageMeta} from 'components/pageMeta';
 
 const ForumMain: FC = () => (
 	<NotGameWrap titlePage={'Auckland Forum'}>
+		<PageMeta
+			title='Auckland Forum | Destroy Asteroids'
+			description='Game by Auckland Team on Yandex Practicum'
+		/>v
 		<table className={styles.forumsTable}>
 			<thead>
 				<tr>
