@@ -3,14 +3,18 @@ import NotGameWrap from 'client/components/notGameWrap'
 import styles from 'client/styles/base.scss'
 import TopicListItem from 'components/topicsListItem'
 import { TopicListItems } from './shared'
+import {PageMeta} from 'components/pageMeta';
 
-const ForumMain: FC = () => (
+const ForumTopicsList: FC = () => (
     <NotGameWrap titlePage={'Auckland Forum'}>
+        <PageMeta
+            title='Auckland Forum | Destroy Asteroids'
+            description='Game by Auckland Team on Yandex Practicum'
+        />
         <table className={styles.forumsTable}>
             <thead>
             <tr>
-                <th className={styles.forumTitleHeader}>Forums</th>
-                <th className={styles.forumTopicsHeader}>Topics</th>
+                <th className={styles.forumTitleHeader}>Topics</th>
                 <th className={styles.forumCommentsHeader}>Comments</th>
             </tr>
             </thead>
@@ -28,4 +32,4 @@ const ForumMain: FC = () => (
     </NotGameWrap>
 )
 
-export default ForumMain
+export default ForumTopicsList

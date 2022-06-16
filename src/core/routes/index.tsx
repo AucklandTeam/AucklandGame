@@ -12,6 +12,7 @@ import { getLeaderBoard } from 'src/core/ducks/scores/actions'
 import ForumMain from 'pages/Forum/ForumMain'
 import AuthViaYandex from 'pages/Auth/AuthViaYandex'
 import Error404 from 'pages/Errors/404'
+import ForumTopicsList from 'pages/Forum/ForumTopicsList';
 
 export default [
 	{
@@ -73,6 +74,22 @@ export default [
 	},
 	{
 		path: RouterPath.Forum,
+		element: <ForumMain />,
+		exact: true,
+		fetchData({ dispatch }: RouterFetchDataArgs) {
+			dispatch(fetchUser())
+		}
+	},
+	{
+		path: RouterPath.TopicsList,
+		element: <ForumTopicsList />,
+		exact: true,
+		fetchData({ dispatch }: RouterFetchDataArgs) {
+			dispatch(fetchUser())
+		}
+	},
+	{
+		path: RouterPath.SingleTopic,
 		element: <ForumMain />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {

@@ -10,7 +10,7 @@ const ForumMain: FC = () => (
 		<PageMeta
 			title='Auckland Forum | Destroy Asteroids'
 			description='Game by Auckland Team on Yandex Practicum'
-		/>v
+		/>
 		<table className={styles.forumsTable}>
 			<thead>
 				<tr>

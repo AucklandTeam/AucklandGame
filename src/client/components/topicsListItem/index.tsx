@@ -11,7 +11,7 @@ const TopicsListItem: FC<topicsListProps> =
 		topicCommentsCount
 	}) => (
 	<tr>
-		<td className={styles.forumTitle}><Link to={RouterPath.Forum} title={topicTitle} /></td>
+		<td className={styles.forumTitle}><Link to={RouterPath.SingleTopic} title={topicTitle}>{topicTitle}</Link></td>
 		<td className={styles.forumCommentsCounter}>{topicCommentsCount}</td>
 	</tr>
 )

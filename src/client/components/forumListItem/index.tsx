@@ -16,7 +16,7 @@ const ForumListItem: FC<forumListProps> =
 		const modal: MutableRefObject<null> = useRef(null)
 return (
 	<tr>
-		<td className={styles.forumTitle}><Link to={RouterPath.Forum} title={forumTitle} /></td>
+		<td className={styles.forumTitle}><Link to={RouterPath.TopicsList} title={forumTitle}>{forumTitle}</Link></td>
 		<td className={styles.forumTopicsCounter}>
 			{forumTopicsCount}
 			<Button buttonType={'button'} buttonTitle={'+'} handleClick={() =>
