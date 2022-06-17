@@ -23,6 +23,16 @@ const Game = () => {
 		setIsGameStart(true)
 	}
 
+    const getFullScreen = () => {
+        if (document.fullscreenElement === null) {
+            //document.documentElement.requestFullscreen();
+            const canvasEl = document.querySelector("canvas");
+            canvasEl.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
 	useEffect(() => {
 		if (!lives) {
 			dispatch(addUserToLeaderBoardAction(score))
@@ -45,6 +55,7 @@ const Game = () => {
 					setScore={setScore}
 					isGameStart={isGameStart}
 					setIsGameStart={setIsGameStart}
+                    getFullScreen={getFullScreen}
 				/>
 			</div>
 		</div>
