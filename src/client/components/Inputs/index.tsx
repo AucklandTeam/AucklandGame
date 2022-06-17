@@ -5,12 +5,13 @@ export interface TextInputProps<NAME> {
 	title?: string
 	name: NAME
 	type: HTMLInputElement['type']
-	value?: string
+	value?: string | number
 	placeholder?: string
 	isHide?: boolean
 	validType?: string
 	onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 	onBlur?: (event: ChangeEvent<HTMLInputElement>) => void
+	isRequired?: boolean
 }
 
 const TextInput: FC<TextInputProps<string>> = ({
@@ -20,7 +21,8 @@ const TextInput: FC<TextInputProps<string>> = ({
 	value,
 	validType,
 	onBlur,
-	onChange
+	onChange,
+	isRequired = true
 }) => (
 	<div className={styles.inputWrap}>
 		<input
@@ -31,7 +33,7 @@ const TextInput: FC<TextInputProps<string>> = ({
 			data-vtype={validType}
 			onBlur={onBlur}
 			onChange={onChange}
-			required
+			required={isRequired}
 		/>
 		<label htmlFor={name}>{title}</label>
 	</div>
