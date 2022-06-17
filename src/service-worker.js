@@ -4,8 +4,8 @@ const URLS = [
 	'/',
 	'/game',
 	'/forum',
-	'/sign-up'
-	//  '/main.js',
+	'/sign-up',
+	'/main.js',
 ]
 
 self.addEventListener('install', event => {

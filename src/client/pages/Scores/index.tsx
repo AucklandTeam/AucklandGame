@@ -23,7 +23,7 @@ const Scores = () => {
 					{list &&
 						list.sort(byField('userScore')).map((item, i) => {
 							return (
-								<tr key={i} className={styles.scoreLine}>
+								<tr key={i}>
 									<td className={styles.userRange}>{++i}</td>
 									<td className={styles.userLogin}>
 										{item.login}

@@ -4,6 +4,9 @@
 	width: 100%;
 	border: 1px solid $white-100;
 	border-collapse: collapse;
+	font-family: $font-heading-family;
+	font-size: 1.15em;
+	letter-spacing: .2px;
 
 	& tr > td {
 		padding: math.div($base-vertical-padding, 2)
@@ -19,4 +22,24 @@
 	& tr > td:last-child {
 		border-right: 0;
 	}
+	& tr:first-child > td:first-child::after,
+	& tr:nth-child(2) > td:first-child::after,
+	& tr:nth-child(3) > td:first-child::after{
+		content: '\e99e';
+		position: absolute;
+		font-family: $icomoon-font-family;
+		font-size: 1.3em;
+		padding-left: 10px;
+	}
+	& tr:first-child > td:first-child::after {
+		color: #FFD600
+	}
+	& tr:nth-child(2) > td:first-child::after {
+		color: #EFEFEF
+	}
+	& tr:nth-child(3) > td:first-child::after {
+		color: #FFA800
+	}
+
 }
+
