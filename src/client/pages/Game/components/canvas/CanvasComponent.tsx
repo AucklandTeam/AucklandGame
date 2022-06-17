@@ -23,13 +23,15 @@ interface CanvasProps {
     setScore: (arg0: number) => void;
     isGameStart: boolean;
     setIsGameStart: (arg0: boolean) => void;
+    getFullScreen: any;
 }
 
 const CanvasComponent: FC<CanvasProps> = ({
       setLives,
       setScore,
       isGameStart,
-      setIsGameStart
+      setIsGameStart,
+      getFullScreen,
     }) => {
     const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>;
     let canvas: any = {};
@@ -414,7 +416,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         canvas.style.width = '1279px';
         canvas.style.height = '720px';
         ctx = canvas.getContext('2d');
-
+        canvas.addEventListener('click', getFullScreen);
 
         bg.src = bgImg;
         debris.src = debrisImg;

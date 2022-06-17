@@ -21,10 +21,21 @@ const Game = () => {
         setIsGameStart(true);
     };
 
+    const getFullScreen = () => {
+        if (document.fullscreenElement === null) {
+            //document.documentElement.requestFullscreen();
+            const canvas2 = document.querySelector("canvas");
+            canvas2.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    };
+
+
     return (
         <div className={styles.gameMainWrap}>
             <GameTopBar lives={lives} score={score} />
-            <div>
+            <div style={{position: 'relative'}}>
                 {
                     !isGameStart &&
                     <StartModal startGameHandler={startGameHandler} attempts={attempts} score={score} />
@@ -34,6 +45,7 @@ const Game = () => {
                     setScore={setScore}
                     isGameStart={isGameStart}
                     setIsGameStart={setIsGameStart}
+                    getFullScreen={getFullScreen}
                 />
             </div>
         </div>
