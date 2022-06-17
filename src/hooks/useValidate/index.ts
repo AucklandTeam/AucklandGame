@@ -2,9 +2,9 @@ import { Patterns } from './types'
 import styles from 'client/styles/base.scss'
 import { validationType } from './shared'
 
-const useValidate = (input: HTMLInputElement) => {
+const useValidate = (input: HTMLInputElement | HTMLTextAreaElement) => {
 	const getValidationType = (
-		element: HTMLInputElement
+		element: HTMLInputElement | HTMLTextAreaElement
 	): Patterns | undefined => {
 		const type = element.dataset.vtype
 		if (!type) return
@@ -12,7 +12,7 @@ const useValidate = (input: HTMLInputElement) => {
 	}
 
 	const validation = (
-		element: HTMLInputElement
+		element: HTMLInputElement | HTMLTextAreaElement
 	): { passed: boolean; error: string } => {
 		const validType = getValidationType(element)
 
