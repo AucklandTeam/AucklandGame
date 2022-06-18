@@ -24,8 +24,8 @@ const Game = () => {
     const getFullScreen = () => {
         if (document.fullscreenElement === null) {
             //document.documentElement.requestFullscreen();
-            const canvas2 = document.querySelector("canvas");
-            canvas2.requestFullscreen();
+            const section = document.querySelector("section");
+            section.requestFullscreen();
         } else {
             document.exitFullscreen();
         }
@@ -34,12 +34,12 @@ const Game = () => {
 
     return (
         <div className={styles.gameMainWrap}>
-            <GameTopBar lives={lives} score={score} />
-            <div style={{position: 'relative'}}>
+            <section style={{position: 'relative',  width: '1279px', minHeight: '720px'}}>
                 {
                     !isGameStart &&
                     <StartModal startGameHandler={startGameHandler} attempts={attempts} score={score} />
                 }
+                <GameTopBar lives={lives} score={score} />
                 <CanvasComponent
                     setLives={setLives}
                     setScore={setScore}
@@ -47,7 +47,7 @@ const Game = () => {
                     setIsGameStart={setIsGameStart}
                     getFullScreen={getFullScreen}
                 />
-            </div>
+            </section>
         </div>
     );
 };

@@ -45,6 +45,7 @@ const GameTopBar = ({ lives, score }: any) => (
             {showLives(lives)}
             <div className={styles.gameScore}>Score: [{score}]</div>
         </div>
+        <div style={{ flexGrow: 1}}></div>
         <div className={styles.gameMenu}>
             {
                 bottomMenuItems.map((item: BottomMenuItemType, index) =>
