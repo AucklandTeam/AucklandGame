@@ -493,21 +493,22 @@ const CanvasComponent: FC<CanvasProps> = ({
 
     useEffect(() => {
         canvas= canvasRef.current;
+
+        canvas.style.width ='100%';
+        //canvas.style.height ='100%';
+        canvas.style.position='absolut';
+        canvas.style.top='50px';
+        //canvas.width = canvas.offsetWidth;
+        //canvas.heigth = canvas.offsetHeight;
         canvas.width = 1279;
         canvas.height = 720;
-        canvas.style.width = '1279px';
-        canvas.style.height = '720px';
         ctx = canvas.getContext('2d');
-
         canvas.addEventListener('click', getFullScreen);
 
         bg.src = bgImg;
         debris.src = debrisImg;
         spaceship.src = spaceshipImg;
         explosion.src = explosionImg;
-        fire.src = fireImg;
-        bomb3.src = bomb3Img;
-        bombExplosion.src = bombExp;
         aster.src = asterImg;
 
         const startAnimation = () => {
