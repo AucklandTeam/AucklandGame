@@ -31,10 +31,12 @@ const Game = () => {
 		}
 	};
 
-
+	const width = window.screen.width;
+	const ratio = width/1279;
+	const height = 720 * ratio;
 	return (
 		<div className={styles.gameMainWrap}>
-			<section style={{position: 'relative',  width: '1279px', minHeight: '720px'}}>
+			<section style={{position: 'relative',  width: '100vw', height: '100vh',}}>
 				{
 					!isGameStart &&
 					<StartModal startGameHandler={startGameHandler} attempts={attempts} score={score} />
@@ -46,6 +48,8 @@ const Game = () => {
 					isGameStart={isGameStart}
 					setIsGameStart={setIsGameStart}
 					getFullScreen={getFullScreen}
+					height={height}
+					width={width}
 				/>
 			</section>
 		</div>
