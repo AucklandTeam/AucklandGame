@@ -509,6 +509,9 @@ const CanvasComponent: FC<CanvasProps> = ({
         debris.src = debrisImg;
         spaceship.src = spaceshipImg;
         explosion.src = explosionImg;
+        fire.src = fireImg;
+        bomb3.src = bomb3Img;
+        bombExplosion.src = bombExp;
         aster.src = asterImg;
 
         const startAnimation = () => {
