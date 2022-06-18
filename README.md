@@ -13,7 +13,9 @@ npm run serve - dev server
 
 Сборка в контейнерах
 ```
-docker-compose up
+docker-compose down -v
+docker-compose up -d --build
+    
 ```
 Проверяем, что все запущено
 ```
