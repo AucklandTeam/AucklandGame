@@ -1,11 +1,13 @@
+@use 'sass:math';
+
 .forumsTable {
 	width: 100%;
 	border-collapse: separate;
 	border-spacing: 15px 30px;
 
 	& tr > td {
-		padding: calc(#{$base-vertical-padding} / 2)
-			calc(#{$base-horizontal-padding} / 2);
+		padding: math.div($base-vertical-padding, 2)
+			math.div($base-horizontal-padding, 2);
 		background: $white-100;
 		color: $dark-gray-100;
 	}
@@ -39,6 +41,15 @@
 
 .forumTitle {
 	width: 78%;
+
+	& a{
+		color: $dark-gray-100;
+
+		&:hover {
+			color: $accent-60
+		}
+	}
+
 }
 
 .forumTopicsCounter {
@@ -66,4 +77,85 @@
 .forumCommentsCounter {
 	width: 10%;
 	text-align: center;
+}
+.messageWrap {
+	display: block;
+	position: relative;
+	clear: both;
+	width: 100%;
+	background: $white-100;
+	color: $dark-gray-100;
+	border-radius: $form-border-radius;
+	padding: math.div($base-vertical-padding, 3)
+		math.div($base-horizontal-padding, 3);
+	margin-bottom: $base-horizontal-padding;
+
+	& button {
+		position: absolute;
+		bottom: math.div($base-vertical-padding, 3);
+		right: math.div($base-vertical-padding, 3);
+		background: $accent-80;
+		color: $white-100;
+		margin: 0;
+		padding: 1px 7px;
+		transition: $base-transition;
+
+		&:active,
+		&:hover,
+		&:focus {
+			background: $accent-100;
+			color: $white-100;
+			transition: $base-transition;
+		}
+	}
+}
+
+.messageHeader {
+	display: flex;
+	border-bottom: 1px solid $dark-gray-75;
+	margin-bottom: $base-horizontal-padding;
+}
+
+.messageText {
+	display: flex;
+	margin-bottom: $base-horizontal-padding * 2;
+}
+
+.forumUserAvatar {
+	border-radius: $form-border-radius;
+	margin-bottom: math.div($base-vertical-padding, 3);
+	margin-right: $base-horizontal-padding;
+}
+
+.messageMeta {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	width: 100%;
+	position: relative;
+	margin-bottom: math.div($base-vertical-padding, 3);
+}
+
+.forumUserAvatar,
+.forumUserAvatar img {
+	width: 60px;
+	height: 60px;
+}
+
+.userName {
+	width: 100%;
+	color: $accent-80;
+	font-size: $base-font-size * 0.85;
+}
+
+.messageDate {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: $accent-80;
+	font-size: $base-font-size * 0.65;
+}
+
+.replyFormWrap {
+	width: 100%;
 }

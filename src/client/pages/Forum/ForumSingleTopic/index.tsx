@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import NotGameWrap from 'client/components/notGameWrap'
 import {PageMeta} from 'components/pageMeta';
-import AddReplyForm from 'components/addReplyForm';
 import TopicSingleMessage from 'components/topicSingleMessage';
 
 const ForumSingleTopic: FC = () => {
@@ -12,8 +11,8 @@ const ForumSingleTopic: FC = () => {
                 title= {`${titlePage} | Destroy Asteroids`}
                 description='Game by Auckland Team on Yandex Practicum'
             />
+            <TopicSingleMessage isFirst={true}/>
             <TopicSingleMessage />
-            <AddReplyForm />
         </NotGameWrap>
     )
 }

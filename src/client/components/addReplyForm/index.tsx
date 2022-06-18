@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useState } from 'react'
+import React, {createRef, FC, FormEvent, useState} from 'react';
 import Form from 'src/client/components/form'
 import TextInput from 'src/client/components/Inputs'
 import { useAppDispatch } from 'src/ssr'
@@ -6,6 +6,7 @@ import useForm from 'src/hooks/useForm'
 import { AddReplyFormProps } from './types'
 import { initialState } from './shared'
 import TextArea from 'components/textArea';
+import styles from 'styles/base.scss';
 
 const AddReplyForm: FC = () => {
     //const dispatch = useAppDispatch()
@@ -23,11 +24,13 @@ const AddReplyForm: FC = () => {
         initialState,
         onSubmit: values => {
             if (!isValid) return
+            //some dispatch if success hide form
+
         }
     })
 
     return (
-        <>
+        <div className={styles.replyFormWrap}>
             <div>From: {authorName}</div>
             <Form
                 handleSubmit={handleSubmit}
@@ -58,7 +61,7 @@ const AddReplyForm: FC = () => {
                     value={values['messageAuthor' as keyof AddReplyFormProps]}
                 />
             </Form>
-        </>
+        </div>
     )
 }
 
