@@ -13,6 +13,7 @@ import ForumMain from 'pages/Forum/ForumMain'
 import AuthViaYandex from 'pages/Auth/AuthViaYandex'
 import Error404 from 'pages/Errors/404'
 import ForumTopicsList from 'pages/Forum/ForumTopicsList';
+import ForumSingleTopic from 'pages/Forum/ForumSingleTopic';
 
 export default [
 	{
@@ -90,7 +91,7 @@ export default [
 	},
 	{
 		path: RouterPath.SingleTopic,
-		element: <ForumMain />,
+		element: <ForumSingleTopic />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
 			dispatch(fetchUser())
