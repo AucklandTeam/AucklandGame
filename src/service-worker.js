@@ -4,6 +4,8 @@ const URLS = [
 	'/',
 	'/game',
 	'/forum',
+	'/topic',
+	'/topics',
 	'/sign-up',
 	'/main.js',
 ]

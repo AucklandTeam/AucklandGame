@@ -28,11 +28,11 @@ const NotGameWrap: FC<TemplatePageProps> = ({ titlePage, children }) => {
 	}, [])
 	const { isAuth, isLoaded } = useAuth()
 
-	useEffect(() => {
-		if (!isAuth && isLoaded) {
-			history.push(RouterPath.Main)
-		}
-	}, [isAuth])
+	// useEffect(() => {
+	// 	if (!isAuth && isLoaded) {
+	// 		history.push(RouterPath.Main)
+	// 	}
+	// }, [isAuth])
 
 	return (
 		<div className={styles.notGame}>

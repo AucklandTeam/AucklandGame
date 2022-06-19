@@ -8,13 +8,17 @@ import Button from 'components/buttons'
 import noImage from 'static/images/noImage.svg'
 import AddReplyForm from 'components/addReplyForm';
 
-const TopicSingleMessage: FC = () => {
+type TopicSingleMessageProps = {
+	messageTitle: string;
+	topicId: number;
+	authorId: number;
+	messageText: string;
+	userName: string;
+	userAvatar: string;
+}
+
+const TopicSingleMessage: FC<TopicSingleMessageProps> = ({messageTitle, topicId, authorId, messageText, userAvatar, userName}) => {
 	//const dispatch = useAppDispatch()
-	const userName = 'var_user.login'
-	const userAvatar = 'var_user.avatar'
-	const messageText = 'var_message.text'
-	const messageTitle = 'var_message.title'
-	const messageDate = 'var_01.01.2022'
 	const metaStyle = messageTitle ? styles.userName : styles.messageTitle
 	const [showForm, setShowForm] = useState(false)
 	const handleReplyClick = () => setShowForm(true)
@@ -25,14 +29,13 @@ const TopicSingleMessage: FC = () => {
 			<div className={styles.messageWrap}>
 				<div className={styles.messageHeader}>
 					<Avatar
-						imageSrc={noImage}
+						imageSrc={userAvatar || noImage}
 						imageTitle={userName || 'Avatar'}
 						divClass={styles.forumUserAvatar}
 					/>
 					<div className={styles.messageMeta}>
 					<div className={metaStyle}>{userName}</div>
 					<div className={styles.messageTitle}>{messageTitle}</div>
-					<div className={styles.messageDate}>{messageDate}</div>
 				</div>
 				</div>
 				<div className={styles.messageText}>{messageText}</div>
@@ -40,7 +43,7 @@ const TopicSingleMessage: FC = () => {
                     Reply
                 </Button>
 			</div>
-	{ showForm ? <AddReplyForm/> : null }
+	{ showForm ? <AddReplyForm  topicId={topicId} authorId={authorId} isReply={true}/> : null }
 	</>
 	)
 }

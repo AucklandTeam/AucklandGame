@@ -1,15 +1,22 @@
-import React, {createRef, FC, FormEvent, useState} from 'react';
+import React, {FC} from 'react';
 import Form from 'src/client/components/form'
 import TextInput from 'src/client/components/Inputs'
 import { useAppDispatch } from 'src/ssr'
 import useForm from 'src/hooks/useForm'
 import { AddReplyFormProps } from './types'
-import { initialState } from './shared'
 import TextArea from 'components/textArea';
 import styles from 'styles/base.scss';
+import {addCommentAction} from "src/core/ducks/forum/actions";
 
-const AddReplyForm: FC = () => {
-    //const dispatch = useAppDispatch()
+type AddReplyComponentFormProps = {
+    isReply: boolean;
+    topicId: number;
+    parentId?: number;
+    authorId: number;
+}
+
+const AddReplyForm: FC<AddReplyComponentFormProps> = ({isReply, topicId, parentId= 0, authorId}) => {
+    const dispatch = useAppDispatch()
     const authorName = 'var_user.login'
     const {
         values,
@@ -18,20 +25,26 @@ const AddReplyForm: FC = () => {
         handleSubmit,
         isValid,
         formError,
-        setFormError,
-        setFieldValue
+        handleReset,
     } = useForm<AddReplyFormProps>({
-        initialState,
+        initialState: {
+          title:'',
+          authorId,
+          likeCount:0,
+          parentId,
+          text: '',
+          topicId,
+        },
         onSubmit: values => {
             if (!isValid) return
-            //some dispatch if success hide form
-
+            dispatch(addCommentAction(values))
+            handleReset();
         }
     })
 
     return (
         <div className={styles.replyFormWrap}>
-            <div>From: {authorName}</div>
+            {isReply && (<div>From: {authorName}</div>)}
             <Form
                 handleSubmit={handleSubmit}
                 submitTitle={'Send'}
@@ -40,25 +53,19 @@ const AddReplyForm: FC = () => {
                 <TextInput
                     title={'Message Title'}
                     type={'text'}
-                    name={'messageTitle'}
-                    value={values['messageTitle' as keyof AddReplyFormProps]}
+                    name={'title'}
+                    value={values['title' as keyof AddReplyFormProps]}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     isRequired={false}
                 />
                 <TextArea
-                    name={'messageText'}
+                    name={'text'}
                     title={'Your text here...'}
-                    value={values['messageText' as keyof AddReplyFormProps]}
+                    value={values['text' as keyof AddReplyFormProps]}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     validType={'text'}
-                />
-                <TextInput
-                    title={'Message Author'}
-                    type={'hidden'}
-                    name={'messageAuthor'}
-                    value={values['messageAuthor' as keyof AddReplyFormProps]}
                 />
             </Form>
         </div>

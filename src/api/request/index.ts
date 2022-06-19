@@ -18,7 +18,8 @@ export function request<
 				data: data ?? {},
 				headers: { 'Content-Type': 'application/json' },
 				withCredentials: true,
-				...settings
+				...settings,
+				params: settings.method === 'GET' ? data :{},
 			})
 			return response.data
 		} catch (e) {

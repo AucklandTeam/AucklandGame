@@ -9,7 +9,9 @@ import { userActions } from './actions'
 import { LoginForm } from 'pages/Auth/SignIn/types'
 import { SignUpForm } from 'pages/Auth/SignUp/types'
 
-export type UserState = GenerateState<User>
+export type UserState = GenerateState<User> & {
+	user_id: number;
+}
 
 export type UserActionStatus = ActionWithPayload<
 	Extract<typeof userActions, userActions.setUserSuccess>,

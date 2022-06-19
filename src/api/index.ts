@@ -7,6 +7,7 @@ export const ApiLocation = {
         SUNC: `${verApi}/user-sync`
     },
     FORUM: `${verApi}/forum`,
-    TOPICS: `${verApi}/topic/all`,
+    TOPICS: `${verApi}/topics`,
     TOPIC: `${verApi}/topic`,
+    COMMENT: `${verApi}/comment`
 }

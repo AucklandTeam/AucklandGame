@@ -1,5 +1,8 @@
 export type AddReplyFormProps = {
-	messageAuthorId: number
-	messageTitle: string
-	messageText: string
+	title: string;
+	text: string;
+	topicId: number;
+	likeCount: number;
+	parentId?: number;
+	authorId: number;
 }

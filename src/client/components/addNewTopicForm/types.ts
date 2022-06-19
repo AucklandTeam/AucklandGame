@@ -1,4 +1,12 @@
 export type NewTopicForm = {
-	topicTitle: string
-	topicText: string
+	label: string
+	categoryId: number
+}
+
+export type ParamGetTopics = {
+	categoryId: number;
+}
+
+export type ParamGetComments = {
+	topicId: number;
 }

@@ -13,6 +13,7 @@ import ForumMain from 'pages/Forum/ForumMain'
 import AuthViaYandex from 'pages/Auth/AuthViaYandex'
 import Error404 from 'pages/Errors/404'
 import ForumTopicsList from 'pages/Forum/ForumTopicsList';
+import {getCategoryTopicsAction} from "src/core/ducks/forum/actions";
 import ForumSingleTopic from 'pages/Forum/ForumSingleTopic';
 
 export default [
@@ -78,19 +79,20 @@ export default [
 		element: <ForumMain />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
-			dispatch(fetchUser())
+			dispatch(fetchUser());
+			dispatch(getCategoryTopicsAction());
 		}
 	},
 	{
-		path: RouterPath.TopicsList,
+		path: `${RouterPath.TopicsList}/:id`,
 		element: <ForumTopicsList />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
-			dispatch(fetchUser())
+			dispatch(fetchUser());
 		}
 	},
 	{
-		path: RouterPath.SingleTopic,
+		path: `${RouterPath.SingleTopic}/:id`,
 		element: <ForumSingleTopic />,
 		exact: true,
 		fetchData({ dispatch }: RouterFetchDataArgs) {
