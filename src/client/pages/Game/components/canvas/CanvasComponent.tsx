@@ -26,6 +26,7 @@ interface CanvasProps {
     getFullScreen: any;
     height: any;
     width: any;
+    resize: any;
 }
 
 const CanvasComponent: FC<CanvasProps> = ({
@@ -36,6 +37,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         getFullScreen,
         height,
         width,
+        resize,
     }) => {
     const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>;
     let canvas: any = {};
@@ -452,7 +454,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             window.removeEventListener('keydown', keyDownHandler);
             window.removeEventListener('keyup', keyUpHandler);
         };
-    }, [isGameStart]);
+    }, [isGameStart, resize]);
 
     return <canvas
         ref={canvasRef}

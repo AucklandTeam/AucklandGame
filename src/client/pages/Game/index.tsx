@@ -10,6 +10,7 @@ const Game = () => {
     const [lives, setLives] = useState(3);
     const [score, setScore] = useState(0);
     const [isGameStart, setIsGameStart] = useState(false);
+    const [resize, setResize] = useState(0)
     const restartGame = () => {
         setAttempts(attempts + 1);
         setLives(3);
@@ -25,9 +26,17 @@ const Game = () => {
         if (document.fullscreenElement === null) {
             //document.documentElement.requestFullscreen();
             const section = document.querySelector("section");
-            section.requestFullscreen();
+            section.requestFullscreen()
+            setTimeout(() => {
+                setResize(resize + 1)
+            }, 100)
+
+
         } else {
             document.exitFullscreen();
+            setTimeout(() => {
+                setResize(resize + 1)
+            }, 100)
         }
     };
 
@@ -50,6 +59,7 @@ const Game = () => {
                     getFullScreen={getFullScreen}
                     height={h - 100}
                     width={w}
+                    resize={resize}
                 />
             </section>
         </div>
