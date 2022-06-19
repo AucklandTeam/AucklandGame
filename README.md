@@ -13,13 +13,15 @@ npm run serve - dev server
 
 Сборка в контейнерах
 ```
-docker-compose up
+docker-compose down -v
+docker-compose up -d --build
+    
 ```
 Проверяем, что все запущено
 ```
 docker-compose ps
 ```
-Захожим на localhost:8080 в PG admin и коннектимся к нашей базе:
+Заходим на localhost:8080 в PG admin и коннектимся к нашей базе:
 ```
 - правой кнопкой create -> server
 - general -> name: postgres
