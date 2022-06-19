@@ -11,7 +11,7 @@ import { PageMeta } from 'components/pageMeta'
 const Profile = () => {
 	const { data: list } = useLeaderBordInfo()
 	const { data } = useUserInfo()
-	const userScore = list.filter(x => x.login === data.login)
+	const userScore = list?.find(x => x.login === data?.login)
 
 	return (
 		<NotGameWrap titlePage={'Gamer Profile'}>
@@ -30,7 +30,7 @@ const Profile = () => {
 				<div className={styles.userData}>
 					<h4>{data?.login || 'N/A'}</h4>
 					<div>E-mail: {data?.email || 'N/A'}</div>
-					<h4>Score: {userScore[0].aucklandScope}</h4>
+					<h4>Score: {userScore?.aucklandScope}</h4>
 				</div>
 			</div>
 		</NotGameWrap>

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, {FC, useEffect} from 'react'
 import NotGameWrap from 'client/components/notGameWrap'
 import styles from 'client/styles/base.scss'
 import ForumListItem from 'client/components/forumListItem'
@@ -10,14 +10,18 @@ import {useAppDispatch} from "src/ssr";
 import useForm from "src/hooks/useForm";
 import {initialState, TextFieldsCategory} from "pages/Forum/shared";
 import {CategoryTopic} from "pages/Forum/types";
-import {addCategoryTopicsAction} from "src/core/ducks/forum/actions";
+import {addCategoryTopicsAction, getCategoryTopicsAction} from "src/core/ducks/forum/actions";
 import {useForumCategoriesInfo} from "src/core/ducks/forum/selectors";
 
 const ForumMain: FC = () => {
+	const dispatch = useAppDispatch()
 	const { data: user } = useUserInfo()
 	const {data: categories} = useForumCategoriesInfo();
 
-	const dispatch = useAppDispatch()
+	useEffect(()=>{
+		dispatch(getCategoryTopicsAction())
+	},[])
+
 	const {
 		values,
 		handleChange,
@@ -49,6 +53,7 @@ const ForumMain: FC = () => {
 				<tbody>
 				{categories && categories.map(item => (
 					<ForumListItem
+						id={item.id}
 						key={item.id}
 						forumTitle={item.label}
 						forumTopicsCount={0}
@@ -57,7 +62,7 @@ const ForumMain: FC = () => {
 				))}
 				</tbody>
 			</table>
-			{user.login === 'AucklandAdmin' && (
+			{user?.login === 'AucklandAdmin' && (
 				<div>
 					<Form
 						handleSubmit={handleSubmit}

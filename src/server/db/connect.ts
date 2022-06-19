@@ -2,6 +2,7 @@ import {Sequelize, SequelizeOptions} from "sequelize-typescript";
 import User from "server/Model/user";
 import Topic from "server/Model/topic";
 import TopicCategory from "server/Model/topicCategory";
+import Comment from "server/Model/comment";
 
 export const sequelizeOptions: SequelizeOptions = {
     host: 'postgres',
@@ -14,7 +15,7 @@ export const sequelizeOptions: SequelizeOptions = {
 
 export const sequelize  = new Sequelize(sequelizeOptions);
 
-sequelize.addModels([User, Topic, TopicCategory]);
+sequelize.addModels([User, Topic, TopicCategory, Comment]);
 
 export async function dbConnect(){
     try {

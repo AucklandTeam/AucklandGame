@@ -2,6 +2,7 @@ import {AllowNull, AutoIncrement, Column, DataType, Model, PrimaryKey, Table} fr
 
 export interface IUser {
     name: string;
+    avatar: string;
 }
 
 @Table({
@@ -15,6 +16,8 @@ class User extends Model<User, IUser> {
     @AllowNull(false)
     @Column(DataType.STRING)
     name: string;
+    @Column(DataType.STRING)
+    avatar: string;
 }
 
 export default User;

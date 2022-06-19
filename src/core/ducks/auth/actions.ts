@@ -15,7 +15,8 @@ export const logout = createAction('user/logout')
 export enum userActions {
 	setUserSuccess = 'user/setUserSuccess',
 	setUserFailed = 'user/setUserFailed',
-	setUserStatus = 'user/setUserStatus'
+	setUserStatus = 'user/setUserStatus',
+	setUserId = 'user/setUserId'
 }
 
 export const authYandexGetServiceID = createAction(
@@ -28,6 +29,10 @@ export const setUserStatus = createAction<LoadStatus>(userActions.setUserStatus)
 
 export const setUserData = createAction<Nullable<User>>(
 	userActions.setUserSuccess
+)
+
+export const setUserID = createAction<number>(
+	userActions.setUserId
 )
 
 export const setUserFailed = createAction<string>(userActions.setUserFailed)

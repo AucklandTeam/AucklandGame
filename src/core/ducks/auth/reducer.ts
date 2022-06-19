@@ -4,7 +4,8 @@ import { userActions } from './actions'
 export const initialState: UserState = {
 	data: null,
 	error: '',
-	status: 'default'
+	status: 'default',
+	user_id: 0,
 }
 
 export const userReducer = (state = initialState, action: UserActions) => {
@@ -23,6 +24,11 @@ export const userReducer = (state = initialState, action: UserActions) => {
 			return {
 				...state,
 				error: action.payload
+			}
+		case userActions.setUserId:
+			return {
+				...state,
+				user_id: action.payload
 			}
 		default:
 			return state

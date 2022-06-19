@@ -12,7 +12,7 @@ import {
 	authYandexLogin,
 	fetchUser,
 	setUserData,
-	setUserFailed,
+	setUserFailed, setUserID,
 	setUserStatus,
 	signIn,
 	signUp
@@ -28,7 +28,8 @@ export function* fetchUserWorker(): SagaIterator<void> {
 		const response:User = yield call(getUserRequest)
 		yield put(setUserData(response))
 		yield put(setUserStatus('success'))
-		yield call(userLocalSync, {login: response.login});
+		const user = yield call(userLocalSync, {login: response.login, avatar: response.avatar });
+		yield put(setUserID(user?.id))
 	} catch (e) {
 		// @ts-ignore
 		yield put(setUserFailed(e.reason))
