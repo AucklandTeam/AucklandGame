@@ -33,6 +33,9 @@ export const addTopicAction = createAction<NewTopicForm>('forum/addTopic');
 
 export const getTopicsAction = createAction<ParamGetTopics>('forum/getTopics');
 
+export const getTopicAction = createAction<{id: number, setData: (value: string)=>void}>('forum/getTopic');
+
+
 export const setForumTopicsStatus = createAction<LoadStatus>(forumActions.setTopicsStatus)
 
 export const setForumTopicsData = createAction<Nullable<Topic[]>>(
@@ -48,6 +51,7 @@ export const setForumCommentsStatus = createAction<LoadStatus>(forumActions.setC
 export const setForumCommentsData = createAction<Nullable<Comment[]>>(
     forumActions.setCommentsSuccess
 )
+
 
 export const setForumCommentsFailed = createAction<string>(forumActions.setCommentsFailed)
 
