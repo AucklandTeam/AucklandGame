@@ -26,9 +26,7 @@ import {
 } from './consts';
 import Base from './BaseClass'
 
-const isNotServer = typeof Audio != "undefined";
-
-const playAudio = (src: any, volume?: any) => {
+const playAudio = (src: any, volume?: number) => {
         const sound = new Audio(src);
         sound.volume = volume ? volume : 0.1;
         sound?.play();
