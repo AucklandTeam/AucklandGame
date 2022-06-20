@@ -11,7 +11,8 @@ export const CommonConfig = {
 			rules.mediasRule,
 			rules.svgRule,
 			rules.cssRule,
-			rules.faviconRule
+			rules.faviconRule,
+			rules.audioRule
 		]
 	},
 	resolve: {
