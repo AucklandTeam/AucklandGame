@@ -10,6 +10,11 @@ class TopicService {
         return topic;
     }
 
+    async findById(id: number){
+        const topic =  await Topic.findOne({where: {id}});
+        return topic;
+    }
+
     async createTopic(label: string, categoryId: number){
         const topic = await Topic.create({label,categoryId });
         return topic;

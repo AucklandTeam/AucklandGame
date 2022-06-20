@@ -70,6 +70,14 @@ app.post(ApiLocation.TOPIC, async (req, res)=>{
     res.send('Error params');
 })
 
+app.get(ApiLocation.TOPIC, async (req:Request<undefined, undefined, undefined, {topicId: number}>, res: Response)=>{
+    if(req.query.topicId){
+        const topic = await TopicService.findById(req.query.topicId);
+        res.send(topic);
+    }
+    res.send('Error params');
+})
+
 app.get(ApiLocation.COMMENT, async (req: Request<undefined, undefined, undefined, {topicId: number}>, res: Response)=>{
     if(req.query.topicId){
         const comments = await CommentService.getCommentsByTopic(req.query.topicId);

@@ -4,14 +4,14 @@ import {
     addCategoryTopicsAction,
     addTopicAction,
     getTopicsAction,
-    getCommentsAction, addCommentAction
+    getCommentsAction, addCommentAction, getTopicAction
 } from "src/core/ducks/forum/actions";
 import {
     getCategoryTopicsWorker,
     addCategoryTopicWorker,
     addTopicWorker,
     getTopicsWorker,
-    getCommentsWorker, addCommentWorker
+    getCommentsWorker, addCommentWorker, getTopicWorker
 } from "src/core/ducks/forum/sagas/workers";
 
 export default function* forumWatcher() {
@@ -21,6 +21,7 @@ export default function* forumWatcher() {
         takeLatest(addTopicAction, addTopicWorker),
         takeLatest(getTopicsAction, getTopicsWorker),
         takeLatest(getCommentsAction, getCommentsWorker),
-        takeLatest(addCommentAction, addCommentWorker)
+        takeLatest(addCommentAction, addCommentWorker),
+        takeLatest(getTopicAction, getTopicWorker)
     ])
 }

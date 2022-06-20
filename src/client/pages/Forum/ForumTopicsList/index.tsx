@@ -34,7 +34,7 @@ const ForumTopicsList: FC = () => {
                 {topics && topics.map(item => (
                     <TopicListItem
                         key={item.id}
-                        parentForumId={item.categoryId}
+                        topicId={item.id}
                         topicTitle={item.label}
                         topicCommentsCount={0}
                     />

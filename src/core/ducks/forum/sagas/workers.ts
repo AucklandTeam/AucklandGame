@@ -5,13 +5,13 @@ import {
     addComment,
     addTopic,
     getCategoriesTopics,
-    getComments,
+    getComments, getTopic,
     getTopics
 } from "src/core/ducks/forum/api";
 import {
     addCategoryTopicsAction, addCommentAction,
     addTopicAction,
-    getCommentsAction,
+    getCommentsAction, getTopicAction,
     getTopicsAction,
     setForumCategoriesData,
     setForumCategoriesFailed,
@@ -22,6 +22,7 @@ import {
     setForumTopicsFailed,
     setForumTopicsStatus
 } from "src/core/ducks/forum/actions";
+import {Topic} from "src/core/ducks/forum/types";
 
 export function* getCategoryTopicsWorker():SagaIterator<void>{
     yield put(setForumCategoriesStatus('pending'))
@@ -63,6 +64,15 @@ export function* getTopicsWorker({payload}:ReturnType<typeof getTopicsAction>):S
         console.error(e);
         yield put(setForumTopicsFailed(e.message))
         yield put(setForumTopicsStatus('failed'))
+    }
+}
+
+export function* getTopicWorker({payload}:ReturnType<typeof getTopicAction>):SagaIterator<void> {
+    try {
+        const topic: Topic = yield call(getTopic, {topicId: payload.id});
+        payload.setData(topic.label);
+    }catch (e) {
+        console.error(e);
     }
 }
 

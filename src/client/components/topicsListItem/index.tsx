@@ -6,12 +6,12 @@ import {RouterPath} from 'shared/consts';
 
 const TopicsListItem: FC<topicsListProps> =
 	({
-		parentForumId,
+		topicId,
 		topicTitle,
 		topicCommentsCount
 	}) => (
 	<tr>
-		<td className={styles.forumTitle}><Link to={`${RouterPath.SingleTopic}/${parentForumId}`} title={topicTitle}>{topicTitle}</Link></td>
+		<td className={styles.forumTitle}><Link to={`${RouterPath.SingleTopic}/${topicId}`} title={topicTitle}>{topicTitle}</Link></td>
 		<td className={styles.forumCommentsCounter}>{topicCommentsCount}</td>
 	</tr>
 )
