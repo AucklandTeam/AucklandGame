@@ -97,9 +97,9 @@ app.post(ApiLocation.COMMENT, async (req:Request<IComment, IComment,IComment>, r
     }
     res.send('Error params');
 })
-// app.get("/service-worker.js", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "public", "service-worker.js"))
-// })
+ app.get("/service-worker.js", (req, res) => {
+     res.sendFile(path.resolve(__dirname, "public", "service-worker.js"))
+ })
 app.get('/*', serverRenderMiddleware)
 
 export {app, dbConnect}
