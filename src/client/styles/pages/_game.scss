@@ -2,7 +2,6 @@
 
 .gameTopBar {
 	display: flex;
-	width: 1285px;
 	height: 50px;
 	margin-top: math.div($base-vertical-padding, 2);
 	align-items: center;
@@ -105,5 +104,6 @@
 	width: 600px;
 }
 .gameCanvas {
-	border: 3px solid white;
+	border: 1px solid white;
+	box-sizing: border-box;
 }
