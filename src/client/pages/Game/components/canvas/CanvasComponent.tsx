@@ -26,13 +26,19 @@ interface CanvasProps {
     setScore: (arg0: number) => void;
     isGameStart: boolean;
     setIsGameStart: (arg0: boolean) => void;
+    getFullScreen: () => void;
+    width: number;
+    height: number;
 }
 
 const CanvasComponent: FC<CanvasProps> = ({
-      setLives,
-      setScore,
-      isGameStart,
-      setIsGameStart
+        setLives,
+        setScore,
+        isGameStart,
+        setIsGameStart,
+        getFullScreen,
+        width,
+        height,
     }) => {
     const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>;
     let canvas: any = {};
@@ -306,7 +312,7 @@ const CanvasComponent: FC<CanvasProps> = ({
                             bombs.push(bomb3Obj);
                         }
 
-                        for (let i = 0; i < 2; i++) {
+                        for (let i = 0; i < 3; i++) {
                             const smallAsteroid = new Asteroid(asteroid.x, asteroid.y);
                             smallAsteroid.speed = 3;
                             smallAsteroid.radius = 25;
@@ -491,11 +497,13 @@ const CanvasComponent: FC<CanvasProps> = ({
 
     useEffect(() => {
         canvas= canvasRef.current;
-        canvas.width = 1279;
-        canvas.height = 720;
-        canvas.style.width = '1279px';
-        canvas.style.height = '720px';
+
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        canvas.width = width;
+        canvas.height = height;
         ctx = canvas.getContext('2d');
+        canvas.addEventListener('click', getFullScreen);
 
         bg.src = bgImg;
         debris.src = debrisImg;
