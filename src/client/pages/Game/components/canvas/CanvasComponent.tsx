@@ -27,6 +27,13 @@ import {
 import Base from './BaseClass'
 
 const isNotServer = typeof Audio != "undefined";
+
+const playAudio = (src: any, volume: any) => {
+        const sound = new Audio(src);
+        sound.volume = volume ? volume : 0.1;
+        sound?.play();
+};
+
 interface CanvasProps {
     setLives: (arg0: number) => void;
     setScore: (arg0: number) => void;
@@ -255,11 +262,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             bullets.push(bullet1);
             bullets.push(bullet2);
         }
-        let fireSound: any;
-        if (isNotServer) {
-            fireSound = new Audio(fireSoundFile);
-        }
-        fireSound?.play();
+        playAudio(fireSoundFile);
     };
 
     const updateShip = (time: number) => {
@@ -342,13 +345,7 @@ const CanvasComponent: FC<CanvasProps> = ({
                             asteroids.push(smallAsteroid);
                         }
                     }
-                    let expSound: any;
-
-                    if (isNotServer) {
-                        expSound = new Audio(expSoundFile);
-                    }
-                    expSound.volume = 0.3;
-                    expSound?.play();
+                    playAudio(expSoundFile);
                     explosions.push(explosion);
                     count += 1;
                     setScore(count);
@@ -359,22 +356,11 @@ const CanvasComponent: FC<CanvasProps> = ({
                 asteroid.visible = false;
                 const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
                 explosions.push(explosion);
-                let expSound: any;
-
-                if (isNotServer) {
-                    expSound = new Audio(expSoundFile);
-                }
-                expSound.volume = 0.3;
-                expSound?.play();
+                playAudio(expSoundFile);
                 lives -= 1;
                 setLives(lives);
                 if (!lives) {
-                    let endSound: any;
-
-                    if (isNotServer) {
-                        endSound = new Audio(endSoundFile);
-                    }
-                    endSound?.play();
+                    playAudio(endSoundFile);
                     isGameEnd = true;
                     setIsGameStart(false);
                 }
