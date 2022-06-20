@@ -11,6 +11,7 @@ import {ApiLocation} from "src/api";
 import TopicService from "server/services/topicService";
 import CommentService from "server/services/commentService";
 import {IComment} from "server/Model/comment";
+import ReplyService from "server/services/replyService";
 
 const app = express()
 
@@ -78,8 +79,13 @@ app.get(ApiLocation.COMMENT, async (req: Request<undefined, undefined, undefined
 })
 app.post(ApiLocation.COMMENT, async (req:Request<IComment, IComment,IComment>, res: Response)=>{
     if(req.body.title && req.body.text){
-        const comments = await CommentService.addComment({...req.body});
-        res.send(comments);
+        if(req.body.commentId === 0){
+            const comments = await CommentService.addComment({...req.body});
+            res.send(comments);
+        }else {
+            const comments = await ReplyService.addComment({...req.body});
+            res.send(comments);
+        }
     }
     res.send('Error params');
 })

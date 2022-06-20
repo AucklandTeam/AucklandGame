@@ -4,28 +4,27 @@ import {
     BelongsTo,
     Column,
     DataType,
-    ForeignKey, HasMany,
+    ForeignKey,
     Model,
     PrimaryKey,
     Table
 } from "sequelize-typescript";
 import TopicCategory from "server/Model/topicCategory";
 import User from "server/Model/user";
-import Reply from "server/Model/reply";
+import Comment from "server/Model/comment"
 
-export type IComment = {
+export type IReply = {
     title: string;
     text: string;
-    topicId: number;
     likeCount: number;
-    commentId: number;
+    commentId?: number;
     authorId: number;
 }
 
 @Table({
-    tableName: 'comments'
+    tableName: 'reply'
 })
-class Comment extends Model<Comment, IComment> {
+class Reply extends Model<Comment, IReply> {
     @AutoIncrement
     @PrimaryKey
     @Column(DataType.INTEGER)
@@ -41,16 +40,17 @@ class Comment extends Model<Comment, IComment> {
     topicId: number;
     @Column(DataType.INTEGER)
     likeCount: number;
+    @ForeignKey(()=>Comment)
     @Column(DataType.INTEGER)
-    commentId: number;
+    commentId!: number;
+    @BelongsTo(()=>Comment)
+    comment: Comment;
     @ForeignKey(()=>User)
     @Column(DataType.INTEGER)
     authorId!: number;
     @BelongsTo(()=>User)
     author: User;
-    @HasMany(()=>Reply)
-    answers: Reply[]
 }
 
 
-export default Comment;
+export default Reply;

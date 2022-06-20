@@ -30,6 +30,7 @@ const ForumSingleTopic: FC = () => {
             {comments && comments.map((item, index) => (
                 <TopicSingleMessage
                     key={item.id}
+                    id={item.id}
                     messageTitle={item.title}
                     topicId={+id}
                     authorId={user_id}
