@@ -7,6 +7,11 @@ import explosionImg from 'static/images/exp.png';
 import fireImg from 'static/images/fire.png';
 import bombExp from 'static/images/bomb_spritesheet.png'
 import asterImg from 'static/images/aster.png';
+import endSoundFile from 'static/sounds/end.wav';
+import fireSoundFile from 'static/sounds/fire.wav';
+import expSoundFile from 'static/sounds/exp2.mp3';
+import fonSoundFile from 'static/sounds/fon.mp3';
+
 import { getRandomArbitrary } from './utils';
 import styles from 'styles/base.scss'
 import {
@@ -21,6 +26,7 @@ import {
 } from './consts';
 import Base from './BaseClass'
 
+const isNotServer = typeof Audio != "undefined";
 interface CanvasProps {
     setLives: (arg0: number) => void;
     setScore: (arg0: number) => void;
@@ -84,6 +90,15 @@ const CanvasComponent: FC<CanvasProps> = ({
     let bombs: any = [];
     let bombExpArray: any = [];
 
+    let fonSound: any;
+    /*
+    if (isNotServer) {
+        fonSound = new Audio(fonSoundFile);
+        fonSound.volume = 0.2;
+        fonSound.loop = true;
+        fonSound?.play();
+    }
+    */
     class Sprite extends Base {
         private timeLives: number;
         row: number;
@@ -240,6 +255,11 @@ const CanvasComponent: FC<CanvasProps> = ({
             bullets.push(bullet1);
             bullets.push(bullet2);
         }
+        let fireSound: any;
+        if (isNotServer) {
+            fireSound = new Audio(fireSoundFile);
+        }
+        fireSound?.play();
     };
 
     const updateShip = (time: number) => {
@@ -322,6 +342,13 @@ const CanvasComponent: FC<CanvasProps> = ({
                             asteroids.push(smallAsteroid);
                         }
                     }
+                    let expSound: any;
+
+                    if (isNotServer) {
+                        expSound = new Audio(expSoundFile);
+                    }
+                    expSound.volume = 0.3;
+                    expSound?.play();
                     explosions.push(explosion);
                     count += 1;
                     setScore(count);
@@ -332,9 +359,22 @@ const CanvasComponent: FC<CanvasProps> = ({
                 asteroid.visible = false;
                 const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
                 explosions.push(explosion);
+                let expSound: any;
+
+                if (isNotServer) {
+                    expSound = new Audio(expSoundFile);
+                }
+                expSound.volume = 0.3;
+                expSound?.play();
                 lives -= 1;
                 setLives(lives);
                 if (!lives) {
+                    let endSound: any;
+
+                    if (isNotServer) {
+                        endSound = new Audio(endSoundFile);
+                    }
+                    endSound?.play();
                     isGameEnd = true;
                     setIsGameStart(false);
                 }
