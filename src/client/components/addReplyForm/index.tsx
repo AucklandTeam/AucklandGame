@@ -11,11 +11,12 @@ import {addCommentAction} from "src/core/ducks/forum/actions";
 type AddReplyComponentFormProps = {
     isReply: boolean;
     topicId: number;
-    parentId?: number;
+    commentId?: number;
     authorId: number;
+    hideForm?:()=>void;
 }
 
-const AddReplyForm: FC<AddReplyComponentFormProps> = ({isReply, topicId, parentId= 0, authorId}) => {
+const AddReplyForm: FC<AddReplyComponentFormProps> = ({isReply, topicId, commentId= 0, authorId, hideForm}) => {
     const dispatch = useAppDispatch()
     const authorName = 'var_user.login'
     const {
@@ -31,7 +32,7 @@ const AddReplyForm: FC<AddReplyComponentFormProps> = ({isReply, topicId, parentI
           title:'',
           authorId,
           likeCount:0,
-          parentId,
+            commentId,
           text: '',
           topicId,
         },
@@ -39,6 +40,9 @@ const AddReplyForm: FC<AddReplyComponentFormProps> = ({isReply, topicId, parentI
             if (!isValid) return
             dispatch(addCommentAction(values))
             handleReset();
+            if(hideForm){
+                hideForm();
+            }
         }
     })
 

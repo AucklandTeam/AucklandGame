@@ -3,6 +3,6 @@ export type AddReplyFormProps = {
 	text: string;
 	topicId: number;
 	likeCount: number;
-	parentId?: number;
+	commentId?: number;
 	authorId: number;
 }
