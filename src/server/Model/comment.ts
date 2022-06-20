@@ -22,13 +22,7 @@ export type IComment = {
 }
 
 @Table({
-    tableName: 'comments',
-    indexes:[
-        {
-            unique: true,
-            fields:['authorId'],
-        }
-    ]
+    tableName: 'comments'
 })
 class Comment extends Model<Comment, IComment> {
     @AutoIncrement
@@ -44,14 +38,13 @@ class Comment extends Model<Comment, IComment> {
     @ForeignKey(()=>TopicCategory)
     @Column(DataType.INTEGER)
     topicId: number;
-    @ForeignKey(()=>User)
-    @Column(DataType.INTEGER)
-    authorId: number;
     @Column(DataType.INTEGER)
     likeCount: number;
     @Column(DataType.INTEGER)
     parentId: number;
-
+    @ForeignKey(()=>User)
+    @Column(DataType.INTEGER)
+    authorId!: number;
     @BelongsTo(()=>User)
     author: User;
 }

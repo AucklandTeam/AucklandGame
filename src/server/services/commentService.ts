@@ -3,16 +3,13 @@ import User from "server/Model/user";
 
 class CommentService {
     async getCommentByID(id: number){
-        const comment = await Comment.findOne({where:{id}});
+        const comment = await Comment.findOne(
+            {where:{id}});
         return comment;
     }
     async getCommentsByTopic(topicId: number) {
-        const comments = await Comment.findAll(({where: {topicId}, attributes: ['authorId', 'text','title','id'], include: {
-            model: User,
-                required: true,
-                as: 'author',
-                attributes: ['name', 'avatar']
-            }}));
+        const comments = await Comment.findAll((
+            {where: {topicId}, include: [User]}));
         return comments;
     }
     async addComment(props:IComment){
