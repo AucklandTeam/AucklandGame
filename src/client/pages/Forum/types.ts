@@ -1,3 +1,3 @@
 export type CategoryTopic = {
-    label: string;
+	label: string
 }

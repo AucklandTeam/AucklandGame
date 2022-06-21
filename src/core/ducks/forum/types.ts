@@ -1,48 +1,44 @@
-import {TimeStamp} from "src/types/general";
-import {ActionWithPayload, GenerateState, LoadStatus} from "shared/types";
-import { forumActions } from "./actions";
+import { TimeStamp } from 'src/types/general'
+import { ActionWithPayload, GenerateState, LoadStatus } from 'shared/types'
+import { forumActions } from './actions'
 
 export type CategoryTopic = {
-    id: number;
-    label: string;
-} & TimeStamp;
+	id: number
+	label: string
+} & TimeStamp
 
 export type Topic = {
-    id: number;
-    label: string;
-    categoryId: number
-} & TimeStamp;
+	id: number
+	label: string
+	categoryId: number
+} & TimeStamp
 
 export type Comment = {
-    id: number;
-    title: string;
-    text: string;
-    parentId?: number;
-    authorId: number;
-    author: {
-        name: string;
-        avatar: null | string;
-    }
-} & TimeStamp;
+	id: number
+	title: string
+	text: string
+	parentId?: number
+	authorId: number
+	author: {
+		name: string
+		avatar: null | string
+	}
+} & TimeStamp
 
 export type ForumState = {
-    categories: GenerateState<CategoryTopic[]>;
-    topics: GenerateState<Topic[]>;
-    comments: GenerateState<Comment[]>;
+	categories: GenerateState<CategoryTopic[]>
+	topics: GenerateState<Topic[]>
+	comments: GenerateState<Comment[]>
 }
 
-
 export type ForumActionStatus = ActionWithPayload<
-    Extract<
-        typeof forumActions,
-        forumActions.setCategoriesSuccess
-        >,
-    LoadStatus
-    >
+	Extract<typeof forumActions, forumActions.setCategoriesSuccess>,
+	LoadStatus
+>
 
 export type ForumCategoriesActionData = ActionWithPayload<
-    Extract<typeof forumActions, 'setCategoriesSuccess'>,
-    CategoryTopic[]
-    >
+	Extract<typeof forumActions, 'setCategoriesSuccess'>,
+	CategoryTopic[]
+>
 
 export type ForumActions = ForumActionStatus | ForumCategoriesActionData

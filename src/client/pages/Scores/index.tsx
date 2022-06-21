@@ -2,7 +2,7 @@ import React from 'react'
 import NotGameWrap from 'components/notGameWrap'
 import styles from 'styles/base.scss'
 import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
-import {PageMeta} from 'components/pageMeta';
+import { PageMeta } from 'components/pageMeta'
 
 const byField =
 	(field: string) =>

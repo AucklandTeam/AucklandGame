@@ -31,8 +31,6 @@ export const setUserData = createAction<Nullable<User>>(
 	userActions.setUserSuccess
 )
 
-export const setUserID = createAction<number>(
-	userActions.setUserId
-)
+export const setUserID = createAction<number>(userActions.setUserId)
 
 export const setUserFailed = createAction<string>(userActions.setUserFailed)

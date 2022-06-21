@@ -24,11 +24,11 @@ const showLives = (lives: number) => {
 	let emptyLives = 3 - lives
 	while (lives > 0) {
 		lives -= 1
-		iconsArray.push(<LivesIcon key={lives}/>)
+		iconsArray.push(<LivesIcon key={lives} />)
 	}
 	while (emptyLives > 0) {
 		emptyLives -= 1
-		iconsArray.push(<LivesIconEmpty key={lives}/>)
+		iconsArray.push(<LivesIconEmpty key={lives} />)
 	}
 	return <>{iconsArray.map((el: any) => el)}</>
 }
@@ -39,7 +39,7 @@ const GameTopBar = ({ lives, score }: any) => (
 			{showLives(lives)}
 			<div className={styles.gameScore}>Score: [{score}]</div>
 		</div>
-		<div style={{ flexGrow: 1}}>&nbsp;</div>
+		<div style={{ flexGrow: 1 }}>&nbsp;</div>
 		<div className={styles.gameMenu}>
 			{topMenuItems.map((item: BottomMenuItemType, index) => (
 				<div key={item.url} className={styles.topMenuItem}>

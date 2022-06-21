@@ -11,28 +11,35 @@ const Main = () => {
 	return (
 		<HomePageWrap>
 			<PageMeta
-				title= '{str.gameName}'
+				title='{str.gameName}'
 				description='Game by Auckland Team on Yandex Practicum'
 			/>
 			<ul>
-				{ isAuth ? menuItems
-					.filter(item => (item.url !== 'sign-in'))
-					.map(item => {
-					return (
-					<li key={item.url} className={styles.menuItem}>
-					<Link to={item.url}>{item.name}</Link>
-					</li>
-					)
-				}) : menuItems
-					.filter(item => (item.access === 'public'))
-					.map(item => {
-						return (
-							<li key={item.url} className={styles.menuItem}>
-								<Link to={item.url}>{item.name}</Link>
-							</li>
-						)
-					})
-				}
+				{isAuth
+					? menuItems
+							.filter(item => item.url !== 'sign-in')
+							.map(item => {
+								return (
+									<li
+										key={item.url}
+										className={styles.menuItem}
+									>
+										<Link to={item.url}>{item.name}</Link>
+									</li>
+								)
+							})
+					: menuItems
+							.filter(item => item.access === 'public')
+							.map(item => {
+								return (
+									<li
+										key={item.url}
+										className={styles.menuItem}
+									>
+										<Link to={item.url}>{item.name}</Link>
+									</li>
+								)
+							})}
 			</ul>
 		</HomePageWrap>
 	)

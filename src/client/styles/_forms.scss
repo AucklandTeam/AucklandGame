@@ -79,7 +79,7 @@ button[type='button'] {
 	& input:placeholder-shown ~ label,
 	& textarea:focus ~ label,
 	& textarea:valid ~ label,
-	& textarea:placeholder-shown ~ label{
+	& textarea:placeholder-shown ~ label {
 		transform: translateY(-50%);
 		font-size: 0.65em;
 		color: $accent-60;
@@ -88,12 +88,12 @@ button[type='button'] {
 	&.error input,
 	&.error input:focus,
 	&.error textarea,
-	&.error textarea:focus{
+	&.error textarea:focus {
 		box-shadow: $form-box-error-shadow;
 	}
 
 	&.error input ~ label,
-	&.error textarea ~ label{
+	&.error textarea ~ label {
 		transform: translateY(-50%);
 		font-size: 0.65em;
 		color: $error-dark;
@@ -103,7 +103,7 @@ button[type='button'] {
 input[type='email'],
 input[type='password'],
 input[type='text'],
-textarea{
+textarea {
 	font-family: $form-font-family;
 	border: 0 solid;
 	background: $form-background-gradient;

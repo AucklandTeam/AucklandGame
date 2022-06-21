@@ -9,7 +9,7 @@ import EditUserPassword from 'components/editUserPasswordForm'
 import { RESOURCE_URL } from 'shared/consts'
 import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import noImage from 'static/images/noImage.svg'
-import {PageMeta} from 'components/pageMeta';
+import { PageMeta } from 'components/pageMeta'
 
 const ProfileEdit: FC = () => {
 	const modal: MutableRefObject<null> = useRef(null)

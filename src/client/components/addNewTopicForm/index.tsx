@@ -1,18 +1,20 @@
-import React, {FC, MutableRefObject} from 'react'
+import React, { FC, MutableRefObject } from 'react'
 import Form from 'src/client/components/form'
 import TextInput from 'src/client/components/Inputs'
 import { useAppDispatch } from 'src/ssr'
 import useForm from 'src/hooks/useForm'
 import { NewTopicForm } from './types'
-import {addTopicAction} from "src/core/ducks/forum/actions";
+import { addTopicAction } from 'src/core/ducks/forum/actions'
 
 type AddNewTopicFormProps = {
-	categoryId: number;
-	modalRef:MutableRefObject<null>;
+	categoryId: number
+	modalRef: MutableRefObject<null>
 }
 
-
-const AddNewTopicForm: FC<AddNewTopicFormProps> = ({categoryId, modalRef}) => {
+const AddNewTopicForm: FC<AddNewTopicFormProps> = ({
+	categoryId,
+	modalRef
+}) => {
 	const dispatch = useAppDispatch()
 	const {
 		values,
@@ -20,16 +22,16 @@ const AddNewTopicForm: FC<AddNewTopicFormProps> = ({categoryId, modalRef}) => {
 		handleBlur,
 		handleSubmit,
 		isValid,
-		formError,
+		formError
 	} = useForm<NewTopicForm>({
-		initialState:{
+		initialState: {
 			categoryId,
 			label: ''
 		},
 		onSubmit: values => {
 			if (!isValid) return
-			dispatch(addTopicAction(values));
-			(modalRef as MutableRefObject<any>).current.close();
+			dispatch(addTopicAction(values))
+			;(modalRef as MutableRefObject<any>).current.close()
 		}
 	})
 

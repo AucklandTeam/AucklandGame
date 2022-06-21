@@ -9,7 +9,7 @@ import { RouterPath } from 'shared/consts'
 import HomePageWrap from 'src/client/components/homePageWrap'
 import { signUp } from 'src/core/ducks/auth/actions'
 import { useAppDispatch } from 'src/ssr'
-import {PageMeta} from 'components/pageMeta';
+import { PageMeta } from 'components/pageMeta'
 
 const SignUp: FC = () => {
 	const dispatch = useAppDispatch()

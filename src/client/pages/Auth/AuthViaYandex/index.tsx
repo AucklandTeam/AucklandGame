@@ -8,7 +8,7 @@ import {
 } from 'src/core/ducks/auth/actions'
 import yandex from 'src/../static/images/yandex.svg'
 import { useAppDispatch } from 'src/ssr'
-import {PageMeta} from 'components/pageMeta';
+import { PageMeta } from 'components/pageMeta'
 
 const AuthViaYandex = () => {
 	const dispatch = useAppDispatch()

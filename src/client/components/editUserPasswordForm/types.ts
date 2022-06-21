@@ -3,5 +3,3 @@ export type ChangePasswordForm = {
 	newPassword: string
 	newPasswordConfirm: string
 }
-
-

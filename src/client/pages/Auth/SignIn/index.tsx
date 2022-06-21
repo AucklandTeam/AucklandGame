@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import useForm from 'src/hooks/useForm'
 import { LoginForm } from './types'
 import TextInput from 'src/client/components/Inputs'
@@ -9,7 +9,7 @@ import { RouterPath } from 'shared/consts'
 import HomePageWrap from 'src/client/components/homePageWrap'
 import { signIn } from 'src/core/ducks/auth/actions'
 import { useAppDispatch } from 'src/ssr'
-import {PageMeta} from 'components/pageMeta';
+import { PageMeta } from 'components/pageMeta'
 
 const Login: FC = () => {
 	const dispatch = useAppDispatch()

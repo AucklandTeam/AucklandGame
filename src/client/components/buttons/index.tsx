@@ -1,4 +1,4 @@
-import React, {MouseEventHandler} from 'react';
+import React, { MouseEventHandler } from 'react'
 import 'styles/base.scss'
 
 interface ButtonProps {
@@ -15,7 +15,12 @@ const Button: React.FC<ButtonProps> = ({
 	handleClick
 }) => {
 	return (
-		<button type={buttonType} name={buttonName} title={buttonTitle} onClick={handleClick}>
+		<button
+			type={buttonType}
+			name={buttonName}
+			title={buttonTitle}
+			onClick={handleClick}
+		>
 			{buttonTitle}
 		</button>
 	)

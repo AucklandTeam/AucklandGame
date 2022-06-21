@@ -1,26 +1,29 @@
-import React, {FC, useEffect} from 'react'
+import React, { FC, useEffect } from 'react'
 import NotGameWrap from 'client/components/notGameWrap'
 import styles from 'client/styles/base.scss'
 import ForumListItem from 'client/components/forumListItem'
-import {PageMeta} from 'components/pageMeta';
-import {useUserInfo} from "src/core/ducks/auth/selectors";
-import TextInput from "components/Inputs";
-import Form from "components/form";
-import {useAppDispatch} from "src/ssr";
-import useForm from "src/hooks/useForm";
-import {initialState, TextFieldsCategory} from "pages/Forum/shared";
-import {CategoryTopic} from "pages/Forum/types";
-import {addCategoryTopicsAction, getCategoryTopicsAction} from "src/core/ducks/forum/actions";
-import {useForumCategoriesInfo} from "src/core/ducks/forum/selectors";
+import { PageMeta } from 'components/pageMeta'
+import { useUserInfo } from 'src/core/ducks/auth/selectors'
+import TextInput from 'components/Inputs'
+import Form from 'components/form'
+import { useAppDispatch } from 'src/ssr'
+import useForm from 'src/hooks/useForm'
+import { initialState, TextFieldsCategory } from 'pages/Forum/shared'
+import { CategoryTopic } from 'pages/Forum/types'
+import {
+	addCategoryTopicsAction,
+	getCategoryTopicsAction
+} from 'src/core/ducks/forum/actions'
+import { useForumCategoriesInfo } from 'src/core/ducks/forum/selectors'
 
 const ForumMain: FC = () => {
 	const dispatch = useAppDispatch()
 	const { data: user } = useUserInfo()
-	const {data: categories} = useForumCategoriesInfo();
+	const { data: categories } = useForumCategoriesInfo()
 
-	useEffect(()=>{
+	useEffect(() => {
 		dispatch(getCategoryTopicsAction())
-	},[])
+	}, [])
 
 	const {
 		values,
@@ -44,22 +47,23 @@ const ForumMain: FC = () => {
 			/>
 			<table className={styles.forumsTable}>
 				<thead>
-				<tr>
-					<th className={styles.forumTitleHeader}>Forums</th>
-					<th className={styles.forumTopicsHeader}>Topics</th>
-					<th className={styles.forumCommentsHeader}>Comments</th>
-				</tr>
+					<tr>
+						<th className={styles.forumTitleHeader}>Forums</th>
+						<th className={styles.forumTopicsHeader}>Topics</th>
+						<th className={styles.forumCommentsHeader}>Comments</th>
+					</tr>
 				</thead>
 				<tbody>
-				{categories && categories.map(item => (
-					<ForumListItem
-						id={item.id}
-						key={item.id}
-						forumTitle={item.label}
-						forumTopicsCount={0}
-						forumCommentsCount={0}
-					/>
-				))}
+					{categories &&
+						categories.map(item => (
+							<ForumListItem
+								id={item.id}
+								key={item.id}
+								forumTitle={item.label}
+								forumTopicsCount={0}
+								forumCommentsCount={0}
+							/>
+						))}
 				</tbody>
 			</table>
 			{user?.login === 'AucklandAdmin' && (
@@ -69,18 +73,20 @@ const ForumMain: FC = () => {
 						submitTitle={'Added categories'}
 						errorText={formError}
 					>
-						{TextFieldsCategory.map(({ name, type, title, validType }) => (
-							<TextInput
-								key={name}
-								title={title}
-								type={type}
-								name={name}
-								validType={validType}
-								onChange={handleChange}
-								onBlur={handleBlur}
-								value={values[name as keyof CategoryTopic]}
-							/>
-						))}
+						{TextFieldsCategory.map(
+							({ name, type, title, validType }) => (
+								<TextInput
+									key={name}
+									title={title}
+									type={type}
+									name={name}
+									validType={validType}
+									onChange={handleChange}
+									onBlur={handleBlur}
+									value={values[name as keyof CategoryTopic]}
+								/>
+							)
+						)}
 					</Form>
 				</div>
 			)}

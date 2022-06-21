@@ -33,6 +33,4 @@ hydrate(
 	document.querySelector('#root')
 )
 
-
 serviceWorker()
-

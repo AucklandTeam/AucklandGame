@@ -3,7 +3,7 @@ import styles from 'styles/base.scss'
 
 export interface TextInputProps<NAME> {
 	title?: string
-	id?: NAME,
+	id?: NAME
 	name: NAME
 	type: HTMLInputElement['type']
 	value?: string | number

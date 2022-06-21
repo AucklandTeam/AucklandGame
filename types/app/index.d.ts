@@ -22,6 +22,7 @@ export interface State {
 		readonly user: UserState
 		readonly leaderBoard: LeaderBoardState
 		readonly forum: ForumState
+		readonly router?: any
 	}
 
 export type RouterFetchDataArgs = {
