@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import useForm from 'src/hooks/useForm'
 import { LoginForm } from './types'
 import TextInput from 'src/client/components/Inputs'
@@ -43,6 +43,7 @@ const Login: FC = () => {
 			>
 				{TextFieldsLogin.map(({ name, type, title, validType }) => (
 					<TextInput
+						id={name}
 						key={name}
 						title={title}
 						type={type}

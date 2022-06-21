@@ -3,6 +3,7 @@ import styles from 'styles/base.scss'
 
 export interface TextInputProps<NAME> {
 	title?: string
+	id?: NAME,
 	name: NAME
 	type: HTMLInputElement['type']
 	value?: string | number
@@ -26,6 +27,7 @@ const TextInput: FC<TextInputProps<string>> = ({
 }) => (
 	<div className={styles.inputWrap}>
 		<input
+			id={name}
 			type={type}
 			name={name}
 			title={title}

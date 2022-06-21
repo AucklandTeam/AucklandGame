@@ -30,8 +30,20 @@
     "url": "https://github.com/madcher/game_sprint5-6/issues"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
     "moduleNameMapper": {
-      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+      "^src/(.*)$": "<rootDir>/src/$1",
+      "^server/(.*)$": "<rootDir>/src/server/$1",
+      "^client/(.*)$": "<rootDir>/src/client/$1",
+      "^components/(.*)$": "<rootDir>/src/client/components/$1",
+      "^pages/(.*)$": "<rootDir>/src/client/pages/$1",
+      "^shared/(.*)$": "<rootDir>/src/client/components/@shared/$1",
+      "^styles/(.*)$": "<rootDir>/src/client/styles/$1",
+      "^static/(.*)$": "<rootDir>/static/$1"
     }
   },
   "homepage": "https://github.com/madcher/game_sprint5-6#readme",
@@ -45,6 +57,8 @@
     "@babel/preset-typescript": "^7.16.7",
     "@babel/register": "^7.17.7",
     "@reduxjs/toolkit": "^1.8.1",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.5",
     "@types/compression": "^1.7.2",
     "@types/jest": "^27.4.1",
     "@types/mini-css-extract-plugin": "^2.5.1",

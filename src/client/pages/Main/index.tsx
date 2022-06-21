@@ -8,11 +8,10 @@ import { PageMeta } from 'components/pageMeta'
 
 const Main = () => {
 	const { isAuth } = useAuth()
-
 	return (
 		<HomePageWrap>
 			<PageMeta
-				title='Destroy Asteroids'
+				title= '{str.gameName}'
 				description='Game by Auckland Team on Yandex Practicum'
 			/>
 			<ul>
