@@ -10,9 +10,12 @@ import HomePageWrap from 'src/client/components/homePageWrap'
 import { signUp } from 'src/core/ducks/auth/actions'
 import { useAppDispatch } from 'src/ssr'
 import { PageMeta } from 'components/pageMeta'
+import {useTranslation} from 'react-i18next';
 
 const SignUp: FC = () => {
 	const dispatch = useAppDispatch()
+	const { t } = useTranslation()
+
 	const {
 		values,
 		handleChange,
@@ -28,15 +31,16 @@ const SignUp: FC = () => {
 			dispatch(signUp({ ...values, setFormError }))
 		}
 	})
+
 	return (
-		<HomePageWrap titleContent={'Registration'}>
+		<HomePageWrap titleContent={t('signUp')}>
 			<PageMeta
-				title='Sign Up | Destroy Asteroids'
-				description='Game by Auckland Team on Yandex Practicum'
+				title={`${t('signUp')} | ${t('gameTitle')}`}
+				description={t('gameDescription')}
 			/>
 			<Form
 				handleSubmit={handleSubmit}
-				submitTitle={'Welcome aboard!'}
+				submitTitle={t('welcomeAboard')}
 				errorText={formError}
 			>
 				{TextFieldsSignUp.filter(({ isHide }) => !isHide).map(
@@ -54,7 +58,7 @@ const SignUp: FC = () => {
 					)
 				)}
 			</Form>
-			<Link to={RouterPath.SignIn}>Have account already?</Link>
+			<Link to={RouterPath.SignIn}>{t('haveAccount')}</Link>
 		</HomePageWrap>
 	)
 }

@@ -1,12 +1,13 @@
 import React, { FC } from 'react'
-import Form from 'src/client/components/form'
-import TextInput from 'src/client/components/Inputs'
+import Form from 'components/form'
+import TextInput from 'components/Inputs'
 import { useAppDispatch } from 'src/ssr'
 import useForm from 'src/hooks/useForm'
 import { AddReplyFormProps } from './types'
 import TextArea from 'components/textArea'
 import styles from 'styles/base.scss'
 import { addCommentAction } from 'src/core/ducks/forum/actions'
+import {useTranslation} from 'react-i18next';
 
 type AddReplyComponentFormProps = {
 	isReply: boolean
@@ -24,6 +25,7 @@ const AddReplyForm: FC<AddReplyComponentFormProps> = ({
 	hideForm
 }) => {
 	const dispatch = useAppDispatch()
+	const { t } = useTranslation()
 	const authorName = 'var_user.login'
 	const {
 		values,
@@ -57,11 +59,11 @@ const AddReplyForm: FC<AddReplyComponentFormProps> = ({
 			{isReply && <div>From: {authorName}</div>}
 			<Form
 				handleSubmit={handleSubmit}
-				submitTitle={'Send'}
+				submitTitle={t('send')}
 				errorText={formError}
 			>
 				<TextInput
-					title={'Message Title'}
+					title={t('messageTitle')}
 					type={'text'}
 					name={'title'}
 					value={values['title' as keyof AddReplyFormProps]}
@@ -71,7 +73,7 @@ const AddReplyForm: FC<AddReplyComponentFormProps> = ({
 				/>
 				<TextArea
 					name={'text'}
-					title={'Your text here...'}
+					title={t('textHere')}
 					value={values['text' as keyof AddReplyFormProps]}
 					onChange={handleChange}
 					onBlur={handleBlur}

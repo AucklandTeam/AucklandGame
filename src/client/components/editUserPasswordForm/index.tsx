@@ -5,8 +5,10 @@ import Form from '../form'
 import { initialState, TextFieldsChangePassword } from './shared'
 import { changeUserPasswordRequest } from 'src/core/ducks/profile/api'
 import { ChangePasswordForm } from './types'
+import {useTranslation} from 'react-i18next';
 
 const EditUserPassword = () => {
+	const {t} = useTranslation()
 	const [formError, setFormError] = useState('')
 	const { values, handleChange, handleBlur, handleSubmit, isValid } =
 		useForm<ChangePasswordForm>({
@@ -30,7 +32,7 @@ const EditUserPassword = () => {
 	return (
 		<Form
 			handleSubmit={handleSubmit}
-			submitTitle={'Change Password'}
+			submitTitle={t('changePassword')}
 			errorText={formError}
 		>
 			{TextFieldsChangePassword.map(({ name, type, title }) => (

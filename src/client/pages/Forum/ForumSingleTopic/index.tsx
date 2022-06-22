@@ -8,9 +8,11 @@ import { useForumCommentsInfo } from 'src/core/ducks/forum/selectors'
 import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import { useAppDispatch } from 'src/ssr'
 import { getCommentsAction, getTopicAction } from 'src/core/ducks/forum/actions'
+import {useTranslation} from 'react-i18next';
 
 const ForumSingleTopic: FC = () => {
 	const dispatch = useAppDispatch()
+	const { t } = useTranslation()
 	const [titlePage, setTitlePage] = useState('Destroy Asteroids')
 	const { id } = useParams<{ id: string }>()
 	const { user_id } = useUserInfo()
@@ -25,11 +27,11 @@ const ForumSingleTopic: FC = () => {
 	return (
 		<NotGameWrap titlePage={titlePage}>
 			<PageMeta
-				title={`${titlePage} | Destroy Asteroids`}
-				description='Game by Auckland Team on Yandex Practicum'
+				title={`${titlePage} | ${t('gameTitle')}`}
+				description={t('gameDescription')}
 			/>
 			{comments &&
-				comments.map((item, index) => (
+				comments.map((item) => (
 					<TopicSingleMessage
 						key={item.id}
 						id={item.id}

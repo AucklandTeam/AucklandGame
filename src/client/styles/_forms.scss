@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 $form-font-family: $font-default-family;
 $form-font-size: $base-font-size;
 $form-line-height: $base-line-height;
@@ -122,4 +124,9 @@ textarea {
 	&:disabled {
 		color: $dark-gray-45;
 	}
+}
+
+.langSwitch button {
+	padding: math.div($button-padding-vertical,3) math.div($button-padding-horizontal,3);
+	margin-left: 15px
 }

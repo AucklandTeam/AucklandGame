@@ -15,11 +15,13 @@ import {
 	getCategoryTopicsAction
 } from 'src/core/ducks/forum/actions'
 import { useForumCategoriesInfo } from 'src/core/ducks/forum/selectors'
+import {useTranslation} from 'react-i18next';
 
 const ForumMain: FC = () => {
 	const dispatch = useAppDispatch()
 	const { data: user } = useUserInfo()
 	const { data: categories } = useForumCategoriesInfo()
+	const { t } = useTranslation()
 
 	useEffect(() => {
 		dispatch(getCategoryTopicsAction())
@@ -40,17 +42,17 @@ const ForumMain: FC = () => {
 		}
 	})
 	return (
-		<NotGameWrap titlePage={'Auckland Forum'}>
+		<NotGameWrap titlePage={t('forumTitle')}>
 			<PageMeta
-				title='Auckland Forum | Destroy Asteroids'
-				description='Game by Auckland Team on Yandex Practicum'
+				title={`${t('forumTitle')} | ${t('gameTitle')}`}
+				description={t('gameDescription')}
 			/>
 			<table className={styles.forumsTable}>
 				<thead>
 					<tr>
-						<th className={styles.forumTitleHeader}>Forums</th>
-						<th className={styles.forumTopicsHeader}>Topics</th>
-						<th className={styles.forumCommentsHeader}>Comments</th>
+						<th className={styles.forumTitleHeader}>{t('forums')}</th>
+						<th className={styles.forumTopicsHeader}>{t('topics')}</th>
+						<th className={styles.forumCommentsHeader}>{t('comments')}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -70,7 +72,7 @@ const ForumMain: FC = () => {
 				<div>
 					<Form
 						handleSubmit={handleSubmit}
-						submitTitle={'Added categories'}
+						submitTitle={'Add category'}
 						errorText={formError}
 					>
 						{TextFieldsCategory.map(

@@ -5,6 +5,7 @@ import { useAppDispatch } from 'src/ssr'
 import useForm from 'src/hooks/useForm'
 import { NewTopicForm } from './types'
 import { addTopicAction } from 'src/core/ducks/forum/actions'
+import {useTranslation} from 'react-i18next';
 
 type AddNewTopicFormProps = {
 	categoryId: number
@@ -16,6 +17,7 @@ const AddNewTopicForm: FC<AddNewTopicFormProps> = ({
 	modalRef
 }) => {
 	const dispatch = useAppDispatch()
+	const { t } = useTranslation()
 	const {
 		values,
 		handleChange,
@@ -40,11 +42,11 @@ const AddNewTopicForm: FC<AddNewTopicFormProps> = ({
 			<h4>Add New Topic</h4>
 			<Form
 				handleSubmit={handleSubmit}
-				submitTitle={'Create'}
+				submitTitle={t('create')}
 				errorText={formError}
 			>
 				<TextInput
-					title={'New Topic Title'}
+					title={t('newTopicTitle')}
 					type={'text'}
 					name={'label'}
 					value={values['label' as keyof NewTopicForm]}

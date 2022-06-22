@@ -7,9 +7,11 @@ import { useParams } from 'react-router'
 import { useAppDispatch } from 'src/ssr'
 import { getTopicsAction } from 'src/core/ducks/forum/actions'
 import { useForumTopicsInfo } from 'src/core/ducks/forum/selectors'
+import {useTranslation} from 'react-i18next';
 
 const ForumTopicsList: FC = () => {
 	const dispatch = useAppDispatch()
+	const { t } = useTranslation()
 	const { id } = useParams<{ id: string }>()
 	const { data: topics } = useForumTopicsInfo()
 	useEffect(() => {
@@ -18,10 +20,10 @@ const ForumTopicsList: FC = () => {
 		}
 	}, [id])
 	return (
-		<NotGameWrap titlePage={'Auckland Forum'}>
+		<NotGameWrap titlePage={t('forumTitle')}>
 			<PageMeta
-				title='Auckland Forum | Destroy Asteroids'
-				description='Game by Auckland Team on Yandex Practicum'
+				title={`${t('forumTitle')} | ${t('gameTitle')}`}
+				description={t('gameDescription')}
 			/>
 			<table className={styles.forumsTable}>
 				<thead>

@@ -3,6 +3,7 @@ import NotGameWrap from 'components/notGameWrap'
 import styles from 'styles/base.scss'
 import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
 import { PageMeta } from 'components/pageMeta'
+import {useTranslation} from 'react-i18next';
 
 const byField =
 	(field: string) =>
@@ -11,12 +12,13 @@ const byField =
 
 const Scores = () => {
 	const { data: list } = useLeaderBordInfo()
+	const { t } = useTranslation()
 
 	return (
-		<NotGameWrap titlePage={'High-Scores'}>
+		<NotGameWrap titlePage={t('highScores')}>
 			<PageMeta
-				title='High-Scores | Destroy Asteroids'
-				description='Game by Auckland Team on Yandex Practicum'
+				title={`${t('highScores')} | ${t('gameTitle')}`}
+				description={t('gameDescription')}
 			/>
 			<table className={styles.highScoresTable}>
 				<tbody>
