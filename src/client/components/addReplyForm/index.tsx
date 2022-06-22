@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import Form from 'components/form'
-import TextInput from 'components/Inputs'
+import TextInput from 'components/inputs'
 import { useAppDispatch } from 'src/ssr'
 import useForm from 'src/hooks/useForm'
 import { AddReplyFormProps } from './types'

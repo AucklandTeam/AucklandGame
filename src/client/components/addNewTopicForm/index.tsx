@@ -1,6 +1,6 @@
 import React, { FC, MutableRefObject } from 'react'
 import Form from 'src/client/components/form'
-import TextInput from 'src/client/components/Inputs'
+import TextInput from 'src/client/components/inputs'
 import { useAppDispatch } from 'src/ssr'
 import useForm from 'src/hooks/useForm'
 import { NewTopicForm } from './types'
