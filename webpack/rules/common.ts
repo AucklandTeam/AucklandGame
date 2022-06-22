@@ -22,13 +22,20 @@ export const htmlRule = {
 }
 
 export const mediasRule = {
-	test: /\.(?:png|jpg|jpeg)$/i,
+	test: /\.(?:png|jpg|jpeg|wav|mp3)$/i,
 	type: 'asset/resource',
 	generator: {
 		filename: 'images/[name][ext]',
 	}
 }
 
+export const audioRule = {
+	test: /\.(?:wav|mp3)$/i,
+	type: 'asset/resource',
+	generator: {
+		filename: 'sounds/[name][ext]',
+	}
+}
 export const svgRule = {
 	test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
 	type: 'asset/inline'
