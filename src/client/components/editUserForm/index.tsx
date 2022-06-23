@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react'
 import useForm from 'src/hooks/useForm'
-import TextInput from '../Inputs'
+import TextInput from '../inputs'
 import Form from '../form'
 import { initialState, TextFieldsEditUser } from './shared'
 import { EditUserDataForm } from './types'
 import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import { editUser } from 'src/core/ducks/profile/actions'
 import { useAppDispatch } from 'src/ssr'
+import {useTranslation} from 'react-i18next';
 
 const EditUserData = () => {
 	const { data } = useUserInfo()
 	const dispatch = useAppDispatch()
+	const {t} = useTranslation()
 	const {
 		values,
 		handleChange,
@@ -36,7 +38,7 @@ const EditUserData = () => {
 	return (
 		<Form
 			handleSubmit={handleSubmit}
-			submitTitle={'Save Changes'}
+			submitTitle={t('saveChanges')}
 			errorText={formError}
 		>
 			{TextFieldsEditUser.filter(({ isHide }) => !isHide).map(

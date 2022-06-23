@@ -7,19 +7,19 @@ export const TextFieldsChangePassword: TextInputProps<
 	{
 		name: 'oldPassword',
 		type: 'password',
-		title: 'Old Password',
+		title: 'oldPassword',
 		validType: 'password'
 	},
 	{
 		name: 'newPassword',
 		type: 'password',
-		title: 'New Password',
+		title: 'newPassword',
 		validType: 'password'
 	},
 	{
 		name: 'newPasswordConfirm',
 		type: 'password',
-		title: 'Confirm Password',
+		title: 'confirmPassword',
 		validType: 'password'
 	}
 ]

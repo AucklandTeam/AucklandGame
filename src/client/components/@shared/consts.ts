@@ -30,7 +30,9 @@ export enum RouterPath {
 	Settings = '/settings',
 	Game = '/game',
 	Scores = '/scores',
-	Forum = '/forum'
+	Forum = '/forum',
+	TopicsList = '/topics',
+	SingleTopic = '/topic'
 }
 
 export const RESOURCE_URL = 'https://ya-praktikum.tech/api/v2/resources'

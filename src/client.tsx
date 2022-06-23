@@ -6,7 +6,6 @@ import { Provider } from 'react-redux'
 import { unstable_HistoryRouter as Router } from 'react-router-dom'
 import history from 'src/core/history'
 
-
 const { store } = configureStore(window.SSR_DATA, '/')
 delete window.SSR_DATA
 

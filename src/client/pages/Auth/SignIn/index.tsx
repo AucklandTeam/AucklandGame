@@ -1,15 +1,16 @@
 import React, { FC } from 'react'
-import {Link, useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import useForm from 'src/hooks/useForm'
 import { LoginForm } from './types'
-import TextInput from 'src/client/components/Inputs'
-import { initialState, TextFieldsLogin } from './shared'
-import Form from 'src/client/components/form'
+import TextInput from 'components/inputs'
+import Form from 'components/form'
 import { RouterPath } from 'shared/consts'
-import HomePageWrap from 'src/client/components/homePageWrap'
+import HomePageWrap from 'components/homePageWrap'
 import { signIn } from 'src/core/ducks/auth/actions'
 import { useAppDispatch } from 'src/ssr'
-import {PageMeta} from 'components/pageMeta';
+import { PageMeta } from 'components/pageMeta'
+import {useTranslation} from 'react-i18next'
+import {TextFieldsLogin} from 'pages/Auth/SignIn/shared';
 
 const Login: FC = () => {
 	const dispatch = useAppDispatch()
@@ -22,7 +23,10 @@ const Login: FC = () => {
 		setFormError,
 		formError
 	} = useForm<LoginForm>({
-		initialState,
+		initialState: {
+			login: '',
+			password: ''
+		},
 		onSubmit: values => {
 			console.log(isValid)
 			if (!isValid) return
@@ -30,19 +34,22 @@ const Login: FC = () => {
 		}
 	})
 
+	const { t } = useTranslation()
+
 	return (
-		<HomePageWrap titleContent={'Sign In'}>
+		<HomePageWrap titleContent={t('signIn')}>
 			<PageMeta
-				title='Sign In | Destroy Asteroids'
-				description='Game by Auckland Team on Yandex Practicum'
+				title={`${t('signIn')} | ${t('gameTitle')}`}
+				description={t('gameDescription')}
 			/>
 			<Form
 				handleSubmit={handleSubmit}
-				submitTitle={'Let’s shoot!'}
+				submitTitle={t('letsShoot')}
 				errorText={formError}
 			>
 				{TextFieldsLogin.map(({ name, type, title, validType }) => (
 					<TextInput
+						id={name}
 						key={name}
 						title={title}
 						type={type}
@@ -54,12 +61,12 @@ const Login: FC = () => {
 					/>
 				))}
 			</Form>
-			<Link to={RouterPath.SignUp}>No account yet?</Link>
+			<Link to={RouterPath.SignUp}>{t('noAccount')}</Link>
 			<Link
 				style={{ width: '100%', textAlign: 'center' }}
 				to={RouterPath.SignYandex}
 			>
-				Sign via Yandex?
+				{t('signYandex')}
 			</Link>
 		</HomePageWrap>
 	)

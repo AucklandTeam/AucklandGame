@@ -20,13 +20,13 @@ export const TextFieldsEditUser: TextInputProps<keyof EditUserDataForm>[] = [
 	{
 		name: 'login',
 		type: 'text',
-		title: 'Login',
+		title: 'login',
 		validType: 'login'
 	},
 	{
 		name: 'email',
 		type: 'text',
-		title: 'E-mail',
+		title: 'email',
 		validType: 'email'
 	},
 	{
