@@ -1,14 +1,15 @@
 import HomePageWrap from 'components/homePageWrap'
-import { useLocation } from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom';
 import React, { useEffect } from 'react'
 import { RouterPath } from 'src/client/components/@shared/consts'
 import {
 	authYandexGetServiceID,
 	authYandexLogin
 } from 'src/core/ducks/auth/actions'
-import yandex from 'src/../static/images/yandex.svg'
+import yandex from 'static/images/yandex.svg'
 import { useAppDispatch } from 'src/ssr'
-import {PageMeta} from 'components/pageMeta';
+import { PageMeta } from 'components/pageMeta'
+import {useTranslation} from 'react-i18next';
 
 const AuthViaYandex = () => {
 	const dispatch = useAppDispatch()
@@ -25,15 +26,19 @@ const AuthViaYandex = () => {
 			)
 		}
 	}, [param])
+
+	const {t} = useTranslation()
+
 	return (
-		<HomePageWrap titleContent={'Sign via Yandex'}>
+		<HomePageWrap titleContent={t('signYandexTitle')}>
 			<PageMeta
-				title='Yandex Sign In | Destroy Asteroids'
-				description='Game by Auckland Team on Yandex Practicum'
+				title={`${t('signYandexTitle')} | ${t('gameTitle')}`}
+				description={t('gameDescription')}
 			/>
 			<div onClick={() => dispatch(authYandexGetServiceID())}>
 				<img src={yandex} alt='' />
 			</div>
+			<Link style={{ width: '100%', textAlign: 'center' }} to={RouterPath.SignIn}>{t('signWithPassword')}</Link>
 		</HomePageWrap>
 	)
 }

@@ -8,6 +8,7 @@ import { fetchUser } from 'src/core/ducks/auth/actions'
 import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import { getLeaderBoard } from 'src/core/ducks/scores/actions'
 import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
+import 'src/i18n'
 
 const App = () => {
 	const dispatch = useAppDispatch()

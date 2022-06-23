@@ -6,13 +6,15 @@ import {
 	loginRequest,
 	logoutRequest,
 	signUpRequest,
-	authWithYandex, userLocalSync
+	authWithYandex,
+	userLocalSync
 } from '../api'
 import {
 	authYandexLogin,
 	fetchUser,
 	setUserData,
 	setUserFailed,
+	setUserID,
 	setUserStatus,
 	signIn,
 	signUp
@@ -25,10 +27,14 @@ import { User } from 'src/client/components/@shared/types'
 export function* fetchUserWorker(): SagaIterator<void> {
 	yield put(setUserStatus('pending'))
 	try {
-		const response:User = yield call(getUserRequest)
+		const response: User = yield call(getUserRequest)
 		yield put(setUserData(response))
 		yield put(setUserStatus('success'))
-		yield call(userLocalSync, {login: response.login});
+		const user = yield call(userLocalSync, {
+			login: response.login,
+			avatar: response.avatar
+		})
+		yield put(setUserID(user?.id))
 	} catch (e) {
 		// @ts-ignore
 		yield put(setUserFailed(e.reason))

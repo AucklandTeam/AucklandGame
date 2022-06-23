@@ -2,6 +2,7 @@ import { Action, Store } from 'redux'
 import { SagaMiddleware } from '@redux-saga/core'
 import {UserState} from 'src/core/ducks/auth/types'
 import {LeaderBoardState} from 'src/core/ducks/scores/types';
+import {ForumState} from "src/core/ducks/forum/types";
 
 type Collection<K extends string | number, V> = Record<K, V>
 
@@ -20,6 +21,8 @@ export interface ReduxAction<T = any, P = any> extends Action {
 export interface State {
 		readonly user: UserState
 		readonly leaderBoard: LeaderBoardState
+		readonly forum: ForumState
+		readonly router?: any
 	}
 
 export type RouterFetchDataArgs = {

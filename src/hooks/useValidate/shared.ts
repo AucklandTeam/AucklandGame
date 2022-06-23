@@ -16,5 +16,9 @@ export const validationType: ValTypes = {
 	notnull: {
 		pattern: /(.|\s)*\S(.|\s)*/,
 		error: 'Value is null'
+	},
+	text: {
+		pattern: /(.|\s)*\S{3,}$/,
+		error: 'Minimum 3 characters'
 	}
 }

@@ -9,17 +9,18 @@ import EditUserPassword from 'components/editUserPasswordForm'
 import { RESOURCE_URL } from 'shared/consts'
 import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import noImage from 'static/images/noImage.svg'
-import {PageMeta} from 'components/pageMeta';
+import { PageMeta } from 'components/pageMeta'
+import {useTranslation} from 'react-i18next';
 
 const ProfileEdit: FC = () => {
 	const modal: MutableRefObject<null> = useRef(null)
 	const { data } = useUserInfo()
-	console.log(data)
+	const {t} = useTranslation()
 	return (
-		<NotGameWrap titlePage={'Profile Edit'}>
+		<NotGameWrap titlePage={t('profileEdit')}>
 			<PageMeta
-				title='Edit Profile | Destroy Asteroids'
-				description='Game by Auckland Team on Yandex Practicum'
+				title={`${t('profileEdit')} | ${t('gameTitle')}`}
+				description={t('gameDescription')}
 			/>
 			<div className={styles.userCard}>
 				<Avatar

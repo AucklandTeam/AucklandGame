@@ -1,21 +1,17 @@
 import React, { ChangeEvent, FC } from 'react'
 import styles from 'styles/base.scss'
 
-export interface TextInputProps<NAME> {
+export interface TextAreaProps<NAME> {
 	title?: string
 	name: NAME
-	type: HTMLInputElement['type']
-	value?: string
-	placeholder?: string
-	isHide?: boolean
+	value?: string | number
 	validType?: string
-	onChange?: (event: ChangeEvent<HTMLInputElement>) => void
-	onBlur?: (event: ChangeEvent<HTMLInputElement>) => void
+	onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void
+	onBlur?: (event: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-const TextInput: FC<TextInputProps<string>> = ({
+const TextArea: FC<TextAreaProps<string>> = ({
 	title,
-	type,
 	name,
 	value,
 	validType,
@@ -23,8 +19,8 @@ const TextInput: FC<TextInputProps<string>> = ({
 	onChange
 }) => (
 	<div className={styles.inputWrap}>
-		<input
-			type={type}
+		<textarea
+			rows={8}
 			name={name}
 			title={title}
 			value={value}
@@ -37,4 +33,4 @@ const TextInput: FC<TextInputProps<string>> = ({
 	</div>
 )
 
-export default TextInput
+export default TextArea

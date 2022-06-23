@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import styles from 'styles/base.scss'
 import { Link, useLocation, Location } from 'react-router-dom'
+import {useTranslation} from 'react-i18next';
 
 interface BottomMenuItemType {
 	icon: string
@@ -24,7 +25,7 @@ const BottomMenuItem: FC<BottomMenuItemType> = ({
 	handler
 }) => {
 	const location = useLocation()
-
+	const {t} = useTranslation()
 	return (
 		<Link
 			to={url}
@@ -37,7 +38,7 @@ const BottomMenuItem: FC<BottomMenuItemType> = ({
 			}}
 		>
 			<i className={icon} />
-			<span>{title}</span>
+			<span>{t(title)}</span>
 		</Link>
 	)
 }
