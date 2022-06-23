@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useRef} from 'react';
 import spaceshipImg from 'static/images/buran.png'
-import bgImg from 'static/images/sky.png';
-import debrisImg from 'static/images/debris.png';
+import bgImg from 'static/images/sky2.svg';
+import debrisImg from 'static/images/debris2.svg';
 import bomb3Img from 'static/images/bomb3.png';
 import explosionImg from 'static/images/exp.png';
 import fireImg from 'static/images/fire.png';
@@ -399,7 +399,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         // рисуем объект в новых кординатах
         // фон
-        ctx.drawImage(bg, 0, 0);
+        ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
         // фон метеориты
         ctx.drawImage(debris, debrisX, debrisY);
         // добавляем астеройды

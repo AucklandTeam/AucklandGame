@@ -50,7 +50,14 @@ export const lang: Resource = {
 			send: 'Send',
 			textHere: 'Your text here...',
 			uploadAvatar: 'Upload Avatar',
-			upload: 'Upload'
+			upload: 'Upload',
+			modal: {
+				start: 'START',
+				tryAgain: 'TRY AGAIN',
+				gameOver: 'GAME OVER',
+				move: 'Move',
+				shoot: 'Shoot'
+			}
 			}
 	},
 	ru: {
@@ -102,7 +109,14 @@ export const lang: Resource = {
 			send: 'Отправить',
 			textHere: 'Ваш текст здесь...',
 			uploadAvatar: 'Загрузить ававтар',
-			upload: 'Загрузить'
+			upload: 'Загрузить',
+			modal: {
+				start: 'СТАРТ',
+				tryAgain: 'ЕЩЕ РАЗ',
+				gameOver: 'ИГРА ЗАКОНЧЕНА',
+				move: 'Движение',
+				shoot: 'Стрельба'
+			}
 		}
 
 	}

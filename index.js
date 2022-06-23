@@ -9,7 +9,7 @@ const init = async ()=>{
 	console.log(`Starting Sequelize!`);
 
 	app.listen(PORT, function () {
-		console.log(`test Example app listening on port ${PORT}!`)
+		console.log(`Asteroids app listening on port ${PORT}!`)
 	})
 }
 
