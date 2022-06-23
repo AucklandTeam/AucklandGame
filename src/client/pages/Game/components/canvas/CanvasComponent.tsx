@@ -486,20 +486,24 @@ const CanvasComponent: FC<CanvasProps> = ({
             //key A or LEFT
             case 'ArrowLeft':
             case 'a':
+            case 'A':
                 keyLeft = state;
                 break;
             //key D or RIGHT
             case 'd':
+            case 'D':
             case 'ArrowRight':
                 keyRight = state;
                 break;
             //key W or UP
             case 'w':
+            case 'W':
             case 'ArrowUp':
                 keyUp = state;
                 break;
             //key S or DOWN
             case 's':
+            case 'S':
             case 'ArrowDown':
                 keyDown = state;
                 break;
