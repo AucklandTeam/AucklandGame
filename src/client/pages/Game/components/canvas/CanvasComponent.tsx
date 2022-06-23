@@ -6,6 +6,7 @@ import debrisImg from 'static/images/debris.png';
 import bomb3Img from 'static/images/bomb3.png';
 import explosionImg from 'static/images/exp.png';
 import fireImg from 'static/images/fire.png';
+import bulletImg from 'static/images/bullet.png';
 import bombExp from 'static/images/bomb_spritesheet.png'
 import asterImg from 'static/images/aster.png';
 import endSoundFile from 'static/sounds/end.wav';
@@ -64,6 +65,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     const debris = new Image();
     const explosion = new Image();
     const fire = new Image();
+    const bullet = new Image();
     const bomb3 = new Image();
     const bombExplosion = new Image();
     const aster = new Image();
@@ -195,6 +197,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     class Asteroid extends Base {
         public speed: number;
         private readonly angle: number;
+        private readonly argleEncreaseNum: number;
         public radius: number;
         public isSmall: boolean;
         public rotateAngle: number;
@@ -205,11 +208,12 @@ const CanvasComponent: FC<CanvasProps> = ({
             this.radius = 50;
             this.isSmall = false;
             this.rotateAngle = 0;
+            this.argleEncreaseNum = getRandomArbitrary(1, 20)
         }
         update() {
             this.x += Math.cos(Math.PI/180*(this.angle - 90)) * this.speed;
             this.y += Math.sin(Math.PI/180*(this.angle - 90)) * this.speed;
-            this.rotateAngle += 1;
+            this.rotateAngle += 1 * this.argleEncreaseNum/20;
             if (this.x > canvas.width) {
                 this.x = 0 - this.radius/2;
             }
@@ -250,7 +254,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     }
 
     const fireShip = () => {
-        const bullet = new Bullet(xMove + shipWith/2, yMove + shipHeight/2, angle);
+        const bullet = new Bullet(xMove + shipWith/2 - bulletRadius/2, yMove + shipHeight/2 - bulletRadius/2, angle);
         bullets.push(bullet);
         const isTripleFire = true;
         if (isTripleFire) {
@@ -400,12 +404,14 @@ const CanvasComponent: FC<CanvasProps> = ({
 
         bullets = bullets.filter((el: any) => el.getVisible());
         bullets.forEach((el: any) => {
-            ctx.beginPath();
-            ctx.arc(el.getPos().x, el.getPos().y, bulletRadius, 0, 2 * Math.PI);
-            ctx.fillStyle = 'orange';
-            ctx.fill();
+            const x = el.getPos().x + 25;
+            const y = el.getPos().y + 25
+            ctx.translate(x, y);
+            ctx.rotate(Math.PI/180 * (el.angle - 90));
+            ctx.translate(-x, -y);
+            ctx.drawImage(bullet, el.getPos().x, el.getPos().y, 50, 50);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             el.update();
-            ctx.closePath();
         });
 
         asteroids = asteroids.filter((el: any) => el.getVisible());
@@ -549,6 +555,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         spaceship.src = spaceshipImg;
         explosion.src = explosionImg;
         fire.src = fireImg;
+        bullet.src = bulletImg;
         bomb3.src = bomb3Img;
         bombExplosion.src = bombExp;
         aster.src = asterImg;
