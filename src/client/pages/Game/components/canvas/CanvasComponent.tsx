@@ -197,17 +197,19 @@ const CanvasComponent: FC<CanvasProps> = ({
         private readonly angle: number;
         public radius: number;
         public isSmall: boolean;
+        public rotateAngle: number;
         constructor(x:number, y:number) {
             super(x, y);
             this.speed = asteroidSpeed;
             this.angle = getRandomArbitrary(0, 360);
             this.radius = 50;
             this.isSmall = false;
+            this.rotateAngle = 0;
         }
         update() {
             this.x += Math.cos(Math.PI/180*(this.angle - 90)) * this.speed;
             this.y += Math.sin(Math.PI/180*(this.angle - 90)) * this.speed;
-
+            this.rotateAngle += 1;
             if (this.x > canvas.width) {
                 this.x = 0 - this.radius/2;
             }
@@ -421,7 +423,12 @@ const CanvasComponent: FC<CanvasProps> = ({
 
         asteroids.forEach((el: any) => {
             const size = el.isSmall ? 100 : 200;
+
+            ctx.translate(el.x + size/2, el.y + size/2);
+            ctx.rotate(Math.PI / 180 * (el.rotateAngle + 90));
+            ctx.translate(-el.x - size/2, -el.y - size/2);
             ctx.drawImage(aster, el.getPos().x, el.getPos().y, size, size);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             el.update();
         });
         explosions.forEach((el: any) => {
