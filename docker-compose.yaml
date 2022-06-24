@@ -30,9 +30,6 @@ services:
     networks:
       - awesome
 
-volumes:
-    pgadmin-data:
-
 networks:
   awesome:
     driver: bridge
