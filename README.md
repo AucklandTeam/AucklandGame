@@ -1,33 +1,43 @@
-# 🚀 Auckland Asteroid game!
+# 🚀 Auckland Team presents 'Destroy Asteroids' game!
 
-Лучшая игра про астеройды на js
+Awesome web version of the classic Atari game on JS
 
-Хостинг на Heroku: https://auckland-asteroids.herokuapp.com/
+![](./static/images/screenshot.jpg "Game Page Screenshot")
+
+Stack: NodeJS, PostgresDB, TypeScript, ReactJS, Sass, Redux&Saga, Webpack, Docker, GitHub Actions
+
+### To play
+https://asteroidsdestroy.ru/
+
+1. Use **arrow buttons** to move and **space button** to shoot
+2. To toggle **Fullscreen mode** just click on game screen.
+3. You can choose **Russian** or **English** language (by default it based on your browser settings)
+4. To save you **score**, view the **high-scores** and use game **forum** you may like to register
+
+### To develop
 
 ```
-npm run start - запуск
-npm run build - production сборка
-npm run serve - dev server
+npm run build - production
+npm run dev - dev server (w/o db connect)
 ```
-Стэк: NodeJS, React, Sass
 
-Сборка в контейнерах
+For Docker-compose build
 ```
 docker-compose down -v
 docker-compose up -d --build
     
 ```
-Проверяем, что все запущено
+To Check the build
 ```
 docker-compose ps
 ```
-Заходим на localhost:8080 в PG admin и коннектимся к нашей базе:
+To use dev DB try PG admin on localhost:8097 and create DB
 ```
-- правой кнопкой create -> server
+- right click -> create -> server
 - general -> name: postgres
-- connertion -> host name: postgres
-                username: смотри POSTGRES_USER в dot.env
-                password: смотри POSTGRES_PASSWORD в dot.env
-                остальное по умолчанию
+- connection -> host name: postgres
+                username: POSTGRES_USER in dev.env
+                password: POSTGRES_PASSWORD in dev.env
+                rest is by default
 ```
 
