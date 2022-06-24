@@ -1,10 +1,14 @@
 import React, {FC, useEffect, useRef} from 'react';
 import spaceshipImg from 'static/images/buran.png'
+
 import bgImg from 'static/images/sky2.svg';
-import debrisImg from 'static/images/debris2.svg';
+//import debrisImg from 'static/images/debris2.svg';
+import bgImg from 'static/images/sky.png';
+import debrisImg from 'static/images/debris.png';
 import bomb3Img from 'static/images/bomb3.png';
 import explosionImg from 'static/images/exp.png';
 import fireImg from 'static/images/fire.png';
+import bulletImg from 'static/images/bullet.png';
 import bombExp from 'static/images/bomb_spritesheet.png'
 import asterImg from 'static/images/aster.png';
 import endSoundFile from 'static/sounds/end.wav';
@@ -26,7 +30,12 @@ import {
 } from './consts';
 import Base from './BaseClass'
 
-const isNotServer = typeof Audio != "undefined";
+const playAudio = (src: any, volume?: number) => {
+        const sound = new Audio(src);
+        sound.volume = volume ? volume : 0.1;
+        sound?.play();
+};
+
 interface CanvasProps {
     setLives: (arg0: number) => void;
     setScore: (arg0: number) => void;
@@ -58,6 +67,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     const debris = new Image();
     const explosion = new Image();
     const fire = new Image();
+    const bullet = new Image();
     const bomb3 = new Image();
     const bombExplosion = new Image();
     const aster = new Image();
@@ -189,19 +199,23 @@ const CanvasComponent: FC<CanvasProps> = ({
     class Asteroid extends Base {
         public speed: number;
         private readonly angle: number;
+        private readonly argleEncreaseNum: number;
         public radius: number;
         public isSmall: boolean;
+        public rotateAngle: number;
         constructor(x:number, y:number) {
             super(x, y);
             this.speed = asteroidSpeed;
             this.angle = getRandomArbitrary(0, 360);
             this.radius = 50;
             this.isSmall = false;
+            this.rotateAngle = 0;
+            this.argleEncreaseNum = getRandomArbitrary(1, 20)
         }
         update() {
             this.x += Math.cos(Math.PI/180*(this.angle - 90)) * this.speed;
             this.y += Math.sin(Math.PI/180*(this.angle - 90)) * this.speed;
-
+            this.rotateAngle += 1 * this.argleEncreaseNum/20;
             if (this.x > canvas.width) {
                 this.x = 0 - this.radius/2;
             }
@@ -242,7 +256,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     }
 
     const fireShip = () => {
-        const bullet = new Bullet(xMove + shipWith/2, yMove + shipHeight/2, angle);
+        const bullet = new Bullet(xMove + shipWith/2 - bulletRadius/2, yMove + shipHeight/2 - bulletRadius/2, angle);
         bullets.push(bullet);
         const isTripleFire = true;
         if (isTripleFire) {
@@ -255,11 +269,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             bullets.push(bullet1);
             bullets.push(bullet2);
         }
-        let fireSound: any;
-        if (isNotServer) {
-            fireSound = new Audio(fireSoundFile);
-        }
-        fireSound?.play();
+        playAudio(fireSoundFile);
     };
 
     const updateShip = (time: number) => {
@@ -342,13 +352,7 @@ const CanvasComponent: FC<CanvasProps> = ({
                             asteroids.push(smallAsteroid);
                         }
                     }
-                    let expSound: any;
-
-                    if (isNotServer) {
-                        expSound = new Audio(expSoundFile);
-                    }
-                    expSound.volume = 0.3;
-                    expSound?.play();
+                    playAudio(expSoundFile);
                     explosions.push(explosion);
                     count += 1;
                     setScore(count);
@@ -359,22 +363,11 @@ const CanvasComponent: FC<CanvasProps> = ({
                 asteroid.visible = false;
                 const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
                 explosions.push(explosion);
-                let expSound: any;
-
-                if (isNotServer) {
-                    expSound = new Audio(expSoundFile);
-                }
-                expSound.volume = 0.3;
-                expSound?.play();
+                playAudio(expSoundFile);
                 lives -= 1;
                 setLives(lives);
                 if (!lives) {
-                    let endSound: any;
-
-                    if (isNotServer) {
-                        endSound = new Audio(endSoundFile);
-                    }
-                    endSound?.play();
+                    playAudio(endSoundFile);
                     isGameEnd = true;
                     setIsGameStart(false);
                 }
@@ -399,7 +392,10 @@ const CanvasComponent: FC<CanvasProps> = ({
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         // рисуем объект в новых кординатах
         // фон
+
         ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+        //ctx.drawImage(bg, 0, 0)
+        
         // фон метеориты
         ctx.drawImage(debris, debrisX, debrisY);
         // добавляем астеройды
@@ -412,12 +408,14 @@ const CanvasComponent: FC<CanvasProps> = ({
 
         bullets = bullets.filter((el: any) => el.getVisible());
         bullets.forEach((el: any) => {
-            ctx.beginPath();
-            ctx.arc(el.getPos().x, el.getPos().y, bulletRadius, 0, 2 * Math.PI);
-            ctx.fillStyle = 'orange';
-            ctx.fill();
+            const x = el.getPos().x + 25;
+            const y = el.getPos().y + 25
+            ctx.translate(x, y);
+            ctx.rotate(Math.PI/180 * (el.angle - 90));
+            ctx.translate(-x, -y);
+            ctx.drawImage(bullet, el.getPos().x, el.getPos().y, 50, 50);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             el.update();
-            ctx.closePath();
         });
 
         asteroids = asteroids.filter((el: any) => el.getVisible());
@@ -435,7 +433,12 @@ const CanvasComponent: FC<CanvasProps> = ({
 
         asteroids.forEach((el: any) => {
             const size = el.isSmall ? 100 : 200;
+
+            ctx.translate(el.x + size/2, el.y + size/2);
+            ctx.rotate(Math.PI / 180 * (el.rotateAngle + 90));
+            ctx.translate(-el.x - size/2, -el.y - size/2);
             ctx.drawImage(aster, el.getPos().x, el.getPos().y, size, size);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             el.update();
         });
         explosions.forEach((el: any) => {
@@ -502,20 +505,24 @@ const CanvasComponent: FC<CanvasProps> = ({
             //key A or LEFT
             case 'ArrowLeft':
             case 'a':
+            case 'A':
                 keyLeft = state;
                 break;
             //key D or RIGHT
             case 'd':
+            case 'D':
             case 'ArrowRight':
                 keyRight = state;
                 break;
             //key W or UP
             case 'w':
+            case 'W':
             case 'ArrowUp':
                 keyUp = state;
                 break;
             //key S or DOWN
             case 's':
+            case 'S':
             case 'ArrowDown':
                 keyDown = state;
                 break;
@@ -552,6 +559,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         spaceship.src = spaceshipImg;
         explosion.src = explosionImg;
         fire.src = fireImg;
+        bullet.src = bulletImg;
         bomb3.src = bomb3Img;
         bombExplosion.src = bombExp;
         aster.src = asterImg;
