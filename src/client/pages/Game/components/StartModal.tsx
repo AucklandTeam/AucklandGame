@@ -2,17 +2,19 @@ import styles from 'styles/base.scss'
 import React from 'react'
 import ConfigArrowButton from './ConfigArrowButton'
 import SpaceButtonIcon from '../Icons/SpaceButtonIcon'
+import {useTranslation} from 'react-i18next'
 
 const StartModal = ({ startGameHandler, attempts, score }: any) => {
+	const {t} = useTranslation()
 	const isNewGame = attempts === 0
-	const startButtonText = isNewGame ? 'START' : 'TRY AGAIN'
+	const startButtonText = isNewGame ? t('modal.start') : t('modal.tryAgain')
 	return (
 		<div className={styles.modalStartWrapper}>
 			<div className={styles.modalStart}>
 				{!isNewGame && (
 					<div className={styles.modalScore}>
-						<div>GAME OVER</div>
-						<div>score: {score}</div>
+						<div>{t('modal.gameOver')}</div>
+						<div>{t('score')}: {score}</div>
 					</div>
 				)}
 				<div
@@ -34,9 +36,9 @@ const StartModal = ({ startGameHandler, attempts, score }: any) => {
 							/>
 							<ConfigArrowButton deg={0} />
 						</div>
-						<div>Move</div>
+						<div>{t('modal.move')}</div>
 						<SpaceButtonIcon />
-						<div>Shoot</div>
+						<div>{t('modal.shoot')}</div>
 					</div>
 				)}
 			</div>
