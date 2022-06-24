@@ -5,12 +5,13 @@ import TopicCategory from 'server/Model/topicCategory'
 import Comment from 'server/Model/comment'
 import Reply from 'server/Model/reply'
 
+
 export const sequelizeOptions: SequelizeOptions = {
-	host: 'postgres',
-	port: 5432,
-	username: 'postgres',
-	password: 'root',
-	database: 'auckland-db',
+	host: process.env.POSTGRES_HOST,
+	port: 6432,
+	username: process.env.POSTGRES_USER,
+	password: process.env.POSTGRES_PASSWORD,
+	database: process.env.POSTGRES_DB,
 	dialect: 'postgres'
 }
 

@@ -1,5 +1,5 @@
 import path from 'path'
-import express, { request, Request, Response } from 'express'
+import express, { Request, Response } from 'express'
 import compression from 'compression'
 import serverRenderMiddleware from 'src/ssr'
 import { dbConnect } from 'server/db/connect'
@@ -121,12 +121,6 @@ app.post(
 	}
 )
 app.get('/service-worker.js', (req, res) => {
-	/*const lang = request.acceptsLanguages('ru', 'es', 'en')
-    if (lang) {
-        console.log('The first accepted of [ru, es, en] is: ' + lang)
-    } else {
-        console.log('None of [fr, es, en] is accepted')
-    }*/
 	res.sendFile(path.resolve(__dirname, 'public', 'service-worker.js'))
 })
 
