@@ -137,7 +137,7 @@ const CanvasComponent: FC<CanvasProps> = ({
                     this.currentFrame = 0;
                     if (this.timeCount) {
                         this.timeCount = this.timeCount -= 1;
-                        this.isVisible = this.timeCount === 0 ? false : true;
+                        this.isVisible = this.timeCount !== 0;
                     }
                 }
                 // Update rows and columns
