@@ -8,6 +8,7 @@ import bomb3Img from 'static/images/bomb3.png';
 import explosionImg from 'static/images/exp.png';
 import fireImg from 'static/images/fire.png';
 import bulletImg from 'static/images/bullet.png';
+import bulletImg2 from 'static/images/laser3.png';
 import rocketBonusImg from 'static/images/bonuses/rocket.png';
 import bombExp from 'static/images/bomb_spritesheet.png';
 import asterImg from 'static/images/aster.png';
@@ -69,6 +70,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     const explosion = new Image();
     const fire = new Image();
     const bullet = new Image();
+    const bullet2 = new Image();
     const rocketBonus = new Image();
     const bomb3 = new Image();
     const bombExplosion = new Image();
@@ -328,7 +330,7 @@ const CanvasComponent: FC<CanvasProps> = ({
                 bomb.isVisible = false;
                 const bombExpObj = new Sprite(bomb.x + 20, bomb.y + 20, 810, 9, 1);
                 bombExpArray.push(bombExpObj);
-                playAudio(powerUpFile, 1);
+                playAudio(powerUpFile, 0.5);
                 asteroids.forEach((asteroid: any) => {
                     asteroid.visible = false;
                     const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
@@ -439,7 +441,8 @@ const CanvasComponent: FC<CanvasProps> = ({
             ctx.translate(x, y);
             ctx.rotate((Math.PI / 180) * (el.angle - 90));
             ctx.translate(-x, -y);
-            ctx.drawImage(bullet, el.getPos().x, el.getPos().y, 50, 50);
+            const image = isTripleFire ? bullet2 : bullet;
+            ctx.drawImage(image, el.getPos().x, el.getPos().y, 50, 50);
             ctx.setTransform(1, 0, 0, 1, 0, 0);
             el.update();
         });
@@ -643,6 +646,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         explosion.src = explosionImg;
         fire.src = fireImg;
         bullet.src = bulletImg;
+        bullet2.src = bulletImg2;
         rocketBonus.src = rocketBonusImg;
         bomb3.src = bomb3Img;
         bombExplosion.src = bombExp;
