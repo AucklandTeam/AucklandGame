@@ -8,8 +8,8 @@ import Reply from 'server/Model/reply'
 
 // @ts-ignore
 export const sequelizeOptions: SequelizeOptions = {
-	host: process.env.POSTGRES_HOST,
-	port: 5432,
+	host: 'c-c9qrj8eshi2b3tho0r6m.rw.mdb.yandexcloud.net',
+	port: 6432,
 	username: process.env.POSTGRES_USER,
 	password: process.env.POSTGRES_PASSWORD,
 	database: process.env.POSTGRES_DB,
