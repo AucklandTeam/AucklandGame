@@ -2,7 +2,7 @@ node_modules
 package-lock.json
 .github
 .idea
-prod.env
+.env
 dist
 .cache
 .DS_Store
