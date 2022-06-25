@@ -1,18 +1,20 @@
 import React, { FC, useEffect, useRef } from 'react';
 import spaceshipImg from 'static/images/buran.png';
 
-import bgImg from 'static/images/sky2.svg';
+import bgImg from 'static/images/bg.png';
 //import debrisImg from 'static/images/debris2.svg';
 import debrisImg from 'static/images/debris.png';
 import bomb3Img from 'static/images/bomb3.png';
 import explosionImg from 'static/images/exp.png';
 import fireImg from 'static/images/fire.png';
 import bulletImg from 'static/images/bullet.png';
+import rocketBonusImg from 'static/images/bonuses/rocket.png';
 import bombExp from 'static/images/bomb_spritesheet.png';
 import asterImg from 'static/images/aster.png';
 import endSoundFile from 'static/sounds/end.wav';
 import fireSoundFile from 'static/sounds/fire.wav';
 import expSoundFile from 'static/sounds/exp2.mp3';
+import powerUpFile from 'static/sounds/powerUp.mp3';
 import fonSoundFile from 'static/sounds/fon.mp3';
 
 import { getRandomArbitrary } from './utils';
@@ -67,6 +69,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     const explosion = new Image();
     const fire = new Image();
     const bullet = new Image();
+    const rocketBonus = new Image();
     const bomb3 = new Image();
     const bombExplosion = new Image();
     const aster = new Image();
@@ -90,6 +93,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     let count = 0;
     let lives = 3;
     let isGameEnd = false;
+    let isTripleFire = false;
 
     let debrisX = 0;
     let debrisY = 0;
@@ -98,6 +102,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     let explosions: any = [];
     let bombs: any = [];
     let bombExpArray: any = [];
+    let bonuses: any = [];
 
     let fonSound: any;
     /*
@@ -120,6 +125,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         isSmall: boolean;
         isVisible: boolean;
         timeCount: number;
+        type: string;
         private tickSprite: number;
         constructor(x: number, y: number, frameSize: number, cols = 1, rows = 1, timeCount?: number) {
             super(x, y);
@@ -135,6 +141,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             this.tickSprite = 0;
             this.isVisible = true;
             this.timeCount = timeCount;
+            this.type = '';
         }
         update() {
             this.tickSprite++;
@@ -261,7 +268,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             angle,
         );
         bullets.push(bullet);
-        const isTripleFire = true;
+
         if (isTripleFire) {
             const x1 = xMove + shipWith / 2 - bulletRadius / 2 + 50 * Math.sin(((-angle + 50) * Math.PI) / 180);
             const y1 = yMove - bulletRadius / 2 + shipHeight / 2 + 50 * Math.cos(((-angle + 50) * Math.PI) / 180);
@@ -321,11 +328,22 @@ const CanvasComponent: FC<CanvasProps> = ({
                 bomb.isVisible = false;
                 const bombExpObj = new Sprite(bomb.x + 20, bomb.y + 20, 810, 9, 1);
                 bombExpArray.push(bombExpObj);
+                playAudio(powerUpFile, 1);
                 asteroids.forEach((asteroid: any) => {
                     asteroid.visible = false;
                     const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
                     explosions.push(explosion);
+                    playAudio(expSoundFile);
                 });
+            }
+        });
+
+        bonuses.forEach((bonus: any) => {
+            if (Math.abs(xMove + 50 - bonus.x - 30) < 50 && Math.abs(yMove + 50 - bonus.y - 30) < 50) {
+                bonus.isVisible = false;
+                isTripleFire = true;
+                playAudio(powerUpFile, 1);
+                setTimeout(() => { isTripleFire = false}, 10000)
             }
         });
         asteroids.forEach((asteroid: any) => {
@@ -344,6 +362,11 @@ const CanvasComponent: FC<CanvasProps> = ({
                         if (num === 2) {
                             const bomb3Obj = new Sprite(asteroid.x + 50, asteroid.y + 50, 450, 10, 1, 5);
                             bombs.push(bomb3Obj);
+                        }
+                        if (num === 3) {
+                            const rocketBonus = new Sprite(asteroid.x + 50, asteroid.y + 50, 450, 1, 1, 50);
+                            rocketBonus.type = 'rocket';
+                            bonuses.push(rocketBonus);
                         }
 
                         for (let i = 0; i < 3; i++) {
@@ -424,6 +447,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         asteroids = asteroids.filter((el: any) => el.getVisible());
         explosions = explosions.filter((el: any) => el.timeLives > 0);
         bombs = bombs.filter((el: any) => el.isVisible);
+        bonuses = bonuses.filter((el: any) => el.isVisible);
         bombExpArray = bombExpArray.filter((el: any) => el.timeLives > 0);
         checkCollision();
 
@@ -442,6 +466,16 @@ const CanvasComponent: FC<CanvasProps> = ({
             bomb3Obj.update();
         });
 
+        bonuses.forEach((bonus: any) => {
+            ctx.drawImage(
+                rocketBonus,
+                bonus.x,
+                bonus.y,
+                70,
+                70,
+            );
+            bonus.update();
+        });
         asteroids.forEach((el: any) => {
             const size = el.isSmall ? 100 : 200;
 
@@ -609,6 +643,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         explosion.src = explosionImg;
         fire.src = fireImg;
         bullet.src = bulletImg;
+        rocketBonus.src = rocketBonusImg;
         bomb3.src = bomb3Img;
         bombExplosion.src = bombExp;
         aster.src = asterImg;
