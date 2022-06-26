@@ -6,3 +6,8 @@ export type AddReplyFormProps = {
 	commentId?: number;
 	authorId: number;
 }
+
+export type ChangeReactionParam = {
+	userId: number;
+	commentId: number;
+}

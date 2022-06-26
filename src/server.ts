@@ -12,6 +12,8 @@ import TopicService from "server/services/topicService";
 import CommentService from "server/services/commentService";
 import {IComment} from "server/Model/comment";
 import ReplyService from "server/services/replyService";
+import {IReaction} from "server/Model/reaction";
+import ReactionService from "server/services/reactionService";
 
 const app = express()
 
@@ -24,6 +26,7 @@ app.use([ApiLocation.FORUM], bodyParser.json())
 app.use([ApiLocation.TOPICS], bodyParser.json())
 app.use([ApiLocation.TOPIC], bodyParser.json())
 app.use([ApiLocation.COMMENT], bodyParser.json())
+app.use([ApiLocation.REACTION], bodyParser.json())
 app.post(ApiLocation.USER.SUNC, async (req: Request<PUserSync>, res) => {
     if (req.body?.login) {
         const user = await UserService.syncUser(req.body.login, req.body.avatar);
@@ -97,6 +100,17 @@ app.post(ApiLocation.COMMENT, async (req:Request<IComment, IComment,IComment>, r
     }
     res.send('Error params');
 })
+
+type PReaction = Omit<IReaction, 'id'>;
+
+app.post(ApiLocation.REACTION, async (req: Request<PReaction, PReaction, PReaction>, res:Response)=>{
+    if(req.body.userId && req.body.commentId){
+        const result = await ReactionService.changeReaction(req.body.userId, req.body.commentId);
+        res.send(result);
+    }
+    res.send('Error params');
+})
+
 // app.get("/service-worker.js", (req, res) => {
 //     res.sendFile(path.resolve(__dirname, "public", "service-worker.js"))
 // })

@@ -2,7 +2,7 @@ import {SagaIterator} from "redux-saga";
 import {call, put} from "@redux-saga/core/effects";
 import {
     addCategoryTopic,
-    addComment,
+    addComment, addReaction,
     addTopic,
     getCategoriesTopics,
     getComments, getTopic,
@@ -10,7 +10,7 @@ import {
 } from "src/core/ducks/forum/api";
 import {
     addCategoryTopicsAction, addCommentAction,
-    addTopicAction,
+    addTopicAction, changeReaction,
     getCommentsAction, getTopicAction,
     getTopicsAction,
     setForumCategoriesData,
@@ -95,6 +95,16 @@ export function* addCommentWorker({payload}:ReturnType<typeof addCommentAction>)
         yield call(addComment, payload);
         yield put(getCommentsAction({topicId: payload.topicId}))
     } catch (e) {
+        console.error(e);
+    }
+}
+
+export function* changeReactionWorker({payload}:ReturnType<typeof changeReaction>):SagaIterator<void> {
+    try {
+        const {userId, commentId, topicId} = payload;
+        yield call(addReaction, {userId, commentId});
+        yield put(getCommentsAction({topicId}))
+    }catch (e) {
         console.error(e);
     }
 }

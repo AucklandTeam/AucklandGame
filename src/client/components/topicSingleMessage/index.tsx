@@ -7,8 +7,10 @@ import Avatar from 'components/avatar'
 import Button from 'components/buttons'
 import noImage from 'static/images/noImage.svg'
 import AddReplyForm from 'components/addReplyForm';
-import {Comment} from "src/core/ducks/forum/types";
+import {Comment, Reaction} from "src/core/ducks/forum/types";
 import classNames from "src/utils/classNames";
+import {useAppDispatch} from "src/ssr";
+import {changeReaction} from "src/core/ducks/forum/actions";
 
 type TopicSingleMessageProps = {
     messageTitle: string;
@@ -21,6 +23,7 @@ type TopicSingleMessageProps = {
     currentUser?: string;
     answers: Comment[];
     type: 'comment' | 'replay';
+    reactions: Reaction[];
 }
 
 const TopicSingleMessage: FC<TopicSingleMessageProps> = (
@@ -34,8 +37,10 @@ const TopicSingleMessage: FC<TopicSingleMessageProps> = (
         id,
         currentUser,
         answers,
-        type
+        type,
+        reactions,
     }) => {
+    const dispatch = useAppDispatch();
     const metaStyle = messageTitle ? styles.userName : styles.messageTitle
     const [showForm, setShowForm] = useState(false)
     const handleReplyClick = () => setShowForm(true)
@@ -44,6 +49,10 @@ const TopicSingleMessage: FC<TopicSingleMessageProps> = (
 
     const handlerToggleReply = ()=>{
         setIsShowReply((prev)=>!prev);
+    }
+
+    const handlerReaction = ()=>{
+        dispatch(changeReaction({userId: authorId, commentId: id, topicId}))
     }
 
 
@@ -67,6 +76,7 @@ const TopicSingleMessage: FC<TopicSingleMessageProps> = (
                         {answers && !!answers.length && (
                             <Button buttonType={'button'} buttonTitle={isShowReply ? 'Скрыть ответы':'Показать ответы'} buttonName={'reply'} handleClick={handlerToggleReply}/>
                         )}
+                        <Button buttonType={'button'} buttonTitle={`Нравится ${+reactions?.length}`} buttonName={'reply'} handleClick={handlerReaction}/>
                     </div>
                 )}
             </div>
@@ -90,6 +100,7 @@ const TopicSingleMessage: FC<TopicSingleMessageProps> = (
                     userAvatar={item.author.avatar}
                     answers={item.answers}
                     type={'replay'}
+                    reactions={item.reactions}
                 />
             ))}
         </>

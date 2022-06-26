@@ -9,5 +9,6 @@ export const ApiLocation = {
     FORUM: `${verApi}/forum`,
     TOPICS: `${verApi}/topics`,
     TOPIC: `${verApi}/topic`,
-    COMMENT: `${verApi}/comment`
+    COMMENT: `${verApi}/comment`,
+    REACTION: `${verApi}/reaction`
 }

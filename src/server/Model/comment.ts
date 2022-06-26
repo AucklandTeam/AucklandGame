@@ -12,12 +12,12 @@ import {
 import User from "server/Model/user";
 import Reply from "server/Model/reply";
 import Topic from "server/Model/topic";
+import Reaction from "server/Model/reaction";
 
 export type IComment = {
     title: string;
     text: string;
     topicId: number;
-    likeCount: number;
     commentId: number;
     authorId: number;
 }
@@ -40,8 +40,6 @@ class Comment extends Model<Comment, IComment> {
     @Column(DataType.INTEGER)
     topicId: number;
     @Column(DataType.INTEGER)
-    likeCount: number;
-    @Column(DataType.INTEGER)
     commentId: number;
     @ForeignKey(()=>User)
     @Column(DataType.INTEGER)
@@ -50,6 +48,8 @@ class Comment extends Model<Comment, IComment> {
     author: User;
     @HasMany(()=>Reply)
     answers: Reply[]
+    @HasMany(()=>Reaction)
+    reactions: Reaction[]
 }
 
 

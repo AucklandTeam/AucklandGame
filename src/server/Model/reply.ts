@@ -16,7 +16,6 @@ import Comment from "server/Model/comment"
 export type IReply = {
     title: string;
     text: string;
-    likeCount: number;
     commentId?: number;
     authorId: number;
 }
@@ -38,8 +37,6 @@ class Reply extends Model<Comment, IReply> {
     @ForeignKey(()=>TopicCategory)
     @Column(DataType.INTEGER)
     topicId: number;
-    @Column(DataType.INTEGER)
-    likeCount: number;
     @ForeignKey(()=>Comment)
     @Column(DataType.INTEGER)
     commentId!: number;

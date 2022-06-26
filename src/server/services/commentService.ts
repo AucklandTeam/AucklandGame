@@ -1,6 +1,7 @@
 import Comment, {IComment} from "server/Model/comment";
 import User from "server/Model/user";
 import Reply from "server/Model/reply";
+import Reaction from "server/Model/reaction";
 
 class CommentService {
     async getCommentByID(id: number) {
@@ -21,7 +22,11 @@ class CommentService {
                         model: User,
                         attributes: ['name', 'avatar']
                     }],
-                }]
+                },
+                    {
+                        model: Reaction,
+                        attributes: ['userId']
+                    }]
             }));
         return comments;
     }

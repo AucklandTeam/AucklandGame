@@ -41,6 +41,7 @@ const ForumSingleTopic: FC = () => {
                     currentUser={user.login}
                     answers={item.answers}
                     type={'comment'}
+                    reactions={item.reactions}
                 />
             ))}
             <AddReplyForm isReply={false} topicId={+id} authorId={user_id}/>

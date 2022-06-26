@@ -15,6 +15,10 @@ export type Topic = {
     comments: {id: string}[]
 } & TimeStamp;
 
+export type Reaction = {
+    userId: number;
+}
+
 export type Comment = {
     id: number;
     title: string;
@@ -25,7 +29,8 @@ export type Comment = {
         name: string;
         avatar: null | string;
     }
-    answers: Comment[]
+    answers: Comment[];
+    reactions: Reaction[]
 } & TimeStamp;
 
 export type ForumState = {

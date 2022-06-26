@@ -2,7 +2,7 @@ import {createAction} from "@reduxjs/toolkit";
 import {LoadStatus, Nullable } from "shared/types";
 import {NewTopicForm, ParamGetComments, ParamGetTopics} from "components/addNewTopicForm/types";
 import {CategoryTopic, Topic} from "src/core/ducks/forum/types";
-import {AddReplyFormProps} from "components/addReplyForm/types";
+import {AddReplyFormProps, ChangeReactionParam} from "components/addReplyForm/types";
 
 export const getCategoryTopicsAction = createAction('forum/getCategoryTopicsAction');
 
@@ -56,3 +56,5 @@ export const setForumCommentsData = createAction<Nullable<Comment[]>>(
 export const setForumCommentsFailed = createAction<string>(forumActions.setCommentsFailed)
 
 export const getCommentsAction = createAction<ParamGetComments>('forum/getCommentsAction')
+
+export const changeReaction = createAction<ChangeReactionParam & ParamGetComments>('forum/changeReaction');
