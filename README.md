@@ -36,8 +36,8 @@ docker-compose ps
 ```
 To use dev DB try PG admin on localhost:8097 and create DB
 ```
-- PGADMIN_DEFAULT_EMAIL: admin@asteroidsdestroy.com
-  PGADMIN_DEFAULT_PASSWORD: (asterdest65457(
+- PGADMIN_DEFAULT_EMAIL: admin@asteroidsdestroy.com store it in .env
+  PGADMIN_DEFAULT_PASSWORD: (asterdest65457( store it in .env
 - right click -> create -> server
 - general -> name: postgres
 - connection -> host name: postgres
