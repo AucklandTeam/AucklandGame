@@ -7,6 +7,7 @@ import { IS_DEV, DIST_DIR, SRC_DIR } from '../env'
 
 const config: Configuration = {
     name: 'server',
+    target:'node',
     mode: IS_DEV ? 'development' : 'production',
     externalsPresets: { node: true },
     node: { __dirname: false },

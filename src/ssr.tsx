@@ -23,7 +23,6 @@ export default async (req: Request, res: Response) => {
 	const reqUrl = new URL(req.url, baseURL)
 	const helmetData = Helmet.renderStatic()
 	const { store } = configureStore(getInitialState(), reqUrl.pathname)
-
 	function renderApp() {
 		const appHtml = (
 			<Provider store={store}>

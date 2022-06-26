@@ -2,8 +2,8 @@ node_modules
 package-lock.json
 .github
 .idea
+.env
 dist
 .cache
 .DS_Store
-/public/
 postgresdata

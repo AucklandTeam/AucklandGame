@@ -23,13 +23,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/madcher/game_sprint5-6.git"
+    "url": "git+https://github.com/AucklandTeam/AucklandGame.git"
   },
   "keywords": [],
   "author": "Auckland Team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/madcher/game_sprint5-6/issues"
+    "url": "https://github.com/AucklandTeam/AucklandGame/issues"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -48,7 +48,7 @@
       "^static/(.*)$": "<rootDir>/static/$1"
     }
   },
-  "homepage": "https://github.com/madcher/game_sprint5-6#readme",
+  "homepage": "https://github.com/AucklandTeam/AucklandGame",
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.8",
