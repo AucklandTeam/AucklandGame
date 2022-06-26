@@ -14,6 +14,22 @@ services:
     ports:
       - '3000:3000'
     restart: always
+    depends_on:
+      - postgres
+    networks:
+      - awesome
+  postgres:
+    container_name: postgres
+    image: postgres:12
+    environment:
+      env_file:
+        .env
+      PG_DATA: /var/lib/postgresql/data
+    volumes:
+      - ./postgresdata:/var/lib/postgresql/data
+    ports:
+      - '35000:5432'
+    restart: always
     networks:
       - awesome
   pgadmin:
@@ -22,11 +38,13 @@ services:
     restart: always
     environment:
       env_file:
-        ./prod.env
+        .env
     ports:
       - '8097:8097'
     volumes:
-      - pgadmin-data:/var/lib/pgadmin
+      - ./pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - postgres
     networks:
       - awesome
 
