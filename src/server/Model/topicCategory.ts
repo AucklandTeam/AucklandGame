@@ -3,6 +3,7 @@ import {
 	AutoIncrement,
 	Column,
 	DataType,
+    HasMany,
 	Model,
 	PrimaryKey,
 	Table

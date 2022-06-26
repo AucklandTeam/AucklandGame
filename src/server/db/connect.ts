@@ -10,11 +10,13 @@ import Reaction from "server/Model/reaction";
 
 export async function dbConnect(sequelizeOptions: SequelizeOptions ) {
     try {
-        const sequelize  = new Sequelize(sequelizeOptions);
-        sequelize.addModels([User, Topic, TopicCategory, Comment, Reply, Reaction]);
-        await sequelize.authenticate();
-        await sequelize.sync({force: false});
-        console.log('Connection has been established successfully.');
+
+        const sequelize = new Sequelize(sequelizeOptions)
+
+        sequelize.addModels([User, Topic, TopicCategory, Comment, Reply, Reaction])
+        await sequelize.authenticate()
+        await sequelize.sync({ force: true })
+        console.log('Connection has been established successfully.')
     } catch (e) {
         console.error('Unable to connect to the database:', e)
     }
