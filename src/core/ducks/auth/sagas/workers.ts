@@ -84,7 +84,7 @@ export function* authYandexWorker(): SagaIterator<void> {
 	try {
 		const response: ServiceID = yield call(getAuthYandexId)
 		history.push(
-			`https://oauth.yandex.ru/authorize?response_type=code&client_id=${response.service_id}&redirect_uri=${window.location.host}${RouterPath.SignYandex}`
+			`https://oauth.yandex.ru/authorize?response_type=code&client_id=${response.service_id}&redirect_uri=https://${window.location.host}${RouterPath.SignYandex}`
 		)
 	} catch (e) {
 		console.error(e)
