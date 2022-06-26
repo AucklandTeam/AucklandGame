@@ -1,7 +1,7 @@
-import Comment, {IComment} from "server/Model/comment";
-import User from "server/Model/user";
-import Reply from "server/Model/reply";
-import Reaction from "server/Model/reaction";
+import Comment, { IComment } from 'server/Model/comment'
+import User from 'server/Model/user'
+import Reply from 'server/Model/reply'
+import Reaction from 'server/Model/reaction';
 
 class CommentService {
     async getCommentByID(id: number) {
@@ -38,4 +38,4 @@ class CommentService {
 
 }
 
-export default new CommentService();
+export default new CommentService()

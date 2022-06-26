@@ -23,7 +23,6 @@ export default async (req: Request, res: Response) => {
 	const reqUrl = new URL(req.url, baseURL)
 	const helmetData = Helmet.renderStatic()
 	const { store } = configureStore(getInitialState(), reqUrl.pathname)
-
 	function renderApp() {
 		const appHtml = (
 			<Provider store={store}>
@@ -72,7 +71,11 @@ export default async (req: Request, res: Response) => {
 export const useAppDispatch = () => useDispatch()
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector
 
-const getHtml = (reactHtml: string, reduxState = {}, helmetData: HelmetData) => `
+const getHtml = (
+	reactHtml: string,
+	reduxState = {},
+	helmetData: HelmetData
+) => `
     <!DOCTYPE html>
     <html lang="en">
         <head>

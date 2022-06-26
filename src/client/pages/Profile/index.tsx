@@ -7,17 +7,20 @@ import { RESOURCE_URL } from 'shared/consts'
 import noImage from 'static/images/noImage.svg'
 import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
 import { PageMeta } from 'components/pageMeta'
+import { useTranslation } from 'react-i18next'
 
 const Profile = () => {
 	const { data: list } = useLeaderBordInfo()
 	const { data } = useUserInfo()
+	const { t } = useTranslation()
+
 	const userScore = list?.find(x => x.login === data?.login)
 
 	return (
-		<NotGameWrap titlePage={'Gamer Profile'}>
+		<NotGameWrap titlePage={t('gamerProfile')}>
 			<PageMeta
-				title='User Profile | Destroy Asteroids'
-				description='Game by Auckland Team on Yandex Practicum'
+				title={`${t('gamerProfile')} | ${t('gameTitle')}`}
+				description={t('gameDescription')}
 			/>
 			<div className={styles.userCard}>
 				<Avatar
@@ -28,9 +31,16 @@ const Profile = () => {
 					divClass={styles.userAvatar}
 				/>
 				<div className={styles.userData}>
-					<h4>{data?.login || 'N/A'}</h4>
-					<div>E-mail: {data?.email || 'N/A'}</div>
-					<h4>Score: {userScore?.aucklandScope}</h4>
+					<h5>
+						{t('gamerName')}: {data?.login || 'N/A'}
+					</h5>
+					<h5>E-mail: {data?.email || 'N/A'}</h5>
+					<h5>
+						{t('score')}:&nbsp;
+						<span className={styles.accentedColor}>
+							{userScore?.aucklandScope}
+						</span>
+					</h5>
 				</div>
 			</div>
 		</NotGameWrap>

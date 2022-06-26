@@ -2,7 +2,6 @@
 
 .gameTopBar {
 	display: flex;
-	width: 1285px;
 	height: 50px;
 	margin-top: math.div($base-vertical-padding, 2);
 	align-items: center;
@@ -14,11 +13,13 @@
 	align-items: center;
 	justify-content: flex-end;
 }
+
 .gameState {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 }
+
 .gameScore {
 	display: flex;
 	align-items: center;
@@ -29,12 +30,15 @@
 	font-size: 32px;
 	line-height: 37px;
 }
+
 .gameState svg {
 	margin-right: math.div($base-horizontal-padding, 3);
 }
+
 .quit {
 	color: $error-light;
 }
+
 .topMenuItem {
 	cursor: pointer;
 	padding: 0 math.div($base-horizontal-padding, 3);
@@ -43,6 +47,7 @@
 
 .gameMainWrap {
 	@extend %for-wrap;
+
 	width: 100vw;
 	height: 100vh;
 	display: flex;
@@ -61,7 +66,7 @@
 }
 
 .modalStart {
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgb(0 0 0 / 50%);
 	padding: 50px;
 	font-family: $font-heading-family;
 	font-style: normal;
@@ -81,11 +86,13 @@
 	line-height: 20px;
 	width: 600px;
 }
+
 .configTitle {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	transition: $base-transition;
+
 	&:hover {
 		color: $accent-100;
 		transition: $base-transition;
@@ -104,6 +111,8 @@
 	line-height: 40px;
 	width: 600px;
 }
+
 .gameCanvas {
-	border: 3px solid white;
+	border: 1px solid white;
+	box-sizing: border-box;
 }

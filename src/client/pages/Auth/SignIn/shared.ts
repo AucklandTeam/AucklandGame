@@ -1,22 +1,18 @@
 import { TextInputProps } from 'components/inputs'
-import { LoginForm } from './types'
+import {LoginForm } from './types'
 
 export const TextFieldsLogin: TextInputProps<keyof LoginForm>[] = [
 	{
 		name: 'login',
 		type: 'text',
-		title: 'Login',
+		title: 'login',
 		validType: 'login'
 	},
 	{
 		name: 'password',
 		type: 'password',
-		title: 'Password',
+		title: 'password',
 		validType: 'password'
 	}
 ]
 
-export const initialState = {
-	login: '',
-	password: ''
-}

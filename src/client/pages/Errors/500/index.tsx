@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { RouterPath } from 'shared/consts'
 import styles from 'client/styles/base.scss'
 import HomePageWrap from 'client/components/homePageWrap'
-import {PageMeta} from 'components/pageMeta';
+import { PageMeta } from 'components/pageMeta'
 
 const Error500 = () => (
 	<HomePageWrap>

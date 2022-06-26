@@ -4,9 +4,9 @@ export type NewTopicForm = {
 }
 
 export type ParamGetTopics = {
-	categoryId: number;
+	categoryId: number
 }
 
 export type ParamGetComments = {
-	topicId: number;
+	topicId: number
 }

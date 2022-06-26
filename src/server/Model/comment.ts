@@ -23,7 +23,7 @@ export type IComment = {
 }
 
 @Table({
-    tableName: 'comments'
+	tableName: 'comments'
 })
 class Comment extends Model<Comment, IComment> {
     @AutoIncrement
@@ -36,21 +36,20 @@ class Comment extends Model<Comment, IComment> {
     @AllowNull(false)
     @Column(DataType.STRING)
     text: string;
-    @ForeignKey(()=>Topic)
+    @ForeignKey(() =>Topic)
     @Column(DataType.INTEGER)
     topicId: number;
     @Column(DataType.INTEGER)
     commentId: number;
-    @ForeignKey(()=>User)
+    @ForeignKey(() => User)
     @Column(DataType.INTEGER)
     authorId!: number;
-    @BelongsTo(()=>User)
+    @BelongsTo(() => User)
     author: User;
-    @HasMany(()=>Reply)
+    @HasMany(() => Reply)
     answers: Reply[]
-    @HasMany(()=>Reaction)
+    @HasMany(() => Reaction)
     reactions: Reaction[]
 }
 
-
-export default Comment;
+export default Comment

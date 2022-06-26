@@ -10,7 +10,7 @@ import { LoginForm } from 'pages/Auth/SignIn/types'
 import { SignUpForm } from 'pages/Auth/SignUp/types'
 
 export type UserState = GenerateState<User> & {
-	user_id: number;
+	user_id: number
 }
 
 export type UserActionStatus = ActionWithPayload<

@@ -1,14 +1,25 @@
-import React, {FC, useEffect, useRef} from 'react';
-import spaceshipImg from 'static/images/buran.png'
-import bgImg from 'static/images/sky.png';
+import React, { FC, useEffect, useRef } from 'react';
+import spaceshipImg from 'static/images/buran.png';
+
+import bgImg from 'static/images/bg.png';
+//import debrisImg from 'static/images/debris2.svg';
 import debrisImg from 'static/images/debris.png';
 import bomb3Img from 'static/images/bomb3.png';
 import explosionImg from 'static/images/exp.png';
 import fireImg from 'static/images/fire.png';
-import bombExp from 'static/images/bomb_spritesheet.png'
+import bulletImg from 'static/images/bullet.png';
+import bulletImg2 from 'static/images/laser3.png';
+import rocketBonusImg from 'static/images/bonuses/rocket.png';
+import bombExp from 'static/images/bomb_spritesheet.png';
 import asterImg from 'static/images/aster.png';
+import endSoundFile from 'static/sounds/end.wav';
+import fireSoundFile from 'static/sounds/fire.wav';
+import expSoundFile from 'static/sounds/exp2.mp3';
+import powerUpFile from 'static/sounds/powerUp.mp3';
+import fonSoundFile from 'static/sounds/fon.mp3';
+
 import { getRandomArbitrary } from './utils';
-import styles from 'styles/base.scss'
+import styles from 'styles/base.scss';
 import {
     angleIncValue,
     speedIncValue,
@@ -19,21 +30,35 @@ import {
     shotDelay,
     asteroidSpeed,
 } from './consts';
-import Base from './BaseClass'
+import Base from './BaseClass';
+
+const playAudio = (src: any, volume?: number) => {
+    const sound = new Audio(src);
+    sound.volume = volume ? volume : 0.1;
+    sound?.play();
+};
 
 interface CanvasProps {
     setLives: (arg0: number) => void;
     setScore: (arg0: number) => void;
     isGameStart: boolean;
     setIsGameStart: (arg0: boolean) => void;
+    getFullScreen: () => void;
+    width: number;
+    height: number;
+    resize: number;
 }
 
 const CanvasComponent: FC<CanvasProps> = ({
-      setLives,
-      setScore,
-      isGameStart,
-      setIsGameStart
-    }) => {
+    setLives,
+    setScore,
+    isGameStart,
+    setIsGameStart,
+    getFullScreen,
+    width,
+    height,
+    resize,
+}) => {
     const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>;
     let canvas: any = {};
     let isLoaded = false;
@@ -44,6 +69,9 @@ const CanvasComponent: FC<CanvasProps> = ({
     const debris = new Image();
     const explosion = new Image();
     const fire = new Image();
+    const bullet = new Image();
+    const bullet2 = new Image();
+    const rocketBonus = new Image();
     const bomb3 = new Image();
     const bombExplosion = new Image();
     const aster = new Image();
@@ -67,6 +95,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     let count = 0;
     let lives = 3;
     let isGameEnd = false;
+    let isTripleFire = false;
 
     let debrisX = 0;
     let debrisY = 0;
@@ -75,7 +104,17 @@ const CanvasComponent: FC<CanvasProps> = ({
     let explosions: any = [];
     let bombs: any = [];
     let bombExpArray: any = [];
+    let bonuses: any = [];
 
+    let fonSound: any;
+    /*
+    if (isNotServer) {
+        fonSound = new Audio(fonSoundFile);
+        fonSound.volume = 0.2;
+        fonSound.loop = true;
+        fonSound?.play();
+    }
+    */
     class Sprite extends Base {
         private timeLives: number;
         row: number;
@@ -88,9 +127,10 @@ const CanvasComponent: FC<CanvasProps> = ({
         isSmall: boolean;
         isVisible: boolean;
         timeCount: number;
+        type: string;
         private tickSprite: number;
-        constructor(x: number,y: number, frameSize: number, cols = 1, rows = 1, timeCount?: number) {
-            super(x,y);
+        constructor(x: number, y: number, frameSize: number, cols = 1, rows = 1, timeCount?: number) {
+            super(x, y);
             this.timeLives = 10;
             // анимация взрыва
             this.row = 0;
@@ -103,18 +143,19 @@ const CanvasComponent: FC<CanvasProps> = ({
             this.tickSprite = 0;
             this.isVisible = true;
             this.timeCount = timeCount;
+            this.type = '';
         }
         update() {
             this.tickSprite++;
-            if ( this.tickSprite % 5 === 0) {
+            if (this.tickSprite % 5 === 0) {
                 this.currentFrame++;
                 let maxFrame = this.numColumns * this.numRows - 1;
-                if ( this.currentFrame > maxFrame){
+                if (this.currentFrame > maxFrame) {
                     this.timeLives = 0;
                     this.currentFrame = 0;
                     if (this.timeCount) {
                         this.timeCount = this.timeCount -= 1;
-                        this.isVisible = this.timeCount === 0 ? false : true;
+                        this.isVisible = this.timeCount !== 0;
                     }
                 }
                 // Update rows and columns
@@ -134,8 +175,8 @@ const CanvasComponent: FC<CanvasProps> = ({
         numRows: number;
         isSmall: boolean;
         private tickExplosion: number;
-        constructor(x: number,y: number, isSmall: boolean) {
-            super(x,y);
+        constructor(x: number, y: number, isSmall: boolean) {
+            super(x, y);
             this.isSmall = isSmall;
             this.timeLives = 10;
             // анимация взрыва
@@ -150,10 +191,10 @@ const CanvasComponent: FC<CanvasProps> = ({
         }
         update() {
             this.tickExplosion++;
-            if ( this.tickExplosion % 5 === 0) {
+            if (this.tickExplosion % 5 === 0) {
                 this.currentFrame++;
                 let maxFrame = this.numColumns * this.numRows - 1;
-                if ( this.currentFrame > maxFrame){
+                if (this.currentFrame > maxFrame) {
                     this.timeLives = 0;
                 }
                 // Update rows and columns
@@ -166,30 +207,34 @@ const CanvasComponent: FC<CanvasProps> = ({
     class Asteroid extends Base {
         public speed: number;
         private readonly angle: number;
+        private readonly argleEncreaseNum: number;
         public radius: number;
         public isSmall: boolean;
-        constructor(x:number, y:number) {
+        public rotateAngle: number;
+        constructor(x: number, y: number) {
             super(x, y);
             this.speed = asteroidSpeed;
             this.angle = getRandomArbitrary(0, 360);
             this.radius = 50;
             this.isSmall = false;
+            this.rotateAngle = 0;
+            this.argleEncreaseNum = getRandomArbitrary(1, 20);
         }
         update() {
-            this.x += Math.cos(Math.PI/180*(this.angle - 90)) * this.speed;
-            this.y += Math.sin(Math.PI/180*(this.angle - 90)) * this.speed;
-
+            this.x += Math.cos((Math.PI / 180) * (this.angle - 90)) * this.speed;
+            this.y += Math.sin((Math.PI / 180) * (this.angle - 90)) * this.speed;
+            this.rotateAngle += (1 * this.argleEncreaseNum) / 20;
             if (this.x > canvas.width) {
-                this.x = 0 - this.radius/2;
+                this.x = 0 - this.radius / 2;
             }
-            if (this.x + this.radius/2 < 0) {
-                this.x = canvas.width - this.radius/2;
+            if (this.x + this.radius / 2 < 0) {
+                this.x = canvas.width - this.radius / 2;
             }
             if (this.y > canvas.height) {
-                this.y = 0 - this.radius/2;
+                this.y = 0 - this.radius / 2;
             }
             if (this.y + this.radius - 2 < 0) {
-                this.y = canvas.height - this.radius/2;
+                this.y = canvas.height - this.radius / 2;
             }
         }
         getCenterX() {
@@ -209,8 +254,8 @@ const CanvasComponent: FC<CanvasProps> = ({
             this.speed = 20;
         }
         update() {
-            this.x += Math.cos(Math.PI/180*(this.angle - 90)) * this.speed;
-            this.y += Math.sin(Math.PI/180*(this.angle - 90)) * this.speed;
+            this.x += Math.cos((Math.PI / 180) * (this.angle - 90)) * this.speed;
+            this.y += Math.sin((Math.PI / 180) * (this.angle - 90)) * this.speed;
 
             if (this.x > canvas.width || this.y > canvas.height) {
                 this.visible = false;
@@ -219,19 +264,24 @@ const CanvasComponent: FC<CanvasProps> = ({
     }
 
     const fireShip = () => {
-        const bullet = new Bullet(xMove + shipWith/2, yMove + shipHeight/2, angle);
+        const bullet = new Bullet(
+            xMove + shipWith / 2 - bulletRadius / 2,
+            yMove + shipHeight / 2 - bulletRadius / 2,
+            angle,
+        );
         bullets.push(bullet);
-        const isTripleFire = true;
+
         if (isTripleFire) {
-            const x1 = xMove + shipWith/2 - bulletRadius/2 + 50 * Math.sin((-angle + 50) * Math.PI / 180);
-            const y1 = yMove - bulletRadius/2 + shipHeight/2 + 50 * Math.cos((-angle + 50) * Math.PI / 180);
-            const x2 = xMove + shipWith/2 - bulletRadius/2 + 50 * Math.sin((-angle - 50) * Math.PI / 180);
-            const y2 = yMove - bulletRadius/2 + shipHeight/2 + 50 * Math.cos((-angle - 50) * Math.PI / 180)
+            const x1 = xMove + shipWith / 2 - bulletRadius / 2 + 50 * Math.sin(((-angle + 50) * Math.PI) / 180);
+            const y1 = yMove - bulletRadius / 2 + shipHeight / 2 + 50 * Math.cos(((-angle + 50) * Math.PI) / 180);
+            const x2 = xMove + shipWith / 2 - bulletRadius / 2 + 50 * Math.sin(((-angle - 50) * Math.PI) / 180);
+            const y2 = yMove - bulletRadius / 2 + shipHeight / 2 + 50 * Math.cos(((-angle - 50) * Math.PI) / 180);
             const bullet1 = new Bullet(x1, y1, angle);
             const bullet2 = new Bullet(x2, y2, angle);
             bullets.push(bullet1);
             bullets.push(bullet2);
         }
+        playAudio(fireSoundFile);
     };
 
     const updateShip = (time: number) => {
@@ -253,24 +303,22 @@ const CanvasComponent: FC<CanvasProps> = ({
                 fireShip();
                 timestamp = time;
             }
-
         }
         speed = speed * speedInertion;
-        xMove += Math.cos(Math.PI/180*(angle -90)) * speed;
-        yMove += Math.sin(Math.PI/180*(angle - 90)) * speed;
-        if (xMove >canvas.width) {
-            xMove = 0 - shipWith/2;
+        xMove += Math.cos((Math.PI / 180) * (angle - 90)) * speed;
+        yMove += Math.sin((Math.PI / 180) * (angle - 90)) * speed;
+        if (xMove > canvas.width) {
+            xMove = 0 - shipWith / 2;
         }
-        if (xMove + shipWith/2 < 0) {
-            xMove = canvas.width - shipWith/2;
+        if (xMove + shipWith / 2 < 0) {
+            xMove = canvas.width - shipWith / 2;
         }
         if (yMove > canvas.height) {
-            yMove = 0 - shipHeight/2;
+            yMove = 0 - shipHeight / 2;
         }
         if (yMove + shipHeight - 2 < 0) {
-            yMove = canvas.height - shipHeight/2;
+            yMove = canvas.height - shipHeight / 2;
         }
-
     };
 
     const checkCollision = () => {
@@ -278,22 +326,34 @@ const CanvasComponent: FC<CanvasProps> = ({
             return;
         }
         bombs.forEach((bomb: any) => {
-            if (Math.abs(xMove + 50 - bomb.x - 30) < 50 &&
-                Math.abs(yMove + 50 - bomb.y - 30) < 50) {
+            if (Math.abs(xMove + 50 - bomb.x - 30) < 50 && Math.abs(yMove + 50 - bomb.y - 30) < 50) {
                 bomb.isVisible = false;
                 const bombExpObj = new Sprite(bomb.x + 20, bomb.y + 20, 810, 9, 1);
                 bombExpArray.push(bombExpObj);
+                playAudio(powerUpFile, 0.5);
                 asteroids.forEach((asteroid: any) => {
                     asteroid.visible = false;
                     const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
                     explosions.push(explosion);
-                })
+                    playAudio(expSoundFile);
+                });
+            }
+        });
+
+        bonuses.forEach((bonus: any) => {
+            if (Math.abs(xMove + 50 - bonus.x - 30) < 50 && Math.abs(yMove + 50 - bonus.y - 30) < 50) {
+                bonus.isVisible = false;
+                isTripleFire = true;
+                playAudio(powerUpFile, 1);
+                setTimeout(() => { isTripleFire = false}, 10000)
             }
         });
         asteroids.forEach((asteroid: any) => {
             bullets.forEach((bullet: any) => {
-                if (Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < asteroid.radius &&
-                    Math.abs(bullet.getPos().y + 1 - asteroid.getCenterY()) < asteroid.radius) {
+                if (
+                    Math.abs(bullet.getPos().x + 1 - asteroid.getCenterX()) < asteroid.radius &&
+                    Math.abs(bullet.getPos().y + 1 - asteroid.getCenterY()) < asteroid.radius
+                ) {
                     bullet.visible = false;
                     asteroid.visible = false;
                     const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
@@ -302,11 +362,16 @@ const CanvasComponent: FC<CanvasProps> = ({
                     if (!asteroid.isSmall) {
                         const num = Math.ceil(getRandomArbitrary(0, 5));
                         if (num === 2) {
-                            const bomb3Obj = new Sprite(asteroid.x + 50, asteroid.y + 50, 450, 10, 1, 5)
+                            const bomb3Obj = new Sprite(asteroid.x + 50, asteroid.y + 50, 450, 10, 1, 5);
                             bombs.push(bomb3Obj);
                         }
+                        if (num === 3) {
+                            const rocketBonus = new Sprite(asteroid.x + 50, asteroid.y + 50, 450, 1, 1, 50);
+                            rocketBonus.type = 'rocket';
+                            bonuses.push(rocketBonus);
+                        }
 
-                        for (let i = 0; i < 2; i++) {
+                        for (let i = 0; i < 3; i++) {
                             const smallAsteroid = new Asteroid(asteroid.x, asteroid.y);
                             smallAsteroid.speed = 3;
                             smallAsteroid.radius = 25;
@@ -314,23 +379,27 @@ const CanvasComponent: FC<CanvasProps> = ({
                             asteroids.push(smallAsteroid);
                         }
                     }
+                    playAudio(expSoundFile);
                     explosions.push(explosion);
                     count += 1;
                     setScore(count);
                 }
             });
-            if (Math.abs(xMove + 50 - asteroid.getCenterX()) < 70 &&
-                Math.abs(yMove + 50 - asteroid.getCenterY()) < 70) {
+            if (
+                Math.abs(xMove + 50 - asteroid.getCenterX()) < 70 &&
+                Math.abs(yMove + 50 - asteroid.getCenterY()) < 70
+            ) {
                 asteroid.visible = false;
                 const explosion = new Explosion(asteroid.x, asteroid.y, asteroid.isSmall);
                 explosions.push(explosion);
+                playAudio(expSoundFile);
                 lives -= 1;
                 setLives(lives);
                 if (!lives) {
+                    playAudio(endSoundFile);
                     isGameEnd = true;
                     setIsGameStart(false);
                 }
-
             }
         });
     };
@@ -341,70 +410,115 @@ const CanvasComponent: FC<CanvasProps> = ({
 
         const x: number = getRandomArbitrary(0, canvas.width) + canvas.width * offset;
         const y: number = getRandomArbitrary(0, canvas.height) + canvas.height * offset;
-        return ({x, y});
+        return { x, y };
     };
 
-    const fireObj = new Sprite(300, 300, 190, 10, 1)
+    const fireObj = new Sprite(300, 300, 190, 10, 1);
     const bombObj = new Sprite(100, 100, 810, 9, 1);
     const updateScene = () => {
         // очищаем весь канвас перед перерисовкой
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         // рисуем объект в новых кординатах
         // фон
-        ctx.drawImage(bg, 0, 0);
+
+        ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+        //ctx.drawImage(bg, 0, 0)
+
         // фон метеориты
         ctx.drawImage(debris, debrisX, debrisY);
         // добавляем астеройды
         if (timestampAsteroid - asteroidDelay > 1500) {
             asteroidDelay = timestampAsteroid;
-            const {x, y} = getAsteroidCoords();
+            const { x, y } = getAsteroidCoords();
             const asteroid = new Asteroid(x, y);
             asteroids.push(asteroid);
         }
 
         bullets = bullets.filter((el: any) => el.getVisible());
         bullets.forEach((el: any) => {
-            ctx.beginPath();
-            ctx.arc(el.getPos().x, el.getPos().y, bulletRadius, 0, 2 * Math.PI);
-            ctx.fillStyle = 'orange';
-            ctx.fill();
+            const x = el.getPos().x + 25;
+            const y = el.getPos().y + 25;
+            ctx.translate(x, y);
+            ctx.rotate((Math.PI / 180) * (el.angle - 90));
+            ctx.translate(-x, -y);
+            const image = isTripleFire ? bullet2 : bullet;
+            ctx.drawImage(image, el.getPos().x, el.getPos().y, 50, 50);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             el.update();
-            ctx.closePath();
         });
 
         asteroids = asteroids.filter((el: any) => el.getVisible());
         explosions = explosions.filter((el: any) => el.timeLives > 0);
         bombs = bombs.filter((el: any) => el.isVisible);
+        bonuses = bonuses.filter((el: any) => el.isVisible);
         bombExpArray = bombExpArray.filter((el: any) => el.timeLives > 0);
         checkCollision();
 
         bombs.forEach((bomb3Obj: any) => {
-            ctx.drawImage(bomb3, bomb3Obj.column * bomb3Obj.frameWidth,
+            ctx.drawImage(
+                bomb3,
+                bomb3Obj.column * bomb3Obj.frameWidth,
                 bomb3Obj.row * bomb3Obj.frameHeight,
-                bomb3Obj.frameWidth, bomb3Obj.frameHeight, bomb3Obj.x, bomb3Obj.y, bomb3Obj.frameWidth/4, bomb3Obj.frameHeight/4);
+                bomb3Obj.frameWidth,
+                bomb3Obj.frameHeight,
+                bomb3Obj.x,
+                bomb3Obj.y,
+                bomb3Obj.frameWidth / 4,
+                bomb3Obj.frameHeight / 4,
+            );
             bomb3Obj.update();
         });
 
+        bonuses.forEach((bonus: any) => {
+            ctx.drawImage(
+                rocketBonus,
+                bonus.x,
+                bonus.y,
+                70,
+                70,
+            );
+            bonus.update();
+        });
         asteroids.forEach((el: any) => {
             const size = el.isSmall ? 100 : 200;
+
+            ctx.translate(el.x + size / 2, el.y + size / 2);
+            ctx.rotate((Math.PI / 180) * (el.rotateAngle + 90));
+            ctx.translate(-el.x - size / 2, -el.y - size / 2);
             ctx.drawImage(aster, el.getPos().x, el.getPos().y, size, size);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             el.update();
         });
         explosions.forEach((el: any) => {
             const posX = el.isSmall ? el.x - 100 : el.x;
             const posY = el.isSmall ? el.y - 100 : el.y;
-            ctx.drawImage(explosion, el.column * el.frameWidth + 17,
+            ctx.drawImage(
+                explosion,
+                el.column * el.frameWidth + 17,
                 el.row * el.frameHeight + 17,
-                el.frameWidth, el.frameHeight, posX, posY, el.frameWidth/2, el.frameHeight/2);
+                el.frameWidth,
+                el.frameHeight,
+                posX,
+                posY,
+                el.frameWidth / 2,
+                el.frameHeight / 2,
+            );
             el.update();
         });
 
-
         // взрывы бомб
         bombExpArray.forEach((el: any) => {
-            ctx.drawImage(bombExplosion, el.column * el.frameWidth,
+            ctx.drawImage(
+                bombExplosion,
+                el.column * el.frameWidth,
                 el.row * el.frameHeight,
-                el.frameWidth, el.frameHeight, el.x - 100, el.y - 100, el.frameWidth/3, el.frameHeight/3);
+                el.frameWidth,
+                el.frameHeight,
+                el.x - 100,
+                el.y - 100,
+                el.frameWidth / 3,
+                el.frameHeight / 3,
+            );
             el.update();
         });
 
@@ -412,23 +526,47 @@ const CanvasComponent: FC<CanvasProps> = ({
         // сохраняем канвас
         ctx.save();
         // переносим центр в центр корабля
-        ctx.translate(xMove + shipWith/2, yMove + shipHeight/2);
+        ctx.translate(xMove + shipWith / 2, yMove + shipHeight / 2);
         // поворачиваем корабль
-        ctx.rotate(Math.PI/180 * angle);
+        ctx.rotate((Math.PI / 180) * angle);
         // переносим центр обратно
-        ctx.translate(-xMove - shipWith/2, -yMove - shipHeight/2);
+        ctx.translate(-xMove - shipWith / 2, -yMove - shipHeight / 2);
         // отрисовываем корабль
         if (keyUp) {
             // отрисовывавем пламя двигателя
-            ctx.drawImage(fire, fireObj.column * fireObj.frameWidth,
+            ctx.drawImage(
+                fire,
+                fireObj.column * fireObj.frameWidth,
                 fireObj.row * fireObj.frameHeight,
-                fireObj.frameWidth, fireObj.frameHeight, xMove + 13, yMove + 95, fireObj.frameWidth/4, fireObj.frameHeight/4);
-            ctx.drawImage(fire, fireObj.column * fireObj.frameWidth,
+                fireObj.frameWidth,
+                fireObj.frameHeight,
+                xMove + 13,
+                yMove + 95,
+                fireObj.frameWidth / 4,
+                fireObj.frameHeight / 4,
+            );
+            ctx.drawImage(
+                fire,
+                fireObj.column * fireObj.frameWidth,
                 fireObj.row * fireObj.frameHeight,
-                fireObj.frameWidth, fireObj.frameHeight, xMove + 26.5, yMove + 120, fireObj.frameWidth/4, fireObj.frameHeight/4);
-            ctx.drawImage(fire, fireObj.column * fireObj.frameWidth,
+                fireObj.frameWidth,
+                fireObj.frameHeight,
+                xMove + 26.5,
+                yMove + 120,
+                fireObj.frameWidth / 4,
+                fireObj.frameHeight / 4,
+            );
+            ctx.drawImage(
+                fire,
+                fireObj.column * fireObj.frameWidth,
                 fireObj.row * fireObj.frameHeight,
-                fireObj.frameWidth, fireObj.frameHeight, xMove + 39, yMove + 95, fireObj.frameWidth/4, fireObj.frameHeight/4);
+                fireObj.frameWidth,
+                fireObj.frameHeight,
+                xMove + 39,
+                yMove + 95,
+                fireObj.frameWidth / 4,
+                fireObj.frameHeight / 4,
+            );
         }
         fireObj.update();
         ctx.drawImage(spaceship, xMove, yMove, shipWith, shipHeight);
@@ -449,25 +587,28 @@ const CanvasComponent: FC<CanvasProps> = ({
     };
     // обработка кнопок
     const keySwitcher = (e: KeyboardEvent, state: boolean) => {
-        switch(e.key)
-        {
+        switch (e.key) {
             //key A or LEFT
             case 'ArrowLeft':
             case 'a':
+            case 'A':
                 keyLeft = state;
                 break;
             //key D or RIGHT
             case 'd':
+            case 'D':
             case 'ArrowRight':
                 keyRight = state;
                 break;
             //key W or UP
             case 'w':
+            case 'W':
             case 'ArrowUp':
                 keyUp = state;
                 break;
             //key S or DOWN
             case 's':
+            case 'S':
             case 'ArrowDown':
                 keyDown = state;
                 break;
@@ -490,18 +631,23 @@ const CanvasComponent: FC<CanvasProps> = ({
     };
 
     useEffect(() => {
-        canvas= canvasRef.current;
-        canvas.width = 1279;
-        canvas.height = 720;
-        canvas.style.width = '1279px';
-        canvas.style.height = '720px';
+        canvas = canvasRef.current;
+
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        canvas.width = width;
+        canvas.height = height;
         ctx = canvas.getContext('2d');
+        canvas.addEventListener('click', getFullScreen);
 
         bg.src = bgImg;
         debris.src = debrisImg;
         spaceship.src = spaceshipImg;
         explosion.src = explosionImg;
         fire.src = fireImg;
+        bullet.src = bulletImg;
+        bullet2.src = bulletImg2;
+        rocketBonus.src = rocketBonusImg;
         bomb3.src = bomb3Img;
         bombExplosion.src = bombExp;
         aster.src = asterImg;
@@ -525,12 +671,14 @@ const CanvasComponent: FC<CanvasProps> = ({
             window.removeEventListener('keydown', keyDownHandler);
             window.removeEventListener('keyup', keyUpHandler);
         };
-    }, [isGameStart]);
+    }, [isGameStart, resize]);
 
-    return <canvas
-        ref={canvasRef}
-        className={styles.gameCanvas}
-    />;
+    return (
+        <canvas
+            ref={canvasRef}
+            className={styles.gameCanvas}
+        />
+    );
 };
 
 export default CanvasComponent;

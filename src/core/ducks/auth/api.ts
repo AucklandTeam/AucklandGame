@@ -4,7 +4,7 @@ import { ENDPOINTS } from 'shared/consts'
 import { LoginForm } from 'pages/Auth/SignIn/types'
 import { SignUpForm } from 'pages/Auth/SignUp/types'
 import { OAuthYandex, ServiceID } from 'src/core/ducks/auth/types'
-import {PUserSync} from "src/types/general";
+import { PUserSync } from 'src/types/general'
 
 export const loginRequest = request<SuccessResponse, LoginForm>({
 	method: 'POST',
@@ -39,5 +39,5 @@ export const authWithYandex = request<SuccessResponse, OAuthYandex>({
 export const userLocalSync = request<SuccessResponse, PUserSync>({
 	method: 'POST',
 	url: 'api/v1/user-sync',
-	baseURL:'/',
+	baseURL: '/'
 })

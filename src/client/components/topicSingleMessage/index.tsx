@@ -1,29 +1,26 @@
-import React, {
-    FC,
-    useState
-} from 'react';
+import React, { FC, useState } from 'react'
 import styles from 'styles/base.scss'
 import Avatar from 'components/avatar'
 import Button from 'components/buttons'
 import noImage from 'static/images/noImage.svg'
-import AddReplyForm from 'components/addReplyForm';
+import AddReplyForm from 'components/addReplyForm'
 import {Comment, Reaction} from "src/core/ducks/forum/types";
 import classNames from "src/utils/classNames";
 import {useAppDispatch} from "src/ssr";
 import {changeReaction} from "src/core/ducks/forum/actions";
 
 type TopicSingleMessageProps = {
-    messageTitle: string;
-    topicId: number;
-    authorId: number;
-    id: number;
-    messageText: string;
-    userName: string;
-    userAvatar: string;
-    currentUser?: string;
-    answers: Comment[];
-    type: 'comment' | 'replay';
-    reactions: Reaction[];
+	messageTitle: string
+	topicId: number
+	authorId: number
+	id: number
+	messageText: string
+	userName: string
+	userAvatar: string
+    currentUser?: string
+    answers: Comment[]
+    type: 'comment' | 'replay'
+    reactions: Reaction[]
 }
 
 const TopicSingleMessage: FC<TopicSingleMessageProps> = (

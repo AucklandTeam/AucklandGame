@@ -42,14 +42,13 @@
 .forumTitle {
 	width: 78%;
 
-	& a{
+	& a {
 		color: $dark-gray-100;
 
 		&:hover {
-			color: $accent-60
+			color: $accent-60;
 		}
 	}
-
 }
 
 .forumTopicsCounter {
@@ -78,6 +77,7 @@
 	width: 10%;
 	text-align: center;
 }
+
 .messageWrap {
 	display: block;
 	position: relative;
@@ -166,4 +166,3 @@
 .replyFormWrap {
 	width: 100%;
 }
-

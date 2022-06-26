@@ -5,7 +5,7 @@ export const initialState: UserState = {
 	data: null,
 	error: '',
 	status: 'default',
-	user_id: 0,
+	user_id: 0
 }
 
 export const userReducer = (state = initialState, action: UserActions) => {

@@ -17,8 +17,16 @@ const Form: FC<FormProps> = ({
 }) => (
 	<form onSubmit={handleSubmit} className={styles.form}>
 		<div className={styles.inputs}>{children}</div>
-		{errorText && <div className={styles.errors}>{errorText}</div>}
-		<Button buttonType={'submit'} buttonTitle={submitTitle} />
+		{errorText && (
+			<div role={'alert'} className={styles.errors}>
+				{errorText}
+			</div>
+		)}
+		<Button
+			buttonName={'submit'}
+			buttonType={'submit'}
+			buttonTitle={submitTitle}
+		/>
 	</form>
 )
 export default Form

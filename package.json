@@ -17,24 +17,38 @@
     "prettier": "prettier --write \"src/**/*.{ts,tsx,html,css,scss}\"",
     "lint": "run-p lint:**",
     "lint:script": "eslint --fix --cache --quiet --ext .ts,.tsx ./",
-    "lint:style": "stylelint --fix \"src/**/*.{css,scss}\""
+    "lint:style": "stylelint --fix \"src/**/*.{css,scss}\"",
+    "lint:typescript": "tsc --project tsconfig.json --noEmit",
+    "husky-install": "husky install"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/madcher/game_sprint5-6.git"
+    "url": "git+https://github.com/AucklandTeam/AucklandGame.git"
   },
   "keywords": [],
   "author": "Auckland Team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/madcher/game_sprint5-6/issues"
+    "url": "https://github.com/AucklandTeam/AucklandGame/issues"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
     "moduleNameMapper": {
-      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+      "^src/(.*)$": "<rootDir>/src/$1",
+      "^server/(.*)$": "<rootDir>/src/server/$1",
+      "^client/(.*)$": "<rootDir>/src/client/$1",
+      "^components/(.*)$": "<rootDir>/src/client/components/$1",
+      "^pages/(.*)$": "<rootDir>/src/client/pages/$1",
+      "^shared/(.*)$": "<rootDir>/src/client/components/@shared/$1",
+      "^styles/(.*)$": "<rootDir>/src/client/styles/$1",
+      "^static/(.*)$": "<rootDir>/static/$1"
     }
   },
-  "homepage": "https://github.com/madcher/game_sprint5-6#readme",
+  "homepage": "https://github.com/AucklandTeam/AucklandGame",
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.8",
@@ -45,6 +59,8 @@
     "@babel/preset-typescript": "^7.16.7",
     "@babel/register": "^7.17.7",
     "@reduxjs/toolkit": "^1.8.1",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.5",
     "@types/compression": "^1.7.2",
     "@types/jest": "^27.4.1",
     "@types/mini-css-extract-plugin": "^2.5.1",
@@ -77,6 +93,7 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.1",
     "jest": "^27.5.1",
     "mini-css-extract-plugin": "^2.6.0",
     "nodemon-webpack-plugin": "^4.7.1",
@@ -109,12 +126,15 @@
     "dotenv": "^16.0.1",
     "express": "^4.17.3",
     "history": "^5.3.0",
+    "i18next": "^21.8.10",
+    "i18next-browser-languagedetector": "^6.1.4",
     "identity-obj-proxy": "^3.0.0",
     "pg": "^8.7.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-hot-loader": "^4.13.0",
+    "react-i18next": "^11.17.2",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-test-renderer": "^17.0.0",
@@ -127,5 +147,11 @@
     "serialize-javascript": "^6.0.0",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0"
+  },
+  "preinstall": "npx npm-force-resolutions",
+  "resolutions": {
+    "got": ">=11.8.5",
+    "ejs": ">=3.1.7",
+    "glob-parent": ">=5.1.2"
   }
 }

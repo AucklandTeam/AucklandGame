@@ -1,5 +1,5 @@
-import Topic from "server/Model/topic";
-import Comment from "server/Model/comment";
+import Topic from 'server/Model/topic'
+import Comment from 'server/Model/comment';
 
 class TopicService {
     async findAllByCategory(categoryId: number){
@@ -20,15 +20,15 @@ class TopicService {
         return topic;
     }
 
-    async findById(id: number){
-        const topic =  await Topic.findOne({where: {id}});
-        return topic;
-    }
+	async findById(id: number) {
+		const topic = await Topic.findOne({ where: { id } })
+		return topic
+	}
 
-    async createTopic(label: string, categoryId: number){
-        const topic = await Topic.create({label,categoryId });
-        return topic;
-    }
+	async createTopic(label: string, categoryId: number) {
+		const topic = await Topic.create({ label, categoryId })
+		return topic
+	}
 }
 
-export default new TopicService();
+export default new TopicService()

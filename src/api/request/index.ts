@@ -1,7 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { ENDPOINTS } from 'shared/consts'
 
-type RequestSettings = Pick<AxiosRequestConfig, 'url' | 'method' | 'headers' | 'baseURL'>
+type RequestSettings = Pick<
+	AxiosRequestConfig,
+	'url' | 'method' | 'headers' | 'baseURL'
+>
 
 type RequestResponse<RESPONSE, REQUEST> = (
 	params?: REQUEST
@@ -19,7 +22,7 @@ export function request<
 				headers: { 'Content-Type': 'application/json' },
 				withCredentials: true,
 				...settings,
-				params: settings.method === 'GET' ? data :{},
+				params: settings.method === 'GET' ? data : {}
 			})
 			return response.data
 		} catch (e) {

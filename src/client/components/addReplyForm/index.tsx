@@ -1,24 +1,26 @@
-import React, {FC} from 'react';
-import Form from 'src/client/components/form'
-import TextInput from 'src/client/components/Inputs'
+import React, { FC } from 'react'
+import Form from 'components/form'
+import TextInput from 'components/inputs'
 import { useAppDispatch } from 'src/ssr'
 import useForm from 'src/hooks/useForm'
 import { AddReplyFormProps } from './types'
-import TextArea from 'components/textArea';
-import styles from 'styles/base.scss';
-import {addCommentAction} from "src/core/ducks/forum/actions";
+import TextArea from 'components/textArea'
+import styles from 'styles/base.scss'
+import { addCommentAction } from 'src/core/ducks/forum/actions'
+import {useTranslation} from 'react-i18next';
 
 type AddReplyComponentFormProps = {
-    isReply: boolean;
-    topicId: number;
-    commentId?: number;
-    authorId: number;
-    hideForm?:()=>void;
+	isReply: boolean
+	topicId: number
+	commentId?: number
+	authorId: number
+	hideForm?: () => void
     currentUser?: string;
 }
 
 const AddReplyForm: FC<AddReplyComponentFormProps> = ({isReply, topicId, commentId= 0, authorId, hideForm, currentUser}) => {
     const dispatch = useAppDispatch()
+    const { t } = useTranslation()
     const {
         values,
         handleChange,
@@ -51,11 +53,11 @@ const AddReplyForm: FC<AddReplyComponentFormProps> = ({isReply, topicId, comment
             {isReply && currentUser && (<div>From: {currentUser}</div>)}
             <Form
                 handleSubmit={handleSubmit}
-                submitTitle={'Send'}
+                submitTitle={t('send')}
                 errorText={formError}
             >
                 <TextInput
-                    title={'Message Title'}
+                    title={t('messageTitle')}
                     type={'text'}
                     name={'title'}
                     value={values['title' as keyof AddReplyFormProps]}
@@ -65,7 +67,7 @@ const AddReplyForm: FC<AddReplyComponentFormProps> = ({isReply, topicId, comment
                 />
                 <TextArea
                     name={'text'}
-                    title={'Your text here...'}
+                    title={t('textHere')}
                     value={values['text' as keyof AddReplyFormProps]}
                     onChange={handleChange}
                     onBlur={handleBlur}

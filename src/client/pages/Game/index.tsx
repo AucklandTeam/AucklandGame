@@ -1,54 +1,69 @@
-import React, { useEffect, useState } from 'react'
-import CanvasComponent from './components/canvas/CanvasComponent'
-import styles from 'styles/base.scss'
-import GameTopBar from './components/GameTopBar/GameTopBar'
-import StartModal from './components/StartModal'
-import { addUserToLeaderBoardAction } from 'src/core/ducks/scores/actions'
-import { useAppDispatch } from 'src/ssr'
+import React, { useState } from 'react';
+import CanvasComponent from './components/canvas/CanvasComponent';
+//import styles from './Game.scss';
+import styles from 'client/styles/base.scss'
+import GameTopBar from './components/GameTopBar/GameTopBar';
+import StartModal from './components/StartModal';
 
 const Game = () => {
-	const dispatch = useAppDispatch()
-	const [attempts, setAttempts] = useState(0)
-	const [lives, setLives] = useState(3)
-	const [score, setScore] = useState(0)
-	const [isGameStart, setIsGameStart] = useState(false)
+	const [attempts, setAttempts] = useState(0);
+	const [lives, setLives] = useState(3);
+	const [score, setScore] = useState(0);
+	const [isGameStart, setIsGameStart] = useState(false);
+	const [resize, setResize] = useState(0)
 	const restartGame = () => {
-		setAttempts(attempts + 1)
-		setLives(3)
-		setScore(0)
-	}
+		setAttempts(attempts + 1);
+		setLives(3);
+		setScore(0);
+	};
 
 	const startGameHandler = () => {
-		restartGame()
-		setIsGameStart(true)
-	}
+		restartGame();
+		setIsGameStart(true);
+	};
 
-	useEffect(() => {
-		if (!lives) {
-			dispatch(addUserToLeaderBoardAction(score))
+	const getFullScreen = () => {
+		if (document.fullscreenElement === null) {
+			//document.documentElement.requestFullscreen();
+			const section = document.querySelector("section");
+			section.requestFullscreen()
+			setTimeout(() => {
+				setResize(resize + 1)
+			}, 100)
+
+
+		} else {
+			document.exitFullscreen();
+			setTimeout(() => {
+				setResize(resize + 1)
+			}, 100)
 		}
-	}, [lives])
+	};
+
+	var w = window.innerWidth;
+	var h = window.innerHeight;
 
 	return (
 		<div className={styles.gameMainWrap}>
-			<GameTopBar lives={lives} score={score} />
-			<div>
-				{!isGameStart && (
-					<StartModal
-						startGameHandler={startGameHandler}
-						attempts={attempts}
-						score={score}
-					/>
-				)}
+			<section style={{position: 'relative',  width: w + 'px', height: h + 'px',}}>
+				{
+					!isGameStart &&
+					<StartModal startGameHandler={startGameHandler} attempts={attempts} score={score} />
+				}
+				<GameTopBar lives={lives} score={score} />
 				<CanvasComponent
 					setLives={setLives}
 					setScore={setScore}
 					isGameStart={isGameStart}
 					setIsGameStart={setIsGameStart}
+					getFullScreen={getFullScreen}
+					height={h - 100}
+					width={w}
+					resize={resize}
 				/>
-			</div>
+			</section>
 		</div>
-	)
-}
+	);
+};
 
-export default Game
+export default Game;
