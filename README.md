@@ -4,15 +4,18 @@ Awesome web version of the classic Atari game on JS
 
 ![](./static/images/screenshot.jpg "Game Page Screenshot")
 
+
 Stack: NodeJS, PostgresDB, TypeScript, ReactJS, Sass, Redux&Saga, Webpack, Docker, GitHub Actions
 
 ### To play
+
 https://asteroidsdestroy.ru/
 
 1. Use **arrow buttons** to move and **space button** to shoot
 2. To toggle **Fullscreen mode** just click on game screen.
 3. You can choose **Russian** or **English** language (by default it based on your browser settings)
 4. To save you **score**, view the **high-scores** and use game **forum** you may like to register
+
 
 ### To develop
 
