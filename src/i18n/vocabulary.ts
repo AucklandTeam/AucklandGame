@@ -57,7 +57,10 @@ export const lang: Resource = {
 				gameOver: 'GAME OVER',
 				move: 'Move',
 				shoot: 'Shoot'
-			}
+			},
+			addCategory: 'Add category',
+			addTitle: 'Title',
+			addTopic: 'Add New Topic'
 			}
 	},
 	ru: {
@@ -68,7 +71,7 @@ export const lang: Resource = {
 			signIn: 'Вход',
 			signUp: 'Регистрация',
 			profile: 'Профиль',
-			profileEdit: 'Редактировать профиль',
+			profileEdit: 'Изменить профиль',
 			highScores: 'Рекорды',
 			forum: 'Форум',
 			forumTitle: 'Форум Auckland',
@@ -116,7 +119,10 @@ export const lang: Resource = {
 				gameOver: 'ИГРА ЗАКОНЧЕНА',
 				move: 'Движение',
 				shoot: 'Стрельба'
-			}
+			},
+			addCategory: 'Добавить форум',
+			addTitle: 'Название',
+			addTopic: 'Добавить тему'
 		}
 
 	}
