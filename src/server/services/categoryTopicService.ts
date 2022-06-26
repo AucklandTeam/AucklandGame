@@ -1,8 +1,14 @@
 import TopicCategory from "server/Model/topicCategory";
+import Topic from "server/Model/topic";
 
 class CategoryTopicService {
     async getAll(){
-        const all = await TopicCategory.findAll();
+        const all = await TopicCategory.findAll({
+            include: [{
+                model: Topic,
+                attributes: ['id']
+            }]
+        });
         return all;
     }
     async findCategoryByLabel(label: string){

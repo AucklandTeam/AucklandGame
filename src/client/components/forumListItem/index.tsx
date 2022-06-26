@@ -11,7 +11,6 @@ const ForumListItem: FC<forumListProps> =
 	({
 		forumTitle,
 		forumTopicsCount,
-		forumCommentsCount,
 		id
 	}) => {
 		const modal: MutableRefObject<null> = useRef(null)
@@ -24,7 +23,6 @@ return (
 				(modal as MutableRefObject<any>).current.open()
 			}/>
 		</td>
-		<td className={styles.forumCommentsCounter}>{forumCommentsCount}</td>
 		<Modal ref={modal}>
 			<AddNewTopicForm categoryId={id} modalRef={modal}/>
 		</Modal>

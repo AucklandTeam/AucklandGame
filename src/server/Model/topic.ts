@@ -1,5 +1,16 @@
-import {AllowNull, AutoIncrement, Column, DataType, ForeignKey, Model, PrimaryKey, Table} from "sequelize-typescript";
+import {
+    AllowNull,
+    AutoIncrement,
+    Column,
+    DataType,
+    ForeignKey,
+    HasMany,
+    Model,
+    PrimaryKey,
+    Table
+} from "sequelize-typescript";
 import TopicCategory from "server/Model/topicCategory";
+import Comment from "server/Model/comment";
 
 export interface ITopic {
     label: string;
@@ -20,6 +31,8 @@ class Topic extends Model<Topic, ITopic> {
     @ForeignKey(()=>TopicCategory)
     @Column(DataType.INTEGER)
     categoryId: number;
+    @HasMany(()=>Comment)
+    comments: Comment[]
 }
 
 export default Topic;

@@ -18,7 +18,7 @@ const ForumTopicsList: FC = () => {
         }
     },[id])
     return (
-        <NotGameWrap titlePage={'Auckland Forum'}>
+        <NotGameWrap titlePage={'Auckland Forum'} designForForum>
             <PageMeta
                 title='Auckland Forum | Destroy Asteroids'
                 description='Game by Auckland Team on Yandex Practicum'
@@ -36,7 +36,7 @@ const ForumTopicsList: FC = () => {
                         key={item.id}
                         topicId={item.id}
                         topicTitle={item.label}
-                        topicCommentsCount={0}
+                        topicCommentsCount={item.comments.length}
                     />
                 ))}
                 </tbody>

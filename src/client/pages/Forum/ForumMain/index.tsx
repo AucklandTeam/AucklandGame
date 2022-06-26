@@ -14,6 +14,7 @@ import {addCategoryTopicsAction, getCategoryTopicsAction} from "src/core/ducks/f
 import {useForumCategoriesInfo} from "src/core/ducks/forum/selectors";
 
 const ForumMain: FC = () => {
+	const admins = ['AucklandAdmin', 'AucklandAdmin2']
 	const dispatch = useAppDispatch()
 	const { data: user } = useUserInfo()
 	const {data: categories} = useForumCategoriesInfo();
@@ -37,7 +38,7 @@ const ForumMain: FC = () => {
 		}
 	})
 	return (
-		<NotGameWrap titlePage={'Auckland Forum'}>
+		<NotGameWrap titlePage={'Auckland Forum'} designForForum>
 			<PageMeta
 				title='Auckland Forum | Destroy Asteroids'
 				description='Game by Auckland Team on Yandex Practicum'
@@ -47,7 +48,6 @@ const ForumMain: FC = () => {
 				<tr>
 					<th className={styles.forumTitleHeader}>Forums</th>
 					<th className={styles.forumTopicsHeader}>Topics</th>
-					<th className={styles.forumCommentsHeader}>Comments</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -56,13 +56,12 @@ const ForumMain: FC = () => {
 						id={item.id}
 						key={item.id}
 						forumTitle={item.label}
-						forumTopicsCount={0}
-						forumCommentsCount={0}
+						forumTopicsCount={item.topics.length}
 					/>
 				))}
 				</tbody>
 			</table>
-			{user?.login === 'AucklandAdmin' && (
+			{admins.some((key)=>user?.login === key) && (
 				<div>
 					<Form
 						handleSubmit={handleSubmit}

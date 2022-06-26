@@ -49,6 +49,7 @@ export function* addCategoryTopicWorker({payload}:ReturnType<typeof addCategoryT
 export function* addTopicWorker({payload}:ReturnType<typeof addTopicAction>):SagaIterator<void>{
     try {
         yield call(addTopic, payload);
+        yield call(getCategoryTopicsWorker);
     } catch (e) {
         console.error(e);
     }

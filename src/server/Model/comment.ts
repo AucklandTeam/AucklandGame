@@ -9,9 +9,9 @@ import {
     PrimaryKey,
     Table
 } from "sequelize-typescript";
-import TopicCategory from "server/Model/topicCategory";
 import User from "server/Model/user";
 import Reply from "server/Model/reply";
+import Topic from "server/Model/topic";
 
 export type IComment = {
     title: string;
@@ -36,7 +36,7 @@ class Comment extends Model<Comment, IComment> {
     @AllowNull(false)
     @Column(DataType.STRING)
     text: string;
-    @ForeignKey(()=>TopicCategory)
+    @ForeignKey(()=>Topic)
     @Column(DataType.INTEGER)
     topicId: number;
     @Column(DataType.INTEGER)

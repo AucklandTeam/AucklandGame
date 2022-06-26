@@ -13,7 +13,7 @@ const ForumSingleTopic: FC = () => {
     const dispatch = useAppDispatch();
     const [titlePage, setTitlePage] = useState('Destroy Asteroids')
     const {id} = useParams<{ id: string }>();
-    const {user_id} = useUserInfo();
+    const {user_id, data: user} = useUserInfo();
     const {data: comments} = useForumCommentsInfo();
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const ForumSingleTopic: FC = () => {
         }
     }, [id])
     return (
-        <NotGameWrap titlePage={titlePage}>
+        <NotGameWrap titlePage={titlePage} designForForum>
             <PageMeta
                 title={`${titlePage} | Destroy Asteroids`}
                 description='Game by Auckland Team on Yandex Practicum'
@@ -38,6 +38,9 @@ const ForumSingleTopic: FC = () => {
                     messageText={item.text}
                     userAvatar={item.author.avatar}
                     userName={item.author.name}
+                    currentUser={user.login}
+                    answers={item.answers}
+                    type={'comment'}
                 />
             ))}
             <AddReplyForm isReply={false} topicId={+id} authorId={user_id}/>

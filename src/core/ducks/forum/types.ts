@@ -5,12 +5,14 @@ import { forumActions } from "./actions";
 export type CategoryTopic = {
     id: number;
     label: string;
+    topics: {id: string}[]
 } & TimeStamp;
 
 export type Topic = {
     id: number;
     label: string;
-    categoryId: number
+    categoryId: number;
+    comments: {id: string}[]
 } & TimeStamp;
 
 export type Comment = {
@@ -23,6 +25,7 @@ export type Comment = {
         name: string;
         avatar: null | string;
     }
+    answers: Comment[]
 } & TimeStamp;
 
 export type ForumState = {

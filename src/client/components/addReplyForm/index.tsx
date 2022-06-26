@@ -14,11 +14,11 @@ type AddReplyComponentFormProps = {
     commentId?: number;
     authorId: number;
     hideForm?:()=>void;
+    currentUser?: string;
 }
 
-const AddReplyForm: FC<AddReplyComponentFormProps> = ({isReply, topicId, commentId= 0, authorId, hideForm}) => {
+const AddReplyForm: FC<AddReplyComponentFormProps> = ({isReply, topicId, commentId= 0, authorId, hideForm, currentUser}) => {
     const dispatch = useAppDispatch()
-    const authorName = 'var_user.login'
     const {
         values,
         handleChange,
@@ -48,7 +48,7 @@ const AddReplyForm: FC<AddReplyComponentFormProps> = ({isReply, topicId, comment
 
     return (
         <div className={styles.replyFormWrap}>
-            {isReply && (<div>From: {authorName}</div>)}
+            {isReply && currentUser && (<div>From: {currentUser}</div>)}
             <Form
                 handleSubmit={handleSubmit}
                 submitTitle={'Send'}

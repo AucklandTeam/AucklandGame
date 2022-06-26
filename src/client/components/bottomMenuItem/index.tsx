@@ -7,6 +7,7 @@ interface BottomMenuItemType {
 	title: string
 	url: string
 	handler?: () => void
+	hideTitle: boolean;
 }
 
 const isHidden = (loc: Location, url: string): string => {
@@ -21,7 +22,8 @@ const BottomMenuItem: FC<BottomMenuItemType> = ({
 	icon,
 	title,
 	url,
-	handler
+	handler,
+	hideTitle,
 }) => {
 	const location = useLocation()
 
@@ -37,7 +39,9 @@ const BottomMenuItem: FC<BottomMenuItemType> = ({
 			}}
 		>
 			<i className={icon} />
-			<span>{title}</span>
+			{hideTitle && (
+				<span>{title}</span>
+			)}
 		</Link>
 	)
 }
