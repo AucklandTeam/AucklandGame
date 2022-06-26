@@ -5,8 +5,8 @@ export const TextFieldsCategory: TextInputProps<keyof CategoryTopic>[] = [
 	{
 		name: 'label',
 		type: 'text',
-		title: 'Label',
-		validType: 'message'
+		title: 'addTitle',
+		validType: 'text'
 	}
 ]
 

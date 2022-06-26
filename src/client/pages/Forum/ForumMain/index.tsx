@@ -52,7 +52,6 @@ const ForumMain: FC = () => {
 					<tr>
 						<th className={styles.forumTitleHeader}>{t('forums')}</th>
 						<th className={styles.forumTopicsHeader}>{t('topics')}</th>
-						<th className={styles.forumCommentsHeader}>{t('comments')}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -72,11 +71,11 @@ const ForumMain: FC = () => {
 				<div>
 					<Form
 						handleSubmit={handleSubmit}
-						submitTitle={'Add category'}
+						submitTitle={t('addCategory')}
 						errorText={formError}
 					>
 						{TextFieldsCategory.map(
-							({ name, type, title, validType }) => (
+							({ name, type, title,validType }) => (
 								<TextInput
 									key={name}
 									title={title}
