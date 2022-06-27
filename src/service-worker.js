@@ -2,11 +2,11 @@ const CACHE_NAME = 'auckland-game-cache-v1'
 
 const URLS = [
 	'/',
-	//'/game',
-	//'/forum',
-	//'/topic',
-	//'/topics',
-	'/sign-up',
+	'/game',
+	'/forum',
+	'/topic',
+	'/topics',
+	'/sign-in',
 ]
 
 self.addEventListener('install', event => {
