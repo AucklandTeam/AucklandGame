@@ -8,6 +8,7 @@ import {Comment, Reaction} from "src/core/ducks/forum/types";
 import classNames from "src/utils/classNames";
 import {useAppDispatch} from "src/ssr";
 import {changeReaction} from "src/core/ducks/forum/actions";
+import {RESOURCE_URL} from "shared/consts";
 
 type TopicSingleMessageProps = {
 	messageTitle: string
@@ -58,7 +59,7 @@ const TopicSingleMessage: FC<TopicSingleMessageProps> = (
             <div className={classNames(styles.messageWrap, {reply: type === 'replay'})}>
                 <div className={styles.messageHeader}>
                     <Avatar
-                        imageSrc={userAvatar || noImage}
+                        imageSrc={userAvatar ? `${RESOURCE_URL}${userAvatar}` : noImage}
                         imageTitle={userName || 'Avatar'}
                         divClass={styles.forumUserAvatar}
                     />

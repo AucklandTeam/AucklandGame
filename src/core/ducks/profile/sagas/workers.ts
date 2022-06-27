@@ -1,10 +1,11 @@
 import { SagaIterator } from 'redux-saga'
-import { call, put } from '@redux-saga/core/effects'
-import { changeAvatarRequest, userRequest } from '../api'
+import {call, put, select} from '@redux-saga/core/effects'
+import {changeAvatarRequest, userLocalUpdate, userRequest} from '../api'
 import { editUser, changeAvatar } from '../actions'
 import history from 'src/core/history'
 import { RouterPath } from 'shared/consts'
 import { setUserData } from 'src/core/ducks/auth/actions'
+import {userSelector} from "src/core/ducks/auth/selectors";
 
 export function* editUserWorker({
 	payload
@@ -12,7 +13,8 @@ export function* editUserWorker({
 	const { setFormError, ...values } = payload
 	try {
 		const response = yield call(userRequest, values)
-		console.log(response)
+		const user = yield select(userSelector);
+		yield call(userLocalUpdate, {id: user.user_id, avatar: response.avatar, login: response.login})
 		yield put(setUserData(response))
 		history.push(RouterPath.Profile)
 	} catch (e) {
@@ -29,6 +31,8 @@ export function* changeAvatarWorker({
 	const { setFormError, formData } = payload
 	try {
 		const response = yield call(changeAvatarRequest, formData)
+		const user = yield select(userSelector);
+		yield call(userLocalUpdate, {id: user.user_id, avatar: response.avatar, login: response.login})
 		yield put(setUserData(response))
 		history.push(RouterPath.Profile)
 	} catch (e) {
