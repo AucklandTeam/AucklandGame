@@ -4,6 +4,7 @@ import 'styles/base.scss'
 import { configureStore } from 'src/core/store'
 import { Provider } from 'react-redux'
 import { unstable_HistoryRouter as Router } from 'react-router-dom'
+//import { Router } from 'react-router-dom'
 import history from 'src/core/history'
 
 const { store } = configureStore(window.SSR_DATA, '/')

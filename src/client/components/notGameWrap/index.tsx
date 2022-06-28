@@ -1,13 +1,10 @@
-import React, { FC, ReactNode, useCallback, useEffect } from 'react'
+import React, { FC, ReactNode, useCallback } from 'react'
 import styles from 'styles/base.scss'
 import BottomMenuItem from 'components/bottomMenuItem'
-import { useAuth } from 'src/core/ducks/auth/selectors'
 import { logout } from 'src/core/ducks/auth/actions'
 import { useAppDispatch } from 'src/ssr'
 import classNames from "src/utils/classNames";
-import history from 'src/core/history'
 import LangSwitcher from 'components/langSwitcher'
-import {RouterPath} from 'shared/consts'
 
 type TemplatePageProps = {
 	titlePage?: string
@@ -29,13 +26,6 @@ const NotGameWrap: FC<TemplatePageProps> = ({ designForForum = false, titlePage,
 	const logoutHandler = useCallback(() => {
 		dispatch(logout())
 	}, [])
-	const { isAuth, isLoaded } = useAuth()
-
-	useEffect(() => {
-	if (!isAuth && isLoaded) {
-	 		history.push(RouterPath.Main)
-	 	}
-	 }, [isAuth])
 
 	return (
 		<div className={styles.notGame}>
