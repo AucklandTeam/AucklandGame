@@ -2,11 +2,8 @@ const CACHE_NAME = 'auckland-game-cache-v1'
 
 const URLS = [
 	'/',
-	'/game',
-	'/forum',
-	'/topic',
-	'/topics',
-	'/sign-in',
+	'/main.js',
+	'/css/main.css'
 ]
 
 self.addEventListener('install', event => {
@@ -28,6 +25,7 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', function (event) {
 	event.respondWith(
 		fetch(event.request).catch(function () {
+			console.log('All fetched')
 			return caches.match(event.request)
 		})
 	)
