@@ -95,10 +95,12 @@
 		margin-left: auto;
 	}
 }
+
 .messageButtonWrap {
 	position: absolute;
-	bottom: math.div($base-vertical-padding, 3);
 	right: math.div($base-vertical-padding, 3);
+	bottom: math.div($base-vertical-padding, 3);
+
 	& button {
 		background: $accent-80;
 		color: $white-100;
