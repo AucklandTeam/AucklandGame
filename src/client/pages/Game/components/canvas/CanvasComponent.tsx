@@ -105,10 +105,10 @@ const CanvasComponent: FC<CanvasProps> = ({
     let fonSound: any
 
     //if (isNotServer) {
-        fonSound = new Audio(fonSoundFile);
-        fonSound.volume = 0.2;
-        fonSound.loop = true;
-        fonSound?.play();
+       // fonSound = new Audio(fonSoundFile);
+       // fonSound.volume = 0.2;
+       // fonSound.loop = true;
+       // fonSound?.play();
     //}
 
 
@@ -646,16 +646,17 @@ const CanvasComponent: FC<CanvasProps> = ({
             debrisY = canvas.height / 5
         }
         startAnimation()
+        if (typeof window !== "undefined") {
+            if (isGameStart) {
+                window.addEventListener('keydown', keyDownHandler)
+                window.addEventListener('keyup', keyUpHandler)
+            }
 
-        if (isGameStart) {
-            window.addEventListener('keydown', keyDownHandler)
-            window.addEventListener('keyup', keyUpHandler)
-        }
-
-        return () => {
-            cancelAnimationFrame(requestRef.current)
-            window.removeEventListener('keydown', keyDownHandler)
-            window.removeEventListener('keyup', keyUpHandler)
+            return () => {
+                cancelAnimationFrame(requestRef.current)
+                window.removeEventListener('keydown', keyDownHandler)
+                window.removeEventListener('keyup', keyUpHandler)
+            }
         }
     }, [isGameStart, resize])
 

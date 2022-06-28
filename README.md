@@ -45,4 +45,8 @@ To use dev DB try PG admin on localhost:8097 and create DB
                 password: POSTGRES_PASSWORD store it in .env
                 rest is by default
 ```
+To add new forums you should to log (or sign up if user not found) in with admin credentials:
 
+**Login**: AucklandAdmin  
+
+**Password**: Auckland1234 (in case of signing up generate yours)
