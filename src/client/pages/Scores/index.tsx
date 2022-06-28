@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import NotGameWrap from 'components/notGameWrap'
 import styles from 'styles/base.scss'
 import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
 import { PageMeta } from 'components/pageMeta'
 import {useTranslation} from 'react-i18next';
+import {useAppDispatch} from "src/ssr";
+import {getLeaderBoard} from "src/core/ducks/scores/actions";
 
 const byField =
 	(field: string) =>
@@ -11,8 +13,13 @@ const byField =
 		a[field] > b[field] ? -1 : 1
 
 const Scores = () => {
+	const dispatch = useAppDispatch();
 	const { data: list } = useLeaderBordInfo()
 	const { t } = useTranslation()
+
+	useEffect(()=>{
+		dispatch(getLeaderBoard());
+	},[dispatch])
 
 	return (
 		<NotGameWrap titlePage={t('highScores')}>
