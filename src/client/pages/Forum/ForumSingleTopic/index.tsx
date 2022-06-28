@@ -41,7 +41,7 @@ const ForumSingleTopic: FC = () => {
 						messageText={item.text}
 						userAvatar={item.author.avatar}
 						userName={item.author.name}
-                        currentUser={user.login}
+                        currentUser={user?.login}
                         answers={item.answers}
                         type={'comment'}
                         reactions={item.reactions}

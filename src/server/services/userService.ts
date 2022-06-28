@@ -15,6 +15,13 @@ class UserService {
 		}
 		return user
 	}
+	async updateUser(id: number,name: string, avatar: string ){
+		const user = await User.update({name, avatar},
+			{
+				where: {id}
+			});
+		return user;
+	}
 }
 
 export default new UserService()

@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import CanvasComponent from './components/canvas/CanvasComponent';
 //import styles from './Game.scss';
 import styles from 'client/styles/base.scss'
 import GameTopBar from './components/GameTopBar/GameTopBar';
 import StartModal from './components/StartModal';
+import {useAppDispatch} from "src/ssr";
+import {addUserToLeaderBoardAction} from "src/core/ducks/scores/actions";
 
 const Game = () => {
+	const dispatch = useAppDispatch();
 	const [attempts, setAttempts] = useState(0);
 	const [lives, setLives] = useState(3);
 	const [score, setScore] = useState(0);
@@ -42,6 +45,13 @@ const Game = () => {
 
 	var w = window.innerWidth;
 	var h = window.innerHeight;
+
+	useEffect(()=>{
+		if(lives === 0){
+			dispatch(addUserToLeaderBoardAction(score));
+		}
+
+	},[lives])
 
 	return (
 		<div className={styles.gameMainWrap}>
