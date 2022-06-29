@@ -1,9 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import css from 'styles/base.scss'
 import { useTranslation } from 'react-i18next'
-import LangSwitcher from 'components/langSwitcher'
-import Player from 'components/bgSoundButton'
-import fonSoundFile from 'static/sounds/fon.wav'
 
 type HomePageWrapProps = {
     titlePage?: string
@@ -16,8 +13,6 @@ const HomePageWrap: FC<HomePageWrapProps> = ({ children, titleContent }) => {
     return (
         <div className={css.notGame}>
             <h1>{t('gameTitle')}</h1>
-            <Player url={fonSoundFile} />
-            <LangSwitcher />
             <main className={css.w100}>
                 <div className={css.contentWrapCenter}>
                     {titleContent && (

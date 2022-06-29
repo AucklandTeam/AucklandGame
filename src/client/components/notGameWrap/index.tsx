@@ -3,8 +3,7 @@ import styles from 'styles/base.scss'
 import BottomMenuItem from 'components/bottomMenuItem'
 import { logout } from 'src/core/ducks/auth/actions'
 import { useAppDispatch } from 'src/ssr'
-import classNames from "src/utils/classNames";
-import LangSwitcher from 'components/langSwitcher'
+import classNames from "src/utils/classNames"
 
 type TemplatePageProps = {
 	titlePage?: string
@@ -29,7 +28,6 @@ const NotGameWrap: FC<TemplatePageProps> = ({ designForForum = false, titlePage,
 
 	return (
 		<div className={styles.notGame}>
-			<LangSwitcher />
 			<div className={classNames(styles.contentWrap, {forum: designForForum})}>
 				<h3>{titlePage}</h3>
 				{children}
