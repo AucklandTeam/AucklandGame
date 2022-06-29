@@ -1,14 +1,24 @@
 import Topic from 'server/Model/topic'
+import Comment from 'server/Model/comment';
 
 class TopicService {
-	async findAllByCategory(categoryId: number) {
-		const topics = await Topic.findAll({ where: { categoryId } })
-		return topics
-	}
-	async findByLabel(label: string) {
-		const topic = await Topic.findOne({ where: { label } })
-		return topic
-	}
+    async findAllByCategory(categoryId: number){
+        const topics = await Topic.findAll({
+            where: {categoryId},
+            include:
+                [
+                    {
+                        model: Comment,
+                        attributes: ['id']
+                    }],
+            }
+        );
+        return topics;
+    }
+    async findByLabel(label: string){
+        const topic = await Topic.findOne({where: {label}});
+        return topic;
+    }
 
 	async findById(id: number) {
 		const topic = await Topic.findOne({ where: { id } })

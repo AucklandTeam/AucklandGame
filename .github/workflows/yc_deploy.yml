@@ -2,10 +2,16 @@
 
 name: YC Deploy
 
+concurrency: 
+  group: production
+  cancel-in-progress: true
+
 # Controls when the workflow will run
 on:
   release:
     types: [created]
+    branches:
+      - deploy
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -13,11 +19,9 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  deployment:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    environment: production
     steps:
       - uses: actions/checkout@v2
       
@@ -27,8 +31,8 @@ jobs:
               yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
       - name: Build, tag, and push image to Yandex Cloud Container Registry
         env:
-          CR_REGISTRY: crpkmb8e6ut2s0us2l5k
-          CR_REPOSITORY: aukland-game
+          CR_REGISTRY: crpd05duhuh7mj0cm1rh
+          CR_REPOSITORY: asteroids
           IMAGE_TAG: ${{ github.sha }}
         run: |
             docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .

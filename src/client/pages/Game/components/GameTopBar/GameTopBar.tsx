@@ -1,23 +1,15 @@
 import React from 'react'
 import styles from 'styles/base.scss'
-import { Link } from 'react-router-dom'
 import LivesIcon from '../../Icons/LivesIcon'
 import LivesIconEmpty from '../../Icons/LivesIconEmpty'
-import {useTranslation} from 'react-i18next'
-
-interface BottomMenuItemType {
-	icon: string
-	name: string
-	url: string
-	text: string
-}
+import { useTranslation } from 'react-i18next'
+import BottomMenuItem from 'components/bottomMenuItem';
 
 const topMenuItems = [
-	{ icon: styles.asPerson, url: '/profile', name: '', text: 'profile' },
-	{ icon: styles.asEdit, url: '/settings', name: '', text: 'settings' },
-	{ icon: styles.asTrophy, url: '/scores', name: '', text: 'scores' },
-	{ icon: styles.asForum, url: '/forum', name: '', text: 'forum' },
-	{ icon: styles.asPower, url: '/', name: '', text: 'quit' }
+	{ icon: styles.asForum, url: '/forum', name: 'forum' },
+	{ icon: styles.asPerson, url: '/profile', name: 'profile' },
+	{ icon: styles.asTrophy, url: '/scores', name: 'highScores' },
+	{ icon: styles.asPower, url: '/', name: 'quit' }
 ]
 function getRandomInt(max: number) {
 	return Math.floor(Math.random() * max);
@@ -51,23 +43,16 @@ const GameTopBar = ({ lives, score }: any) => {
 			</div>
 			<div style={{flexGrow: 1}}>&nbsp;</div>
 			<div className={styles.gameMenu}>
-				{topMenuItems.map((item: BottomMenuItemType, index) => (
-					<div key={item.url} className={styles.topMenuItem}>
-						<Link to={item.url}>
-							<i
-								className={`${item.icon} 
-                                    ${
-									index === topMenuItems.length - 1
-										? styles.quit
-										: ''
-								}`}
-							/>
-							<span>{item.name}</span>
-						</Link>
+				{ topMenuItems.map(({ name, url, icon }) => (
+						<BottomMenuItem
+							hideTitle={false}
+							key={url}
+							icon={icon}
+							title={name}
+							url={url}
+						/>)) }
 					</div>
-				))}
 			</div>
-		</div>
 	)
 }
 

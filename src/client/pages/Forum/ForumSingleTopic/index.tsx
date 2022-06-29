@@ -15,7 +15,7 @@ const ForumSingleTopic: FC = () => {
 	const { t } = useTranslation()
 	const [titlePage, setTitlePage] = useState('Destroy Asteroids')
 	const { id } = useParams<{ id: string }>()
-	const { user_id } = useUserInfo()
+	const { user_id, data: user } = useUserInfo()
 	const { data: comments } = useForumCommentsInfo()
 
 	useEffect(() => {
@@ -25,7 +25,7 @@ const ForumSingleTopic: FC = () => {
 		}
 	}, [id])
 	return (
-		<NotGameWrap titlePage={titlePage}>
+		<NotGameWrap titlePage={titlePage} designForForum>
 			<PageMeta
 				title={`${titlePage} | ${t('gameTitle')}`}
 				description={t('gameDescription')}
@@ -41,6 +41,10 @@ const ForumSingleTopic: FC = () => {
 						messageText={item.text}
 						userAvatar={item.author.avatar}
 						userName={item.author.name}
+                        currentUser={user?.login}
+                        answers={item.answers}
+                        type={'comment'}
+                        reactions={item.reactions}
 					/>
 				))}
 			<AddReplyForm isReply={false} topicId={+id} authorId={user_id} />

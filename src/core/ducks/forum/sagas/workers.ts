@@ -7,7 +7,8 @@ import {
 	getCategoriesTopics,
 	getComments,
 	getTopic,
-	getTopics
+	getTopics,
+    addReaction
 } from 'src/core/ducks/forum/api'
 import {
 	addCategoryTopicsAction,
@@ -24,7 +25,8 @@ import {
 	setForumCommentsStatus,
 	setForumTopicsData,
 	setForumTopicsFailed,
-	setForumTopicsStatus
+	setForumTopicsStatus,
+    changeReaction,
 } from 'src/core/ducks/forum/actions'
 import { Topic } from 'src/core/ducks/forum/types'
 
@@ -57,6 +59,7 @@ export function* addTopicWorker({
 }: ReturnType<typeof addTopicAction>): SagaIterator<void> {
 	try {
 		yield call(addTopic, payload)
+        yield call(getCategoryTopicsWorker);
 	} catch (e) {
 		console.error(e)
 	}
@@ -112,4 +115,14 @@ export function* addCommentWorker({
 	} catch (e) {
 		console.error(e)
 	}
+}
+
+export function* changeReactionWorker({payload}:ReturnType<typeof changeReaction>):SagaIterator<void> {
+    try {
+        const {userId, commentId, topicId} = payload;
+        yield call(addReaction, {userId, commentId});
+        yield put(getCommentsAction({topicId}))
+    }catch (e) {
+        console.error(e);
+    }
 }

@@ -6,7 +6,8 @@ import {
 	getTopicsAction,
 	getCommentsAction,
 	addCommentAction,
-	getTopicAction
+	getTopicAction,
+    changeReaction
 } from 'src/core/ducks/forum/actions'
 import {
 	getCategoryTopicsWorker,
@@ -15,7 +16,8 @@ import {
 	getTopicsWorker,
 	getCommentsWorker,
 	addCommentWorker,
-	getTopicWorker
+	getTopicWorker,
+    changeReactionWorker
 } from 'src/core/ducks/forum/sagas/workers'
 
 export default function* forumWatcher() {
@@ -26,6 +28,7 @@ export default function* forumWatcher() {
 		takeLatest(getTopicsAction, getTopicsWorker),
 		takeLatest(getCommentsAction, getCommentsWorker),
 		takeLatest(addCommentAction, addCommentWorker),
-		takeLatest(getTopicAction, getTopicWorker)
+		takeLatest(getTopicAction, getTopicWorker),
+        takeLatest(changeReaction, changeReactionWorker)
 	])
 }

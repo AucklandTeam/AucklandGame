@@ -90,15 +90,24 @@
 		math.div($base-horizontal-padding, 3);
 	margin-bottom: $base-horizontal-padding;
 
+	&:global(.reply){
+		width: 90%;
+		margin-left: auto;
+	}
+}
+
+.messageButtonWrap {
+	position: absolute;
+	right: math.div($base-vertical-padding, 3);
+	bottom: math.div($base-vertical-padding, 3);
+
 	& button {
-		position: absolute;
-		right: math.div($base-vertical-padding, 3);
-		bottom: math.div($base-vertical-padding, 3);
 		background: $accent-80;
 		color: $white-100;
 		margin: 0;
 		padding: 1px 7px;
 		transition: $base-transition;
+		margin-left: 10px;
 
 		&:active,
 		&:hover,

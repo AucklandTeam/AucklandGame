@@ -39,7 +39,7 @@ const AddNewTopicForm: FC<AddNewTopicFormProps> = ({
 
 	return (
 		<>
-			<h4>Add New Topic</h4>
+			<h4>{t('addTopic')}</h4>
 			<Form
 				handleSubmit={handleSubmit}
 				submitTitle={t('create')}

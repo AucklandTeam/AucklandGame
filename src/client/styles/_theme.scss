@@ -90,6 +90,11 @@ h4 {
 	margin: 0 auto;
 	padding: $base-vertical-padding $base-horizontal-padding;
 	position: relative;
+
+	&:global(.forum){
+		overflow-y: auto;
+		padding: 30px 100px 30px 22.5px;
+	}
 }
 
 .contentWrapCenter {
@@ -141,10 +146,23 @@ h4 {
 	align-items: center;
 	justify-content: space-between;
 	background: $dark-gray-100;
+
+	&:global(.forum){
+		bottom: 50%;
+		left: calc(100% - 80px);
+		transform: translateY(50%);
+		flex-wrap: wrap;
+		width: 80px;
+		margin-left: 0;
+	}
 }
 
 .bottomMenuItem {
 	padding: $form-margin-vertical 3 * $form-margin-vertical;
+
+	&:last-child {
+		color: $error-light
+	}
 
 	& i {
 		margin-right: 1em;

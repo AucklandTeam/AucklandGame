@@ -6,7 +6,7 @@ import {
 	ParamGetComments,
 	ParamGetTopics
 } from 'components/addNewTopicForm/types'
-import { AddReplyFormProps } from 'components/addReplyForm/types'
+import { AddReplyFormProps, ChangeReactionParam } from 'components/addReplyForm/types'
 
 export const addCategoryTopic = request<CategoryTopic, { label: string }>({
 	baseURL: '/',
@@ -48,4 +48,10 @@ export const addComment = request<Comment, AddReplyFormProps>({
 	method: 'POST',
 	baseURL: '/',
 	url: ApiLocation.COMMENT
+})
+
+export const addReaction = request<boolean, ChangeReactionParam>({
+    method: "POST",
+    url:ApiLocation.REACTION,
+    baseURL: '/'
 })

@@ -39,7 +39,7 @@ const ForumTopicsList: FC = () => {
 								key={item.id}
 								topicId={item.id}
 								topicTitle={item.label}
-								topicCommentsCount={0}
+                                topicCommentsCount={item.comments.length}
 							/>
 						))}
 				</tbody>

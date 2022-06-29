@@ -10,6 +10,6 @@ COPY . ./
 RUN CI=true npm test
 RUN npm run prod:build
 
-EXPOSE 80
+EXPOSE 3000
 
 CMD ["node", "index.js"]

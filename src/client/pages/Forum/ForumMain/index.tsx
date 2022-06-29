@@ -18,6 +18,7 @@ import { useForumCategoriesInfo } from 'src/core/ducks/forum/selectors'
 import {useTranslation} from 'react-i18next';
 
 const ForumMain: FC = () => {
+	const admins = ['AucklandAdmin', 'AucklandAdmin2']
 	const dispatch = useAppDispatch()
 	const { data: user } = useUserInfo()
 	const { data: categories } = useForumCategoriesInfo()
@@ -42,7 +43,7 @@ const ForumMain: FC = () => {
 		}
 	})
 	return (
-		<NotGameWrap titlePage={t('forumTitle')}>
+		<NotGameWrap titlePage={t('forumTitle')} designForForum>
 			<PageMeta
 				title={`${t('forumTitle')} | ${t('gameTitle')}`}
 				description={t('gameDescription')}
@@ -52,31 +53,28 @@ const ForumMain: FC = () => {
 					<tr>
 						<th className={styles.forumTitleHeader}>{t('forums')}</th>
 						<th className={styles.forumTopicsHeader}>{t('topics')}</th>
-						<th className={styles.forumCommentsHeader}>{t('comments')}</th>
 					</tr>
 				</thead>
 				<tbody>
-					{categories &&
-						categories.map(item => (
-							<ForumListItem
-								id={item.id}
-								key={item.id}
-								forumTitle={item.label}
-								forumTopicsCount={0}
-								forumCommentsCount={0}
-							/>
-						))}
+				{categories && categories.map(item => (
+					<ForumListItem
+						id={item.id}
+						key={item.id}
+						forumTitle={item.label}
+						forumTopicsCount={item.topics.length}
+					/>
+				))}
 				</tbody>
 			</table>
-			{user?.login === 'AucklandAdmin' && (
+			{admins.some((key)=>user?.login === key) && (
 				<div>
 					<Form
 						handleSubmit={handleSubmit}
-						submitTitle={'Add category'}
+						submitTitle={t('addCategory')}
 						errorText={formError}
 					>
 						{TextFieldsCategory.map(
-							({ name, type, title, validType }) => (
+							({ name, type, title,validType }) => (
 								<TextInput
 									key={name}
 									title={title}
