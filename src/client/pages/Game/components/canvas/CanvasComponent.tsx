@@ -345,7 +345,7 @@ const CanvasComponent: FC<CanvasProps> = ({
                 bonus.isVisible = false;
                 isTripleFire = true;
                 playAudio(powerUpFile, 1);
-                setTimeout(() => { isTripleFire = false}, 10000)
+                //setTimeout(() => { isTripleFire = false}, 10000)
             }
         });
         asteroids.forEach((asteroid: any) => {
