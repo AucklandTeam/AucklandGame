@@ -5,14 +5,14 @@ import { forumActions } from './actions'
 export type CategoryTopic = {
     id: number
     label: string
-    topics: {id: string}[]
+    topics: { id: string }[]
 } & TimeStamp
 
 export type Topic = {
-	id: number
-	label: string
-	categoryId: number
-    comments: {id: string}[]
+    id: number
+    label: string
+    categoryId: number
+    comments: { id: string }[]
 } & TimeStamp
 
 export type Reaction = {
@@ -34,19 +34,19 @@ export type Comment = {
 } & TimeStamp
 
 export type ForumState = {
-	categories: GenerateState<CategoryTopic[]>
-	topics: GenerateState<Topic[]>
-	comments: GenerateState<Comment[]>
+    categories: GenerateState<CategoryTopic[]>
+    topics: GenerateState<Topic[]>
+    comments: GenerateState<Comment[]>
 }
 
 export type ForumActionStatus = ActionWithPayload<
-	Extract<typeof forumActions, forumActions.setCategoriesSuccess>,
-	LoadStatus
+    Extract<typeof forumActions, forumActions.setCategoriesSuccess>,
+    LoadStatus
 >
 
 export type ForumCategoriesActionData = ActionWithPayload<
-	Extract<typeof forumActions, 'setCategoriesSuccess'>,
-	CategoryTopic[]
+    Extract<typeof forumActions, 'setCategoriesSuccess'>,
+    CategoryTopic[]
 >
 
 export type ForumActions = ForumActionStatus | ForumCategoriesActionData

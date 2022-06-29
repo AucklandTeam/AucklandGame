@@ -1,21 +1,12 @@
-import {
-	AllowNull,
-	AutoIncrement,
-	Column,
-	DataType,
-    HasMany,
-	Model,
-	PrimaryKey,
-	Table
-} from 'sequelize-typescript'
+import { AllowNull, AutoIncrement, Column, DataType, HasMany, Model, PrimaryKey, Table } from 'sequelize-typescript'
 import Topic from 'server/Model/topic'
 
 export interface ITopicCategory {
-	label: string
+    label: string
 }
 
 @Table({
-	tableName: 'topicCategories'
+    tableName: 'topicCategories',
 })
 class TopicCategory extends Model<TopicCategory, ITopicCategory> {
     @AutoIncrement

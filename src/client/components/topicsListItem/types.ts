@@ -1,5 +1,5 @@
 export interface topicsListProps {
-	topicId: number
-	topicTitle: string
-	topicCommentsCount: number
+    topicId: number
+    topicTitle: string
+    topicCommentsCount: number
 }

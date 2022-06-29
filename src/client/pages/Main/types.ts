@@ -1,5 +1,5 @@
 export type MenuItems = {
-	url: string
-	name: string
-	access: 'public' | 'private'
+    url: string
+    name: string
+    access: 'public' | 'private'
 }

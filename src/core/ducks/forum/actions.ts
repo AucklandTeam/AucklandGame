@@ -1,13 +1,12 @@
-import {createAction} from "@reduxjs/toolkit";
-import {LoadStatus, Nullable } from "shared/types";
-import {NewTopicForm, ParamGetComments, ParamGetTopics} from "components/addNewTopicForm/types";
-import {CategoryTopic, Topic} from "src/core/ducks/forum/types";
-import {AddReplyFormProps, ChangeReactionParam} from "components/addReplyForm/types";
+import { createAction } from '@reduxjs/toolkit'
+import { LoadStatus, Nullable } from 'shared/types'
+import { NewTopicForm, ParamGetComments, ParamGetTopics } from 'components/addNewTopicForm/types'
+import { CategoryTopic, Topic } from 'src/core/ducks/forum/types'
+import { AddReplyFormProps, ChangeReactionParam } from 'components/addReplyForm/types'
 
-export const getCategoryTopicsAction = createAction('forum/getCategoryTopicsAction');
+export const getCategoryTopicsAction = createAction('forum/getCategoryTopicsAction')
 
-export const addCategoryTopicsAction = createAction<{label:string}>('forum/addCategoryTopicsAction');
-
+export const addCategoryTopicsAction = createAction<{ label: string }>('forum/addCategoryTopicsAction')
 
 export enum forumActions {
     setCategoriesSuccess = 'forum/setCategoriesSuccess',
@@ -23,24 +22,19 @@ export enum forumActions {
 
 export const setForumCategoriesStatus = createAction<LoadStatus>(forumActions.setCategoriesStatus)
 
-export const setForumCategoriesData = createAction<Nullable<CategoryTopic[]>>(
-    forumActions.setCategoriesSuccess
-)
+export const setForumCategoriesData = createAction<Nullable<CategoryTopic[]>>(forumActions.setCategoriesSuccess)
 
 export const setForumCategoriesFailed = createAction<string>(forumActions.setCategoriesFailed)
 
-export const addTopicAction = createAction<NewTopicForm>('forum/addTopic');
+export const addTopicAction = createAction<NewTopicForm>('forum/addTopic')
 
-export const getTopicsAction = createAction<ParamGetTopics>('forum/getTopics');
+export const getTopicsAction = createAction<ParamGetTopics>('forum/getTopics')
 
-export const getTopicAction = createAction<{id: number, setData: (value: string)=>void}>('forum/getTopic');
-
+export const getTopicAction = createAction<{ id: number; setData: (value: string) => void }>('forum/getTopic')
 
 export const setForumTopicsStatus = createAction<LoadStatus>(forumActions.setTopicsStatus)
 
-export const setForumTopicsData = createAction<Nullable<Topic[]>>(
-    forumActions.setTopicsSuccess
-)
+export const setForumTopicsData = createAction<Nullable<Topic[]>>(forumActions.setTopicsSuccess)
 
 export const setForumTopicsFailed = createAction<string>(forumActions.setTopicsFailed)
 
@@ -48,13 +42,10 @@ export const addCommentAction = createAction<AddReplyFormProps>('forum/addCommen
 
 export const setForumCommentsStatus = createAction<LoadStatus>(forumActions.setCommentsStatus)
 
-export const setForumCommentsData = createAction<Nullable<Comment[]>>(
-    forumActions.setCommentsSuccess
-)
-
+export const setForumCommentsData = createAction<Nullable<Comment[]>>(forumActions.setCommentsSuccess)
 
 export const setForumCommentsFailed = createAction<string>(forumActions.setCommentsFailed)
 
 export const getCommentsAction = createAction<ParamGetComments>('forum/getCommentsAction')
 
-export const changeReaction = createAction<ChangeReactionParam & ParamGetComments>('forum/changeReaction');
+export const changeReaction = createAction<ChangeReactionParam & ParamGetComments>('forum/changeReaction')

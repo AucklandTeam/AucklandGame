@@ -4,8 +4,8 @@ import { getLeaderBoard, addUserToLeaderBoardAction } from '../actions'
 import { getLeaderBoardWorker, addUserToLeaderBoardWorker } from './workers'
 
 export default function* leaderBoardWatcher() {
-	yield all([
-		takeLatest(getLeaderBoard, getLeaderBoardWorker),
-		takeLatest(addUserToLeaderBoardAction, addUserToLeaderBoardWorker)
-	])
+    yield all([
+        takeLatest(getLeaderBoard, getLeaderBoardWorker),
+        takeLatest(addUserToLeaderBoardAction, addUserToLeaderBoardWorker),
+    ])
 }

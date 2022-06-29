@@ -5,10 +5,5 @@ import leaderBoardWatcher from 'src/core/ducks/scores/sagas/watchers'
 import forumWatcher from 'src/core/ducks/forum/sagas/watchers'
 
 export function* rootSaga() {
-	yield all([
-		call(userWatcher),
-		call(userEditWatcher),
-		call(leaderBoardWatcher),
-		call(forumWatcher)
-	])
+    yield all([call(userWatcher), call(userEditWatcher), call(leaderBoardWatcher), call(forumWatcher)])
 }

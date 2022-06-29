@@ -1,170 +1,168 @@
 @use 'sass:math';
 
 .forumsTable {
-	width: 100%;
-	border-collapse: separate;
-	border-spacing: 15px 30px;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 15px 30px;
 
-	& tr > td {
-		padding: math.div($base-vertical-padding, 2)
-			math.div($base-horizontal-padding, 2);
-		background: $white-100;
-		color: $dark-gray-100;
-	}
+    & tr > td {
+        padding: math.div($base-vertical-padding, 2) math.div($base-horizontal-padding, 2);
+        background: $white-100;
+        color: $dark-gray-100;
+    }
 
-	& tr > td:last-child {
-		margin-right: 0;
-	}
+    & tr > td:last-child {
+        margin-right: 0;
+    }
 
-	& tr > th {
-		color: $white-100;
-		text-align: left;
-		font-weight: $base-font-weight;
-	}
+    & tr > th {
+        color: $white-100;
+        text-align: left;
+        font-weight: $base-font-weight;
+    }
 
-	& tr > th:last-child {
-		margin-right: 0;
-	}
+    & tr > th:last-child {
+        margin-right: 0;
+    }
 }
 
 .forumTitleHeader {
-	width: 78%;
+    width: 78%;
 }
 
 .forumTopicsHeader {
-	width: 10%;
+    width: 10%;
 }
 
 .forumCommentsHeader {
-	width: 10%;
+    width: 10%;
 }
 
 .forumTitle {
-	width: 78%;
+    width: 78%;
 
-	& a {
-		color: $dark-gray-100;
+    & a {
+        color: $dark-gray-100;
 
-		&:hover {
-			color: $accent-60;
-		}
-	}
+        &:hover {
+            color: $accent-60;
+        }
+    }
 }
 
 .forumTopicsCounter {
-	width: 10%;
-	position: relative;
+    width: 10%;
+    position: relative;
 
-	& button {
-		background: $accent-100;
-		color: $white-100;
-		position: absolute;
-		top: 0;
-		right: 0;
-		margin: 0;
-		height: 100%;
-		width: 50px;
-		padding: 0;
-		border-radius: 0;
+    & button {
+        background: $accent-100;
+        color: $white-100;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        height: 100%;
+        width: 50px;
+        padding: 0;
+        border-radius: 0;
 
-		&:hover {
-			background: $accent-60;
-		}
-	}
+        &:hover {
+            background: $accent-60;
+        }
+    }
 }
 
 .forumCommentsCounter {
-	width: 10%;
-	text-align: center;
+    width: 10%;
+    text-align: center;
 }
 
 .messageWrap {
-	display: block;
-	position: relative;
-	clear: both;
-	width: 100%;
-	background: $white-100;
-	color: $dark-gray-100;
-	border-radius: $form-border-radius;
-	padding: math.div($base-vertical-padding, 3)
-		math.div($base-horizontal-padding, 3);
-	margin-bottom: $base-horizontal-padding;
+    display: block;
+    position: relative;
+    clear: both;
+    width: 100%;
+    background: $white-100;
+    color: $dark-gray-100;
+    border-radius: $form-border-radius;
+    padding: math.div($base-vertical-padding, 3) math.div($base-horizontal-padding, 3);
+    margin-bottom: $base-horizontal-padding;
 
-	&:global(.reply){
-		width: 90%;
-		margin-left: auto;
-	}
+    &:global(.reply) {
+        width: 90%;
+        margin-left: auto;
+    }
 }
 
 .messageButtonWrap {
-	position: absolute;
-	right: math.div($base-vertical-padding, 3);
-	bottom: math.div($base-vertical-padding, 3);
+    position: absolute;
+    right: math.div($base-vertical-padding, 3);
+    bottom: math.div($base-vertical-padding, 3);
 
-	& button {
-		background: $accent-80;
-		color: $white-100;
-		margin: 0;
-		padding: 1px 7px;
-		transition: $base-transition;
-		margin-left: 10px;
+    & button {
+        background: $accent-80;
+        color: $white-100;
+        margin: 0;
+        padding: 1px 7px;
+        transition: $base-transition;
+        margin-left: 10px;
 
-		&:active,
-		&:hover,
-		&:focus {
-			background: $accent-100;
-			color: $white-100;
-			transition: $base-transition;
-		}
-	}
+        &:active,
+        &:hover,
+        &:focus {
+            background: $accent-100;
+            color: $white-100;
+            transition: $base-transition;
+        }
+    }
 }
 
 .messageHeader {
-	display: flex;
-	border-bottom: 1px solid $dark-gray-75;
-	margin-bottom: $base-horizontal-padding;
+    display: flex;
+    border-bottom: 1px solid $dark-gray-75;
+    margin-bottom: $base-horizontal-padding;
 }
 
 .messageText {
-	display: flex;
-	margin-bottom: $base-horizontal-padding * 2;
+    display: flex;
+    margin-bottom: $base-horizontal-padding * 2;
 }
 
 .forumUserAvatar {
-	border-radius: $form-border-radius;
-	margin-bottom: math.div($base-vertical-padding, 3);
-	margin-right: $base-horizontal-padding;
+    border-radius: $form-border-radius;
+    margin-bottom: math.div($base-vertical-padding, 3);
+    margin-right: $base-horizontal-padding;
 }
 
 .messageMeta {
-	display: flex;
-	flex-wrap: wrap;
-	align-content: center;
-	width: 100%;
-	position: relative;
-	margin-bottom: math.div($base-vertical-padding, 3);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 100%;
+    position: relative;
+    margin-bottom: math.div($base-vertical-padding, 3);
 }
 
 .forumUserAvatar,
 .forumUserAvatar img {
-	width: 60px;
-	height: 60px;
+    width: 60px;
+    height: 60px;
 }
 
 .userName {
-	width: 100%;
-	color: $accent-80;
-	font-size: $base-font-size * 0.85;
+    width: 100%;
+    color: $accent-80;
+    font-size: $base-font-size * 0.85;
 }
 
 .messageDate {
-	position: absolute;
-	top: 0;
-	right: 0;
-	color: $accent-80;
-	font-size: $base-font-size * 0.65;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: $accent-80;
+    font-size: $base-font-size * 0.65;
 }
 
 .replyFormWrap {
-	width: 100%;
+    width: 100%;
 }
