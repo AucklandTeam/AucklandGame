@@ -13,7 +13,6 @@ import endSoundFile from 'static/sounds/end.wav'
 import fireSoundFile from 'static/sounds/fire.wav'
 import expSoundFile from 'static/sounds/exp2.mp3'
 import powerUpFile from 'static/sounds/powerUp.mp3'
-import fonSoundFile from 'static/sounds/fon.wav'
 import { getRandomArbitrary } from './utils'
 import styles from 'styles/base.scss'
 import {
@@ -61,17 +60,17 @@ const CanvasComponent: FC<CanvasProps> = ({
     let isLoaded = false
     const requestRef: any = React.useRef()
     let ctx: any
-    const spaceship = new Image()
-    const debris = new Image()
-    const explosion = new Image()
-    const fire = new Image()
-    const bullet = new Image()
-    const bullet2 = new Image()
-    const rocketBonus = new Image()
-    const bomb3 = new Image()
-    const bombExplosion = new Image()
-    const aster = new Image()
-console.log(spaceship)
+    const spaceship = typeof Image !== "undefined" ? new Image() : undefined
+    const debris = typeof Image !== "undefined" ? new Image() : undefined
+    const explosion = typeof Image !== "undefined" ? new Image() : undefined
+    const fire = typeof Image !== "undefined" ? new Image() : undefined
+    const bullet = typeof Image !== "undefined" ? new Image() : undefined
+    const bullet2 = typeof Image !== "undefined" ? new Image() : undefined
+    const rocketBonus = typeof Image !== "undefined" ? new Image() : undefined
+    const bomb3 = typeof Image !== "undefined" ? new Image() : undefined
+    const bombExplosion = typeof Image !== "undefined" ? new Image() : undefined
+    const aster = typeof Image !== "undefined" ? new Image() : undefined
+
     // скорость кораблля
     let speed = 0
     // угол поворота корабля
@@ -101,15 +100,6 @@ console.log(spaceship)
     let bombs: any = []
     let bombExpArray: any = []
     let bonuses: any = []
-
-    let fonSound: any
-
-    //if (isNotServer) {
-    // fonSound = new Audio(fonSoundFile);
-    // fonSound.volume = 0.2;
-    // fonSound.loop = true;
-    // fonSound?.play();
-    //}
 
     class Sprite extends Base {
         private timeLives: number
