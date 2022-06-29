@@ -5,38 +5,35 @@ export const teamName = 'AucklandTeam'
 export const fieldRating = 'aucklandScope'
 
 export type UserLeaderBoard = {
-	login: string
-	aucklandScope: number
+    login: string
+    aucklandScope: number
 }
 
 export type ParamLeaderBoardAddUser = {
-	data: UserLeaderBoard
-	teamName: string
-	ratingFieldName: string
+    data: UserLeaderBoard
+    teamName: string
+    ratingFieldName: string
 }
 export type ParamLeaderBoardGet = {
-	ratingFieldName: string
-	cursor: number
-	limit: number
+    ratingFieldName: string
+    cursor: number
+    limit: number
 }
 
 export type ResponseLeaderBoardList = {
-	data: UserLeaderBoard
+    data: UserLeaderBoard
 }[]
 
 export type LeaderBoardState = GenerateState<UserLeaderBoard[]>
 
 export type LeaderBoardActionStatus = ActionWithPayload<
-	Extract<
-		typeof leaderBoardActions,
-		leaderBoardActions.setLeaderBoardSuccess
-	>,
-	LoadStatus
+    Extract<typeof leaderBoardActions, leaderBoardActions.setLeaderBoardSuccess>,
+    LoadStatus
 >
 
 export type LeaderBoardActionData = ActionWithPayload<
-	Extract<typeof leaderBoardActions, 'setLeaderBoardSuccess'>,
-	UserLeaderBoard[]
+    Extract<typeof leaderBoardActions, 'setLeaderBoardSuccess'>,
+    UserLeaderBoard[]
 >
 
 export type LeaderBoardActions = LeaderBoardActionStatus | LeaderBoardActionData

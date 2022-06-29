@@ -6,10 +6,10 @@ type SoundProps = {
     url: string
 }
 
-const Player: FC<SoundProps> = ({ url}) => {
+const Player: FC<SoundProps> = ({ url }) => {
     const [audio] = useState(typeof Audio !== 'undefined' ? new Audio(url) : undefined)
     const [playing, setPlaying] = useState(false)
-    const handlePlay = (url:string, status:boolean) => {
+    const handlePlay = (url: string, status: boolean) => {
         console.log(audio, status)
         if (!status) {
             audio.pause()
@@ -25,13 +25,13 @@ const Player: FC<SoundProps> = ({ url}) => {
         return handlePlay(url, currStatus)
     }
 
-        return (
+    return (
         <Button
             buttonType={'button'}
             buttonTitle={''}
             handleClick={togglePlay}
             buttonIconClass={playing ? styles.asVolumeMute : styles.asVolumeUp}
-            />
+        />
     )
 }
 

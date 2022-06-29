@@ -4,7 +4,7 @@ import compression from 'compression'
 import serverRenderMiddleware from 'src/ssr'
 import { dbConnect } from 'server/db/connect'
 import bodyParser from 'body-parser'
-import {PUserSync, PUserUpdate} from 'src/types/general'
+import { PUserSync, PUserUpdate } from 'src/types/general'
 import UserService from 'server/services/userService'
 import CategoryTopicService from 'server/services/categoryTopicService'
 import { ApiLocation } from 'src/api'
@@ -12,8 +12,8 @@ import TopicService from 'server/services/topicService'
 import CommentService from 'server/services/commentService'
 import { IComment } from 'server/Model/comment'
 import ReplyService from 'server/services/replyService'
-import {IReaction} from 'server/Model/reaction';
-import ReactionService from 'server/services/reactionService';
+import { IReaction } from 'server/Model/reaction'
+import ReactionService from 'server/services/reactionService'
 
 const app = express()
 
@@ -117,10 +117,10 @@ app.post(ApiLocation.COMMENT, async (req: Request<IComment, IComment, IComment>,
     res.send('Error params')
 })
 
-type PReaction = Omit<IReaction, 'id'>;
+type PReaction = Omit<IReaction, 'id'>
 
-app.post(ApiLocation.REACTION, async (req: Request<PReaction, PReaction, PReaction>, res:Response)=>{
-    if(req.body.userId && req.body.commentId){
+app.post(ApiLocation.REACTION, async (req: Request<PReaction, PReaction, PReaction>, res: Response) => {
+    if (req.body.userId && req.body.commentId) {
         const result = await ReactionService.changeReaction(req.body.userId, req.body.commentId)
         res.send(result)
     }

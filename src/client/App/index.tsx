@@ -9,46 +9,49 @@ import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import { getLeaderBoard } from 'src/core/ducks/scores/actions'
 import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
 import 'src/i18n'
-import ErrorBoundary from 'src/utils/errorBoundaries';
-import styles from 'styles/base.scss';
-import Player from 'components/bgSoundButton';
-import fonSoundFile from 'static/sounds/fon.wav';
-import LangSwitcher from 'components/langSwitcher';
+import ErrorBoundary from 'src/utils/errorBoundaries'
+import styles from 'styles/base.scss'
+import Player from 'components/bgSoundButton'
+import fonSoundFile from 'static/sounds/fon.wav'
+import LangSwitcher from 'components/langSwitcher'
 
 const App = () => {
-	const dispatch = useAppDispatch()
-	const { data } = useUserInfo()
-	const { data: list } = useLeaderBordInfo()
-	useEffect(() => {
-		if (!data) {
-			dispatch(fetchUser())
-		}
-		if (!list) {
-			dispatch(getLeaderBoard())
-		}
-	}, [])
+    const dispatch = useAppDispatch()
+    const { data } = useUserInfo()
+    const { data: list } = useLeaderBordInfo()
+    useEffect(() => {
+        if (!data) {
+            dispatch(fetchUser())
+        }
+        if (!list) {
+            dispatch(getLeaderBoard())
+        }
+    }, [])
 
-	const workerMessageHandler = ({ data }: any) => {
-		console.log('web-worker callback data:', data)
-	}
+    const workerMessageHandler = ({ data }: any) => {
+        console.log('web-worker callback data:', data)
+    }
 
-	useEffect(() => {
-		initWorkerApi(workerMessageHandler)
-	})
+    useEffect(() => {
+        initWorkerApi(workerMessageHandler)
+    })
 
-	return (
-		<ErrorBoundary>
-			<div className={styles.toggleButtonsWrap}>
-				<Player url={fonSoundFile} />
-				<LangSwitcher />
-			</div>
-		<Routes>
-			{routes.map(({ fetchData, ...routeProps }) => (
-				<Route key={routeProps.path} {...routeProps} />
-			))}
-		</Routes>
-		</ErrorBoundary>
-	)
+    return (
+        <ErrorBoundary>
+            <div className={styles.toggleButtonsWrap}>
+                <Player url={fonSoundFile} />
+                <LangSwitcher />
+            </div>
+            <Routes>
+                {routes.map(({ fetchData, ...routeProps }) => (
+                    <Route
+                        key={routeProps.path}
+                        {...routeProps}
+                    />
+                ))}
+            </Routes>
+        </ErrorBoundary>
+    )
 }
 
 const Component = hot(App)

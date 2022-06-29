@@ -3,30 +3,31 @@ import Button from 'components/buttons'
 import styles from 'styles/base.scss'
 
 type FormProps = {
-	handleSubmit: (event: FormEvent<HTMLFormElement>) => void
-	submitTitle: string
-	errorText?: string
-	children: ReactNode
+    handleSubmit: (event: FormEvent<HTMLFormElement>) => void
+    submitTitle: string
+    errorText?: string
+    children: ReactNode
 }
 
-const Form: FC<FormProps> = ({
-	handleSubmit,
-	children,
-	errorText,
-	submitTitle
-}) => (
-	<form onSubmit={handleSubmit} className={styles.form}>
-		<div className={styles.inputs}>{children}</div>
-		{errorText && (
-			<div role={'alert'} className={styles.errors}>
-				{errorText}
-			</div>
-		)}
-		<Button
-			buttonName={'submit'}
-			buttonType={'submit'}
-			buttonTitle={submitTitle}
-		/>
-	</form>
+const Form: FC<FormProps> = ({ handleSubmit, children, errorText, submitTitle }) => (
+    <form
+        onSubmit={handleSubmit}
+        className={styles.form}
+    >
+        <div className={styles.inputs}>{children}</div>
+        {errorText && (
+            <div
+                role={'alert'}
+                className={styles.errors}
+            >
+                {errorText}
+            </div>
+        )}
+        <Button
+            buttonName={'submit'}
+            buttonType={'submit'}
+            buttonTitle={submitTitle}
+        />
+    </form>
 )
 export default Form

@@ -40,9 +40,8 @@ const Game = () => {
         }
     }
 
-        const w = () => (typeof window !== 'undefined') ? window.innerWidth : 0
-        const h = () => (typeof window !== 'undefined') ? window.innerHeight : 0
-
+    const w = () => (typeof window !== 'undefined' ? window.innerWidth : 0)
+    const h = () => (typeof window !== 'undefined' ? window.innerHeight : 0)
 
     useEffect(() => {
         if (lives === 0) {

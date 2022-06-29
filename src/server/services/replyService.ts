@@ -2,21 +2,18 @@ import Reply, { IReply } from 'server/Model/reply'
 import User from 'server/Model/user'
 
 class ReplyService {
-	async getCommentByID(id: number) {
-		const comment = await Reply.findOne({ where: { id } })
-		return comment
-	}
-	async getCommentsByTopic(topicId: number) {
-		const comments = await Reply.findAll({
-			where: { topicId },
-			include: [User]
-		})
-		return comments
-	}
-	async addComment(props: IReply) {
-		const comment = await Reply.create(props)
-		return comment
-	}
+    async getCommentByID(id: number) {
+        return await Reply.findOne({ where: { id } })
+    }
+    async getCommentsByTopic(topicId: number) {
+        return await Reply.findAll({
+            where: { topicId },
+            include: [User],
+        })
+    }
+    async addComment(props: IReply) {
+        return await Reply.create(props)
+    }
 }
 
 export default new ReplyService()

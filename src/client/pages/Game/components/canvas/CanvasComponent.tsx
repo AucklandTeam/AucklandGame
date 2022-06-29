@@ -27,7 +27,6 @@ import {
 } from './consts'
 import Base from './BaseClass'
 
-
 const playAudio = (src: any, volume?: number) => {
     const sound = new Audio(src)
     sound.volume = volume ? volume : 0.1
@@ -61,7 +60,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     const requestRef: any = React.useRef()
     let ctx: any
 
-    const checkServer = () => typeof Image !== "undefined" ? new Image() : undefined
+    const checkServer = () => (typeof Image !== 'undefined' ? new Image() : undefined)
     const spaceship = checkServer()
     const debris = checkServer()
     const explosion = checkServer()
@@ -218,7 +217,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         update() {
             this.x += Math.cos((Math.PI / 180) * (this.angle - 90)) * this.speed
             this.y += Math.sin((Math.PI / 180) * (this.angle - 90)) * this.speed
-            this.rotateAngle += (1 * this.angleIncreaseNum) / 20
+            this.rotateAngle += this.angleIncreaseNum / 20
             if (this.x > canvas.width) {
                 this.x = 0 - this.radius / 2
             }
@@ -341,7 +340,6 @@ const CanvasComponent: FC<CanvasProps> = ({
 
         bonuses.forEach((bonus: any) => {
             if (Math.abs(xMove + 50 - bonus.x - 30) < 50 && Math.abs(yMove + 50 - bonus.y - 30) < 50) {
-
                 bonus.isVisible = false
                 isTripleFire = true
                 playAudio(powerUpFile, 1)
@@ -414,7 +412,7 @@ const CanvasComponent: FC<CanvasProps> = ({
     }
 
     const fireObj = new Sprite(300, 300, 190, 10, 1)
-    const bombObj = new Sprite(100, 100, 810, 9, 1)
+    //const bombObj = new Sprite(100, 100, 810, 9, 1)
     const updateScene = () => {
         // очищаем весь канвас перед перерисовкой
         ctx.clearRect(0, 0, canvas.width, canvas.height)

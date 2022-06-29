@@ -3,12 +3,7 @@ import Helmet, { HelmetData } from 'react-helmet'
 import { App } from 'client/App'
 import serialize from 'serialize-javascript'
 import { configureStore } from 'src/core/store'
-import {
-	Provider,
-	TypedUseSelectorHook,
-	useDispatch,
-	useSelector
-} from 'react-redux'
+import { Provider, TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { renderToString } from 'react-dom/server'
 import { rootSaga } from 'src/core/saga'
 import routes from 'src/core/routes'
@@ -19,63 +14,59 @@ import { matchPath } from 'react-router'
 import { AppState } from '../types/app'
 
 export default async (req: Request, res: Response) => {
-	const baseURL = req.protocol + '://' + req.headers.host + '/'
-	const reqUrl = new URL(req.url, baseURL)
-	const helmetData = Helmet.renderStatic()
-	const { store } = configureStore(getInitialState(), reqUrl.pathname)
-	function renderApp() {
-		const appHtml = (
-			<Provider store={store}>
-				<StaticRouter location={reqUrl.pathname}>
-					<App />
-				</StaticRouter>
-			</Provider>
-		)
+    const baseURL = req.protocol + '://' + req.headers.host + '/'
+    const reqUrl = new URL(req.url, baseURL)
+    const helmetData = Helmet.renderStatic()
+    const { store } = configureStore(getInitialState(), reqUrl.pathname)
+    function renderApp() {
+        const appHtml = (
+            <Provider store={store}>
+                <StaticRouter location={reqUrl.pathname}>
+                    <App />
+                </StaticRouter>
+            </Provider>
+        )
 
-		const reactHtml = renderToString(appHtml)
-		const reduxState = store.getState()
-		res.status(200).send(getHtml(reactHtml, reduxState, helmetData))
-	}
-	store
-		.runSaga(rootSaga)
-		.toPromise()
-		.then(() => renderApp())
-		.catch(err => {
-			throw err
-		})
+        const reactHtml = renderToString(appHtml)
+        const reduxState = store.getState()
+        res.status(200).send(getHtml(reactHtml, reduxState, helmetData))
+    }
+    store
+        .runSaga(rootSaga)
+        .toPromise()
+        .then(() => renderApp())
+        .catch(err => {
+            throw err
+        })
 
-	const dataRequirements: (Promise<void> | void)[] = []
+    const dataRequirements: (Promise<void> | void)[] = []
 
-	routes.some(route => {
-		const { fetchData: fetchMethod } = route
-		const match = matchPath(reqUrl.pathname, route.path)
+    routes.some(route => {
+        const { fetchData: fetchMethod } = route
+        const match = matchPath(reqUrl.pathname, route.path)
 
-		if (match && fetchMethod) {
-			dataRequirements.push(
-				fetchMethod({
-					dispatch: store.dispatch,
-					match
-				})
-			)
-		}
+        if (match && fetchMethod) {
+            dataRequirements.push(
+                fetchMethod({
+                    dispatch: store.dispatch,
+                    match,
+                }),
+            )
+        }
 
-		return Boolean(match)
-	})
-	return Promise.all(dataRequirements)
-		.then(() => store.close())
-		.catch(err => {
-			throw err
-		})
+        return Boolean(match)
+    })
+    return Promise.all(dataRequirements)
+        .then(() => store.close())
+        .catch(err => {
+            throw err
+        })
 }
 
 export const useAppDispatch = () => useDispatch()
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector
 
-const getHtml = (
-	reactHtml: string,
-	reduxState = {},
-	helmetData: HelmetData
-) => `
+const getHtml = (reactHtml: string, reduxState = {}, helmetData: HelmetData) => `
     <!DOCTYPE html>
     <html lang="en">
         <head>

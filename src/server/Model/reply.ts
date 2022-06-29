@@ -1,27 +1,27 @@
 import {
-	AllowNull,
-	AutoIncrement,
-	BelongsTo,
-	Column,
-	DataType,
-	ForeignKey,
-	Model,
-	PrimaryKey,
-	Table
+    AllowNull,
+    AutoIncrement,
+    BelongsTo,
+    Column,
+    DataType,
+    ForeignKey,
+    Model,
+    PrimaryKey,
+    Table,
 } from 'sequelize-typescript'
 import TopicCategory from 'server/Model/topicCategory'
 import User from 'server/Model/user'
 import Comment from 'server/Model/comment'
 
 export type IReply = {
-    title: string;
-    text: string;
-    commentId?: number;
-    authorId: number;
+    title: string
+    text: string
+    commentId?: number
+    authorId: number
 }
 
 @Table({
-	tableName: 'reply'
+    tableName: 'reply',
 })
 class Reply extends Model<Comment, IReply> {
     @AutoIncrement

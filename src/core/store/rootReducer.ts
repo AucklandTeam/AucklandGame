@@ -4,7 +4,7 @@ import { leaderBoardReducer } from 'src/core/ducks/scores/reducer'
 import { forumReducer } from 'src/core/ducks/forum/reducer'
 
 export const rootReducer = combineReducers({
-	user: userReducer,
-	leaderBoard: leaderBoardReducer,
-	forum: forumReducer
+    user: userReducer,
+    leaderBoard: leaderBoardReducer,
+    forum: forumReducer,
 })

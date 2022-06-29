@@ -18,115 +18,115 @@ $button-padding-vertical: 5px;
 $button-padding-horizontal: 40px;
 
 form {
-	display: inline-flex;
-	flex-wrap: wrap;
-	justify-content: flex-end;
-	width: 100%;
-	margin: 0 0 $form-margin-vertical;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0 0 $form-margin-vertical;
 }
 
 .inputs {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .errors {
-	color: $error-light;
-	font-size: $base-font-size;
-	line-height: $base-line-height;
-	width: 100%;
+    color: $error-light;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    width: 100%;
 }
 
 button[type='submit'],
 button[type='button'] {
-	background: $form-background-gradient;
-	font-family: $form-font-family;
-	color: $dark-gray-100;
-	border: none;
-	border-radius: $button-border-radius;
-	cursor: pointer;
-	font-weight: $button-font-weight;
-	line-height: $button-line-height;
-	padding: $button-padding-vertical $button-padding-horizontal;
-	text-decoration: none;
-	box-shadow: none;
-	transition: $base-transition;
-	margin: $form-margin-vertical 0;
+    background: $form-background-gradient;
+    font-family: $form-font-family;
+    color: $dark-gray-100;
+    border: none;
+    border-radius: $button-border-radius;
+    cursor: pointer;
+    font-weight: $button-font-weight;
+    line-height: $button-line-height;
+    padding: $button-padding-vertical $button-padding-horizontal;
+    text-decoration: none;
+    box-shadow: none;
+    transition: $base-transition;
+    margin: $form-margin-vertical 0;
 
-	&:focus,
-	&:hover {
-		background: $form-background-gradient-hover;
-		transition: $base-transition;
-	}
+    &:focus,
+    &:hover {
+        background: $form-background-gradient-hover;
+        transition: $base-transition;
+    }
 }
 
 .inputWrap {
-	display: flex;
-	width: 100%;
-	position: relative;
-	margin: $form-margin-vertical $form-margin-horizontal;
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin: $form-margin-vertical $form-margin-horizontal;
 
-	& label {
-		position: absolute;
-		top: 10px;
-		left: 15px;
-		color: $dark-gray-100;
-		pointer-events: none;
-		transition: transform $base-transition, font-size $base-transition;
-	}
+    & label {
+        position: absolute;
+        top: 10px;
+        left: 15px;
+        color: $dark-gray-100;
+        pointer-events: none;
+        transition: transform $base-transition, font-size $base-transition;
+    }
 
-	& input:focus ~ label,
-	& input:valid ~ label,
-	& input:placeholder-shown ~ label,
-	& textarea:focus ~ label,
-	& textarea:valid ~ label,
-	& textarea:placeholder-shown ~ label {
-		transform: translateY(-50%);
-		font-size: 0.65em;
-		color: $accent-60;
-	}
+    & input:focus ~ label,
+    & input:valid ~ label,
+    & input:placeholder-shown ~ label,
+    & textarea:focus ~ label,
+    & textarea:valid ~ label,
+    & textarea:placeholder-shown ~ label {
+        transform: translateY(-50%);
+        font-size: 0.65em;
+        color: $accent-60;
+    }
 
-	&.error input,
-	&.error input:focus,
-	&.error textarea,
-	&.error textarea:focus {
-		box-shadow: $form-box-error-shadow;
-	}
+    &.error input,
+    &.error input:focus,
+    &.error textarea,
+    &.error textarea:focus {
+        box-shadow: $form-box-error-shadow;
+    }
 
-	&.error input ~ label,
-	&.error textarea ~ label {
-		transform: translateY(-50%);
-		font-size: 0.65em;
-		color: $error-dark;
-	}
+    &.error input ~ label,
+    &.error textarea ~ label {
+        transform: translateY(-50%);
+        font-size: 0.65em;
+        color: $error-dark;
+    }
 }
 
 input[type='email'],
 input[type='password'],
 input[type='text'],
 textarea {
-	font-family: $form-font-family;
-	border: 0 solid;
-	background: $form-background-gradient;
-	color: $dark-gray-100;
-	line-height: $base-line-height;
-	padding: $form-input-padding;
-	width: 100%;
-	transition: box-shadow $base-transition;
+    font-family: $form-font-family;
+    border: 0 solid;
+    background: $form-background-gradient;
+    color: $dark-gray-100;
+    line-height: $base-line-height;
+    padding: $form-input-padding;
+    width: 100%;
+    transition: box-shadow $base-transition;
 
-	&:focus {
-		color: $dark-gray-100;
-		outline: 0;
-		box-shadow: $form-box-shadow;
-	}
+    &:focus {
+        color: $dark-gray-100;
+        outline: 0;
+        box-shadow: $form-box-shadow;
+    }
 
-	&:disabled {
-		color: $dark-gray-45;
-	}
+    &:disabled {
+        color: $dark-gray-45;
+    }
 }
 
 .langSwitch button {
-	padding: math.div($button-padding-vertical,3) math.div($button-padding-horizontal,3);
-	margin-left: 15px
+    padding: math.div($button-padding-vertical, 3) math.div($button-padding-horizontal, 3);
+    margin-left: 15px;
 }

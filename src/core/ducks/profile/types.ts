@@ -1,25 +1,13 @@
-import {
-	ActionWithPayload,
-	GenerateState,
-	LoadStatus,
-	ParamForFormRequest,
-	User
-} from 'shared/types'
+import { ActionWithPayload, GenerateState, LoadStatus, ParamForFormRequest, User } from 'shared/types'
 import { userActions } from 'src/core/ducks/auth/actions'
 import { EditUserDataForm } from 'components/editUserForm/types'
 import { UploadAvatarForm } from 'components/avatarUploadForm'
 
 export type UserState = GenerateState<User>
 
-export type UserActionStatus = ActionWithPayload<
-	Extract<typeof userActions, userActions.setUserSuccess>,
-	LoadStatus
->
+export type UserActionStatus = ActionWithPayload<Extract<typeof userActions, userActions.setUserSuccess>, LoadStatus>
 
-export type UserActionData = ActionWithPayload<
-	Extract<typeof userActions, 'setUserStatus'>,
-	User
->
+export type UserActionData = ActionWithPayload<Extract<typeof userActions, 'setUserStatus'>, User>
 
 export type UserActions = UserActionStatus | UserActionData
 
