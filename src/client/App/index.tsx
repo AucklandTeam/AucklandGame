@@ -9,6 +9,7 @@ import { useUserInfo } from 'src/core/ducks/auth/selectors'
 import { getLeaderBoard } from 'src/core/ducks/scores/actions'
 import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
 import 'src/i18n'
+import ErrorBoundary from 'src/utils/errorBoundaries';
 
 const App = () => {
 	const dispatch = useAppDispatch()
@@ -32,11 +33,13 @@ const App = () => {
 	})
 
 	return (
+		<ErrorBoundary>
 		<Routes>
 			{routes.map(({ fetchData, ...routeProps }) => (
 				<Route key={routeProps.path} {...routeProps} />
 			))}
 		</Routes>
+		</ErrorBoundary>
 	)
 }
 

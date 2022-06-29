@@ -6,10 +6,9 @@ import { useTranslation } from 'react-i18next'
 import BottomMenuItem from 'components/bottomMenuItem';
 
 const topMenuItems = [
-	{ icon: styles.asTrophy, url: '/scores', name: 'highScores' },
-	{ icon: styles.asPerson, url: '/profile', name: 'profile' },
-	{ icon: styles.asEdit, url: '/settings', name: 'profileEdit' },
 	{ icon: styles.asForum, url: '/forum', name: 'forum' },
+	{ icon: styles.asPerson, url: '/profile', name: 'profile' },
+	{ icon: styles.asTrophy, url: '/scores', name: 'highScores' },
 	{ icon: styles.asPower, url: '/', name: 'quit' }
 ]
 function getRandomInt(max: number) {
