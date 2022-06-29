@@ -250,8 +250,29 @@ h4 {
 	}
 }
 
-.langSwitch {
+.toggleButtonsWrap {
 	position: absolute;
-	top: $base-vertical-padding;
-	right: $base-horizontal-padding
+	z-index: 99;
+	right: $base-horizontal-padding;
+	bottom: $base-vertical-padding;
+
+	& button {
+		width: 48px;
+		height: 48px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: $white-100;
+		padding: 0;
+		background: $dark-gray-75;
+
+		&:focus {
+			background: $dark-gray-75;
+		}
+
+		&:hover {
+			background: $accent-60;
+		}
+	}
+
 }

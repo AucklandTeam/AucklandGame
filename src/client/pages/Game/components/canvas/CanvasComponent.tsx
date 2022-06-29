@@ -60,16 +60,18 @@ const CanvasComponent: FC<CanvasProps> = ({
     let isLoaded = false
     const requestRef: any = React.useRef()
     let ctx: any
-    const spaceship = typeof Image !== "undefined" ? new Image() : undefined
-    const debris = typeof Image !== "undefined" ? new Image() : undefined
-    const explosion = typeof Image !== "undefined" ? new Image() : undefined
-    const fire = typeof Image !== "undefined" ? new Image() : undefined
-    const bullet = typeof Image !== "undefined" ? new Image() : undefined
-    const bullet2 = typeof Image !== "undefined" ? new Image() : undefined
-    const rocketBonus = typeof Image !== "undefined" ? new Image() : undefined
-    const bomb3 = typeof Image !== "undefined" ? new Image() : undefined
-    const bombExplosion = typeof Image !== "undefined" ? new Image() : undefined
-    const aster = typeof Image !== "undefined" ? new Image() : undefined
+
+    const checkServer = () => typeof Image !== "undefined" ? new Image() : undefined
+    const spaceship = checkServer()
+    const debris = checkServer()
+    const explosion = checkServer()
+    const fire = checkServer()
+    const bullet = checkServer()
+    const bullet2 = checkServer()
+    const rocketBonus = checkServer()
+    const bomb3 = checkServer()
+    const bombExplosion = checkServer()
+    const aster = checkServer()
 
     // скорость кораблля
     let speed = 0
@@ -339,12 +341,11 @@ const CanvasComponent: FC<CanvasProps> = ({
 
         bonuses.forEach((bonus: any) => {
             if (Math.abs(xMove + 50 - bonus.x - 30) < 50 && Math.abs(yMove + 50 - bonus.y - 30) < 50) {
+
                 bonus.isVisible = false
                 isTripleFire = true
                 playAudio(powerUpFile, 1)
-                setTimeout(() => {
-                    isTripleFire = false
-                }, 10000)
+                //setTimeout(() => {isTripleFire = false}, 10000)
             }
         })
         asteroids.forEach((asteroid: any) => {

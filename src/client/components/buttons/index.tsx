@@ -7,6 +7,7 @@ interface ButtonProps {
 	buttonTitle: string
 	handleClick?: MouseEventHandler<HTMLButtonElement> | undefined
 	buttonClass?: string
+	buttonIconClass?: string
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -14,7 +15,8 @@ const Button: React.FC<ButtonProps> = ({
 	buttonName,
 	buttonTitle,
 	handleClick,
-	buttonClass
+	buttonClass,
+	buttonIconClass
 }) => {
 	return (
 		<button
@@ -24,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
 			onClick={handleClick}
 			className={buttonClass}
 		>
+			{buttonIconClass && <i className={buttonIconClass} />}
 			{buttonTitle}
 		</button>
 	)

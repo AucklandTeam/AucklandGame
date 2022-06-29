@@ -10,6 +10,10 @@ import { getLeaderBoard } from 'src/core/ducks/scores/actions'
 import { useLeaderBordInfo } from 'src/core/ducks/scores/selectors'
 import 'src/i18n'
 import ErrorBoundary from 'src/utils/errorBoundaries';
+import styles from 'styles/base.scss';
+import Player from 'components/bgSoundButton';
+import fonSoundFile from 'static/sounds/fon.wav';
+import LangSwitcher from 'components/langSwitcher';
 
 const App = () => {
 	const dispatch = useAppDispatch()
@@ -34,6 +38,10 @@ const App = () => {
 
 	return (
 		<ErrorBoundary>
+			<div className={styles.toggleButtonsWrap}>
+				<Player url={fonSoundFile} />
+				<LangSwitcher />
+			</div>
 		<Routes>
 			{routes.map(({ fetchData, ...routeProps }) => (
 				<Route key={routeProps.path} {...routeProps} />
