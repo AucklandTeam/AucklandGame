@@ -160,6 +160,10 @@ h4 {
 .bottomMenuItem {
 	padding: $form-margin-vertical 3 * $form-margin-vertical;
 
+	&:last-child {
+		color: $error-light
+	}
+
 	& i {
 		margin-right: 1em;
 	}

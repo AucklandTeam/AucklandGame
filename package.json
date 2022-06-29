@@ -36,7 +36,7 @@
       "src/**/*.{js,jsx}"
     ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/tests/mediaMock.js",
       "\\.(css|less|scss|sass)$": "identity-obj-proxy",
       "^src/(.*)$": "<rootDir>/src/$1",
       "^server/(.*)$": "<rootDir>/src/server/$1",
@@ -148,9 +148,10 @@
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0"
   },
-  "preinstall": "npx npm-force-resolutions",
+  "preinstall": "([ ! -f package-lock.json ] && npm install --package-lock-only --ignore-scripts --no-audit); npx npm-force-resolutions",
   "resolutions": {
-    "got": ">=11.8.5",
-    "ejs": ">=3.1.7"
+    "got": "11.8.5",
+    "ejs": "3.1.7",
+    "glob-parent": "5.1.2"
   }
 }

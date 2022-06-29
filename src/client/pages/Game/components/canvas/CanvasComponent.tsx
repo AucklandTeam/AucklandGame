@@ -13,8 +13,6 @@ import endSoundFile from 'static/sounds/end.wav'
 import fireSoundFile from 'static/sounds/fire.wav'
 import expSoundFile from 'static/sounds/exp2.mp3'
 import powerUpFile from 'static/sounds/powerUp.mp3'
-import fonSoundFile from 'static/sounds/fon.wav'
-
 import { getRandomArbitrary } from './utils'
 import styles from 'styles/base.scss'
 import {
@@ -28,6 +26,7 @@ import {
     asteroidSpeed,
 } from './consts'
 import Base from './BaseClass'
+
 
 const playAudio = (src: any, volume?: number) => {
     const sound = new Audio(src)
@@ -61,16 +60,16 @@ const CanvasComponent: FC<CanvasProps> = ({
     let isLoaded = false
     const requestRef: any = React.useRef()
     let ctx: any
-    const spaceship = new Image()
-    const debris = new Image()
-    const explosion = new Image()
-    const fire = new Image()
-    const bullet = new Image()
-    const bullet2 = new Image()
-    const rocketBonus = new Image()
-    const bomb3 = new Image()
-    const bombExplosion = new Image()
-    const aster = new Image()
+    const spaceship = typeof Image !== "undefined" ? new Image() : undefined
+    const debris = typeof Image !== "undefined" ? new Image() : undefined
+    const explosion = typeof Image !== "undefined" ? new Image() : undefined
+    const fire = typeof Image !== "undefined" ? new Image() : undefined
+    const bullet = typeof Image !== "undefined" ? new Image() : undefined
+    const bullet2 = typeof Image !== "undefined" ? new Image() : undefined
+    const rocketBonus = typeof Image !== "undefined" ? new Image() : undefined
+    const bomb3 = typeof Image !== "undefined" ? new Image() : undefined
+    const bombExplosion = typeof Image !== "undefined" ? new Image() : undefined
+    const aster = typeof Image !== "undefined" ? new Image() : undefined
 
     // скорость кораблля
     let speed = 0
@@ -102,16 +101,6 @@ const CanvasComponent: FC<CanvasProps> = ({
     let bombExpArray: any = []
     let bonuses: any = []
 
-    let fonSound: any
-
-    //if (isNotServer) {
-       // fonSound = new Audio(fonSoundFile);
-       // fonSound.volume = 0.2;
-       // fonSound.loop = true;
-       // fonSound?.play();
-    //}
-
-
     class Sprite extends Base {
         private timeLives: number
         row: number
@@ -126,6 +115,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         timeCount: number
         type: string
         private tickSprite: number
+
         constructor(x: number, y: number, frameSize: number, cols = 1, rows = 1, timeCount?: number) {
             super(x, y)
             this.timeLives = 10
@@ -142,6 +132,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             this.timeCount = timeCount
             this.type = ''
         }
+
         update() {
             this.tickSprite++
             if (this.tickSprite % 5 === 0) {
@@ -161,6 +152,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             }
         }
     }
+
     class Explosion extends Base {
         private timeLives: number
         private row: number
@@ -172,6 +164,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         numRows: number
         isSmall: boolean
         private tickExplosion: number
+
         constructor(x: number, y: number, isSmall: boolean) {
             super(x, y)
             this.isSmall = isSmall
@@ -186,6 +179,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             this.numRows = 1
             this.tickExplosion = 0
         }
+
         update() {
             this.tickExplosion++
             if (this.tickExplosion % 5 === 0) {
@@ -200,6 +194,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             }
         }
     }
+
     class Asteroid extends Base {
         public speed: number
         private readonly angle: number
@@ -207,6 +202,7 @@ const CanvasComponent: FC<CanvasProps> = ({
         public radius: number
         public isSmall: boolean
         public rotateAngle: number
+
         constructor(x: number, y: number) {
             super(x, y)
             this.speed = asteroidSpeed
@@ -216,6 +212,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             this.rotateAngle = 0
             this.angleIncreaseNum = getRandomArbitrary(1, 20)
         }
+
         update() {
             this.x += Math.cos((Math.PI / 180) * (this.angle - 90)) * this.speed
             this.y += Math.sin((Math.PI / 180) * (this.angle - 90)) * this.speed
@@ -233,21 +230,26 @@ const CanvasComponent: FC<CanvasProps> = ({
                 this.y = canvas.height - this.radius / 2
             }
         }
+
         getCenterX() {
             return this.x + this.radius * 2
         }
+
         getCenterY() {
             return this.y + this.radius * 2
         }
     }
+
     class Bullet extends Base {
         private angle: number
         private speed: number
+
         constructor(x: number, y: number, angle: number) {
             super(x, y)
             this.angle = angle
             this.speed = 20
         }
+
         update() {
             this.x += Math.cos((Math.PI / 180) * (this.angle - 90)) * this.speed
             this.y += Math.sin((Math.PI / 180) * (this.angle - 90)) * this.speed
@@ -416,9 +418,6 @@ const CanvasComponent: FC<CanvasProps> = ({
         // очищаем весь канвас перед перерисовкой
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         // рисуем объект в новых кординатах
-        // фон
-        //ctx.drawImage(bg, 0, 0, canvas.width, canvas.height)
-
         // фон метеориты
         ctx.drawImage(debris, debrisX, debrisY)
         // добавляем астеройды
@@ -557,7 +556,9 @@ const CanvasComponent: FC<CanvasProps> = ({
             )
         }
         fireObj.update()
+
         ctx.drawImage(spaceship, xMove, yMove, shipWith, shipHeight)
+
         // восстанавливаем канвас
         ctx.restore()
         ctx.fillStyle = 'white'
@@ -646,7 +647,7 @@ const CanvasComponent: FC<CanvasProps> = ({
             debrisY = canvas.height / 5
         }
         startAnimation()
-        if (typeof window !== "undefined") {
+        if (typeof window !== 'undefined') {
             if (isGameStart) {
                 window.addEventListener('keydown', keyDownHandler)
                 window.addEventListener('keyup', keyUpHandler)
