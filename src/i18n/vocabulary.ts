@@ -61,6 +61,11 @@ export const lang: Resource = {
             addCategory: 'Add category',
             addTitle: 'Title',
             addTopic: 'Add New Topic',
+            reply: 'Reply',
+            avatar: 'Avatar',
+            showAnswers: "Show Answers",
+            hideAnswers: "Hide Answers",
+            like: "Like"
         },
     },
     ru: {
@@ -123,6 +128,11 @@ export const lang: Resource = {
             addCategory: 'Добавить форум',
             addTitle: 'Название',
             addTopic: 'Добавить тему',
+            reply: 'Ответить',
+            avatar: 'Аватар',
+            showAnswers: "Показать ответы",
+            hideAnswers: "Скрыть ответы",
+            like: "Нравится"
         },
     },
 }

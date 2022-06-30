@@ -28,8 +28,8 @@ const ForumTopicsList: FC = () => {
             <table className={styles.forumsTable}>
                 <thead>
                     <tr>
-                        <th className={styles.forumTitleHeader}>Topics</th>
-                        <th className={styles.forumCommentsHeader}>Comments</th>
+                        <th className={styles.forumTitleHeader}>{t('topics')}</th>
+                        <th className={styles.forumCommentsHeader}>{t('comments')}</th>
                     </tr>
                 </thead>
                 <tbody>

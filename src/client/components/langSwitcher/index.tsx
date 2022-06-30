@@ -19,7 +19,7 @@ const LangSwitcher = () => {
             buttonType={'button'}
             buttonName={'language'}
             handleClick={changeLang}
-            buttonTitle={currLang === 'en' ? 'EN' : 'РУ'}
+            buttonTitle={currLang === 'en' ? 'РУ' : 'EN'}
         />
     )
 }
