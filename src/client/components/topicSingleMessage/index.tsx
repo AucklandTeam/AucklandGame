@@ -9,6 +9,7 @@ import classNames from 'src/utils/classNames'
 import { useAppDispatch } from 'src/ssr'
 import { changeReaction } from 'src/core/ducks/forum/actions'
 import { RESOURCE_URL } from 'shared/consts'
+import {useTranslation} from 'react-i18next';
 
 type TopicSingleMessageProps = {
     messageTitle: string
@@ -37,6 +38,7 @@ const TopicSingleMessage: FC<TopicSingleMessageProps> = ({
     type,
     reactions,
 }) => {
+    const { t } = useTranslation()
     const dispatch = useAppDispatch()
     const metaStyle = messageTitle ? styles.userName : styles.messageTitle
     const [showForm, setShowForm] = useState(false)
@@ -58,7 +60,7 @@ const TopicSingleMessage: FC<TopicSingleMessageProps> = ({
                 <div className={styles.messageHeader}>
                     <Avatar
                         imageSrc={userAvatar ? `${RESOURCE_URL}${userAvatar}` : noImage}
-                        imageTitle={userName || 'Avatar'}
+                        imageTitle={userName || t('avatar')}
                         divClass={styles.forumUserAvatar}
                     />
                     <div className={styles.messageMeta}>
@@ -71,22 +73,22 @@ const TopicSingleMessage: FC<TopicSingleMessageProps> = ({
                     <div className={styles.messageButtonWrap}>
                         <Button
                             buttonType={'button'}
-                            buttonTitle={'Reply'}
+                            buttonTitle={t('reply')}
                             buttonName={'reply'}
                             handleClick={handleReplyClick}
                         />
                         {answers && !!answers.length && (
                             <Button
                                 buttonType={'button'}
-                                buttonTitle={isShowReply ? 'Скрыть ответы' : 'Показать ответы'}
-                                buttonName={'reply'}
+                                buttonTitle={isShowReply ? t('hideAnswers') : t('showAnswers')}
+                                buttonName={'answers'}
                                 handleClick={handlerToggleReply}
                             />
                         )}
                         <Button
                             buttonType={'button'}
-                            buttonTitle={`Нравится ${+reactions?.length}`}
-                            buttonName={'reply'}
+                            buttonTitle={`${t('like')} ${+reactions?.length}`}
+                            buttonName={'like'}
                             handleClick={handlerReaction}
                         />
                     </div>
